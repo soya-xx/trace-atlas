@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "check": "node --check app.js && node --check launch.js && node --check server.mjs && node --check service-worker.js && node --check verify-trace.mjs && node --check verify-runtime.mjs && node verify-trace.mjs && node verify-runtime.mjs",
+    "check": "node --check app.js && node --check launch.js && node --check server.mjs && node --check service-worker.js && node --check verify-trace.mjs && node --check verify-runtime.mjs && node --check verify-launch.mjs && node verify-trace.mjs && node verify-runtime.mjs && node verify-launch.mjs",
     "start": "node server.mjs"
   }
 }
