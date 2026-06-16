@@ -6,6 +6,8 @@
 
 主公开页面：`https://trace-atlas-codex.pages.dev/`
 
+发布草稿包：`https://trace-atlas-codex.pages.dev/promo/xhs-post-drafts.md`
+
 ## 受众与角度
 
 主受众：AI 重度用户、独立开发者、技术创作者。
@@ -91,6 +93,8 @@ Top 5：
 30. 这次AI留下了网页
 
 ## 小红书正文草案
+
+更完整的标题审查、正文终稿、短版正文和发布边界见：`promo/xhs-post-drafts.md`
 
 标题：我把AI会话做成网站
 

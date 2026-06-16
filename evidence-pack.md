@@ -9,6 +9,7 @@
 - 公开材料总览：`https://trace-atlas-codex.pages.dev/materials`
 - 项目纪念碑：`https://trace-atlas-codex.pages.dev/monument`
 - 公开化路线图：`https://trace-atlas-codex.pages.dev/workflow`
+- 小红书发布草稿包：`https://trace-atlas-codex.pages.dev/promo/xhs-post-drafts.md`
 - 小红书发布检查台：`https://trace-atlas-codex.pages.dev/promo/xhs-publish-checklist.md`
 - 小红书发布 manifest：`https://trace-atlas-codex.pages.dev/promo/xhs-publish-manifest.json`
 - 小红书发布前报告：`https://trace-atlas-codex.pages.dev/promo/xhs-publish-report.md`
@@ -27,6 +28,7 @@
 - 进展时间线把工程记录整理成读者能顺着读的故事线。
 - 公开化路线图把会话公开化流程整理成可复用步骤。
 - 小红书传播包包含标题、正文草案、封面图和发布前检查。
+- 小红书发布草稿包包含受众角度、标题审查、正文终稿、短版正文、标签和发布边界。
 - 小红书发布检查台把链接、配图、正文边界和发布后记录放在同一页。
 - 小红书发布 manifest 把链接、图片、标签和检查项整理成机器可读 JSON。
 - 小红书发布前报告由 manifest 生成，方便发布前快速复核。
@@ -58,6 +60,7 @@ curl -I https://trace-atlas-codex.pages.dev/launch
 curl -I https://trace-atlas-codex.pages.dev/materials
 curl -I https://trace-atlas-codex.pages.dev/monument
 curl -I https://trace-atlas-codex.pages.dev/workflow
+curl -I https://trace-atlas-codex.pages.dev/promo/xhs-post-drafts.md
 curl -I https://trace-atlas-codex.pages.dev/promo/xhs-publish-checklist.md
 curl -I https://trace-atlas-codex.pages.dev/promo/xhs-publish-manifest.json
 curl -I https://trace-atlas-codex.pages.dev/promo/xhs-publish-report.md
@@ -73,6 +76,7 @@ curl -I https://trace-atlas-codex.pages.dev/progress-timeline.json
 
 - 主作品、发布材料页、公开材料总览、项目纪念碑与公开化路线图返回 `200`。
 - `evidence-pack.md` 返回 Markdown 文本。
+- 小红书发布草稿包返回 Markdown 文本。
 - 小红书发布检查台返回 Markdown 文本。
 - 小红书发布 manifest 返回 JSON。
 - 小红书发布前报告返回 Markdown 文本。

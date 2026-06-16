@@ -15,6 +15,7 @@
 - 主作品：https://trace-atlas-codex.pages.dev/
 - 发布材料页：https://trace-atlas-codex.pages.dev/launch
 - 公开化路线图：https://trace-atlas-codex.pages.dev/workflow
+- 发布草稿包：https://trace-atlas-codex.pages.dev/promo/xhs-post-drafts.md
 - 证据包：https://trace-atlas-codex.pages.dev/evidence-pack.md
 - 工作日志：https://github.com/soya-xx/trace-atlas/issues/1
 - 公开仓库：https://github.com/soya-xx/trace-atlas

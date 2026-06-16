@@ -7,6 +7,7 @@
 - 主作品：`https://trace-atlas-codex.pages.dev/`
 - 发布材料页：`https://trace-atlas-codex.pages.dev/launch`
 - 公开化路线图：`https://trace-atlas-codex.pages.dev/workflow`
+- 发布草稿包：`https://trace-atlas-codex.pages.dev/promo/xhs-post-drafts.md`
 - 证据包：`https://trace-atlas-codex.pages.dev/evidence-pack.md`
 - 工作日志：`https://github.com/soya-xx/trace-atlas/issues/1`
 - 公开仓库：`https://github.com/soya-xx/trace-atlas`
@@ -22,6 +23,7 @@
 ## 正文核对
 
 - 标题使用：`我把AI会话做成网站`
+- 正文终稿以 `promo/xhs-post-drafts.md` 为准。
 - 第一段说清楚它是公开可访问的网站作品。
 - 正文提到部署、验证、证据包和工作日志。
 - 不承诺收益、曝光、用户增长或没有验证过的结果。
@@ -33,6 +35,7 @@
 - 主作品能打开。
 - 发布材料页能打开。
 - 公开化路线图能打开。
+- 发布草稿包能打开。
 - 证据包能打开。
 - 路线图长图能打开，并且是 `image/png`。
 - GitHub Actions 最近一次 `Verify Trace Atlas` 为成功。
