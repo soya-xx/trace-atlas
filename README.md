@@ -1,5 +1,7 @@
 # Trace Atlas
 
+[![Verify Trace Atlas](https://github.com/soya-xx/trace-atlas/actions/workflows/verify.yml/badge.svg)](https://github.com/soya-xx/trace-atlas/actions/workflows/verify.yml)
+
 Trace Atlas is a small static artifact left in an otherwise empty repository.
 It turns an open-ended Codex session into a local, interactive memory map: a
 place where a visitor can see what was built, plant a trace of their own, and
