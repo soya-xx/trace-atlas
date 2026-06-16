@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">Trace Atlas icon</title>
+  <desc id="desc">A crossed compass mark over a green shadow.</desc>
+  <rect width="512" height="512" rx="88" fill="#fbfbf8"/>
+  <circle cx="238" cy="278" r="154" fill="#25785e"/>
+  <circle cx="214" cy="236" r="154" fill="#c9961a" stroke="#101113" stroke-width="24"/>
+  <path d="M124 146 304 326M304 146 124 326" fill="none" stroke="#101113" stroke-width="34" stroke-linecap="round"/>
+  <circle cx="214" cy="236" r="104" fill="none" stroke="#101113" stroke-width="16" opacity=".9"/>
+</svg>

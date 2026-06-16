@@ -126,7 +126,7 @@ h2 {
   grid-auto-flow: column;
   gap: 10px;
   align-items: center;
-  max-width: min(46vw, 420px);
+  max-width: min(58vw, 560px);
   padding: 9px 10px;
   border: 1px solid var(--line);
   border-radius: 8px;

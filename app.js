@@ -64,6 +64,7 @@
     canvas: document.querySelector("#trace-canvas"),
     count: document.querySelector("#trace-count"),
     status: document.querySelector("#trace-status"),
+    offline: document.querySelector("#offline-status"),
     title: document.querySelector("#selected-title"),
     line: document.querySelector("#selected-line"),
     kind: document.querySelector("#selected-kind"),
@@ -308,7 +309,7 @@
     ctx.lineWidth = isSelected ? 2 : 1;
     ctx.stroke();
 
-    if (isHover || isSelected) {
+    if (isHover || (isSelected && state.width > 520)) {
       drawLabel(trace);
     }
   }
@@ -706,6 +707,21 @@
     });
   }
 
+  async function registerOfflineShell() {
+    if (!("serviceWorker" in navigator)) {
+      els.offline.textContent = "Live shell";
+      return;
+    }
+
+    try {
+      await navigator.serviceWorker.register("./service-worker.js");
+      await navigator.serviceWorker.ready;
+      els.offline.textContent = "Offline ready";
+    } catch {
+      els.offline.textContent = "Live shell";
+    }
+  }
+
   function init() {
     rebuildTraces();
     bindEvents();
@@ -713,6 +729,7 @@
     selectTrace(state.selectedId);
     restoreCapsuleFromLocation();
     renderArchive();
+    registerOfflineShell();
     requestAnimationFrame(draw);
   }
 

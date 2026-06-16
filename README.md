@@ -20,6 +20,7 @@ What it does:
 - Imports a prior Trace Atlas JSON archive back into local storage.
 - Tours the map automatically, with left and right arrow keys for manual stepping.
 - Creates a portable capsule link in the URL hash and restores traces from it.
+- Registers an offline app shell after the first local load.
 
 Verification:
 

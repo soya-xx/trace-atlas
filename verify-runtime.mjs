@@ -113,6 +113,7 @@ function createRuntime() {
   const ids = [
     "trace-count",
     "trace-status",
+    "offline-status",
     "selected-title",
     "selected-line",
     "selected-kind",
@@ -160,6 +161,7 @@ function createRuntime() {
       removeItem: (key) => store.delete(key),
       setItem: (key, value) => store.set(key, String(value))
     },
+    navigator: {},
     performance: { now: () => 1000 },
     requestAnimationFrame: () => 1,
     window: {
@@ -179,6 +181,7 @@ function createRuntime() {
   context.history = history;
   context.location = location;
   context.window.localStorage = context.localStorage;
+  context.window.navigator = context.navigator;
   context.window.performance = context.performance;
   context.window.requestAnimationFrame = context.requestAnimationFrame;
   context.window.URL = context.URL;
@@ -217,6 +220,7 @@ await importFile.dispatch("change");
 assert.equal(runtime.document.querySelector("#trace-count").textContent, "5 traces");
 assert.match(runtime.document.querySelector("#trace-status").textContent, /^Imported 1:/);
 assert.equal(runtime.document.querySelector("#storage-note").textContent, "1 local trace stored.");
+assert.equal(runtime.document.querySelector("#offline-status").textContent, "Live shell");
 
 const stored = JSON.parse(runtime.store.get("whatever.trace-atlas.v1"));
 assert.equal(stored.length, 1);
