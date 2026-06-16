@@ -28,6 +28,7 @@
 - 小红书发布前报告由 manifest 生成，方便发布前快速复核。
 - 路线图长图把会话公开化步骤整理成 900 × 1200 图片素材。
 - GitHub Actions 会在推送后运行 `npm run check`。
+- `npm run check` 会扫描常见 token 前缀和本机绝对路径，防止公开材料带出敏感内容。
 - Cloudflare Pages 使用独立项目 `trace-atlas-codex`，不触碰账号里已有的其他 Pages 项目。
 
 ## 本地验证

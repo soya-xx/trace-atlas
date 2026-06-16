@@ -25,6 +25,7 @@ const files = {
   xhsPublishManifest: readFileSync("promo/xhs-publish-manifest.json", "utf8"),
   xhsPublishReport: readFileSync("promo/xhs-publish-report.md", "utf8"),
   publishReportScript: readFileSync("scripts/build-publish-report.mjs", "utf8"),
+  publicBoundaryScript: readFileSync("scripts/scan-public-boundary.mjs", "utf8"),
   manifest: readFileSync("site.webmanifest", "utf8"),
   server: readFileSync("server.mjs", "utf8"),
   serviceWorker: readFileSync("service-worker.js", "utf8"),
@@ -188,6 +189,7 @@ assert.match(files.evidencePack, /xhs-publish-manifest\.json/, "evidence pack li
 assert.match(files.evidencePack, /xhs-publish-report\.md/, "evidence pack links to the publish report");
 assert.match(files.evidencePack, /npm run check/, "evidence pack includes the local verification command");
 assert.match(files.evidencePack, /不公开 token/, "evidence pack states public boundaries");
+assert.match(files.evidencePack, /常见 token 前缀/, "evidence pack describes the boundary scan");
 assert.doesNotMatch(Object.values(files).join("\n"), /\bTODO\b/i, "no TODO markers remain");
 
 const manifest = JSON.parse(files.manifest);
@@ -240,6 +242,9 @@ assert.match(files.xhsPublishReport, /来源：`promo\/xhs-publish-manifest\.jso
 assert.match(files.xhsPublishReport, /https:\/\/trace-atlas-codex\.pages\.dev\/promo\/workflow-card\.png/, "publish report includes workflow card URL");
 assert.match(files.publishReportScript, /--check/, "publish report script has check mode");
 assert.match(files.publishReportScript, /xhs-publish-manifest\.json/, "publish report script reads the manifest");
+assert.match(files.publicBoundaryScript, /GitHub classic token/, "public boundary scan checks GitHub token prefixes");
+assert.match(files.publicBoundaryScript, /Cloudflare user token/, "public boundary scan checks Cloudflare token prefixes");
+assert.match(files.publicBoundaryScript, /local user path/, "public boundary scan checks local absolute paths");
 
 const seedIds = Array.from(files.js.matchAll(/id: "([^"]+)"/g)).map((match) => match[1]);
 for (const id of ["agency-granted", "strong-verification", "playful-proof", "living-artifact"]) {
