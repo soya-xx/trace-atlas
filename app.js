@@ -1,6 +1,7 @@
 (() => {
   const STORAGE_KEY = "whatever.trace-atlas.v1";
   const DOWNLOAD_NAME = "whatever-trace-atlas.json";
+  const TOUR_INTERVAL_MS = 2400;
   const PALETTE = ["#25785e", "#b84646", "#386fb0", "#c9961a", "#7657a6"];
 
   const TRACE_SEEDS = [
@@ -71,6 +72,9 @@
     plant: document.querySelector("#plant-trace"),
     export: document.querySelector("#export-traces"),
     clear: document.querySelector("#clear-local"),
+    tour: document.querySelector("#tour-traces"),
+    import: document.querySelector("#import-traces"),
+    importFile: document.querySelector("#import-file"),
     storage: document.querySelector("#storage-note"),
     list: document.querySelector("#trace-list")
   };
@@ -82,6 +86,7 @@
     hoverId: null,
     pointer: null,
     flash: null,
+    tourTimer: null,
     dpr: 1,
     width: 0,
     height: 0
@@ -109,17 +114,22 @@
 
   function normalizeLocalTrace(trace, index) {
     const body = trace.body.trim().slice(0, 180);
+    const createdAt = trace.createdAt || new Date().toISOString();
     return {
-      id: trace.id || `local-${Date.now()}-${index}`,
+      id: trace.id?.startsWith("local-") ? trace.id : traceIdFromBody(body, createdAt),
       name: trace.name || titleFromBody(body),
       line: trace.line || "A local sentence joined the field.",
       body,
       kind: "Local",
       weight: 0.58 + (index % 4) * 0.08,
       color: trace.color || PALETTE[index % PALETTE.length],
-      createdAt: trace.createdAt || new Date().toISOString(),
+      createdAt,
       local: true
     };
+  }
+
+  function traceIdFromBody(body, salt = "") {
+    return `local-${hashString(`${body}:${salt}`).toString(36)}`;
   }
 
   function titleFromBody(body) {
@@ -143,6 +153,10 @@
       }));
     localStorage.setItem(STORAGE_KEY, JSON.stringify(localTraces, null, 2));
     updateStorageNote(localTraces.length);
+  }
+
+  function localTraceKey(trace) {
+    return `${trace.body.trim().toLowerCase()}|${trace.createdAt || ""}`;
   }
 
   function updateStorageNote(total) {
@@ -232,6 +246,28 @@
         ctx.stroke();
       });
     });
+    drawLocalLinks(time);
+  }
+
+  function drawLocalLinks(time) {
+    const anchors = TRACE_SEEDS.map((seed) => state.traces.find((trace) => trace.id === seed.id)).filter(Boolean);
+    if (anchors.length === 0) {
+      return;
+    }
+    state.traces
+      .filter((trace) => trace.local)
+      .forEach((trace, index) => {
+        const anchor = anchors[hashString(trace.id) % anchors.length];
+        const shimmer = 0.16 + Math.sin(time / 720 + index) * 0.05;
+        ctx.strokeStyle = withAlpha(trace.color, shimmer);
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.moveTo(anchor.x, anchor.y);
+        const cx = (anchor.x + trace.x) / 2 + Math.sin(index + time / 1200) * 18;
+        const cy = (anchor.y + trace.y) / 2 + Math.cos(index + time / 1400) * 18;
+        ctx.quadraticCurveTo(cx, cy, trace.x, trace.y);
+        ctx.stroke();
+      });
   }
 
   function drawTrace(trace, time) {
@@ -356,6 +392,14 @@
     els.status.textContent = `${status}: ${trace.name}`;
   }
 
+  function selectRelativeTrace(offset, status = "Selected") {
+    const index = state.traces.findIndex((trace) => trace.id === state.selectedId);
+    const nextIndex = (Math.max(index, 0) + offset + state.traces.length) % state.traces.length;
+    const trace = state.traces[nextIndex];
+    state.flash = { id: trace.id, startedAt: performance.now() };
+    selectTrace(trace.id, status);
+  }
+
   function renderSelection(trace) {
     els.title.textContent = trace.name;
     els.line.textContent = trace.line;
@@ -445,6 +489,90 @@
     els.status.textContent = `Exported ${payload.traces.length} traces`;
   }
 
+  function importedTraceCandidates(payload) {
+    const traces = Array.isArray(payload) ? payload : payload?.traces;
+    if (!Array.isArray(traces)) {
+      return [];
+    }
+    const seedIds = new Set(TRACE_SEEDS.map((trace) => trace.id));
+    return traces
+      .filter((trace) => trace && typeof trace.body === "string" && trace.body.trim())
+      .filter((trace) => trace.local || !seedIds.has(trace.id))
+      .slice(0, 48);
+  }
+
+  function importTracePayload(payload) {
+    const localCount = state.traces.filter((trace) => trace.local).length;
+    const capacity = 24 - localCount;
+    if (capacity <= 0) {
+      els.status.textContent = "Local archive is full";
+      return;
+    }
+    const existing = new Set(state.traces.filter((trace) => trace.local).map(localTraceKey));
+    const imported = importedTraceCandidates(payload)
+      .map((trace, index) => normalizeLocalTrace(trace, localCount + index))
+      .filter((trace) => {
+        const key = localTraceKey(trace);
+        if (existing.has(key)) {
+          return false;
+        }
+        existing.add(key);
+        return true;
+      });
+
+    if (imported.length === 0) {
+      els.status.textContent = "No new local traces found";
+      return;
+    }
+
+    const added = imported.slice(0, capacity);
+    state.traces.push(...added);
+    positionTraces();
+    persistLocalTraces();
+    const last = added[added.length - 1];
+    state.flash = { id: last.id, startedAt: performance.now() };
+    selectTrace(last.id, `Imported ${added.length}`);
+  }
+
+  async function importTracesFromFile(event) {
+    const file = event.target.files?.[0];
+    event.target.value = "";
+    if (!file) {
+      return;
+    }
+    try {
+      const payload = safeParse(await file.text(), null);
+      importTracePayload(payload);
+    } catch {
+      els.status.textContent = "Import failed";
+    }
+  }
+
+  function syncTourButton(active) {
+    els.tour.textContent = active ? "Stop" : "Tour";
+    els.tour.setAttribute("aria-pressed", String(active));
+  }
+
+  function stopTour(status = "Tour stopped") {
+    if (!state.tourTimer) {
+      return;
+    }
+    window.clearInterval(state.tourTimer);
+    state.tourTimer = null;
+    syncTourButton(false);
+    els.status.textContent = status;
+  }
+
+  function toggleTour() {
+    if (state.tourTimer) {
+      stopTour();
+      return;
+    }
+    syncTourButton(true);
+    selectRelativeTrace(1, "Touring");
+    state.tourTimer = window.setInterval(() => selectRelativeTrace(1, "Touring"), TOUR_INTERVAL_MS);
+  }
+
   function clearLocalTraces() {
     const localTotal = state.traces.filter((trace) => trace.local).length;
     if (localTotal === 0) {
@@ -457,6 +585,7 @@
       return;
     }
     localStorage.removeItem(STORAGE_KEY);
+    stopTour("Tour stopped");
     rebuildTraces();
     selectTrace("agency-granted", "Reset");
     renderArchive();
@@ -483,6 +612,24 @@
     els.plant.addEventListener("click", plantTrace);
     els.export.addEventListener("click", exportTraces);
     els.clear.addEventListener("click", clearLocalTraces);
+    els.tour.addEventListener("click", toggleTour);
+    els.import.addEventListener("click", () => els.importFile.click());
+    els.importFile.addEventListener("change", importTracesFromFile);
+    window.addEventListener("keydown", (event) => {
+      if (event.target === els.input || event.target === els.importFile) {
+        return;
+      }
+      if (event.key === "ArrowRight") {
+        event.preventDefault();
+        stopTour("Tour paused");
+        selectRelativeTrace(1);
+      }
+      if (event.key === "ArrowLeft") {
+        event.preventDefault();
+        stopTour("Tour paused");
+        selectRelativeTrace(-1);
+      }
+    });
   }
 
   function init() {

@@ -16,6 +16,9 @@ const requiredIds = [
   "plant-trace",
   "export-traces",
   "clear-local",
+  "tour-traces",
+  "import-traces",
+  "import-file",
   "trace-list"
 ];
 
@@ -31,7 +34,13 @@ assert.match(files.js, /const TRACE_SEEDS = \[/, "seed traces are declared");
 assert.match(files.js, /localStorage/, "local archive is persisted");
 assert.match(files.js, /requestAnimationFrame/, "canvas animation loop is active");
 assert.match(files.js, /anchor\.download = DOWNLOAD_NAME/, "JSON export path is wired");
+assert.match(files.js, /importTracePayload/, "JSON import path is wired");
+assert.match(files.js, /TOUR_INTERVAL_MS/, "tour timing is explicit");
+assert.match(files.js, /ArrowRight/, "keyboard next trace is wired");
+assert.match(files.js, /ArrowLeft/, "keyboard previous trace is wired");
 assert.match(files.js, /window\.confirm/, "local reset asks for confirmation");
+assert.match(files.css, /aria-pressed="true"/, "tour active state has visible styling");
+assert.match(files.css, /\.file-input/, "file input is visually hidden but present");
 assert.doesNotMatch(`${files.html}\n${files.css}\n${files.js}`, /\bTODO\b/i, "no TODO markers remain");
 
 const seedIds = Array.from(files.js.matchAll(/id: "([^"]+)"/g)).map((match) => match[1]);

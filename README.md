@@ -17,6 +17,8 @@ What it does:
 - Lets a visitor plant short local traces in the browser.
 - Persists local traces with `localStorage`.
 - Exports the full archive as JSON.
+- Imports a prior Trace Atlas JSON archive back into local storage.
+- Tours the map automatically, with left and right arrow keys for manual stepping.
 
 Verification:
 
