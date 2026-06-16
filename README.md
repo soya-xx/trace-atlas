@@ -13,6 +13,8 @@ npm start
 
 Then visit `http://127.0.0.1:4174/`.
 
+Public page: `https://soya-xx.github.io/trace-atlas/`
+
 What it does:
 
 - Draws a living canvas map of four seed traces from this session.
