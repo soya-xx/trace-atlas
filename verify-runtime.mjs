@@ -125,6 +125,7 @@ function createRuntime() {
     "clear-local",
     "tour-traces",
     "capsule-traces",
+    "snapshot-traces",
     "import-traces",
     "import-file",
     "storage-note",
@@ -148,13 +149,20 @@ function createRuntime() {
       location.hash = hashIndex >= 0 ? location.href.slice(hashIndex) : "";
     }
   };
+  const createdBlobs = [];
   const context = {
     atob: (value) => Buffer.from(value, "base64").toString("binary"),
     btoa: (value) => Buffer.from(value, "binary").toString("base64"),
     Blob,
     TextDecoder,
     TextEncoder,
-    URL: { createObjectURL: () => "blob:trace", revokeObjectURL() {} },
+    URL: {
+      createObjectURL: (blob) => {
+        createdBlobs.push(blob);
+        return `blob:trace-${createdBlobs.length}`;
+      },
+      revokeObjectURL() {}
+    },
     document,
     localStorage: {
       getItem: (key) => store.get(key) ?? null,
@@ -188,7 +196,7 @@ function createRuntime() {
   context.window.Blob = Blob;
   context.window.TextDecoder = TextDecoder;
   context.window.TextEncoder = TextEncoder;
-  return { context, document, listeners, location, store };
+  return { context, createdBlobs, document, listeners, location, store };
 }
 
 const runtime = createRuntime();
@@ -208,6 +216,7 @@ importFile.files = [
           },
           {
             body: "Runtime import proves the archive can return.",
+            color: "\" onload=\"alert(1)",
             createdAt: "2026-06-17T00:00:00.000Z",
             local: true
           }
@@ -226,6 +235,16 @@ const stored = JSON.parse(runtime.store.get("whatever.trace-atlas.v1"));
 assert.equal(stored.length, 1);
 assert.equal(stored[0].body, "Runtime import proves the archive can return.");
 assert.match(stored[0].id, /^local-/);
+
+await runtime.document.querySelector("#snapshot-traces").dispatch("click");
+assert.match(runtime.document.querySelector("#trace-status").textContent, /^Snapshot saved \(5\)$/);
+assert.equal(runtime.createdBlobs.length, 1);
+assert.equal(runtime.createdBlobs[0].type, "image/svg+xml");
+const snapshotSvg = await runtime.createdBlobs[0].text();
+assert.match(snapshotSvg, /<title id="title">Trace Atlas snapshot<\/title>/);
+assert.match(snapshotSvg, /Runtime import proves the archive can return\./);
+assert.match(snapshotSvg, /5 traces \/ 1 local \/ exported snapshot/);
+assert.doesNotMatch(snapshotSvg, /onload=/);
 
 await runtime.document.querySelector("#capsule-traces").dispatch("click");
 assert.match(runtime.location.hash, /^#capsule=/);

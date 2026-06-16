@@ -1,6 +1,7 @@
 (() => {
   const STORAGE_KEY = "whatever.trace-atlas.v1";
   const DOWNLOAD_NAME = "whatever-trace-atlas.json";
+  const SNAPSHOT_NAME = "trace-atlas-snapshot.svg";
   const CAPSULE_PREFIX = "#capsule=";
   const TOUR_INTERVAL_MS = 2400;
   const PALETTE = ["#25785e", "#b84646", "#386fb0", "#c9961a", "#7657a6"];
@@ -76,6 +77,7 @@
     clear: document.querySelector("#clear-local"),
     tour: document.querySelector("#tour-traces"),
     capsule: document.querySelector("#capsule-traces"),
+    snapshot: document.querySelector("#snapshot-traces"),
     import: document.querySelector("#import-traces"),
     importFile: document.querySelector("#import-file"),
     storage: document.querySelector("#storage-note"),
@@ -118,6 +120,7 @@
   function normalizeLocalTrace(trace, index) {
     const body = trace.body.trim().slice(0, 180);
     const createdAt = trace.createdAt || new Date().toISOString();
+    const fallbackColor = PALETTE[index % PALETTE.length];
     return {
       id: trace.id?.startsWith("local-") ? trace.id : traceIdFromBody(body, createdAt),
       name: trace.name || titleFromBody(body),
@@ -125,10 +128,14 @@
       body,
       kind: "Local",
       weight: 0.58 + (index % 4) * 0.08,
-      color: trace.color || PALETTE[index % PALETTE.length],
+      color: safeColor(trace.color, fallbackColor),
       createdAt,
       local: true
     };
+  }
+
+  function safeColor(value, fallback) {
+    return /^#[0-9a-f]{6}$/i.test(value || "") ? value : fallback;
   }
 
   function traceIdFromBody(body, salt = "") {
@@ -500,6 +507,120 @@
     };
   }
 
+  function escapeSvg(value) {
+    return String(value)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  }
+
+  function snapshotPoint(trace) {
+    const sourceWidth = state.width || 900;
+    const sourceHeight = state.height || 720;
+    return {
+      x: Math.round(72 + (trace.x / sourceWidth) * 1056),
+      y: Math.round(120 + (trace.y / sourceHeight) * 600)
+    };
+  }
+
+  function snapshotPath(from, to, bend = -36) {
+    const cx = Math.round((from.x + to.x) / 2);
+    const cy = Math.round((from.y + to.y) / 2 + bend);
+    return `M ${from.x} ${from.y} Q ${cx} ${cy} ${to.x} ${to.y}`;
+  }
+
+  function snapshotSvg() {
+    const width = 1200;
+    const height = 800;
+    const tracePoints = new Map(state.traces.map((trace) => [trace.id, snapshotPoint(trace)]));
+    const seedLinks = TRACE_SEEDS.flatMap((trace) =>
+      trace.links
+        .map((linkedId) => [tracePoints.get(trace.id), tracePoints.get(linkedId)])
+        .filter(([from, to]) => from && to)
+        .map(([from, to]) => `<path d="${snapshotPath(from, to)}" class="link seed-link"/>`)
+    ).join("\n    ");
+    const anchors = TRACE_SEEDS.map((seed) => state.traces.find((trace) => trace.id === seed.id)).filter(Boolean);
+    const localLinks = state.traces
+      .filter((trace) => trace.local && anchors.length > 0)
+      .map((trace, index) => {
+        const anchor = anchors[hashString(trace.id) % anchors.length];
+        return `<path d="${snapshotPath(tracePoints.get(anchor.id), tracePoints.get(trace.id), 28 + index * 3)}" class="link local-link" stroke="${trace.color}"/>`;
+      })
+      .join("\n    ");
+    const nodes = state.traces
+      .map((trace) => {
+        const point = tracePoints.get(trace.id);
+        const radius = trace.local ? 14 : 20;
+        const selected = trace.id === state.selectedId ? " selected" : "";
+        return `<g class="node${selected}" transform="translate(${point.x} ${point.y})">
+      <rect x="${-radius}" y="${-radius}" width="${radius * 2}" height="${radius * 2}" rx="2" transform="rotate(45)" fill="${trace.color}"/>
+      <circle r="${radius + 10}" fill="none"/>
+    </g>`;
+      })
+      .join("\n    ");
+    const labels = state.traces
+      .filter((trace) => !trace.local || trace.id === state.selectedId)
+      .map((trace) => {
+        const point = tracePoints.get(trace.id);
+        return `<text x="${point.x + 28}" y="${point.y - 16}" class="node-label">${escapeSvg(trace.name)}</text>`;
+      })
+      .join("\n    ");
+    const selected = state.traces.find((trace) => trace.id === state.selectedId) || state.traces[0];
+    const localTotal = state.traces.filter((trace) => trace.local).length;
+
+    return `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" role="img" aria-labelledby="title desc">
+  <title id="title">Trace Atlas snapshot</title>
+  <desc id="desc">${escapeSvg(state.traces.length)} traces, ${escapeSvg(localTotal)} local traces. Selected trace: ${escapeSvg(selected.name)}. ${escapeSvg(selected.body)}</desc>
+  <defs>
+    <pattern id="grid" width="44" height="44" patternUnits="userSpaceOnUse">
+      <path d="M 44 0 L 0 0 0 44" fill="none" stroke="#d6ddd8" stroke-width="1" opacity=".55"/>
+    </pattern>
+    <style>
+      .link { fill: none; stroke: #101113; stroke-width: 2; opacity: .34; }
+      .local-link { opacity: .38; }
+      .node rect { stroke: #101113; stroke-width: 4; }
+      .node circle { stroke: rgba(16,17,19,.24); stroke-width: 2; }
+      .node.selected circle { stroke: #101113; stroke-width: 4; }
+      .node-label { fill: #101113; font: 700 18px system-ui, sans-serif; paint-order: stroke; stroke: #fbfbf8; stroke-width: 7; stroke-linejoin: round; }
+      .eyebrow { fill: #606763; font: 800 14px system-ui, sans-serif; }
+      .title { fill: #101113; font: 900 56px system-ui, sans-serif; }
+      .meta { fill: #606763; font: 600 18px system-ui, sans-serif; }
+      .body { fill: #101113; font: 600 24px system-ui, sans-serif; }
+    </style>
+  </defs>
+  <rect width="1200" height="800" fill="#fbfbf8"/>
+  <rect width="1200" height="800" fill="url(#grid)"/>
+  <text x="72" y="66" class="eyebrow">WHATEVER REPOSITORY</text>
+  <text x="72" y="126" class="title">Trace Atlas</text>
+  <text x="72" y="760" class="meta">${state.traces.length} traces / ${localTotal} local / exported snapshot</text>
+  <text x="640" y="728" class="eyebrow">SELECTED TRACE</text>
+  <text x="640" y="762" class="body">${escapeSvg(selected.name)} - ${escapeSvg(selected.kind)}</text>
+  <g class="links">
+    ${seedLinks}
+    ${localLinks}
+  </g>
+  <g class="nodes">
+    ${nodes}
+  </g>
+  <g class="labels">
+    ${labels}
+  </g>
+</svg>`;
+  }
+
+  function exportSnapshot() {
+    const svg = snapshotSvg();
+    const blob = new Blob([svg], { type: "image/svg+xml" });
+    const url = URL.createObjectURL(blob);
+    const anchor = document.createElement("a");
+    anchor.href = url;
+    anchor.download = SNAPSHOT_NAME;
+    anchor.click();
+    URL.revokeObjectURL(url);
+    els.status.textContent = `Snapshot saved (${state.traces.length})`;
+  }
+
   function importedTraceCandidates(payload) {
     const traces = Array.isArray(payload) ? payload : payload?.traces;
     if (!Array.isArray(traces)) {
@@ -688,6 +809,7 @@
     els.clear.addEventListener("click", clearLocalTraces);
     els.tour.addEventListener("click", toggleTour);
     els.capsule.addEventListener("click", createCapsuleLink);
+    els.snapshot.addEventListener("click", exportSnapshot);
     els.import.addEventListener("click", () => els.importFile.click());
     els.importFile.addEventListener("change", importTracesFromFile);
     window.addEventListener("keydown", (event) => {

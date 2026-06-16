@@ -23,6 +23,7 @@ const requiredIds = [
   "clear-local",
   "tour-traces",
   "capsule-traces",
+  "snapshot-traces",
   "import-traces",
   "import-file",
   "trace-list"
@@ -43,6 +44,9 @@ assert.match(files.js, /localStorage/, "local archive is persisted");
 assert.match(files.js, /requestAnimationFrame/, "canvas animation loop is active");
 assert.match(files.js, /serviceWorker/, "service worker registration is wired");
 assert.match(files.js, /anchor\.download = DOWNLOAD_NAME/, "JSON export path is wired");
+assert.match(files.js, /SNAPSHOT_NAME = "trace-atlas-snapshot\.svg"/, "SVG snapshot filename is declared");
+assert.match(files.js, /function snapshotSvg/, "SVG snapshot renderer is wired");
+assert.match(files.js, /image\/svg\+xml/, "SVG snapshot uses an SVG MIME type");
 assert.match(files.js, /importTracePayload/, "JSON import path is wired");
 assert.match(files.js, /CAPSULE_PREFIX/, "capsule URL prefix is declared");
 assert.match(files.js, /encodeCapsule/, "capsule encoder is wired");
@@ -53,7 +57,7 @@ assert.match(files.js, /ArrowLeft/, "keyboard previous trace is wired");
 assert.match(files.js, /window\.confirm/, "local reset asks for confirmation");
 assert.match(files.css, /aria-pressed="true"/, "tour active state has visible styling");
 assert.match(files.css, /\.file-input/, "file input is visually hidden but present");
-assert.match(files.serviceWorker, /CACHE_NAME = "trace-atlas-shell-v2"/, "service worker cache is versioned");
+assert.match(files.serviceWorker, /CACHE_NAME = "trace-atlas-shell-v3"/, "service worker cache is versioned");
 for (const cachedFile of ["./index.html", "./styles.css", "./app.js", "./icon.svg", "./site.webmanifest"]) {
   assert.match(files.serviceWorker, new RegExp(cachedFile.replace(/[./]/g, "\\$&")), `service worker caches ${cachedFile}`);
 }
