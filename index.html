@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Trace Atlas</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <main class="atlas-shell" aria-labelledby="app-title">
+      <section class="canvas-stage" aria-label="Trace field">
+        <canvas id="trace-canvas"></canvas>
+        <div class="stage-overlay">
+          <div class="wordmark">
+            <span class="wordmark-mark" aria-hidden="true"></span>
+            <div>
+              <p class="eyebrow">Whatever repository</p>
+              <h1 id="app-title">Trace Atlas</h1>
+            </div>
+          </div>
+          <div class="status-strip" aria-live="polite">
+            <span id="trace-count">0 traces</span>
+            <span id="trace-status">Ready</span>
+          </div>
+        </div>
+      </section>
+
+      <aside class="memory-panel" aria-label="Trace details">
+        <header class="panel-header">
+          <p class="eyebrow">Selected trace</p>
+          <h2 id="selected-title">Agency granted</h2>
+          <p id="selected-line" class="selected-line"></p>
+        </header>
+
+        <section class="detail-band">
+          <div class="detail-meta">
+            <span id="selected-kind">Origin</span>
+            <span id="selected-weight">signal 1.00</span>
+          </div>
+          <p id="selected-body"></p>
+        </section>
+
+        <section class="composer-band" aria-labelledby="composer-title">
+          <h2 id="composer-title">Plant a trace</h2>
+          <textarea id="trace-input" maxlength="180" rows="4" placeholder="A sentence worth keeping"></textarea>
+          <div class="button-row">
+            <button id="plant-trace" type="button">Plant</button>
+            <button id="export-traces" class="secondary" type="button">Export</button>
+            <button id="clear-local" class="quiet" type="button">Reset local</button>
+          </div>
+          <p id="storage-note" class="storage-note">Local archive is empty.</p>
+        </section>
+
+        <section class="archive-band" aria-labelledby="archive-title">
+          <h2 id="archive-title">Archive</h2>
+          <ul id="trace-list"></ul>
+        </section>
+      </aside>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

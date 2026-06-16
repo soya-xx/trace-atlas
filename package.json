@@ -1,0 +1,10 @@
+{
+  "name": "whatever-trace-atlas",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check": "node --check app.js && node --check verify-trace.mjs && node verify-trace.mjs",
+    "start": "node server.mjs"
+  }
+}
