@@ -26,6 +26,7 @@ What it does:
 - Tours the map automatically, with left and right arrow keys for manual stepping.
 - Creates a portable capsule link in the URL hash and restores traces from it.
 - Shows a stable archive fingerprint across the UI, JSON, capsule, and SVG snapshot.
+- Shows public sync anchors for the repository, hosted page, and work log issue.
 - Displays an in-app provenance ledger of verified milestone commits.
 - Registers an offline app shell after the first local load.
 
@@ -43,6 +44,7 @@ Current shape:
 - Local-first data: visitor traces stay in the browser unless exported.
 - Portable capsules and SVG snapshots for sharing outside the app.
 - A deterministic fingerprint so exported forms can be compared.
+- Public sync metadata that points back to the repo, page, and issue log.
 - A provenance ledger that keeps the project honest about how it arrived here.
 
 Next directions:

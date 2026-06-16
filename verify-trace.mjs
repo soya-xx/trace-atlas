@@ -7,6 +7,7 @@ const files = {
   css: readFileSync("styles.css", "utf8"),
   js: readFileSync("app.js", "utf8"),
   ledger: readFileSync("trace-ledger.json", "utf8"),
+  sync: readFileSync("world-sync.json", "utf8"),
   manifest: readFileSync("site.webmanifest", "utf8"),
   server: readFileSync("server.mjs", "utf8"),
   serviceWorker: readFileSync("service-worker.js", "utf8"),
@@ -29,6 +30,8 @@ const requiredIds = [
   "import-traces",
   "import-file",
   "fingerprint-note",
+  "world-status",
+  "world-links",
   "ledger-status",
   "ledger-list",
   "trace-list"
@@ -56,6 +59,8 @@ assert.match(files.js, /function archiveFingerprint/, "archive fingerprint is wi
 assert.match(files.js, /fingerprint: archiveFingerprint\(\)/, "exports include archive fingerprints");
 assert.match(files.js, /function renderLedger/, "provenance ledger renderer is wired");
 assert.match(files.js, /trace-ledger\.json/, "provenance ledger data is loaded");
+assert.match(files.js, /function renderWorldSync/, "world sync renderer is wired");
+assert.match(files.js, /world-sync\.json/, "world sync metadata is loaded");
 assert.match(files.js, /importTracePayload/, "JSON import path is wired");
 assert.match(files.js, /CAPSULE_PREFIX/, "capsule URL prefix is declared");
 assert.match(files.js, /encodeCapsule/, "capsule encoder is wired");
@@ -66,10 +71,10 @@ assert.match(files.js, /ArrowLeft/, "keyboard previous trace is wired");
 assert.match(files.js, /window\.confirm/, "local reset asks for confirmation");
 assert.match(files.css, /aria-pressed="true"/, "tour active state has visible styling");
 assert.match(files.css, /\.file-input/, "file input is visually hidden but present");
-assert.match(files.serviceWorker, /CACHE_NAME = "trace-atlas-shell-v5"/, "service worker cache is versioned");
-assert.match(files.html, /href="\.\/styles\.css\?v=7"/, "stylesheet URL is versioned");
-assert.match(files.html, /src="\.\/app\.js\?v=7"/, "script URL is versioned");
-for (const cachedFile of ["./index.html", "./styles.css?v=7", "./app.js?v=7", "./trace-ledger.json", "./icon.svg", "./site.webmanifest"]) {
+assert.match(files.serviceWorker, /CACHE_NAME = "trace-atlas-shell-v6"/, "service worker cache is versioned");
+assert.match(files.html, /href="\.\/styles\.css\?v=8"/, "stylesheet URL is versioned");
+assert.match(files.html, /src="\.\/app\.js\?v=8"/, "script URL is versioned");
+for (const cachedFile of ["./index.html", "./styles.css?v=8", "./app.js?v=8", "./world-sync.json", "./trace-ledger.json", "./icon.svg", "./site.webmanifest"]) {
   const escaped = cachedFile.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   assert.match(files.serviceWorker, new RegExp(escaped), `service worker caches ${cachedFile}`);
 }
@@ -91,6 +96,15 @@ for (const entry of ledger.entries) {
   assert.match(entry.commit, /^[0-9a-f]{7,40}$/, `ledger commit ${entry.title} is a short hash`);
   assert.match(gitLog, new RegExp(`^${entry.commit}\\b`, "m"), `ledger commit ${entry.commit} exists in git history`);
   assert.ok(entry.summary.length > 40, `ledger entry ${entry.commit} has a useful summary`);
+}
+
+const sync = JSON.parse(files.sync);
+assert.equal(sync.name, "Trace Atlas World Sync");
+assert.equal(sync.status, "public");
+assert.equal(sync.links.length, 3);
+for (const link of sync.links) {
+  assert.match(link.href, /^https:\/\/(github\.com|soya-xx\.github\.io)\//, `sync link ${link.label} is public https`);
+  assert.ok(link.note.length > 20, `sync link ${link.label} has a useful note`);
 }
 
 const seedIds = Array.from(files.js.matchAll(/id: "([^"]+)"/g)).map((match) => match[1]);

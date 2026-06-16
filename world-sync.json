@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "name": "Trace Atlas World Sync",
+  "status": "public",
+  "summary": "The artifact is mirrored into a public repository, a public page, and a live issue log.",
+  "links": [
+    {
+      "label": "Public repository",
+      "href": "https://github.com/soya-xx/trace-atlas",
+      "note": "Source, commits, README, and project history."
+    },
+    {
+      "label": "Open artifact",
+      "href": "https://soya-xx.github.io/trace-atlas/",
+      "note": "The hosted static Trace Atlas page."
+    },
+    {
+      "label": "Work log issue",
+      "href": "https://github.com/soya-xx/trace-atlas/issues/1",
+      "note": "Vision, progress notes, verification, and next steps."
+    }
+  ]
+}

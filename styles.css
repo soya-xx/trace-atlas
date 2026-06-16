@@ -151,18 +151,19 @@ h2 {
 
 .memory-panel {
   display: grid;
-  grid-template-rows: auto auto auto auto auto minmax(0, 1fr);
+  grid-template-rows: auto auto auto auto auto auto minmax(140px, 1fr);
   max-height: 100dvh;
   border-left: 1px solid var(--line);
   background: rgba(255, 255, 255, 0.93);
   box-shadow: var(--shadow);
-  overflow: hidden;
+  overflow: auto;
 }
 
 .panel-header,
 .detail-band,
 .composer-band,
 .tools-band,
+.world-band,
 .provenance-band,
 .archive-band {
   padding: 24px;
@@ -208,6 +209,7 @@ h2 {
 
 .composer-band h2,
 .tools-band h2,
+.world-band h2,
 .provenance-band h2,
 .archive-band h2 {
   margin-bottom: 12px;
@@ -324,6 +326,50 @@ button.quiet {
   color: var(--muted);
   font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
   font-size: 0.8rem;
+  line-height: 1.35;
+}
+
+#world-links {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.world-link {
+  display: grid;
+  gap: 3px;
+  min-height: 52px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px;
+  background: white;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.world-link:hover {
+  border-color: var(--blue);
+  transform: translateY(-1px);
+}
+
+.world-link strong,
+.world-link small {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.world-link strong {
+  font-size: 0.86rem;
+  line-height: 1.25;
+}
+
+.world-link small {
+  color: var(--muted);
+  font-size: 0.74rem;
   line-height: 1.35;
 }
 
@@ -480,6 +526,7 @@ button.quiet {
   .detail-band,
   .composer-band,
   .tools-band,
+  .world-band,
   .provenance-band,
   .archive-band {
     padding: 18px;

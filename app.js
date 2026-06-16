@@ -81,6 +81,8 @@
     import: document.querySelector("#import-traces"),
     importFile: document.querySelector("#import-file"),
     fingerprint: document.querySelector("#fingerprint-note"),
+    worldStatus: document.querySelector("#world-status"),
+    worldLinks: document.querySelector("#world-links"),
     ledgerStatus: document.querySelector("#ledger-status"),
     ledgerList: document.querySelector("#ledger-list"),
     storage: document.querySelector("#storage-note"),
@@ -493,6 +495,53 @@
       els.ledgerList.append(item);
     });
     els.ledgerStatus.textContent = statusText;
+  }
+
+  function renderWorldSync(sync, statusText = sync.status || "online") {
+    const links = Array.isArray(sync.links) ? sync.links.slice(0, 6) : [];
+    els.worldLinks.replaceChildren();
+    links.forEach((link) => {
+      const item = document.createElement("li");
+      const anchor = document.createElement("a");
+      const label = document.createElement("strong");
+      const note = document.createElement("small");
+
+      item.className = "world-link-item";
+      anchor.className = "world-link";
+      anchor.href = typeof link.href === "string" && link.href.startsWith("https://") ? link.href : "#";
+      anchor.target = "_blank";
+      anchor.rel = "noreferrer";
+      label.textContent = link.label || "Open";
+      note.textContent = link.note || anchor.href;
+      anchor.append(label, note);
+      item.append(anchor);
+      els.worldLinks.append(item);
+    });
+    els.worldStatus.textContent = statusText;
+  }
+
+  async function loadWorldSync() {
+    try {
+      const response = await fetch("./world-sync.json");
+      if (!response.ok) {
+        throw new Error("sync unavailable");
+      }
+      const sync = await response.json();
+      renderWorldSync(sync);
+    } catch {
+      renderWorldSync(
+        {
+          links: [
+            {
+              label: "Local copy",
+              href: window.location.href,
+              note: "The public sync metadata could not be read."
+            }
+          ]
+        },
+        "unavailable"
+      );
+    }
   }
 
   async function loadProvenanceLedger() {
@@ -922,6 +971,7 @@
     restoreCapsuleFromLocation();
     renderArchive();
     registerOfflineShell();
+    loadWorldSync();
     loadProvenanceLedger();
     requestAnimationFrame(draw);
   }

@@ -4,6 +4,7 @@ import { TextDecoder, TextEncoder } from "node:util";
 import vm from "node:vm";
 
 const provenanceLedger = JSON.parse(readFileSync("trace-ledger.json", "utf8"));
+const worldSync = JSON.parse(readFileSync("world-sync.json", "utf8"));
 
 class MockElement {
   constructor(tagName, id = "") {
@@ -131,6 +132,8 @@ function createRuntime() {
     "import-traces",
     "import-file",
     "fingerprint-note",
+    "world-status",
+    "world-links",
     "ledger-status",
     "ledger-list",
     "storage-note",
@@ -174,6 +177,12 @@ function createRuntime() {
         return {
           ok: true,
           json: async () => provenanceLedger
+        };
+      }
+      if (String(url).endsWith("world-sync.json")) {
+        return {
+          ok: true,
+          json: async () => worldSync
         };
       }
       return {
@@ -232,6 +241,11 @@ assert.equal(runtime.document.querySelector("#ledger-list").children.length, 6);
 const firstLedgerEntry = runtime.document.querySelector("#ledger-list").children[0];
 assert.equal(firstLedgerEntry.children[0].textContent, "834d3b7");
 assert.equal(firstLedgerEntry.children[1].children[0].textContent, "Create Trace Atlas artifact");
+assert.equal(runtime.document.querySelector("#world-status").textContent, "public");
+assert.equal(runtime.document.querySelector("#world-links").children.length, 3);
+const firstWorldLink = runtime.document.querySelector("#world-links").children[0].children[0];
+assert.equal(firstWorldLink.href, "https://github.com/soya-xx/trace-atlas");
+assert.equal(firstWorldLink.children[0].textContent, "Public repository");
 
 const importFile = runtime.document.querySelector("#import-file");
 importFile.files = [
