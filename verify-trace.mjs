@@ -22,6 +22,7 @@ const files = {
   workflowCardPng: readFileSync("promo/workflow-card.png"),
   xhsLaunchKit: readFileSync("promo/xhs-launch-kit.md", "utf8"),
   xhsPublishChecklist: readFileSync("promo/xhs-publish-checklist.md", "utf8"),
+  xhsPublishManifest: readFileSync("promo/xhs-publish-manifest.json", "utf8"),
   manifest: readFileSync("site.webmanifest", "utf8"),
   server: readFileSync("server.mjs", "utf8"),
   serviceWorker: readFileSync("service-worker.js", "utf8"),
@@ -75,6 +76,7 @@ assert.match(files.launchHtml, /promo\/workflow-card\.png/, "launch page shows t
 assert.match(files.launchHtml, /social-card\.svg/, "launch page shows the social card");
 assert.match(files.launchHtml, /templates\/ai-session-artifact-kit\.md/, "launch page links to the reusable template");
 assert.match(files.launchHtml, /promo\/xhs-publish-checklist\.md/, "launch page links to the publish checklist");
+assert.match(files.launchHtml, /promo\/xhs-publish-manifest\.json/, "launch page links to the publish manifest");
 assert.match(files.launchHtml, /evidence-pack\.md/, "launch page links to the evidence pack");
 assert.match(files.launchHtml, /workflow\.html/, "launch page links to the workflow map");
 assert.match(files.launchHtml, /href="\.\/launch\.css\?v=4"/, "launch page stylesheet URL is versioned");
@@ -139,10 +141,10 @@ assert.match(files.js, /ArrowLeft/, "keyboard previous trace is wired");
 assert.match(files.js, /window\.confirm/, "local reset asks for confirmation");
 assert.match(files.css, /aria-pressed="true"/, "tour active state has visible styling");
 assert.match(files.css, /\.file-input/, "file input is visually hidden but present");
-assert.match(files.serviceWorker, /CACHE_NAME = "trace-atlas-shell-v17"/, "service worker cache is versioned");
+assert.match(files.serviceWorker, /CACHE_NAME = "trace-atlas-shell-v18"/, "service worker cache is versioned");
 assert.match(files.html, /href="\.\/styles\.css\?v=12"/, "stylesheet URL is versioned");
 assert.match(files.html, /src="\.\/app\.js\?v=13"/, "script URL is versioned");
-for (const cachedFile of ["./index.html", "./launch.html", "./workflow.html", "./styles.css?v=12", "./launch.css?v=4", "./launch.js?v=1", "./app.js?v=13", "./progress-timeline.json?v=6", "./world-sync.json?v=6", "./trace-ledger.json?v=6", "./icon.svg", "./social-card.svg", "./promo/xhs-cover.png", "./promo/workflow-card.png", "./promo/xhs-publish-checklist.md", "./evidence-pack.md", "./templates/ai-session-artifact-kit.md", "./site.webmanifest"]) {
+for (const cachedFile of ["./index.html", "./launch.html", "./workflow.html", "./styles.css?v=12", "./launch.css?v=4", "./launch.js?v=1", "./app.js?v=13", "./progress-timeline.json?v=6", "./world-sync.json?v=6", "./trace-ledger.json?v=6", "./icon.svg", "./social-card.svg", "./promo/xhs-cover.png", "./promo/workflow-card.png", "./promo/xhs-publish-checklist.md", "./promo/xhs-publish-manifest.json", "./evidence-pack.md", "./templates/ai-session-artifact-kit.md", "./site.webmanifest"]) {
   const escaped = cachedFile.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   assert.match(files.serviceWorker, new RegExp(escaped), `service worker caches ${cachedFile}`);
 }
@@ -170,6 +172,7 @@ assert.match(files.xhsLaunchKit, /promo\/workflow-card\.png/, "Xiaohongshu launc
 assert.match(files.xhsPublishChecklist, /# 小红书发布检查台/, "Xiaohongshu publish checklist has a clear title");
 assert.match(files.xhsPublishChecklist, /promo\/workflow-card\.png/, "Xiaohongshu publish checklist includes the workflow card");
 assert.match(files.xhsPublishChecklist, /Verify Trace Atlas/, "Xiaohongshu publish checklist includes CI verification");
+assert.match(files.xhsPublishChecklist, /xhs-publish-manifest\.json/, "Xiaohongshu publish checklist links to the manifest");
 assert.match(files.artifactKit, /# AI 会话公开化模板/, "artifact template has a clear title");
 assert.match(files.artifactKit, /最后一次验证时间/, "artifact template asks for verification time");
 assert.match(files.artifactKit, /不能公开的边界/, "artifact template asks for public boundaries");
@@ -177,6 +180,7 @@ assert.match(files.evidencePack, /# Trace Atlas 证据包/, "evidence pack has a
 assert.match(files.evidencePack, /https:\/\/trace-atlas-codex\.pages\.dev\/launch/, "evidence pack links to the launch page");
 assert.match(files.evidencePack, /https:\/\/trace-atlas-codex\.pages\.dev\/workflow/, "evidence pack links to the workflow page");
 assert.match(files.evidencePack, /xhs-publish-checklist\.md/, "evidence pack links to the publish checklist");
+assert.match(files.evidencePack, /xhs-publish-manifest\.json/, "evidence pack links to the publish manifest");
 assert.match(files.evidencePack, /npm run check/, "evidence pack includes the local verification command");
 assert.match(files.evidencePack, /不公开 token/, "evidence pack states public boundaries");
 assert.doesNotMatch(Object.values(files).join("\n"), /\bTODO\b/i, "no TODO markers remain");
@@ -213,6 +217,18 @@ for (const link of sync.links) {
   assert.match(link.href, /^https:\/\/(github\.com|soya-xx\.github\.io|trace-atlas-codex\.pages\.dev)\//, `sync link ${link.label} is public https`);
   assert.ok(link.note.length > 8, `sync link ${link.label} has a useful note`);
 }
+
+const publishManifest = JSON.parse(files.xhsPublishManifest);
+assert.equal(publishManifest.name, "Trace Atlas 小红书发布 manifest");
+assert.equal(publishManifest.publicOnly, true);
+assert.equal(publishManifest.title, "我把AI会话做成网站");
+assert.equal(publishManifest.assets.length, 3);
+assert.ok(publishManifest.assets.some((asset) => asset.href === "https://trace-atlas-codex.pages.dev/promo/workflow-card.png"), "publish manifest includes workflow card");
+assert.ok(publishManifest.tags.includes("#AI工作流"), "publish manifest includes core tag");
+for (const link of publishManifest.links) {
+  assert.match(link.href, /^https:\/\/(github\.com|trace-atlas-codex\.pages\.dev)\//, `publish manifest link ${link.label} is public https`);
+}
+assert.doesNotMatch(files.xhsPublishManifest, /(ghp_|cfut_)/, "publish manifest does not include known token prefixes");
 
 const seedIds = Array.from(files.js.matchAll(/id: "([^"]+)"/g)).map((match) => match[1]);
 for (const id of ["agency-granted", "strong-verification", "playful-proof", "living-artifact"]) {

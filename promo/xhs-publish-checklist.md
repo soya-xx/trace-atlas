@@ -10,6 +10,7 @@
 - 证据包：`https://trace-atlas-codex.pages.dev/evidence-pack.md`
 - 工作日志：`https://github.com/soya-xx/trace-atlas/issues/1`
 - 公开仓库：`https://github.com/soya-xx/trace-atlas`
+- 发布 manifest：`https://trace-atlas-codex.pages.dev/promo/xhs-publish-manifest.json`
 
 ## 配图顺序
 
@@ -35,6 +36,7 @@
 - 路线图长图能打开，并且是 `image/png`。
 - GitHub Actions 最近一次 `Verify Trace Atlas` 为成功。
 - 工作日志 issue 已同步最新进展。
+- 发布 manifest 里的链接、图片和标签与当前材料一致。
 
 ## 发布后记录
 
