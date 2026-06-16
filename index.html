@@ -18,7 +18,7 @@
     <title>Trace Atlas | 痕迹星图</title>
     <link rel="icon" href="./icon.svg" type="image/svg+xml">
     <link rel="manifest" href="./site.webmanifest">
-    <link rel="stylesheet" href="./styles.css?v=11">
+    <link rel="stylesheet" href="./styles.css?v=12">
   </head>
   <body>
     <main class="atlas-shell" aria-labelledby="app-title">
@@ -99,8 +99,20 @@
               <li>跑验证</li>
               <li>做传播出口</li>
             </ol>
-            <a class="kit-link" href="./templates/ai-session-artifact-kit.md">打开模板</a>
+            <div class="kit-actions">
+              <a class="kit-link" href="./templates/ai-session-artifact-kit.md">打开模板</a>
+              <button id="copy-kit" class="quiet" type="button">复制模板</button>
+            </div>
+            <p id="kit-status" class="kit-status">模板可打开，也可复制到剪贴板。</p>
           </div>
+        </section>
+
+        <section class="timeline-band" aria-labelledby="timeline-title">
+          <div class="section-heading">
+            <h2 id="timeline-title">进展时间线</h2>
+            <span id="timeline-status">加载中</span>
+          </div>
+          <ol id="timeline-list"></ol>
         </section>
 
         <section class="provenance-band" aria-labelledby="provenance-title">
@@ -118,6 +130,6 @@
       </aside>
     </main>
 
-    <script src="./app.js?v=10"></script>
+    <script src="./app.js?v=12"></script>
   </body>
 </html>

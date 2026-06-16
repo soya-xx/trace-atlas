@@ -2,9 +2,10 @@
   const STORAGE_KEY = "whatever.trace-atlas.v1";
   const DOWNLOAD_NAME = "whatever-trace-atlas.json";
   const SNAPSHOT_NAME = "trace-atlas-snapshot.svg";
+  const ARTIFACT_KIT_URL = "./templates/ai-session-artifact-kit.md";
   const CAPSULE_PREFIX = "#capsule=";
   const TOUR_INTERVAL_MS = 2400;
-  const DATA_VERSION = "v=3";
+  const DATA_VERSION = "v=4";
   const PALETTE = ["#25785e", "#b84646", "#386fb0", "#c9961a", "#7657a6"];
 
   const TRACE_SEEDS = [
@@ -84,6 +85,10 @@
     fingerprint: document.querySelector("#fingerprint-note"),
     worldStatus: document.querySelector("#world-status"),
     worldLinks: document.querySelector("#world-links"),
+    copyKit: document.querySelector("#copy-kit"),
+    kitStatus: document.querySelector("#kit-status"),
+    timelineStatus: document.querySelector("#timeline-status"),
+    timelineList: document.querySelector("#timeline-list"),
     ledgerStatus: document.querySelector("#ledger-status"),
     ledgerList: document.querySelector("#ledger-list"),
     storage: document.querySelector("#storage-note"),
@@ -520,6 +525,40 @@
     els.worldStatus.textContent = statusText;
   }
 
+  function safePublicHref(value) {
+    return typeof value === "string" && /^https:\/\/(github\.com|soya-xx\.github\.io|trace-atlas-codex\.pages\.dev)\//.test(value)
+      ? value
+      : "#";
+  }
+
+  function renderTimeline(items, statusText = `${items.length} 步`) {
+    els.timelineList.replaceChildren();
+    items.forEach((step) => {
+      const item = document.createElement("li");
+      const phase = document.createElement("span");
+      const copy = document.createElement("span");
+      const title = document.createElement("strong");
+      const summary = document.createElement("small");
+      const evidence = document.createElement("a");
+
+      item.className = "timeline-item";
+      phase.className = "timeline-phase";
+      copy.className = "timeline-copy";
+      evidence.className = "timeline-evidence";
+      phase.textContent = step.phase || "·";
+      title.textContent = step.title || "未命名进展";
+      summary.textContent = step.summary || "这一步还没有写入说明。";
+      evidence.href = safePublicHref(step.evidenceHref);
+      evidence.target = "_blank";
+      evidence.rel = "noreferrer";
+      evidence.textContent = step.evidenceLabel || "查看证据";
+      copy.append(title, summary, evidence);
+      item.append(phase, copy);
+      els.timelineList.append(item);
+    });
+    els.timelineStatus.textContent = statusText;
+  }
+
   async function loadWorldSync() {
     try {
       const response = await fetch(`./world-sync.json?${DATA_VERSION}`);
@@ -541,6 +580,28 @@
         },
         "不可用"
       );
+    }
+  }
+
+  async function loadProgressTimeline() {
+    try {
+      const response = await fetch(`./progress-timeline.json?${DATA_VERSION}`);
+      if (!response.ok) {
+        throw new Error("timeline unavailable");
+      }
+      const timeline = await response.json();
+      const items = Array.isArray(timeline.items) ? timeline.items.slice(0, 9) : [];
+      renderTimeline(items);
+    } catch {
+      renderTimeline([
+        {
+          phase: "本地",
+          title: "时间线暂时不可用",
+          summary: "应用外壳已经加载，但进展时间线数据暂时无法读取。",
+          evidenceLabel: "返回主页",
+          evidenceHref: window.location.href
+        }
+      ], "不可用");
     }
   }
 
@@ -622,6 +683,42 @@
         local: Boolean(local)
       }))
     };
+  }
+
+  async function copyArtifactKit() {
+    try {
+      const response = await fetch(ARTIFACT_KIT_URL);
+      if (!response.ok) {
+        throw new Error("kit unavailable");
+      }
+      const text = await response.text();
+      await writeClipboardText(text);
+      els.kitStatus.textContent = "模板已复制，可以粘贴到新项目里使用。";
+      els.status.textContent = "复用模板已复制";
+    } catch {
+      els.kitStatus.textContent = "复制失败，请打开模板手动复制。";
+      els.status.textContent = "模板复制失败";
+    }
+  }
+
+  async function writeClipboardText(text) {
+    if (navigator.clipboard?.writeText && window.isSecureContext) {
+      await navigator.clipboard.writeText(text);
+      return;
+    }
+
+    const textarea = document.createElement("textarea");
+    textarea.value = text;
+    textarea.setAttribute("readonly", "");
+    textarea.style.position = "fixed";
+    textarea.style.left = "-9999px";
+    document.body.append(textarea);
+    textarea.select();
+    const copied = document.execCommand("copy");
+    textarea.remove();
+    if (!copied) {
+      throw new Error("copy command failed");
+    }
   }
 
   function escapeSvg(value) {
@@ -931,6 +1028,7 @@
     els.snapshot.addEventListener("click", exportSnapshot);
     els.import.addEventListener("click", () => els.importFile.click());
     els.importFile.addEventListener("change", importTracesFromFile);
+    els.copyKit.addEventListener("click", copyArtifactKit);
     window.addEventListener("keydown", (event) => {
       if (event.target === els.input || event.target === els.importFile) {
         return;
@@ -972,6 +1070,7 @@
     renderArchive();
     registerOfflineShell();
     loadWorldSync();
+    loadProgressTimeline();
     loadProvenanceLedger();
     requestAnimationFrame(draw);
   }

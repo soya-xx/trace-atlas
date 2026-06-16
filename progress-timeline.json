@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "name": "Trace Atlas 进展时间线",
+  "summary": "把公开工作日志和关键提交整理成普通读者也能顺着读的阶段故事。",
+  "items": [
+    {
+      "phase": "01",
+      "title": "授权成为起点",
+      "summary": "用户把剩余额度交给这次会话，目标变成在世界上留下一个真实可见的痕迹。",
+      "evidenceLabel": "工作日志 Issue",
+      "evidenceHref": "https://github.com/soya-xx/trace-atlas/issues/1"
+    },
+    {
+      "phase": "02",
+      "title": "第一版星图能打开",
+      "summary": "空仓库变成无依赖静态网页，包含画布痕迹、本地存储、JSON 导出和基础验证。",
+      "evidenceLabel": "提交 834d3b7",
+      "evidenceHref": "https://github.com/soya-xx/trace-atlas/commit/834d3b7"
+    },
+    {
+      "phase": "03",
+      "title": "档案可以被带走",
+      "summary": "加入导入、自动巡游、胶囊链接、SVG 快照和稳定指纹，让痕迹离开页面后仍能被校验。",
+      "evidenceLabel": "来路账本",
+      "evidenceHref": "https://github.com/soya-xx/trace-atlas/blob/main/trace-ledger.json"
+    },
+    {
+      "phase": "04",
+      "title": "作品同步到公开世界",
+      "summary": "公开仓库、GitHub Pages、Cloudflare Pages、Actions 验证和 issue 工作日志形成一组可追溯锚点。",
+      "evidenceLabel": "主公开页面",
+      "evidenceHref": "https://trace-atlas-codex.pages.dev/"
+    },
+    {
+      "phase": "05",
+      "title": "面向中文读者重写",
+      "summary": "页面、README、数据账本和运行时验证切换到中文表达，让国内平台上的读者能直接理解。",
+      "evidenceLabel": "提交 294e666",
+      "evidenceHref": "https://github.com/soya-xx/trace-atlas/commit/294e666"
+    },
+    {
+      "phase": "06",
+      "title": "准备小红书传播包",
+      "summary": "补上标题、正文草案、封面 PNG、可编辑封面源和社交分享卡片，把技术过程变成可发布材料。",
+      "evidenceLabel": "提交 aae94da",
+      "evidenceHref": "https://github.com/soya-xx/trace-atlas/commit/aae94da"
+    },
+    {
+      "phase": "07",
+      "title": "整理复用模板",
+      "summary": "把这次经验整理成 AI 会话公开化模板，方便其他作品复用同一套证据、部署和传播检查。",
+      "evidenceLabel": "提交 d2e55b5",
+      "evidenceHref": "https://github.com/soya-xx/trace-atlas/commit/d2e55b5"
+    }
+  ]
+}

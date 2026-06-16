@@ -7,13 +7,13 @@ const files = {
   css: readFileSync("styles.css", "utf8"),
   js: readFileSync("app.js", "utf8"),
   ledger: readFileSync("trace-ledger.json", "utf8"),
+  timeline: readFileSync("progress-timeline.json", "utf8"),
   sync: readFileSync("world-sync.json", "utf8"),
   socialCard: readFileSync("social-card.svg", "utf8"),
   artifactKit: readFileSync("templates/ai-session-artifact-kit.md", "utf8"),
   xhsCover: readFileSync("promo/xhs-cover.html", "utf8"),
   xhsCoverPng: readFileSync("promo/xhs-cover.png"),
   xhsLaunchKit: readFileSync("promo/xhs-launch-kit.md", "utf8"),
-  artifactKit: readFileSync("templates/ai-session-artifact-kit.md", "utf8"),
   manifest: readFileSync("site.webmanifest", "utf8"),
   server: readFileSync("server.mjs", "utf8"),
   serviceWorker: readFileSync("service-worker.js", "utf8"),
@@ -39,6 +39,10 @@ const requiredIds = [
   "world-status",
   "world-links",
   "kit-title",
+  "copy-kit",
+  "kit-status",
+  "timeline-status",
+  "timeline-list",
   "ledger-status",
   "ledger-list",
   "trace-list"
@@ -55,6 +59,8 @@ assert.match(files.html, /property="og:title" content="Trace Atlas 痕迹星图"
 assert.match(files.html, /property="og:image" content="https:\/\/trace-atlas-codex\.pages\.dev\/social-card\.svg"/, "Open Graph image is wired");
 assert.match(files.html, /name="twitter:card" content="summary_large_image"/, "Twitter large card is wired");
 assert.match(files.html, /href="\.\/templates\/ai-session-artifact-kit\.md"/, "artifact kit is linked from the page");
+assert.match(files.html, /id="copy-kit"/, "artifact kit can be copied from the page");
+assert.match(files.html, /id="timeline-title"/, "progress timeline section is present");
 assert.match(files.css, /@media \(max-width: 860px\)/, "mobile layout breakpoint is present");
 assert.match(files.css, /min-height: 100dvh/, "viewport height is anchored");
 assert.match(files.css, /overflow-x: hidden/, "page prevents horizontal overflow on mobile");
@@ -75,7 +81,14 @@ assert.match(files.js, /function renderLedger/, "provenance ledger renderer is w
 assert.match(files.js, /trace-ledger\.json\?\$\{DATA_VERSION\}/, "provenance ledger data is loaded with a versioned URL");
 assert.match(files.js, /function renderWorldSync/, "world sync renderer is wired");
 assert.match(files.js, /world-sync\.json\?\$\{DATA_VERSION\}/, "world sync metadata is loaded with a versioned URL");
-assert.match(files.js, /DATA_VERSION = "v=3"/, "JSON data requests are versioned");
+assert.match(files.js, /function renderTimeline/, "progress timeline renderer is wired");
+assert.match(files.js, /progress-timeline\.json\?\$\{DATA_VERSION\}/, "progress timeline data is loaded with a versioned URL");
+assert.match(files.js, /safePublicHref/, "timeline evidence links are constrained");
+assert.match(files.js, /DATA_VERSION = "v=4"/, "JSON data requests are versioned");
+assert.match(files.js, /ARTIFACT_KIT_URL = "\.\/templates\/ai-session-artifact-kit\.md"/, "artifact kit copy source is declared");
+assert.match(files.js, /function copyArtifactKit/, "artifact kit copy handler is wired");
+assert.match(files.js, /navigator\.clipboard/, "clipboard API copy path is present");
+assert.match(files.js, /document\.execCommand\("copy"\)/, "clipboard fallback path is present");
 assert.match(files.js, /importTracePayload/, "JSON import path is wired");
 assert.match(files.js, /CAPSULE_PREFIX/, "capsule URL prefix is declared");
 assert.match(files.js, /encodeCapsule/, "capsule encoder is wired");
@@ -86,10 +99,10 @@ assert.match(files.js, /ArrowLeft/, "keyboard previous trace is wired");
 assert.match(files.js, /window\.confirm/, "local reset asks for confirmation");
 assert.match(files.css, /aria-pressed="true"/, "tour active state has visible styling");
 assert.match(files.css, /\.file-input/, "file input is visually hidden but present");
-assert.match(files.serviceWorker, /CACHE_NAME = "trace-atlas-shell-v11"/, "service worker cache is versioned");
-assert.match(files.html, /href="\.\/styles\.css\?v=11"/, "stylesheet URL is versioned");
-assert.match(files.html, /src="\.\/app\.js\?v=10"/, "script URL is versioned");
-for (const cachedFile of ["./index.html", "./styles.css?v=11", "./app.js?v=10", "./world-sync.json?v=3", "./trace-ledger.json?v=3", "./icon.svg", "./social-card.svg", "./templates/ai-session-artifact-kit.md", "./site.webmanifest"]) {
+assert.match(files.serviceWorker, /CACHE_NAME = "trace-atlas-shell-v12"/, "service worker cache is versioned");
+assert.match(files.html, /href="\.\/styles\.css\?v=12"/, "stylesheet URL is versioned");
+assert.match(files.html, /src="\.\/app\.js\?v=12"/, "script URL is versioned");
+for (const cachedFile of ["./index.html", "./styles.css?v=12", "./app.js?v=12", "./progress-timeline.json?v=4", "./world-sync.json?v=4", "./trace-ledger.json?v=4", "./icon.svg", "./social-card.svg", "./templates/ai-session-artifact-kit.md", "./site.webmanifest"]) {
   const escaped = cachedFile.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   assert.match(files.serviceWorker, new RegExp(escaped), `service worker caches ${cachedFile}`);
 }
@@ -126,6 +139,15 @@ for (const entry of ledger.entries) {
   assert.match(entry.commit, /^[0-9a-f]{7,40}$/, `ledger commit ${entry.title} is a short hash`);
   assert.match(gitLog, new RegExp(`^${entry.commit}\\b`, "m"), `ledger commit ${entry.commit} exists in git history`);
   assert.ok(entry.summary.length > 20, `ledger entry ${entry.commit} has a useful summary`);
+}
+
+const timeline = JSON.parse(files.timeline);
+assert.equal(timeline.name, "Trace Atlas 进展时间线");
+assert.ok(timeline.items.length >= 7, "progress timeline lists the reader-facing path");
+for (const item of timeline.items) {
+  assert.match(item.phase, /^[0-9]{2}$/, `timeline phase ${item.title} has a readable number`);
+  assert.ok(item.summary.length > 24, `timeline item ${item.title} has a useful summary`);
+  assert.match(item.evidenceHref, /^https:\/\/(github\.com|trace-atlas-codex\.pages\.dev)\//, `timeline evidence ${item.title} is public https`);
 }
 
 const sync = JSON.parse(files.sync);

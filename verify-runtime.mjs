@@ -4,7 +4,9 @@ import { TextDecoder, TextEncoder } from "node:util";
 import vm from "node:vm";
 
 const provenanceLedger = JSON.parse(readFileSync("trace-ledger.json", "utf8"));
+const progressTimeline = JSON.parse(readFileSync("progress-timeline.json", "utf8"));
 const worldSync = JSON.parse(readFileSync("world-sync.json", "utf8"));
+const artifactKit = readFileSync("templates/ai-session-artifact-kit.md", "utf8");
 
 class MockElement {
   constructor(tagName, id = "") {
@@ -52,6 +54,10 @@ class MockElement {
   }
 
   focus() {}
+
+  remove() {}
+
+  select() {}
 
   getBoundingClientRect() {
     return { width: 900, height: 720, left: 0, top: 0 };
@@ -134,6 +140,10 @@ function createRuntime() {
     "fingerprint-note",
     "world-status",
     "world-links",
+    "copy-kit",
+    "kit-status",
+    "timeline-status",
+    "timeline-list",
     "ledger-status",
     "ledger-list",
     "storage-note",
@@ -146,6 +156,7 @@ function createRuntime() {
 
   const store = new Map();
   const listeners = new Map();
+  let clipboardText = "";
   const location = {
     href: "http://127.0.0.1:4174/",
     hash: ""
@@ -186,9 +197,22 @@ function createRuntime() {
           json: async () => worldSync
         };
       }
+      if (requestUrl.includes("progress-timeline.json")) {
+        return {
+          ok: true,
+          json: async () => progressTimeline
+        };
+      }
+      if (requestUrl.includes("ai-session-artifact-kit.md")) {
+        return {
+          ok: true,
+          text: async () => artifactKit
+        };
+      }
       return {
         ok: false,
-        json: async () => ({})
+        json: async () => ({}),
+        text: async () => ""
       };
     },
     localStorage: {
@@ -196,7 +220,13 @@ function createRuntime() {
       removeItem: (key) => store.delete(key),
       setItem: (key, value) => store.set(key, String(value))
     },
-    navigator: {},
+    navigator: {
+      clipboard: {
+        writeText: async (text) => {
+          clipboardText = text;
+        }
+      }
+    },
     performance: { now: () => 1000 },
     requestAnimationFrame: () => 1,
     window: {
@@ -209,6 +239,7 @@ function createRuntime() {
       confirm: () => true,
       devicePixelRatio: 1,
       history,
+      isSecureContext: true,
       location,
       setInterval
     }
@@ -224,7 +255,7 @@ function createRuntime() {
   context.window.fetch = context.fetch;
   context.window.TextDecoder = TextDecoder;
   context.window.TextEncoder = TextEncoder;
-  return { context, createdBlobs, document, listeners, location, store };
+  return { context, createdBlobs, document, get clipboardText() { return clipboardText; }, listeners, location, store };
 }
 
 async function flushAsync() {
@@ -237,8 +268,9 @@ const runtime = createRuntime();
 vm.runInNewContext(readFileSync("app.js", "utf8"), runtime.context, { filename: "app.js" });
 await flushAsync();
 
-assert.equal(runtime.document.querySelector("#ledger-status").textContent, "12 条");
-assert.equal(runtime.document.querySelector("#ledger-list").children.length, 12);
+const visibleLedgerCount = Math.min(12, provenanceLedger.entries.length);
+assert.equal(runtime.document.querySelector("#ledger-status").textContent, `${visibleLedgerCount} 条`);
+assert.equal(runtime.document.querySelector("#ledger-list").children.length, visibleLedgerCount);
 const firstLedgerEntry = runtime.document.querySelector("#ledger-list").children[0];
 assert.equal(firstLedgerEntry.children[0].textContent, "834d3b7");
 assert.equal(firstLedgerEntry.children[1].children[0].textContent, "创建 Trace Atlas 作品");
@@ -247,6 +279,16 @@ assert.equal(runtime.document.querySelector("#world-links").children.length, 4);
 const firstWorldLink = runtime.document.querySelector("#world-links").children[0].children[0];
 assert.equal(firstWorldLink.href, "https://trace-atlas-codex.pages.dev/");
 assert.equal(firstWorldLink.children[0].textContent, "Cloudflare Pages");
+assert.equal(runtime.document.querySelector("#timeline-status").textContent, `${progressTimeline.items.length} 步`);
+assert.equal(runtime.document.querySelector("#timeline-list").children.length, progressTimeline.items.length);
+const firstTimelineItem = runtime.document.querySelector("#timeline-list").children[0];
+assert.equal(firstTimelineItem.children[0].textContent, "01");
+assert.equal(firstTimelineItem.children[1].children[0].textContent, "授权成为起点");
+
+await runtime.document.querySelector("#copy-kit").dispatch("click");
+assert.equal(runtime.clipboardText, artifactKit);
+assert.equal(runtime.document.querySelector("#kit-status").textContent, "模板已复制，可以粘贴到新项目里使用。");
+assert.equal(runtime.document.querySelector("#trace-status").textContent, "复用模板已复制");
 
 const importFile = runtime.document.querySelector("#import-file");
 importFile.files = [
