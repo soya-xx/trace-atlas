@@ -1,13 +1,13 @@
-const CACHE_NAME = "trace-atlas-shell-v8";
+const CACHE_NAME = "trace-atlas-shell-v9";
 const APP_SHELL = [
   "./",
   "./index.html",
-  "./styles.css?v=9",
-  "./app.js?v=9",
+  "./styles.css?v=10",
+  "./app.js?v=10",
   "./icon.svg",
   "./site.webmanifest",
-  "./world-sync.json?v=2",
-  "./trace-ledger.json?v=2"
+  "./world-sync.json?v=3",
+  "./trace-ledger.json?v=3"
 ];
 
 self.addEventListener("install", (event) => {

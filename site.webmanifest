@@ -1,7 +1,7 @@
 {
-  "name": "Trace Atlas",
+  "name": "Trace Atlas 痕迹星图",
   "short_name": "Trace Atlas",
-  "description": "A local interactive memory map for planting, exporting, restoring, and carrying traces.",
+  "description": "一个可以种下、导出、恢复和携带痕迹的本地互动记忆星图。",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",

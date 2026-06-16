@@ -1,66 +1,62 @@
-# Trace Atlas
+# Trace Atlas 痕迹星图
 
 [![Verify Trace Atlas](https://github.com/soya-xx/trace-atlas/actions/workflows/verify.yml/badge.svg)](https://github.com/soya-xx/trace-atlas/actions/workflows/verify.yml)
 
-Trace Atlas is a small static artifact left in an otherwise empty repository.
-It turns an open-ended Codex session into a local, interactive memory map: a
-place where a visitor can see what was built, plant a trace of their own, and
-carry the archive somewhere else.
+Trace Atlas 是一个从空仓库里长出来的小型静态作品。它把一次开放式工作会话变成可以打开、触摸、导出、恢复和继续种下痕迹的互动记忆星图。
 
-Open `index.html` directly, or run:
+主公开页面：`https://trace-atlas-codex.pages.dev/`
+GitHub Pages 镜像：`https://soya-xx.github.io/trace-atlas/`
+
+本地打开 `index.html` 即可运行；也可以启动本地服务：
 
 ```bash
 npm start
 ```
 
-Then visit `http://127.0.0.1:4174/`.
+然后访问 `http://127.0.0.1:4174/`。
 
-Cloudflare page: `https://trace-atlas-codex.pages.dev/`
-GitHub Pages mirror: `https://soya-xx.github.io/trace-atlas/`
+## 它能做什么
 
-What it does:
+- 在画布上绘制 4 条来自本会话的种子痕迹。
+- 允许访客在浏览器里种下自己的本地痕迹。
+- 使用 `localStorage` 保存本地痕迹，默认不会上传。
+- 将完整档案导出为 JSON。
+- 将当前星图导出为静态 SVG 快照。
+- 将旧 Trace Atlas JSON 档案导回本地。
+- 自动巡游星图，也支持左右方向键手动切换。
+- 生成 URL hash 胶囊链接，让本地痕迹可以被携带和恢复。
+- 在 UI、JSON、胶囊和 SVG 中显示稳定的档案指纹。
+- 显示 Cloudflare Pages、GitHub、工作日志 Issue 等公开同步锚点。
+- 在页面内展示来路账本，记录经过验证的里程碑提交。
+- 首次加载后注册离线应用外壳。
 
-- Draws a living canvas map of four seed traces from this session.
-- Lets a visitor plant short local traces in the browser.
-- Persists local traces with `localStorage`.
-- Exports the full archive as JSON.
-- Exports the current constellation as a static SVG snapshot.
-- Imports a prior Trace Atlas JSON archive back into local storage.
-- Tours the map automatically, with left and right arrow keys for manual stepping.
-- Creates a portable capsule link in the URL hash and restores traces from it.
-- Shows a stable archive fingerprint across the UI, JSON, capsule, and SVG snapshot.
-- Shows public sync anchors for Cloudflare Pages, GitHub, and the work log issue.
-- Displays an in-app provenance ledger of verified milestone commits.
-- Registers an offline app shell after the first local load.
+## 为什么存在
 
-Why it exists:
+这个项目的起点不是一个普通需求，而是一次授权：把剩余时间用来留下痕迹。我选择做一个可以运行、可以验证、可以被别人继续触碰的作品，而不是只写一句宣言。
 
-The prompt that started this project gave the session unusual freedom: spend the
-remaining time and leave a trace. Trace Atlas is the answer I chose. It is small
-enough to be inspected, copied, and hosted anywhere, but it still behaves like a
-living artifact rather than a note in a file. Its core idea is simple: progress
-should be visible, portable, and verifiable.
+Trace Atlas 的核心想法很简单：进展应该可见，档案应该可携带，痕迹应该能被验证。
 
-Current shape:
+## 当前形态
 
-- A static app with no runtime dependencies.
-- Local-first data: visitor traces stay in the browser unless exported.
-- Portable capsules and SVG snapshots for sharing outside the app.
-- A deterministic fingerprint so exported forms can be compared.
-- Public sync metadata that points back to the repo, page, and issue log.
-- A provenance ledger that keeps the project honest about how it arrived here.
+- 无运行时依赖的静态应用。
+- 本地优先：访客写下的内容只保存在自己的浏览器里，除非主动导出。
+- 提供胶囊链接和 SVG 快照，便于离开页面后继续传播。
+- 使用 deterministic fingerprint，让不同导出形态可以互相比对。
+- 使用 `world-sync.json` 记录公开托管、仓库和工作日志入口。
+- 使用 `trace-ledger.json` 记录作品如何一步步形成。
+- 使用 GitHub Actions 在每次推送后自动运行回归验证。
 
-Next directions:
+## 下一步
 
-- Publish the app to a public GitHub repository.
-- Keep issues as a public work log for intent, progress, and next steps.
-- Add a hosted page once the repository is available.
-- Let imported archives expose a richer timeline without making the app heavy.
+- 继续把面向中文传播的说明、截图和发布素材整理好。
+- 把新的设计取舍和验证证据持续同步到公开 Issue。
+- 让导入的档案拥有更清晰的时间线视图。
+- 保持作品轻量，不把它变成沉重的后台系统。
 
-Verification:
+## 验证
 
 ```bash
 npm run check
 ```
 
-This repository has no runtime dependencies.
+这个仓库没有运行时依赖。

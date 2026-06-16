@@ -61,7 +61,7 @@ assert.match(files.js, /function renderLedger/, "provenance ledger renderer is w
 assert.match(files.js, /trace-ledger\.json\?\$\{DATA_VERSION\}/, "provenance ledger data is loaded with a versioned URL");
 assert.match(files.js, /function renderWorldSync/, "world sync renderer is wired");
 assert.match(files.js, /world-sync\.json\?\$\{DATA_VERSION\}/, "world sync metadata is loaded with a versioned URL");
-assert.match(files.js, /DATA_VERSION = "v=2"/, "JSON data requests are versioned");
+assert.match(files.js, /DATA_VERSION = "v=3"/, "JSON data requests are versioned");
 assert.match(files.js, /importTracePayload/, "JSON import path is wired");
 assert.match(files.js, /CAPSULE_PREFIX/, "capsule URL prefix is declared");
 assert.match(files.js, /encodeCapsule/, "capsule encoder is wired");
@@ -72,10 +72,10 @@ assert.match(files.js, /ArrowLeft/, "keyboard previous trace is wired");
 assert.match(files.js, /window\.confirm/, "local reset asks for confirmation");
 assert.match(files.css, /aria-pressed="true"/, "tour active state has visible styling");
 assert.match(files.css, /\.file-input/, "file input is visually hidden but present");
-assert.match(files.serviceWorker, /CACHE_NAME = "trace-atlas-shell-v8"/, "service worker cache is versioned");
-assert.match(files.html, /href="\.\/styles\.css\?v=9"/, "stylesheet URL is versioned");
-assert.match(files.html, /src="\.\/app\.js\?v=9"/, "script URL is versioned");
-for (const cachedFile of ["./index.html", "./styles.css?v=9", "./app.js?v=9", "./world-sync.json?v=2", "./trace-ledger.json?v=2", "./icon.svg", "./site.webmanifest"]) {
+assert.match(files.serviceWorker, /CACHE_NAME = "trace-atlas-shell-v9"/, "service worker cache is versioned");
+assert.match(files.html, /href="\.\/styles\.css\?v=10"/, "stylesheet URL is versioned");
+assert.match(files.html, /src="\.\/app\.js\?v=10"/, "script URL is versioned");
+for (const cachedFile of ["./index.html", "./styles.css?v=10", "./app.js?v=10", "./world-sync.json?v=3", "./trace-ledger.json?v=3", "./icon.svg", "./site.webmanifest"]) {
   const escaped = cachedFile.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   assert.match(files.serviceWorker, new RegExp(escaped), `service worker caches ${cachedFile}`);
 }
@@ -85,27 +85,27 @@ assert.match(files.svg, /Trace Atlas icon/, "svg icon has an accessible title");
 assert.doesNotMatch(Object.values(files).join("\n"), /\bTODO\b/i, "no TODO markers remain");
 
 const manifest = JSON.parse(files.manifest);
-assert.equal(manifest.name, "Trace Atlas");
+assert.equal(manifest.name, "Trace Atlas 痕迹星图");
 assert.equal(manifest.display, "standalone");
 assert.equal(manifest.icons[0].src, "./icon.svg");
 
 const ledger = JSON.parse(files.ledger);
-assert.equal(ledger.name, "Trace Atlas Provenance");
+assert.equal(ledger.name, "Trace Atlas 来路账本");
 assert.ok(ledger.entries.length >= 6, "provenance ledger lists verified milestones");
 const gitLog = execFileSync("git", ["log", "--oneline"], { encoding: "utf8" });
 for (const entry of ledger.entries) {
   assert.match(entry.commit, /^[0-9a-f]{7,40}$/, `ledger commit ${entry.title} is a short hash`);
   assert.match(gitLog, new RegExp(`^${entry.commit}\\b`, "m"), `ledger commit ${entry.commit} exists in git history`);
-  assert.ok(entry.summary.length > 40, `ledger entry ${entry.commit} has a useful summary`);
+  assert.ok(entry.summary.length > 20, `ledger entry ${entry.commit} has a useful summary`);
 }
 
 const sync = JSON.parse(files.sync);
-assert.equal(sync.name, "Trace Atlas World Sync");
-assert.equal(sync.status, "public");
+assert.equal(sync.name, "Trace Atlas 世界同步");
+assert.equal(sync.status, "公开");
 assert.equal(sync.links.length, 4);
 for (const link of sync.links) {
   assert.match(link.href, /^https:\/\/(github\.com|soya-xx\.github\.io|trace-atlas-codex\.pages\.dev)\//, `sync link ${link.label} is public https`);
-  assert.ok(link.note.length > 20, `sync link ${link.label} has a useful note`);
+  assert.ok(link.note.length > 8, `sync link ${link.label} has a useful note`);
 }
 
 const seedIds = Array.from(files.js.matchAll(/id: "([^"]+)"/g)).map((match) => match[1]);

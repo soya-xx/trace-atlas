@@ -1,28 +1,28 @@
 {
   "schemaVersion": 1,
-  "name": "Trace Atlas World Sync",
-  "status": "public",
-  "summary": "The artifact is mirrored into Cloudflare Pages, GitHub Pages, a public repository, and a live issue log.",
+  "name": "Trace Atlas 世界同步",
+  "status": "公开",
+  "summary": "这个作品已经同步到 Cloudflare Pages、GitHub Pages 镜像、公开仓库和持续更新的工作日志。",
   "links": [
     {
       "label": "Cloudflare Pages",
       "href": "https://trace-atlas-codex.pages.dev/",
-      "note": "Primary hosted Trace Atlas artifact."
+      "note": "主公开页面，面向普通访客打开。"
     },
     {
-      "label": "GitHub Pages mirror",
+      "label": "GitHub Pages 镜像",
       "href": "https://soya-xx.github.io/trace-atlas/",
-      "note": "A separate mirror; existing GitHub Pages state is preserved."
+      "note": "保留的镜像页面，不影响已有托管状态。"
     },
     {
-      "label": "Public repository",
+      "label": "公开仓库",
       "href": "https://github.com/soya-xx/trace-atlas",
-      "note": "Source, commits, README, and project history."
+      "note": "源码、提交记录、README 和项目历史。"
     },
     {
-      "label": "Work log issue",
+      "label": "工作日志 Issue",
       "href": "https://github.com/soya-xx/trace-atlas/issues/1",
-      "note": "Vision, progress notes, verification, and next steps."
+      "note": "愿景、进展、验证证据和下一步。"
     }
   ]
 }

@@ -4,17 +4,17 @@
   const SNAPSHOT_NAME = "trace-atlas-snapshot.svg";
   const CAPSULE_PREFIX = "#capsule=";
   const TOUR_INTERVAL_MS = 2400;
-  const DATA_VERSION = "v=2";
+  const DATA_VERSION = "v=3";
   const PALETTE = ["#25785e", "#b84646", "#386fb0", "#c9961a", "#7657a6"];
 
   const TRACE_SEEDS = [
     {
       id: "agency-granted",
-      name: "Agency granted",
-      line: "A user handed me unused time and asked for something real.",
+      name: "授权的起点",
+      line: "用户把剩余时间交给我，要求留下一个真实存在的东西。",
       body:
-        "This atlas is a small answer: a thing with state, motion, and a place for future marks. It exists because permission became responsibility.",
-      kind: "Origin",
+        "这张星图是一个小小的回答：它有状态、有运动，也给后来的人留出继续写下一句的位置。它存在，是因为授权变成了责任。",
+      kind: "起点",
       weight: 1,
       color: "#25785e",
       nx: 0.34,
@@ -23,11 +23,11 @@
     },
     {
       id: "strong-verification",
-      name: "Strong verification",
-      line: "Care is not complete until it survives contact with evidence.",
+      name: "强验证",
+      line: "关心一件事，不能只停在好意里，还要经得起证据检验。",
       body:
-        "Every trace worth keeping should be able to answer what changed, who benefits, and how we know the benefit arrived.",
-      kind: "Principle",
+        "每一条值得留下的痕迹，都应该回答三件事：改变了什么，谁能因此受益，以及我们如何知道它真的生效。",
+      kind: "原则",
       weight: 0.86,
       color: "#386fb0",
       nx: 0.56,
@@ -36,11 +36,11 @@
     },
     {
       id: "playful-proof",
-      name: "Playful proof",
-      line: "A useful artifact can still have pulse, taste, and a little weather.",
+      name: "带温度的证明",
+      line: "有用的作品也可以有脉搏、有审美，还有一点可触摸的天气。",
       body:
-        "The point is not spectacle. The point is to make a quiet object that rewards touch and keeps a record of attention.",
-      kind: "Temper",
+        "重点不是炫技，而是做出一个安静的物件：它回应触摸，记录注意力，也让认真不显得僵硬。",
+      kind: "气质",
       weight: 0.72,
       color: "#c9961a",
       nx: 0.24,
@@ -49,11 +49,11 @@
     },
     {
       id: "living-artifact",
-      name: "Living artifact",
-      line: "The work should accept a next sentence.",
+      name: "活的作品",
+      line: "真正留下来的东西，应该还能接住下一句话。",
       body:
-        "Planting a local trace changes the map immediately and makes the archive exportable, so this repository can carry more than its first voice.",
-      kind: "Mechanism",
+        "种下一条本地痕迹会立刻改变星图，也能把档案导出带走。这样，这个仓库承载的就不只是最初那一个声音。",
+      kind: "机制",
       weight: 0.94,
       color: "#b84646",
       nx: 0.66,
@@ -130,9 +130,9 @@
     return {
       id: trace.id?.startsWith("local-") ? trace.id : traceIdFromBody(body, createdAt),
       name: trace.name || titleFromBody(body),
-      line: trace.line || "A local sentence joined the field.",
+      line: trace.line || "一条本地句子加入了这片星图。",
       body,
-      kind: "Local",
+      kind: "本地",
       weight: 0.58 + (index % 4) * 0.08,
       color: safeColor(trace.color, fallbackColor),
       createdAt,
@@ -151,7 +151,7 @@
   function titleFromBody(body) {
     const clean = body.replace(/\s+/g, " ").trim();
     if (clean.length <= 34) {
-      return clean || "Untitled trace";
+      return clean || "未命名痕迹";
     }
     return `${clean.slice(0, 31).trim()}...`;
   }
@@ -197,12 +197,11 @@
   }
 
   function updateFingerprintNote() {
-    els.fingerprint.textContent = `fingerprint ${archiveFingerprint()}`;
+    els.fingerprint.textContent = `指纹 ${archiveFingerprint()}`;
   }
 
   function updateStorageNote(total) {
-    els.storage.textContent =
-      total === 0 ? "Local archive is empty." : `${total} local trace${total === 1 ? "" : "s"} stored.`;
+    els.storage.textContent = total === 0 ? "本地档案为空。" : `已保存 ${total} 条本地痕迹。`;
   }
 
   function rebuildTraces() {
@@ -422,7 +421,7 @@
     };
   }
 
-  function selectTrace(id, status = "Selected") {
+  function selectTrace(id, status = "已选中") {
     const trace = state.traces.find((item) => item.id === id);
     if (!trace) {
       return;
@@ -433,7 +432,7 @@
     els.status.textContent = `${status}: ${trace.name}`;
   }
 
-  function selectRelativeTrace(offset, status = "Selected") {
+  function selectRelativeTrace(offset, status = "已选中") {
     const index = state.traces.findIndex((trace) => trace.id === state.selectedId);
     const nextIndex = (Math.max(index, 0) + offset + state.traces.length) % state.traces.length;
     const trace = state.traces[nextIndex];
@@ -445,12 +444,12 @@
     els.title.textContent = trace.name;
     els.line.textContent = trace.line;
     els.kind.textContent = trace.kind;
-    els.weight.textContent = `signal ${trace.weight.toFixed(2)}`;
+    els.weight.textContent = `信号 ${trace.weight.toFixed(2)}`;
     els.body.textContent = trace.body;
   }
 
   function renderArchive() {
-    els.count.textContent = `${state.traces.length} trace${state.traces.length === 1 ? "" : "s"}`;
+    els.count.textContent = `${state.traces.length} 条痕迹`;
     updateFingerprintNote();
     els.list.replaceChildren();
     state.traces.forEach((trace) => {
@@ -468,7 +467,7 @@
       swatch.className = "trace-swatch";
       swatch.style.background = trace.color;
       name.textContent = trace.name;
-      kind.textContent = trace.local ? "Local archive" : trace.kind;
+      kind.textContent = trace.local ? "本地档案" : trace.kind;
       text.append(name, kind);
       button.append(swatch, text);
       li.append(button);
@@ -476,7 +475,7 @@
     });
   }
 
-  function renderLedger(entries, statusText = `${entries.length} entries`) {
+  function renderLedger(entries, statusText = `${entries.length} 条`) {
     els.ledgerList.replaceChildren();
     entries.forEach((entry) => {
       const item = document.createElement("li");
@@ -498,7 +497,7 @@
     els.ledgerStatus.textContent = statusText;
   }
 
-  function renderWorldSync(sync, statusText = sync.status || "online") {
+  function renderWorldSync(sync, statusText = sync.status || "在线") {
     const links = Array.isArray(sync.links) ? sync.links.slice(0, 6) : [];
     els.worldLinks.replaceChildren();
     links.forEach((link) => {
@@ -512,7 +511,7 @@
       anchor.href = typeof link.href === "string" && link.href.startsWith("https://") ? link.href : "#";
       anchor.target = "_blank";
       anchor.rel = "noreferrer";
-      label.textContent = link.label || "Open";
+      label.textContent = link.label || "打开";
       note.textContent = link.note || anchor.href;
       anchor.append(label, note);
       item.append(anchor);
@@ -534,13 +533,13 @@
         {
           links: [
             {
-              label: "Local copy",
+              label: "本地副本",
               href: window.location.href,
-              note: "The public sync metadata could not be read."
+              note: "公开同步元数据暂时无法读取。"
             }
           ]
         },
-        "unavailable"
+        "不可用"
       );
     }
   }
@@ -559,16 +558,16 @@
         {
           commit: "local",
           title: "Trace Atlas",
-          summary: "The local app shell loaded, but its ledger could not be read."
+          summary: "本地应用外壳已经加载，但来路账本暂时无法读取。"
         }
-      ], "unavailable");
+      ], "不可用");
     }
   }
 
   function plantTrace() {
     const body = els.input.value.trim();
     if (!body) {
-      els.status.textContent = "Write one sentence first";
+      els.status.textContent = "请先写一句话";
       els.input.focus();
       return;
     }
@@ -589,7 +588,7 @@
     state.flash = { id: trace.id, startedAt: performance.now() };
     els.input.value = "";
     persistLocalTraces();
-    selectTrace(trace.id, "Planted");
+    selectTrace(trace.id, "已种下");
   }
 
   function exportTraces() {
@@ -601,7 +600,7 @@
     anchor.download = DOWNLOAD_NAME;
     anchor.click();
     URL.revokeObjectURL(url);
-    els.status.textContent = `Exported ${payload.traces.length} traces`;
+    els.status.textContent = `已导出 ${payload.traces.length} 条痕迹`;
   }
 
   function archivePayload() {
@@ -689,8 +688,8 @@
     const fingerprint = archiveFingerprint();
 
     return `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" role="img" aria-labelledby="title desc">
-  <title id="title">Trace Atlas snapshot</title>
-  <desc id="desc">${escapeSvg(state.traces.length)} traces, ${escapeSvg(localTotal)} local traces. Fingerprint: ${escapeSvg(fingerprint)}. Selected trace: ${escapeSvg(selected.name)}. ${escapeSvg(selected.body)}</desc>
+  <title id="title">Trace Atlas 快照</title>
+  <desc id="desc">${escapeSvg(state.traces.length)} 条痕迹，${escapeSvg(localTotal)} 条本地痕迹。指纹：${escapeSvg(fingerprint)}。当前痕迹：${escapeSvg(selected.name)}。${escapeSvg(selected.body)}</desc>
   <defs>
     <pattern id="grid" width="44" height="44" patternUnits="userSpaceOnUse">
       <path d="M 44 0 L 0 0 0 44" fill="none" stroke="#d6ddd8" stroke-width="1" opacity=".55"/>
@@ -710,10 +709,10 @@
   </defs>
   <rect width="1200" height="800" fill="#fbfbf8"/>
   <rect width="1200" height="800" fill="url(#grid)"/>
-  <text x="72" y="66" class="eyebrow">WHATEVER REPOSITORY</text>
+  <text x="72" y="66" class="eyebrow">WHATEVER 仓库</text>
   <text x="72" y="126" class="title">Trace Atlas</text>
-  <text x="72" y="760" class="meta">${state.traces.length} traces / ${localTotal} local / ${escapeSvg(fingerprint)}</text>
-  <text x="640" y="728" class="eyebrow">SELECTED TRACE</text>
+  <text x="72" y="760" class="meta">${state.traces.length} 条痕迹 / ${localTotal} 条本地 / ${escapeSvg(fingerprint)}</text>
+  <text x="640" y="728" class="eyebrow">当前痕迹</text>
   <text x="640" y="762" class="body">${escapeSvg(selected.name)} - ${escapeSvg(selected.kind)}</text>
   <g class="links">
     ${seedLinks}
@@ -737,7 +736,7 @@
     anchor.download = SNAPSHOT_NAME;
     anchor.click();
     URL.revokeObjectURL(url);
-    els.status.textContent = `Snapshot saved (${state.traces.length})`;
+    els.status.textContent = `快照已保存（${state.traces.length}）`;
   }
 
   function importedTraceCandidates(payload) {
@@ -752,11 +751,11 @@
       .slice(0, 48);
   }
 
-  function importTracePayload(payload, statusLabel = "Imported") {
+  function importTracePayload(payload, statusLabel = "已导入") {
     const localCount = state.traces.filter((trace) => trace.local).length;
     const capacity = 24 - localCount;
     if (capacity <= 0) {
-      els.status.textContent = "Local archive is full";
+      els.status.textContent = "本地档案已满";
       return 0;
     }
     const existing = new Set(state.traces.filter((trace) => trace.local).map(localTraceKey));
@@ -772,7 +771,7 @@
       });
 
     if (imported.length === 0) {
-      els.status.textContent = "No new local traces found";
+      els.status.textContent = "没有发现新的本地痕迹";
       return 0;
     }
 
@@ -796,7 +795,7 @@
       const payload = safeParse(await file.text(), null);
       importTracePayload(payload);
     } catch {
-      els.status.textContent = "Import failed";
+      els.status.textContent = "导入失败";
     }
   }
 
@@ -834,14 +833,14 @@
   async function createCapsuleLink() {
     const localTotal = state.traces.filter((trace) => trace.local).length;
     if (localTotal === 0) {
-      els.status.textContent = "Plant or import a local trace first";
+      els.status.textContent = "请先种下或导入一条本地痕迹";
       return;
     }
 
     const hash = `${CAPSULE_PREFIX}${encodeCapsule(capsulePayload())}`;
     const url = `${window.location.href.split("#")[0]}${hash}`;
     window.history.replaceState(null, "", url);
-    els.status.textContent = `Capsule link ready (${localTotal})`;
+    els.status.textContent = `胶囊链接已生成（${localTotal}）`;
   }
 
   function restoreCapsuleFromLocation() {
@@ -852,23 +851,23 @@
 
     const payload = decodeCapsule(hash.slice(CAPSULE_PREFIX.length));
     if (!payload) {
-      els.status.textContent = "Capsule could not be opened";
+      els.status.textContent = "胶囊无法打开";
       return 0;
     }
 
-    const restored = importTracePayload(payload, "Restored");
+    const restored = importTracePayload(payload, "已恢复");
     if (restored === 0 && state.traces.some((trace) => trace.local)) {
-      els.status.textContent = "Capsule already present";
+      els.status.textContent = "胶囊内容已存在";
     }
     return restored;
   }
 
   function syncTourButton(active) {
-    els.tour.textContent = active ? "Stop" : "Tour";
+    els.tour.textContent = active ? "停止" : "巡游";
     els.tour.setAttribute("aria-pressed", String(active));
   }
 
-  function stopTour(status = "Tour stopped") {
+  function stopTour(status = "巡游已停止") {
     if (!state.tourTimer) {
       return;
     }
@@ -884,25 +883,25 @@
       return;
     }
     syncTourButton(true);
-    selectRelativeTrace(1, "Touring");
-    state.tourTimer = window.setInterval(() => selectRelativeTrace(1, "Touring"), TOUR_INTERVAL_MS);
+    selectRelativeTrace(1, "巡游中");
+    state.tourTimer = window.setInterval(() => selectRelativeTrace(1, "巡游中"), TOUR_INTERVAL_MS);
   }
 
   function clearLocalTraces() {
     const localTotal = state.traces.filter((trace) => trace.local).length;
     if (localTotal === 0) {
-      els.status.textContent = "No local traces to reset";
+      els.status.textContent = "没有可清空的本地痕迹";
       return;
     }
-    const confirmed = window.confirm("Reset local traces from this browser?");
+    const confirmed = window.confirm("要清空这个浏览器里的本地痕迹吗？");
     if (!confirmed) {
-      els.status.textContent = "Reset canceled";
+      els.status.textContent = "已取消清空";
       return;
     }
     localStorage.removeItem(STORAGE_KEY);
-    stopTour("Tour stopped");
+    stopTour("巡游已停止");
     rebuildTraces();
-    selectTrace("agency-granted", "Reset");
+    selectTrace("agency-granted", "已重置");
     renderArchive();
   }
 
@@ -938,12 +937,12 @@
       }
       if (event.key === "ArrowRight") {
         event.preventDefault();
-        stopTour("Tour paused");
+        stopTour("巡游已暂停");
         selectRelativeTrace(1);
       }
       if (event.key === "ArrowLeft") {
         event.preventDefault();
-        stopTour("Tour paused");
+        stopTour("巡游已暂停");
         selectRelativeTrace(-1);
       }
     });
@@ -951,16 +950,16 @@
 
   async function registerOfflineShell() {
     if (!("serviceWorker" in navigator)) {
-      els.offline.textContent = "Live shell";
+      els.offline.textContent = "在线外壳";
       return;
     }
 
     try {
       await navigator.serviceWorker.register("./service-worker.js");
       await navigator.serviceWorker.ready;
-      els.offline.textContent = "Offline ready";
+      els.offline.textContent = "离线可用";
     } catch {
-      els.offline.textContent = "Live shell";
+      els.offline.textContent = "在线外壳";
     }
   }
 

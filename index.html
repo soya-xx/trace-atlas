@@ -1,95 +1,95 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh-CN">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#25785e">
-    <title>Trace Atlas</title>
+    <title>Trace Atlas | 痕迹星图</title>
     <link rel="icon" href="./icon.svg" type="image/svg+xml">
     <link rel="manifest" href="./site.webmanifest">
-    <link rel="stylesheet" href="./styles.css?v=9">
+    <link rel="stylesheet" href="./styles.css?v=10">
   </head>
   <body>
     <main class="atlas-shell" aria-labelledby="app-title">
-      <section class="canvas-stage" aria-label="Trace field">
+      <section class="canvas-stage" aria-label="痕迹场">
         <canvas id="trace-canvas"></canvas>
         <div class="stage-overlay">
           <div class="wordmark">
             <span class="wordmark-mark" aria-hidden="true"></span>
             <div>
-              <p class="eyebrow">Whatever repository</p>
+              <p class="eyebrow">Whatever 仓库</p>
               <h1 id="app-title">Trace Atlas</h1>
             </div>
           </div>
           <div class="status-strip" aria-live="polite">
-            <span id="trace-count">0 traces</span>
-            <span id="trace-status">Ready</span>
-            <span id="offline-status">Live shell</span>
+            <span id="trace-count">0 条痕迹</span>
+            <span id="trace-status">就绪</span>
+            <span id="offline-status">在线外壳</span>
           </div>
         </div>
       </section>
 
-      <aside class="memory-panel" aria-label="Trace details">
+      <aside class="memory-panel" aria-label="痕迹详情">
         <header class="panel-header">
-          <p class="eyebrow">Selected trace</p>
-          <h2 id="selected-title">Agency granted</h2>
+          <p class="eyebrow">当前痕迹</p>
+          <h2 id="selected-title">授权的起点</h2>
           <p id="selected-line" class="selected-line"></p>
         </header>
 
         <section class="detail-band">
           <div class="detail-meta">
-            <span id="selected-kind">Origin</span>
-            <span id="selected-weight">signal 1.00</span>
+            <span id="selected-kind">起点</span>
+            <span id="selected-weight">信号 1.00</span>
           </div>
           <p id="selected-body"></p>
         </section>
 
         <section class="composer-band" aria-labelledby="composer-title">
-          <h2 id="composer-title">Plant a trace</h2>
-          <textarea id="trace-input" maxlength="180" rows="4" placeholder="A sentence worth keeping"></textarea>
+          <h2 id="composer-title">种下一条痕迹</h2>
+          <textarea id="trace-input" maxlength="180" rows="4" placeholder="写一句值得留下的话"></textarea>
           <div class="button-row">
-            <button id="plant-trace" type="button">Plant</button>
-            <button id="export-traces" class="secondary" type="button">Export</button>
-            <button id="clear-local" class="quiet" type="button">Reset local</button>
+            <button id="plant-trace" type="button">种下</button>
+            <button id="export-traces" class="secondary" type="button">导出</button>
+            <button id="clear-local" class="quiet" type="button">清空本地</button>
           </div>
-          <p id="storage-note" class="storage-note">Local archive is empty.</p>
+          <p id="storage-note" class="storage-note">本地档案为空。</p>
         </section>
 
         <section class="tools-band" aria-labelledby="tools-title">
-          <h2 id="tools-title">Archive tools</h2>
+          <h2 id="tools-title">档案工具</h2>
           <div class="tool-row">
-            <button id="tour-traces" class="secondary" type="button" aria-pressed="false">Tour</button>
-            <button id="capsule-traces" type="button">Capsule</button>
-            <button id="snapshot-traces" class="quiet" type="button">Snapshot</button>
-            <button id="import-traces" class="quiet" type="button">Import</button>
+            <button id="tour-traces" class="secondary" type="button" aria-pressed="false">巡游</button>
+            <button id="capsule-traces" type="button">胶囊</button>
+            <button id="snapshot-traces" class="quiet" type="button">快照</button>
+            <button id="import-traces" class="quiet" type="button">导入</button>
             <input id="import-file" class="file-input" type="file" accept="application/json,.json">
           </div>
-          <p id="fingerprint-note" class="fingerprint-note">fingerprint pending</p>
+          <p id="fingerprint-note" class="fingerprint-note">指纹生成中</p>
         </section>
 
         <section class="world-band" aria-labelledby="world-title">
           <div class="section-heading">
-            <h2 id="world-title">World Sync</h2>
-            <span id="world-status">loading</span>
+            <h2 id="world-title">世界同步</h2>
+            <span id="world-status">加载中</span>
           </div>
           <ul id="world-links"></ul>
         </section>
 
         <section class="provenance-band" aria-labelledby="provenance-title">
           <div class="section-heading">
-            <h2 id="provenance-title">Provenance</h2>
-            <span id="ledger-status">loading</span>
+            <h2 id="provenance-title">来路账本</h2>
+            <span id="ledger-status">加载中</span>
           </div>
           <ol id="ledger-list"></ol>
         </section>
 
         <section class="archive-band" aria-labelledby="archive-title">
-          <h2 id="archive-title">Archive</h2>
+          <h2 id="archive-title">档案</h2>
           <ul id="trace-list"></ul>
         </section>
       </aside>
     </main>
 
-    <script src="./app.js?v=9"></script>
+    <script src="./app.js?v=10"></script>
   </body>
 </html>

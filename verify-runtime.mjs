@@ -237,12 +237,12 @@ const runtime = createRuntime();
 vm.runInNewContext(readFileSync("app.js", "utf8"), runtime.context, { filename: "app.js" });
 await flushAsync();
 
-assert.equal(runtime.document.querySelector("#ledger-status").textContent, "9 entries");
-assert.equal(runtime.document.querySelector("#ledger-list").children.length, 9);
+assert.equal(runtime.document.querySelector("#ledger-status").textContent, "12 条");
+assert.equal(runtime.document.querySelector("#ledger-list").children.length, 12);
 const firstLedgerEntry = runtime.document.querySelector("#ledger-list").children[0];
 assert.equal(firstLedgerEntry.children[0].textContent, "834d3b7");
-assert.equal(firstLedgerEntry.children[1].children[0].textContent, "Create Trace Atlas artifact");
-assert.equal(runtime.document.querySelector("#world-status").textContent, "public");
+assert.equal(firstLedgerEntry.children[1].children[0].textContent, "创建 Trace Atlas 作品");
+assert.equal(runtime.document.querySelector("#world-status").textContent, "公开");
 assert.equal(runtime.document.querySelector("#world-links").children.length, 4);
 const firstWorldLink = runtime.document.querySelector("#world-links").children[0].children[0];
 assert.equal(firstWorldLink.href, "https://trace-atlas-codex.pages.dev/");
@@ -272,17 +272,17 @@ importFile.files = [
 ];
 await importFile.dispatch("change");
 
-assert.equal(runtime.document.querySelector("#trace-count").textContent, "5 traces");
-assert.match(runtime.document.querySelector("#trace-status").textContent, /^Imported 1:/);
-assert.equal(runtime.document.querySelector("#storage-note").textContent, "1 local trace stored.");
-assert.equal(runtime.document.querySelector("#offline-status").textContent, "Live shell");
+assert.equal(runtime.document.querySelector("#trace-count").textContent, "5 条痕迹");
+assert.match(runtime.document.querySelector("#trace-status").textContent, /^已导入 1:/);
+assert.equal(runtime.document.querySelector("#storage-note").textContent, "已保存 1 条本地痕迹。");
+assert.equal(runtime.document.querySelector("#offline-status").textContent, "在线外壳");
 
 const stored = JSON.parse(runtime.store.get("whatever.trace-atlas.v1"));
 assert.equal(stored.length, 1);
 assert.equal(stored[0].body, "Runtime import proves the archive can return.");
 assert.match(stored[0].id, /^local-/);
 
-const fingerprint = runtime.document.querySelector("#fingerprint-note").textContent.replace("fingerprint ", "");
+const fingerprint = runtime.document.querySelector("#fingerprint-note").textContent.replace("指纹 ", "");
 assert.match(fingerprint, /^atlas-[0-9a-f]{8}$/);
 
 await runtime.document.querySelector("#export-traces").dispatch("click");
@@ -292,19 +292,19 @@ const archiveExport = JSON.parse(await runtime.createdBlobs[0].text());
 assert.equal(archiveExport.fingerprint, fingerprint);
 
 await runtime.document.querySelector("#snapshot-traces").dispatch("click");
-assert.match(runtime.document.querySelector("#trace-status").textContent, /^Snapshot saved \(5\)$/);
+assert.match(runtime.document.querySelector("#trace-status").textContent, /^快照已保存（5）$/);
 assert.equal(runtime.createdBlobs.length, 2);
 assert.equal(runtime.createdBlobs[1].type, "image/svg+xml");
 const snapshotSvg = await runtime.createdBlobs[1].text();
-assert.match(snapshotSvg, /<title id="title">Trace Atlas snapshot<\/title>/);
+assert.match(snapshotSvg, /<title id="title">Trace Atlas 快照<\/title>/);
 assert.match(snapshotSvg, /Runtime import proves the archive can return\./);
-assert.match(snapshotSvg, new RegExp(`5 traces / 1 local / ${fingerprint}`));
-assert.match(snapshotSvg, new RegExp(`Fingerprint: ${fingerprint}`));
+assert.match(snapshotSvg, new RegExp(`5 条痕迹 / 1 条本地 / ${fingerprint}`));
+assert.match(snapshotSvg, new RegExp(`指纹：${fingerprint}`));
 assert.doesNotMatch(snapshotSvg, /onload=/);
 
 await runtime.document.querySelector("#capsule-traces").dispatch("click");
 assert.match(runtime.location.hash, /^#capsule=/);
-assert.match(runtime.document.querySelector("#trace-status").textContent, /^Capsule link ready \(1\)$/);
+assert.match(runtime.document.querySelector("#trace-status").textContent, /^胶囊链接已生成（1）$/);
 const capsulePayload = JSON.parse(Buffer.from(runtime.location.hash.slice("#capsule=".length), "base64url").toString("utf8"));
 assert.equal(capsulePayload.fingerprint, fingerprint);
 
@@ -313,15 +313,15 @@ restoredRuntime.location.href = runtime.location.href;
 restoredRuntime.location.hash = runtime.location.hash;
 vm.runInNewContext(readFileSync("app.js", "utf8"), restoredRuntime.context, { filename: "app.js" });
 await flushAsync();
-assert.equal(restoredRuntime.document.querySelector("#trace-count").textContent, "5 traces");
-assert.match(restoredRuntime.document.querySelector("#trace-status").textContent, /^Restored 1:/);
-assert.equal(restoredRuntime.document.querySelector("#fingerprint-note").textContent, `fingerprint ${fingerprint}`);
+assert.equal(restoredRuntime.document.querySelector("#trace-count").textContent, "5 条痕迹");
+assert.match(restoredRuntime.document.querySelector("#trace-status").textContent, /^已恢复 1:/);
+assert.equal(restoredRuntime.document.querySelector("#fingerprint-note").textContent, `指纹 ${fingerprint}`);
 const restoredStored = JSON.parse(restoredRuntime.store.get("whatever.trace-atlas.v1"));
 assert.equal(restoredStored[0].body, "Runtime import proves the archive can return.");
 
 const keyHandlers = runtime.listeners.get("keydown") ?? [];
 assert.equal(keyHandlers.length, 1);
 keyHandlers[0]({ key: "ArrowRight", preventDefault() {}, target: runtime.document.body });
-assert.match(runtime.document.querySelector("#trace-status").textContent, /^Selected:/);
+assert.match(runtime.document.querySelector("#trace-status").textContent, /^已选中:/);
 
 console.log("Trace Atlas runtime verification passed.");

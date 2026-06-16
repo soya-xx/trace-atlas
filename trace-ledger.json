@@ -1,52 +1,67 @@
 {
   "schemaVersion": 1,
-  "name": "Trace Atlas Provenance",
-  "description": "A compact ledger of the verified steps that turned an empty repository into Trace Atlas.",
+  "name": "Trace Atlas 来路账本",
+  "description": "一份紧凑的账本，记录这个空仓库如何一步步变成 Trace Atlas。",
   "entries": [
     {
       "commit": "834d3b7",
-      "title": "Create Trace Atlas artifact",
-      "summary": "Built the first static interactive memory map with canvas traces, local storage, JSON export, and baseline verification."
+      "title": "创建 Trace Atlas 作品",
+      "summary": "搭出第一版静态互动记忆星图，包含画布痕迹、本地存储、JSON 导出和基础验证。"
     },
     {
       "commit": "5912d2e",
-      "title": "Add archive tools",
-      "summary": "Added JSON import, automatic tour playback, keyboard stepping, and runtime verification for archive recovery."
+      "title": "加入档案工具",
+      "summary": "加入 JSON 导入、自动巡游、键盘切换和运行时验证，让档案可以被恢复回来。"
     },
     {
       "commit": "3b96528",
-      "title": "Add capsule links",
-      "summary": "Made local traces portable through URL hash capsules and verified restoration from a fresh runtime."
+      "title": "加入胶囊链接",
+      "summary": "用 URL hash 胶囊让本地痕迹可以被携带，并验证它能在全新运行环境中恢复。"
     },
     {
       "commit": "23ea3ab",
-      "title": "Add offline shell",
-      "summary": "Registered a manifest, SVG icon, and service worker so the app shell can survive after the first load."
+      "title": "加入离线外壳",
+      "summary": "注册 manifest、SVG 图标和 service worker，让应用外壳在首次加载后也能继续存在。"
     },
     {
       "commit": "bc417fa",
-      "title": "Add SVG snapshots",
-      "summary": "Added a static SVG constellation export with metadata and hardened color handling for imported traces."
+      "title": "加入 SVG 快照",
+      "summary": "加入带元数据的静态 SVG 星图导出，并加固导入痕迹的颜色处理。"
     },
     {
       "commit": "d2ce403",
-      "title": "Add archive fingerprints",
-      "summary": "Added deterministic fingerprints across UI, JSON export, capsule payloads, and SVG snapshots."
+      "title": "加入档案指纹",
+      "summary": "让 UI、JSON 导出、胶囊载荷和 SVG 快照都拥有稳定可比对的档案指纹。"
     },
     {
       "commit": "073baf8",
-      "title": "Add provenance ledger",
-      "summary": "Added a visible provenance ledger, README intent notes, and verification for milestone commit history."
+      "title": "加入来路账本",
+      "summary": "加入可见的来路账本、README 初衷说明，以及对里程碑提交历史的验证。"
     },
     {
       "commit": "ae17c39",
-      "title": "Document public page",
-      "summary": "Recorded the public GitHub Pages URL in the README after enabling the first hosted mirror."
+      "title": "记录公开页面",
+      "summary": "启用第一个 GitHub Pages 镜像后，把公开访问地址写进 README。"
     },
     {
       "commit": "367f091",
-      "title": "Add public sync anchors",
-      "summary": "Added World Sync metadata and UI links for the public repo, hosted page, and work log issue."
+      "title": "加入公开同步锚点",
+      "summary": "加入世界同步元数据和页面链接，指向公开仓库、托管页面和工作日志 issue。"
+    },
+    {
+      "commit": "3b03efc",
+      "title": "加入 Cloudflare Pages 同步",
+      "summary": "创建独立 Cloudflare Pages 项目，记录主公开页面，并修复旧缓存读取旧 JSON 的问题。"
+    },
+    {
+      "commit": "d16026e",
+      "title": "加入 GitHub Actions 验证",
+      "summary": "新增自动验证 workflow，让每次推送和 PR 都运行 npm run check。"
+    },
+    {
+      "commit": "e872f7f",
+      "title": "切换 Node 24 Actions 运行时",
+      "summary": "为 GitHub Actions 设置 Node 24 action runtime，消除运行时弃用警告。"
     }
   ]
 }
