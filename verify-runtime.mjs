@@ -3,6 +3,8 @@ import { readFileSync } from "node:fs";
 import { TextDecoder, TextEncoder } from "node:util";
 import vm from "node:vm";
 
+const provenanceLedger = JSON.parse(readFileSync("trace-ledger.json", "utf8"));
+
 class MockElement {
   constructor(tagName, id = "") {
     this.tagName = tagName.toUpperCase();
@@ -129,6 +131,8 @@ function createRuntime() {
     "import-traces",
     "import-file",
     "fingerprint-note",
+    "ledger-status",
+    "ledger-list",
     "storage-note",
     "trace-list"
   ];
@@ -165,6 +169,18 @@ function createRuntime() {
       revokeObjectURL() {}
     },
     document,
+    fetch: async (url) => {
+      if (String(url).endsWith("trace-ledger.json")) {
+        return {
+          ok: true,
+          json: async () => provenanceLedger
+        };
+      }
+      return {
+        ok: false,
+        json: async () => ({})
+      };
+    },
     localStorage: {
       getItem: (key) => store.get(key) ?? null,
       removeItem: (key) => store.delete(key),
@@ -195,13 +211,27 @@ function createRuntime() {
   context.window.requestAnimationFrame = context.requestAnimationFrame;
   context.window.URL = context.URL;
   context.window.Blob = Blob;
+  context.window.fetch = context.fetch;
   context.window.TextDecoder = TextDecoder;
   context.window.TextEncoder = TextEncoder;
   return { context, createdBlobs, document, listeners, location, store };
 }
 
+async function flushAsync() {
+  for (let index = 0; index < 6; index += 1) {
+    await Promise.resolve();
+  }
+}
+
 const runtime = createRuntime();
 vm.runInNewContext(readFileSync("app.js", "utf8"), runtime.context, { filename: "app.js" });
+await flushAsync();
+
+assert.equal(runtime.document.querySelector("#ledger-status").textContent, "6 entries");
+assert.equal(runtime.document.querySelector("#ledger-list").children.length, 6);
+const firstLedgerEntry = runtime.document.querySelector("#ledger-list").children[0];
+assert.equal(firstLedgerEntry.children[0].textContent, "834d3b7");
+assert.equal(firstLedgerEntry.children[1].children[0].textContent, "Create Trace Atlas artifact");
 
 const importFile = runtime.document.querySelector("#import-file");
 importFile.files = [
@@ -267,6 +297,7 @@ const restoredRuntime = createRuntime();
 restoredRuntime.location.href = runtime.location.href;
 restoredRuntime.location.hash = runtime.location.hash;
 vm.runInNewContext(readFileSync("app.js", "utf8"), restoredRuntime.context, { filename: "app.js" });
+await flushAsync();
 assert.equal(restoredRuntime.document.querySelector("#trace-count").textContent, "5 traces");
 assert.match(restoredRuntime.document.querySelector("#trace-status").textContent, /^Restored 1:/);
 assert.equal(restoredRuntime.document.querySelector("#fingerprint-note").textContent, `fingerprint ${fingerprint}`);

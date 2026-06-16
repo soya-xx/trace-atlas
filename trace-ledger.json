@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "name": "Trace Atlas Provenance",
+  "description": "A compact ledger of the verified steps that turned an empty repository into Trace Atlas.",
+  "entries": [
+    {
+      "commit": "834d3b7",
+      "title": "Create Trace Atlas artifact",
+      "summary": "Built the first static interactive memory map with canvas traces, local storage, JSON export, and baseline verification."
+    },
+    {
+      "commit": "5912d2e",
+      "title": "Add archive tools",
+      "summary": "Added JSON import, automatic tour playback, keyboard stepping, and runtime verification for archive recovery."
+    },
+    {
+      "commit": "3b96528",
+      "title": "Add capsule links",
+      "summary": "Made local traces portable through URL hash capsules and verified restoration from a fresh runtime."
+    },
+    {
+      "commit": "23ea3ab",
+      "title": "Add offline shell",
+      "summary": "Registered a manifest, SVG icon, and service worker so the app shell can survive after the first load."
+    },
+    {
+      "commit": "bc417fa",
+      "title": "Add SVG snapshots",
+      "summary": "Added a static SVG constellation export with metadata and hardened color handling for imported traces."
+    },
+    {
+      "commit": "d2ce403",
+      "title": "Add archive fingerprints",
+      "summary": "Added deterministic fingerprints across UI, JSON export, capsule payloads, and SVG snapshots."
+    }
+  ]
+}

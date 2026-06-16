@@ -81,6 +81,8 @@
     import: document.querySelector("#import-traces"),
     importFile: document.querySelector("#import-file"),
     fingerprint: document.querySelector("#fingerprint-note"),
+    ledgerStatus: document.querySelector("#ledger-status"),
+    ledgerList: document.querySelector("#ledger-list"),
     storage: document.querySelector("#storage-note"),
     list: document.querySelector("#trace-list")
   };
@@ -469,6 +471,48 @@
       li.append(button);
       els.list.append(li);
     });
+  }
+
+  function renderLedger(entries, statusText = `${entries.length} entries`) {
+    els.ledgerList.replaceChildren();
+    entries.forEach((entry) => {
+      const item = document.createElement("li");
+      const commit = document.createElement("span");
+      const copy = document.createElement("span");
+      const title = document.createElement("strong");
+      const summary = document.createElement("small");
+
+      item.className = "ledger-item";
+      commit.className = "ledger-commit";
+      copy.className = "ledger-copy";
+      commit.textContent = entry.commit;
+      title.textContent = entry.title;
+      summary.textContent = entry.summary;
+      copy.append(title, summary);
+      item.append(commit, copy);
+      els.ledgerList.append(item);
+    });
+    els.ledgerStatus.textContent = statusText;
+  }
+
+  async function loadProvenanceLedger() {
+    try {
+      const response = await fetch("./trace-ledger.json");
+      if (!response.ok) {
+        throw new Error("ledger unavailable");
+      }
+      const ledger = await response.json();
+      const entries = Array.isArray(ledger.entries) ? ledger.entries.slice(0, 12) : [];
+      renderLedger(entries);
+    } catch {
+      renderLedger([
+        {
+          commit: "local",
+          title: "Trace Atlas",
+          summary: "The local app shell loaded, but its ledger could not be read."
+        }
+      ], "unavailable");
+    }
   }
 
   function plantTrace() {
@@ -878,6 +922,7 @@
     restoreCapsuleFromLocation();
     renderArchive();
     registerOfflineShell();
+    loadProvenanceLedger();
     requestAnimationFrame(draw);
   }
 
