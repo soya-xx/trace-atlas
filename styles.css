@@ -24,6 +24,7 @@ html,
 body {
   min-height: 100%;
   margin: 0;
+  overflow-x: hidden;
 }
 
 body {
@@ -40,12 +41,15 @@ input {
 .atlas-shell {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(320px, 390px);
+  width: 100%;
+  max-width: 100vw;
   min-height: 100dvh;
   overflow: hidden;
 }
 
 .canvas-stage {
   position: relative;
+  min-width: 0;
   min-height: 100dvh;
   background:
     linear-gradient(90deg, rgba(16, 17, 19, 0.045) 1px, transparent 1px),
@@ -152,6 +156,7 @@ h2 {
 .memory-panel {
   display: grid;
   grid-template-rows: auto auto auto auto auto auto minmax(140px, 1fr);
+  min-width: 0;
   max-height: 100dvh;
   border-left: 1px solid var(--line);
   background: rgba(255, 255, 255, 0.93);
@@ -164,6 +169,7 @@ h2 {
 .composer-band,
 .tools-band,
 .world-band,
+.kit-band,
 .provenance-band,
 .archive-band {
   padding: 24px;
@@ -181,6 +187,8 @@ h2 {
   margin: 0;
   color: var(--muted);
   line-height: 1.5;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .detail-meta {
@@ -205,11 +213,14 @@ h2 {
 #selected-body {
   margin-bottom: 0;
   line-height: 1.6;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .composer-band h2,
 .tools-band h2,
 .world-band h2,
+.kit-band h2,
 .provenance-band h2,
 .archive-band h2 {
   margin-bottom: 12px;
@@ -335,6 +346,63 @@ button.quiet {
   margin: 0;
   padding: 0;
   list-style: none;
+}
+
+.kit-card {
+  display: grid;
+  gap: 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 12px;
+  background: white;
+}
+
+.kit-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.84rem;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.kit-steps {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.kit-steps li {
+  min-height: 34px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 8px 10px;
+  color: var(--ink);
+  font-size: 0.8rem;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.kit-link {
+  display: inline-flex;
+  min-height: 40px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--green);
+  border-radius: 8px;
+  padding: 0 12px;
+  background: var(--green);
+  color: white;
+  font-size: 0.86rem;
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.kit-link:hover {
+  transform: translateY(-1px);
 }
 
 .world-link {
@@ -527,6 +595,7 @@ button.quiet {
   .composer-band,
   .tools-band,
   .world-band,
+  .kit-band,
   .provenance-band,
   .archive-band {
     padding: 18px;

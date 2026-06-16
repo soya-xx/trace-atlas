@@ -62,6 +62,11 @@
       "commit": "e872f7f",
       "title": "切换 Node 24 Actions 运行时",
       "summary": "为 GitHub Actions 设置 Node 24 action runtime，消除运行时弃用警告。"
+    },
+    {
+      "commit": "aae94da",
+      "title": "加入小红书传播包",
+      "summary": "加入中文传播包、小红书封面图、网页分享卡片和社交元信息，让作品更适合国内内容平台传播。"
     }
   ]
 }

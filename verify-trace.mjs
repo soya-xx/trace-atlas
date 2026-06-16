@@ -9,9 +9,11 @@ const files = {
   ledger: readFileSync("trace-ledger.json", "utf8"),
   sync: readFileSync("world-sync.json", "utf8"),
   socialCard: readFileSync("social-card.svg", "utf8"),
+  artifactKit: readFileSync("templates/ai-session-artifact-kit.md", "utf8"),
   xhsCover: readFileSync("promo/xhs-cover.html", "utf8"),
   xhsCoverPng: readFileSync("promo/xhs-cover.png"),
   xhsLaunchKit: readFileSync("promo/xhs-launch-kit.md", "utf8"),
+  artifactKit: readFileSync("templates/ai-session-artifact-kit.md", "utf8"),
   manifest: readFileSync("site.webmanifest", "utf8"),
   server: readFileSync("server.mjs", "utf8"),
   serviceWorker: readFileSync("service-worker.js", "utf8"),
@@ -36,6 +38,7 @@ const requiredIds = [
   "fingerprint-note",
   "world-status",
   "world-links",
+  "kit-title",
   "ledger-status",
   "ledger-list",
   "trace-list"
@@ -51,8 +54,12 @@ assert.match(files.html, /rel="icon" href="\.\/icon\.svg"/, "svg icon is linked"
 assert.match(files.html, /property="og:title" content="Trace Atlas 痕迹星图"/, "Open Graph title is Chinese");
 assert.match(files.html, /property="og:image" content="https:\/\/trace-atlas-codex\.pages\.dev\/social-card\.svg"/, "Open Graph image is wired");
 assert.match(files.html, /name="twitter:card" content="summary_large_image"/, "Twitter large card is wired");
+assert.match(files.html, /href="\.\/templates\/ai-session-artifact-kit\.md"/, "artifact kit is linked from the page");
 assert.match(files.css, /@media \(max-width: 860px\)/, "mobile layout breakpoint is present");
 assert.match(files.css, /min-height: 100dvh/, "viewport height is anchored");
+assert.match(files.css, /overflow-x: hidden/, "page prevents horizontal overflow on mobile");
+assert.match(files.css, /max-width: 100vw/, "app shell is capped to the viewport width");
+assert.match(files.css, /min-width: 0/, "grid children can shrink inside narrow viewports");
 assert.doesNotMatch(files.css, /letter-spacing:\s*-/i, "letter spacing is not negative");
 assert.match(files.js, /const TRACE_SEEDS = \[/, "seed traces are declared");
 assert.match(files.js, /localStorage/, "local archive is persisted");
@@ -79,18 +86,21 @@ assert.match(files.js, /ArrowLeft/, "keyboard previous trace is wired");
 assert.match(files.js, /window\.confirm/, "local reset asks for confirmation");
 assert.match(files.css, /aria-pressed="true"/, "tour active state has visible styling");
 assert.match(files.css, /\.file-input/, "file input is visually hidden but present");
-assert.match(files.serviceWorker, /CACHE_NAME = "trace-atlas-shell-v10"/, "service worker cache is versioned");
-assert.match(files.html, /href="\.\/styles\.css\?v=10"/, "stylesheet URL is versioned");
+assert.match(files.serviceWorker, /CACHE_NAME = "trace-atlas-shell-v11"/, "service worker cache is versioned");
+assert.match(files.html, /href="\.\/styles\.css\?v=11"/, "stylesheet URL is versioned");
 assert.match(files.html, /src="\.\/app\.js\?v=10"/, "script URL is versioned");
-for (const cachedFile of ["./index.html", "./styles.css?v=10", "./app.js?v=10", "./world-sync.json?v=3", "./trace-ledger.json?v=3", "./icon.svg", "./social-card.svg", "./site.webmanifest"]) {
+for (const cachedFile of ["./index.html", "./styles.css?v=11", "./app.js?v=10", "./world-sync.json?v=3", "./trace-ledger.json?v=3", "./icon.svg", "./social-card.svg", "./templates/ai-session-artifact-kit.md", "./site.webmanifest"]) {
   const escaped = cachedFile.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   assert.match(files.serviceWorker, new RegExp(escaped), `service worker caches ${cachedFile}`);
 }
 assert.match(files.server, /\.webmanifest/, "local server serves the manifest type");
+assert.match(files.server, /\.md/, "local server serves markdown templates");
 assert.match(files.server, /\.png/, "local server serves png share assets");
 assert.match(files.server, /\.svg/, "local server serves svg icons");
 assert.match(files.svg, /Trace Atlas icon/, "svg icon has an accessible title");
 assert.match(files.socialCard, /我把 AI 会话/, "social card states the Xiaohongshu hook");
+assert.match(files.artifactKit, /AI 会话公开化模板/, "artifact kit has a clear title");
+assert.match(files.artifactKit, /公开链接 HTTP 状态/, "artifact kit includes public link verification");
 assert.match(files.xhsCover, /我把 <span class="highlight">AI 会话<\/span>/, "Xiaohongshu cover source has the hook");
 assert.deepEqual(Array.from(files.xhsCoverPng.subarray(0, 8)), [137, 80, 78, 71, 13, 10, 26, 10], "Xiaohongshu cover PNG has a valid signature");
 assert.equal(files.xhsCoverPng.readUInt32BE(16), 900, "Xiaohongshu cover PNG width is 900");
@@ -98,6 +108,9 @@ assert.equal(files.xhsCoverPng.readUInt32BE(20), 1200, "Xiaohongshu cover PNG he
 assert.match(files.xhsLaunchKit, /小红书正文草案/, "Xiaohongshu launch kit includes a body draft");
 assert.match(files.xhsLaunchKit, /最终推荐：`我把AI会话做成网站`/, "Xiaohongshu launch kit has a selected title");
 assert.match(files.xhsLaunchKit, /#AI工作流/, "Xiaohongshu launch kit includes tags");
+assert.match(files.artifactKit, /# AI 会话公开化模板/, "artifact template has a clear title");
+assert.match(files.artifactKit, /最后一次验证时间/, "artifact template asks for verification time");
+assert.match(files.artifactKit, /不能公开的边界/, "artifact template asks for public boundaries");
 assert.doesNotMatch(Object.values(files).join("\n"), /\bTODO\b/i, "no TODO markers remain");
 
 const manifest = JSON.parse(files.manifest);
