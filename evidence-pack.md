@@ -12,6 +12,7 @@
 - 小红书发布前报告：`https://trace-atlas-codex.pages.dev/promo/xhs-publish-report.md`
 - 公开仓库：`https://github.com/soya-xx/trace-atlas`
 - 工作日志：`https://github.com/soya-xx/trace-atlas/issues/1`
+- 公开健康状态：`https://trace-atlas-codex.pages.dev/public-health.json`
 - 复用模板：`https://trace-atlas-codex.pages.dev/templates/ai-session-artifact-kit.md`
 - 进展时间线：`https://trace-atlas-codex.pages.dev/progress-timeline.json`
 
@@ -29,6 +30,7 @@
 - 路线图长图把会话公开化步骤整理成 900 × 1200 图片素材。
 - GitHub Actions 会在推送后运行 `npm run check`。
 - `npm run check` 会扫描常见 token 前缀和本机绝对路径，防止公开材料带出敏感内容。
+- `public-health.json` 汇总公开入口、素材、发布文档、验证脚本和证据链接。
 - Cloudflare Pages 使用独立项目 `trace-atlas-codex`，不触碰账号里已有的其他 Pages 项目。
 
 ## 本地验证
@@ -55,6 +57,7 @@ curl -I https://trace-atlas-codex.pages.dev/promo/xhs-publish-report.md
 curl -I https://trace-atlas-codex.pages.dev/evidence-pack.md
 curl -I https://trace-atlas-codex.pages.dev/promo/xhs-cover.png
 curl -I https://trace-atlas-codex.pages.dev/promo/workflow-card.png
+curl -I https://trace-atlas-codex.pages.dev/public-health.json
 curl -I https://trace-atlas-codex.pages.dev/progress-timeline.json
 ```
 
@@ -67,6 +70,7 @@ curl -I https://trace-atlas-codex.pages.dev/progress-timeline.json
 - 小红书发布前报告返回 Markdown 文本。
 - 小红书封面图返回 `image/png`。
 - 路线图长图返回 `image/png`。
+- 公开健康状态返回 JSON。
 - 进展时间线返回 JSON。
 
 ## 公开边界

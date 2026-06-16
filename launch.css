@@ -219,7 +219,8 @@ button {
 }
 
 .route-map,
-.handoff-grid {
+.handoff-grid,
+.health-grid {
   display: grid;
   gap: 12px;
   margin-top: 18px;
@@ -231,6 +232,11 @@ button {
 
 .handoff-grid {
   grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.health-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-bottom: 18px;
 }
 
 .route-step,
@@ -333,6 +339,7 @@ button {
   .route-hero,
   .route-map,
   .handoff-grid,
+  .health-grid,
   .copy-grid,
   .checklist {
     grid-template-columns: 1fr;

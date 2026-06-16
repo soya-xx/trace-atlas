@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "name": "Trace Atlas 公开健康状态",
+  "status": "可公开访问",
+  "summary": "公开入口、传播素材、发布清单、自动验证和边界扫描均已形成可复核证据。",
+  "counts": {
+    "publicLinks": 8,
+    "visualAssets": 3,
+    "publishDocuments": 5,
+    "verificationScripts": 5
+  },
+  "checks": [
+    {
+      "label": "主作品在线",
+      "state": "ok",
+      "evidenceHref": "https://trace-atlas-codex.pages.dev/"
+    },
+    {
+      "label": "发布材料完整",
+      "state": "ok",
+      "evidenceHref": "https://trace-atlas-codex.pages.dev/launch"
+    },
+    {
+      "label": "发布报告可生成",
+      "state": "ok",
+      "evidenceHref": "https://trace-atlas-codex.pages.dev/promo/xhs-publish-report.md"
+    },
+    {
+      "label": "边界扫描纳入 CI",
+      "state": "ok",
+      "evidenceHref": "https://github.com/soya-xx/trace-atlas/actions/workflows/verify.yml"
+    },
+    {
+      "label": "工作日志持续同步",
+      "state": "ok",
+      "evidenceHref": "https://github.com/soya-xx/trace-atlas/issues/1"
+    }
+  ]
+}
