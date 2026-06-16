@@ -29,6 +29,10 @@
     {
       "label": "公开仓库",
       "href": "https://github.com/soya-xx/trace-atlas"
+    },
+    {
+      "label": "发布前报告",
+      "href": "https://trace-atlas-codex.pages.dev/promo/xhs-publish-report.md"
     }
   ],
   "assets": [
