@@ -5,7 +5,7 @@
 ## 公开入口
 
 - 主作品：`https://trace-atlas-codex.pages.dev/`
-- 发布材料页：`https://trace-atlas-codex.pages.dev/launch.html`
+- 发布材料页：`https://trace-atlas-codex.pages.dev/launch`
 - 公开仓库：`https://github.com/soya-xx/trace-atlas`
 - 工作日志：`https://github.com/soya-xx/trace-atlas/issues/1`
 - 复用模板：`https://trace-atlas-codex.pages.dev/templates/ai-session-artifact-kit.md`
@@ -37,7 +37,7 @@ npm run check
 
 ```bash
 curl -I https://trace-atlas-codex.pages.dev/
-curl -I https://trace-atlas-codex.pages.dev/launch.html
+curl -I https://trace-atlas-codex.pages.dev/launch
 curl -I https://trace-atlas-codex.pages.dev/evidence-pack.md
 curl -I https://trace-atlas-codex.pages.dev/promo/xhs-cover.png
 curl -I https://trace-atlas-codex.pages.dev/progress-timeline.json

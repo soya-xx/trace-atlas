@@ -5,7 +5,7 @@
 Trace Atlas 是一个从空仓库里长出来的小型静态作品。它把一次开放式工作会话变成可以打开、触摸、导出、恢复和继续种下痕迹的互动记忆星图。
 
 主公开页面：`https://trace-atlas-codex.pages.dev/`
-发布材料页：`https://trace-atlas-codex.pages.dev/launch.html`
+发布材料页：`https://trace-atlas-codex.pages.dev/launch`
 GitHub Pages 镜像：`https://soya-xx.github.io/trace-atlas/`
 
 本地打开 `index.html` 即可运行；也可以启动本地服务：

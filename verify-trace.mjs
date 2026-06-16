@@ -136,7 +136,7 @@ assert.match(files.artifactKit, /# AI 会话公开化模板/, "artifact template
 assert.match(files.artifactKit, /最后一次验证时间/, "artifact template asks for verification time");
 assert.match(files.artifactKit, /不能公开的边界/, "artifact template asks for public boundaries");
 assert.match(files.evidencePack, /# Trace Atlas 证据包/, "evidence pack has a clear title");
-assert.match(files.evidencePack, /https:\/\/trace-atlas-codex\.pages\.dev\/launch\.html/, "evidence pack links to the launch page");
+assert.match(files.evidencePack, /https:\/\/trace-atlas-codex\.pages\.dev\/launch/, "evidence pack links to the launch page");
 assert.match(files.evidencePack, /npm run check/, "evidence pack includes the local verification command");
 assert.match(files.evidencePack, /不公开 token/, "evidence pack states public boundaries");
 assert.doesNotMatch(Object.values(files).join("\n"), /\bTODO\b/i, "no TODO markers remain");
