@@ -7,6 +7,7 @@
 - 主作品：`https://trace-atlas-codex.pages.dev/`
 - 发布材料页：`https://trace-atlas-codex.pages.dev/launch`
 - 公开化路线图：`https://trace-atlas-codex.pages.dev/workflow`
+- 小红书发布检查台：`https://trace-atlas-codex.pages.dev/promo/xhs-publish-checklist.md`
 - 公开仓库：`https://github.com/soya-xx/trace-atlas`
 - 工作日志：`https://github.com/soya-xx/trace-atlas/issues/1`
 - 复用模板：`https://trace-atlas-codex.pages.dev/templates/ai-session-artifact-kit.md`
@@ -20,6 +21,7 @@
 - 进展时间线把工程记录整理成读者能顺着读的故事线。
 - 公开化路线图把会话公开化流程整理成可复用步骤。
 - 小红书传播包包含标题、正文草案、封面图和发布前检查。
+- 小红书发布检查台把链接、配图、正文边界和发布后记录放在同一页。
 - 路线图长图把会话公开化步骤整理成 900 × 1200 图片素材。
 - GitHub Actions 会在推送后运行 `npm run check`。
 - Cloudflare Pages 使用独立项目 `trace-atlas-codex`，不触碰账号里已有的其他 Pages 项目。
@@ -42,6 +44,7 @@ npm run check
 curl -I https://trace-atlas-codex.pages.dev/
 curl -I https://trace-atlas-codex.pages.dev/launch
 curl -I https://trace-atlas-codex.pages.dev/workflow
+curl -I https://trace-atlas-codex.pages.dev/promo/xhs-publish-checklist.md
 curl -I https://trace-atlas-codex.pages.dev/evidence-pack.md
 curl -I https://trace-atlas-codex.pages.dev/promo/xhs-cover.png
 curl -I https://trace-atlas-codex.pages.dev/promo/workflow-card.png
@@ -52,6 +55,7 @@ curl -I https://trace-atlas-codex.pages.dev/progress-timeline.json
 
 - 主作品、发布材料页与公开化路线图返回 `200`。
 - `evidence-pack.md` 返回 Markdown 文本。
+- 小红书发布检查台返回 Markdown 文本。
 - 小红书封面图返回 `image/png`。
 - 路线图长图返回 `image/png`。
 - 进展时间线返回 JSON。
