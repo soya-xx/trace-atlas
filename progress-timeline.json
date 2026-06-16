@@ -51,6 +51,13 @@
       "summary": "把这次经验整理成 AI 会话公开化模板，方便其他作品复用同一套证据、部署和传播检查。",
       "evidenceLabel": "提交 d2e55b5",
       "evidenceHref": "https://github.com/soya-xx/trace-atlas/commit/d2e55b5"
+    },
+    {
+      "phase": "08",
+      "title": "整理发布材料页",
+      "summary": "把小红书封面、分享卡、正文入口、复用模板、证据包和验证链接放到同一个公开页面。",
+      "evidenceLabel": "发布材料页",
+      "evidenceHref": "https://trace-atlas-codex.pages.dev/launch.html"
     }
   ]
 }

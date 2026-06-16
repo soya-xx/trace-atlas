@@ -5,7 +5,7 @@
   const ARTIFACT_KIT_URL = "./templates/ai-session-artifact-kit.md";
   const CAPSULE_PREFIX = "#capsule=";
   const TOUR_INTERVAL_MS = 2400;
-  const DATA_VERSION = "v=4";
+  const DATA_VERSION = "v=5";
   const PALETTE = ["#25785e", "#b84646", "#386fb0", "#c9961a", "#7657a6"];
 
   const TRACE_SEEDS = [

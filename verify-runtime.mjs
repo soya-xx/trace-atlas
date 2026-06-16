@@ -275,7 +275,7 @@ const firstLedgerEntry = runtime.document.querySelector("#ledger-list").children
 assert.equal(firstLedgerEntry.children[0].textContent, "834d3b7");
 assert.equal(firstLedgerEntry.children[1].children[0].textContent, "创建 Trace Atlas 作品");
 assert.equal(runtime.document.querySelector("#world-status").textContent, "公开");
-assert.equal(runtime.document.querySelector("#world-links").children.length, 4);
+assert.equal(runtime.document.querySelector("#world-links").children.length, worldSync.links.length);
 const firstWorldLink = runtime.document.querySelector("#world-links").children[0].children[0];
 assert.equal(firstWorldLink.href, "https://trace-atlas-codex.pages.dev/");
 assert.equal(firstWorldLink.children[0].textContent, "Cloudflare Pages");

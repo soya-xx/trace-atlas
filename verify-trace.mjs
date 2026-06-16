@@ -4,8 +4,11 @@ import { readFileSync } from "node:fs";
 
 const files = {
   html: readFileSync("index.html", "utf8"),
+  launchHtml: readFileSync("launch.html", "utf8"),
+  launchCss: readFileSync("launch.css", "utf8"),
   css: readFileSync("styles.css", "utf8"),
   js: readFileSync("app.js", "utf8"),
+  evidencePack: readFileSync("evidence-pack.md", "utf8"),
   ledger: readFileSync("trace-ledger.json", "utf8"),
   timeline: readFileSync("progress-timeline.json", "utf8"),
   sync: readFileSync("world-sync.json", "utf8"),
@@ -61,6 +64,14 @@ assert.match(files.html, /name="twitter:card" content="summary_large_image"/, "T
 assert.match(files.html, /href="\.\/templates\/ai-session-artifact-kit\.md"/, "artifact kit is linked from the page");
 assert.match(files.html, /id="copy-kit"/, "artifact kit can be copied from the page");
 assert.match(files.html, /id="timeline-title"/, "progress timeline section is present");
+assert.match(files.launchHtml, /Trace Atlas 发布材料/, "launch page has a clear title");
+assert.match(files.launchHtml, /promo\/xhs-cover\.png/, "launch page shows the Xiaohongshu cover");
+assert.match(files.launchHtml, /social-card\.svg/, "launch page shows the social card");
+assert.match(files.launchHtml, /templates\/ai-session-artifact-kit\.md/, "launch page links to the reusable template");
+assert.match(files.launchHtml, /evidence-pack\.md/, "launch page links to the evidence pack");
+assert.match(files.launchCss, /\.asset-grid/, "launch page asset grid is styled");
+assert.match(files.launchCss, /overflow-x: hidden/, "launch page prevents horizontal overflow");
+assert.doesNotMatch(files.launchCss, /letter-spacing:\s*-/i, "launch page letter spacing is not negative");
 assert.match(files.css, /@media \(max-width: 860px\)/, "mobile layout breakpoint is present");
 assert.match(files.css, /min-height: 100dvh/, "viewport height is anchored");
 assert.match(files.css, /overflow-x: hidden/, "page prevents horizontal overflow on mobile");
@@ -84,7 +95,7 @@ assert.match(files.js, /world-sync\.json\?\$\{DATA_VERSION\}/, "world sync metad
 assert.match(files.js, /function renderTimeline/, "progress timeline renderer is wired");
 assert.match(files.js, /progress-timeline\.json\?\$\{DATA_VERSION\}/, "progress timeline data is loaded with a versioned URL");
 assert.match(files.js, /safePublicHref/, "timeline evidence links are constrained");
-assert.match(files.js, /DATA_VERSION = "v=4"/, "JSON data requests are versioned");
+assert.match(files.js, /DATA_VERSION = "v=5"/, "JSON data requests are versioned");
 assert.match(files.js, /ARTIFACT_KIT_URL = "\.\/templates\/ai-session-artifact-kit\.md"/, "artifact kit copy source is declared");
 assert.match(files.js, /function copyArtifactKit/, "artifact kit copy handler is wired");
 assert.match(files.js, /navigator\.clipboard/, "clipboard API copy path is present");
@@ -99,10 +110,10 @@ assert.match(files.js, /ArrowLeft/, "keyboard previous trace is wired");
 assert.match(files.js, /window\.confirm/, "local reset asks for confirmation");
 assert.match(files.css, /aria-pressed="true"/, "tour active state has visible styling");
 assert.match(files.css, /\.file-input/, "file input is visually hidden but present");
-assert.match(files.serviceWorker, /CACHE_NAME = "trace-atlas-shell-v12"/, "service worker cache is versioned");
+assert.match(files.serviceWorker, /CACHE_NAME = "trace-atlas-shell-v13"/, "service worker cache is versioned");
 assert.match(files.html, /href="\.\/styles\.css\?v=12"/, "stylesheet URL is versioned");
 assert.match(files.html, /src="\.\/app\.js\?v=12"/, "script URL is versioned");
-for (const cachedFile of ["./index.html", "./styles.css?v=12", "./app.js?v=12", "./progress-timeline.json?v=4", "./world-sync.json?v=4", "./trace-ledger.json?v=4", "./icon.svg", "./social-card.svg", "./templates/ai-session-artifact-kit.md", "./site.webmanifest"]) {
+for (const cachedFile of ["./index.html", "./launch.html", "./styles.css?v=12", "./launch.css?v=1", "./app.js?v=12", "./progress-timeline.json?v=5", "./world-sync.json?v=5", "./trace-ledger.json?v=5", "./icon.svg", "./social-card.svg", "./promo/xhs-cover.png", "./evidence-pack.md", "./templates/ai-session-artifact-kit.md", "./site.webmanifest"]) {
   const escaped = cachedFile.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   assert.match(files.serviceWorker, new RegExp(escaped), `service worker caches ${cachedFile}`);
 }
@@ -124,6 +135,10 @@ assert.match(files.xhsLaunchKit, /#AI工作流/, "Xiaohongshu launch kit include
 assert.match(files.artifactKit, /# AI 会话公开化模板/, "artifact template has a clear title");
 assert.match(files.artifactKit, /最后一次验证时间/, "artifact template asks for verification time");
 assert.match(files.artifactKit, /不能公开的边界/, "artifact template asks for public boundaries");
+assert.match(files.evidencePack, /# Trace Atlas 证据包/, "evidence pack has a clear title");
+assert.match(files.evidencePack, /https:\/\/trace-atlas-codex\.pages\.dev\/launch\.html/, "evidence pack links to the launch page");
+assert.match(files.evidencePack, /npm run check/, "evidence pack includes the local verification command");
+assert.match(files.evidencePack, /不公开 token/, "evidence pack states public boundaries");
 assert.doesNotMatch(Object.values(files).join("\n"), /\bTODO\b/i, "no TODO markers remain");
 
 const manifest = JSON.parse(files.manifest);
@@ -143,7 +158,7 @@ for (const entry of ledger.entries) {
 
 const timeline = JSON.parse(files.timeline);
 assert.equal(timeline.name, "Trace Atlas 进展时间线");
-assert.ok(timeline.items.length >= 7, "progress timeline lists the reader-facing path");
+assert.ok(timeline.items.length >= 8, "progress timeline lists the reader-facing path");
 for (const item of timeline.items) {
   assert.match(item.phase, /^[0-9]{2}$/, `timeline phase ${item.title} has a readable number`);
   assert.ok(item.summary.length > 24, `timeline item ${item.title} has a useful summary`);
@@ -153,7 +168,7 @@ for (const item of timeline.items) {
 const sync = JSON.parse(files.sync);
 assert.equal(sync.name, "Trace Atlas 世界同步");
 assert.equal(sync.status, "公开");
-assert.equal(sync.links.length, 4);
+assert.equal(sync.links.length, 6);
 for (const link of sync.links) {
   assert.match(link.href, /^https:\/\/(github\.com|soya-xx\.github\.io|trace-atlas-codex\.pages\.dev)\//, `sync link ${link.label} is public https`);
   assert.ok(link.note.length > 8, `sync link ${link.label} has a useful note`);

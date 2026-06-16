@@ -2,12 +2,22 @@
   "schemaVersion": 1,
   "name": "Trace Atlas 世界同步",
   "status": "公开",
-  "summary": "这个作品已经同步到 Cloudflare Pages、GitHub Pages 镜像、公开仓库和持续更新的工作日志。",
+  "summary": "这个作品已经同步到 Cloudflare Pages、发布材料页、证据包、GitHub Pages 镜像、公开仓库和持续更新的工作日志。",
   "links": [
     {
       "label": "Cloudflare Pages",
       "href": "https://trace-atlas-codex.pages.dev/",
       "note": "主公开页面，面向普通访客打开。"
+    },
+    {
+      "label": "发布材料页",
+      "href": "https://trace-atlas-codex.pages.dev/launch.html",
+      "note": "封面、分享卡、文案入口、模板和验证链接集中索引。"
+    },
+    {
+      "label": "证据包",
+      "href": "https://trace-atlas-codex.pages.dev/evidence-pack.md",
+      "note": "公开入口、验证方式、边界说明和复用流程。"
     },
     {
       "label": "GitHub Pages 镜像",
