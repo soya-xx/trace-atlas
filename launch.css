@@ -88,6 +88,11 @@ a {
   color: inherit;
 }
 
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
 .primary-links,
 .copy-grid {
   display: grid;
@@ -186,6 +191,8 @@ a {
 }
 
 .copy-grid article {
+  display: grid;
+  gap: 10px;
   padding: 16px;
 }
 
@@ -195,6 +202,33 @@ a {
   font-weight: 800;
   overflow-wrap: anywhere;
   text-decoration: none;
+}
+
+.copy-button {
+  min-height: 38px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0 12px;
+  background: white;
+  color: var(--muted);
+  font-weight: 900;
+  text-align: center;
+}
+
+.copy-button:hover,
+.copy-button:focus-visible {
+  border-color: var(--green);
+  color: var(--green);
+  outline: none;
+}
+
+.copy-status {
+  min-height: 22px;
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-size: 0.88rem;
+  font-weight: 800;
+  overflow-wrap: anywhere;
 }
 
 .checklist {

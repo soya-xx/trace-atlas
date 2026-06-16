@@ -17,7 +17,7 @@
     <meta name="twitter:image" content="https://trace-atlas-codex.pages.dev/social-card.svg">
     <title>Trace Atlas 发布材料</title>
     <link rel="icon" href="./icon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="./launch.css?v=1">
+    <link rel="stylesheet" href="./launch.css?v=2">
   </head>
   <body>
     <main class="launch-shell" aria-labelledby="launch-title">
@@ -60,28 +60,40 @@
           <p class="eyebrow">推荐标题</p>
           <h2>我把AI会话做成网站</h2>
           <p>短、直观，第一眼就知道产物是什么。</p>
+          <button class="copy-button" type="button" data-copy="我把AI会话做成网站">复制标题</button>
         </article>
         <article>
           <p class="eyebrow">主公开链接</p>
           <h2>Cloudflare Pages</h2>
           <a href="https://trace-atlas-codex.pages.dev/">https://trace-atlas-codex.pages.dev/</a>
+          <button class="copy-button" type="button" data-copy="https://trace-atlas-codex.pages.dev/">复制主链接</button>
         </article>
         <article>
           <p class="eyebrow">验证入口</p>
           <h2>公开仓库与 Actions</h2>
           <a href="https://github.com/soya-xx/trace-atlas">查看 GitHub 仓库</a>
+          <button class="copy-button" type="button" data-copy="https://github.com/soya-xx/trace-atlas">复制仓库链接</button>
         </article>
         <article>
           <p class="eyebrow">证据包</p>
           <h2>可复核清单</h2>
           <a href="./evidence-pack.md">打开 evidence-pack.md</a>
+          <button class="copy-button" type="button" data-copy="https://trace-atlas-codex.pages.dev/evidence-pack.md">复制证据包链接</button>
         </article>
         <article>
           <p class="eyebrow">工作日志</p>
           <h2>Issue #1</h2>
           <a href="https://github.com/soya-xx/trace-atlas/issues/1">查看进展同步</a>
+          <button class="copy-button" type="button" data-copy="https://github.com/soya-xx/trace-atlas/issues/1">复制日志链接</button>
+        </article>
+        <article>
+          <p class="eyebrow">推荐标签</p>
+          <h2>#AI工作流 #Codex #独立开发</h2>
+          <p>#AI工具 #内容创作 #CloudflarePages</p>
+          <button class="copy-button" type="button" data-copy="#AI工作流 #Codex #独立开发 #AI工具 #内容创作 #CloudflarePages">复制标签</button>
         </article>
       </section>
+      <p id="copy-status" class="copy-status" aria-live="polite">复制台已就绪。</p>
 
       <section class="checklist" aria-labelledby="checklist-title">
         <div>
@@ -96,5 +108,6 @@
         </ul>
       </section>
     </main>
+    <script src="./launch.js?v=1"></script>
   </body>
 </html>

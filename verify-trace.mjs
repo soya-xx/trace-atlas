@@ -6,6 +6,7 @@ const files = {
   html: readFileSync("index.html", "utf8"),
   launchHtml: readFileSync("launch.html", "utf8"),
   launchCss: readFileSync("launch.css", "utf8"),
+  launchJs: readFileSync("launch.js", "utf8"),
   css: readFileSync("styles.css", "utf8"),
   js: readFileSync("app.js", "utf8"),
   evidencePack: readFileSync("evidence-pack.md", "utf8"),
@@ -69,9 +70,20 @@ assert.match(files.launchHtml, /promo\/xhs-cover\.png/, "launch page shows the X
 assert.match(files.launchHtml, /social-card\.svg/, "launch page shows the social card");
 assert.match(files.launchHtml, /templates\/ai-session-artifact-kit\.md/, "launch page links to the reusable template");
 assert.match(files.launchHtml, /evidence-pack\.md/, "launch page links to the evidence pack");
+assert.match(files.launchHtml, /href="\.\/launch\.css\?v=2"/, "launch page stylesheet URL is versioned");
+assert.match(files.launchHtml, /src="\.\/launch\.js\?v=1"/, "launch page script URL is versioned");
+assert.match(files.launchHtml, /data-copy="我把AI会话做成网站"/, "launch page can copy the selected title");
+assert.match(files.launchHtml, /id="copy-status"/, "launch page exposes copy status feedback");
+assert.match(files.launchHtml, /#AI工作流/, "launch page exposes recommended tags");
 assert.match(files.launchCss, /\.asset-grid/, "launch page asset grid is styled");
+assert.match(files.launchCss, /\.copy-button/, "launch page copy buttons are styled");
+assert.match(files.launchCss, /\.copy-status/, "launch page copy status is styled");
 assert.match(files.launchCss, /overflow-x: hidden/, "launch page prevents horizontal overflow");
 assert.doesNotMatch(files.launchCss, /letter-spacing:\s*-/i, "launch page letter spacing is not negative");
+assert.match(files.launchJs, /navigator\.clipboard/, "launch page clipboard API path is present");
+assert.match(files.launchJs, /document\.execCommand\("copy"\)/, "launch page clipboard fallback path is present");
+assert.match(files.launchJs, /\[data-copy\]/, "launch page copy buttons are delegated");
+assert.match(files.launchJs, /#copy-status/, "launch page copy status is wired");
 assert.match(files.css, /@media \(max-width: 860px\)/, "mobile layout breakpoint is present");
 assert.match(files.css, /min-height: 100dvh/, "viewport height is anchored");
 assert.match(files.css, /overflow-x: hidden/, "page prevents horizontal overflow on mobile");
@@ -110,10 +122,10 @@ assert.match(files.js, /ArrowLeft/, "keyboard previous trace is wired");
 assert.match(files.js, /window\.confirm/, "local reset asks for confirmation");
 assert.match(files.css, /aria-pressed="true"/, "tour active state has visible styling");
 assert.match(files.css, /\.file-input/, "file input is visually hidden but present");
-assert.match(files.serviceWorker, /CACHE_NAME = "trace-atlas-shell-v13"/, "service worker cache is versioned");
+assert.match(files.serviceWorker, /CACHE_NAME = "trace-atlas-shell-v14"/, "service worker cache is versioned");
 assert.match(files.html, /href="\.\/styles\.css\?v=12"/, "stylesheet URL is versioned");
 assert.match(files.html, /src="\.\/app\.js\?v=12"/, "script URL is versioned");
-for (const cachedFile of ["./index.html", "./launch.html", "./styles.css?v=12", "./launch.css?v=1", "./app.js?v=12", "./progress-timeline.json?v=5", "./world-sync.json?v=5", "./trace-ledger.json?v=5", "./icon.svg", "./social-card.svg", "./promo/xhs-cover.png", "./evidence-pack.md", "./templates/ai-session-artifact-kit.md", "./site.webmanifest"]) {
+for (const cachedFile of ["./index.html", "./launch.html", "./styles.css?v=12", "./launch.css?v=2", "./launch.js?v=1", "./app.js?v=12", "./progress-timeline.json?v=5", "./world-sync.json?v=5", "./trace-ledger.json?v=5", "./icon.svg", "./social-card.svg", "./promo/xhs-cover.png", "./evidence-pack.md", "./templates/ai-session-artifact-kit.md", "./site.webmanifest"]) {
   const escaped = cachedFile.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   assert.match(files.serviceWorker, new RegExp(escaped), `service worker caches ${cachedFile}`);
 }
