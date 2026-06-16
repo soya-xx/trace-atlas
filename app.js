@@ -5,7 +5,7 @@
   const ARTIFACT_KIT_URL = "./templates/ai-session-artifact-kit.md";
   const CAPSULE_PREFIX = "#capsule=";
   const TOUR_INTERVAL_MS = 2400;
-  const DATA_VERSION = "v=5";
+  const DATA_VERSION = "v=6";
   const PALETTE = ["#25785e", "#b84646", "#386fb0", "#c9961a", "#7657a6"];
 
   const TRACE_SEEDS = [
@@ -503,7 +503,7 @@
   }
 
   function renderWorldSync(sync, statusText = sync.status || "在线") {
-    const links = Array.isArray(sync.links) ? sync.links.slice(0, 6) : [];
+    const links = Array.isArray(sync.links) ? sync.links.slice(0, 8) : [];
     els.worldLinks.replaceChildren();
     links.forEach((link) => {
       const item = document.createElement("li");

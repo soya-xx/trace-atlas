@@ -58,6 +58,13 @@
       "summary": "把小红书封面、分享卡、正文入口、复用模板、证据包和验证链接放到同一个公开页面。",
       "evidenceLabel": "发布材料页",
       "evidenceHref": "https://trace-atlas-codex.pages.dev/launch"
+    },
+    {
+      "phase": "09",
+      "title": "补上公开化路线图",
+      "summary": "把授权、产物、边界、验证、传播和复用整理成页面，让读者能带走一套方法。",
+      "evidenceLabel": "公开化路线图",
+      "evidenceHref": "https://trace-atlas-codex.pages.dev/workflow"
     }
   ]
 }

@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#25785e">
+    <meta name="description" content="Trace Atlas 痕迹星图公开化路线图：把一次 AI 会话整理成可访问、可验证、可传播、可复用的作品。">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="zh_CN">
+    <meta property="og:title" content="Trace Atlas 公开化路线图">
+    <meta property="og:description" content="Trace Atlas 展示 AI 会话如何被整理成可复用的公开作品。">
+    <meta property="og:url" content="https://trace-atlas-codex.pages.dev/workflow">
+    <meta property="og:image" content="https://trace-atlas-codex.pages.dev/social-card.svg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Trace Atlas 公开化路线图">
+    <meta name="twitter:description" content="把一次 AI 会话整理成可访问、可验证、可传播、可复用的作品。">
+    <meta name="twitter:image" content="https://trace-atlas-codex.pages.dev/social-card.svg">
+    <title>Trace Atlas 公开化路线图</title>
+    <link rel="icon" href="./icon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="./launch.css?v=3">
+  </head>
+  <body>
+    <main class="launch-shell route-shell" aria-labelledby="route-title">
+      <section class="intro route-intro">
+        <p class="eyebrow">Trace Atlas / 痕迹星图</p>
+        <h1 id="route-title">公开化路线图</h1>
+        <p class="lead">这是一套把 AI 会话变成公开作品的路线：明确要留下的东西，并用代码、证据和传播材料让它站住。</p>
+        <div class="primary-links" aria-label="路线图入口">
+          <a href="./">打开主作品</a>
+          <a href="./launch.html">发布材料</a>
+          <a href="./templates/ai-session-artifact-kit.md">复用模板</a>
+          <a href="./evidence-pack.md">证据包</a>
+          <a href="https://github.com/soya-xx/trace-atlas/issues/1">工作日志</a>
+        </div>
+      </section>
+
+      <section class="route-hero" aria-label="路线图概览">
+        <div>
+          <p class="eyebrow">From Session To Artifact</p>
+          <h2>一次会话怎样变成公开作品</h2>
+          <p>路线图不搬运聊天记录，只保留真正能交付的部分：产物、边界、证据、部署、传播和复用。</p>
+        </div>
+        <img src="./social-card.svg" alt="Trace Atlas 分享卡片">
+      </section>
+
+      <section class="route-map" aria-label="公开化步骤">
+        <article class="route-step">
+          <span>01</span>
+          <h2>定下产物</h2>
+          <p>先回答“读者打开后能得到什么”。在这里，答案是一张可交互、可导出、可继续种下痕迹的网页星图。</p>
+        </article>
+        <article class="route-step">
+          <span>02</span>
+          <h2>画清边界</h2>
+          <p>公开作品不等于公开所有过程。token、本地路径、私密聊天、不可复现的本机状态，都不进入仓库和页面。</p>
+        </article>
+        <article class="route-step">
+          <span>03</span>
+          <h2>做成能用的原型</h2>
+          <p>从最小静态页面跑起，随后接入本地存储、JSON 导出、SVG 快照、胶囊链接和离线外壳。</p>
+        </article>
+        <article class="route-step">
+          <span>04</span>
+          <h2>留下证据</h2>
+          <p>每一次关键变化都需要能复核：提交记录、Actions、证据包、工作日志和公开链接互相指向。</p>
+        </article>
+        <article class="route-step">
+          <span>05</span>
+          <h2>做传播出口</h2>
+          <p>标题、首图、分享卡、正文草案和复制台把工程产物变成能被国内平台读懂的材料。</p>
+        </article>
+        <article class="route-step">
+          <span>06</span>
+          <h2>写成模板</h2>
+          <p>把本次经验写成复用模板，让下一次会话也能沿着“目标、边界、证据、发布、验证”继续走。</p>
+        </article>
+      </section>
+
+      <section class="checklist route-boundary" aria-labelledby="route-boundary-title">
+        <div>
+          <p class="eyebrow">公开边界</p>
+          <h2 id="route-boundary-title">能公开的是作品，不是秘密</h2>
+        </div>
+        <ul>
+          <li>公开产物、部署链接、验证命令、提交记录和可复用模板。</li>
+          <li>不公开 token、API key、本地钥匙串、原始私密聊天记录和账号敏感信息。</li>
+          <li>每个传播承诺都要能被页面、命令、截图或公开日志支撑。</li>
+          <li>读者能复用的方法要写清楚，不把个人权限当成通用能力。</li>
+        </ul>
+      </section>
+
+      <section class="handoff-grid" aria-label="读者可以拿走的东西">
+        <article class="handoff-card">
+          <p class="eyebrow">给读者</p>
+          <h2>拿走一套流程</h2>
+          <p>读者不必照搬 Trace Atlas，可以按“定产物、划边界、留证据、做验证、铺传播、写模板”公开自己的小作品。</p>
+        </article>
+        <article class="handoff-card">
+          <p class="eyebrow">给维护者</p>
+          <h2>减少口头承诺</h2>
+          <p>让 README、证据包、Actions、公开 issue 和部署页面互相证明，减少“我记得已经做了”的模糊地带。</p>
+        </article>
+        <article class="handoff-card">
+          <p class="eyebrow">给下一次会话</p>
+          <h2>从这里接着走</h2>
+          <p>路线图会继续吸收新的验证和发布经验，成为后续作品的起点，而不是这次会话的终点。</p>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>
