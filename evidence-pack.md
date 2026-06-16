@@ -20,6 +20,7 @@
 - 进展时间线把工程记录整理成读者能顺着读的故事线。
 - 公开化路线图把会话公开化流程整理成可复用步骤。
 - 小红书传播包包含标题、正文草案、封面图和发布前检查。
+- 路线图长图把会话公开化步骤整理成 900 × 1200 图片素材。
 - GitHub Actions 会在推送后运行 `npm run check`。
 - Cloudflare Pages 使用独立项目 `trace-atlas-codex`，不触碰账号里已有的其他 Pages 项目。
 
@@ -43,6 +44,7 @@ curl -I https://trace-atlas-codex.pages.dev/launch
 curl -I https://trace-atlas-codex.pages.dev/workflow
 curl -I https://trace-atlas-codex.pages.dev/evidence-pack.md
 curl -I https://trace-atlas-codex.pages.dev/promo/xhs-cover.png
+curl -I https://trace-atlas-codex.pages.dev/promo/workflow-card.png
 curl -I https://trace-atlas-codex.pages.dev/progress-timeline.json
 ```
 
@@ -51,6 +53,7 @@ curl -I https://trace-atlas-codex.pages.dev/progress-timeline.json
 - 主作品、发布材料页与公开化路线图返回 `200`。
 - `evidence-pack.md` 返回 Markdown 文本。
 - 小红书封面图返回 `image/png`。
+- 路线图长图返回 `image/png`。
 - 进展时间线返回 JSON。
 
 ## 公开边界

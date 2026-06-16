@@ -178,7 +178,8 @@ button {
   background: white;
 }
 
-.cover-card img {
+.cover-card img,
+.workflow-poster-card img {
   max-height: 760px;
   object-fit: contain;
 }

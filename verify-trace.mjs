@@ -18,6 +18,8 @@ const files = {
   artifactKit: readFileSync("templates/ai-session-artifact-kit.md", "utf8"),
   xhsCover: readFileSync("promo/xhs-cover.html", "utf8"),
   xhsCoverPng: readFileSync("promo/xhs-cover.png"),
+  workflowCard: readFileSync("promo/workflow-card.html", "utf8"),
+  workflowCardPng: readFileSync("promo/workflow-card.png"),
   xhsLaunchKit: readFileSync("promo/xhs-launch-kit.md", "utf8"),
   manifest: readFileSync("site.webmanifest", "utf8"),
   server: readFileSync("server.mjs", "utf8"),
@@ -68,11 +70,12 @@ assert.match(files.html, /id="copy-kit"/, "artifact kit can be copied from the p
 assert.match(files.html, /id="timeline-title"/, "progress timeline section is present");
 assert.match(files.launchHtml, /Trace Atlas 发布材料/, "launch page has a clear title");
 assert.match(files.launchHtml, /promo\/xhs-cover\.png/, "launch page shows the Xiaohongshu cover");
+assert.match(files.launchHtml, /promo\/workflow-card\.png/, "launch page shows the workflow card");
 assert.match(files.launchHtml, /social-card\.svg/, "launch page shows the social card");
 assert.match(files.launchHtml, /templates\/ai-session-artifact-kit\.md/, "launch page links to the reusable template");
 assert.match(files.launchHtml, /evidence-pack\.md/, "launch page links to the evidence pack");
 assert.match(files.launchHtml, /workflow\.html/, "launch page links to the workflow map");
-assert.match(files.launchHtml, /href="\.\/launch\.css\?v=3"/, "launch page stylesheet URL is versioned");
+assert.match(files.launchHtml, /href="\.\/launch\.css\?v=4"/, "launch page stylesheet URL is versioned");
 assert.match(files.launchHtml, /src="\.\/launch\.js\?v=1"/, "launch page script URL is versioned");
 assert.match(files.launchHtml, /data-copy="我把AI会话做成网站"/, "launch page can copy the selected title");
 assert.match(files.launchHtml, /id="copy-status"/, "launch page exposes copy status feedback");
@@ -90,7 +93,8 @@ assert.match(files.workflowHtml, /画清边界/, "workflow page names the bounda
 assert.match(files.workflowHtml, /留下证据/, "workflow page names the evidence step");
 assert.match(files.workflowHtml, /写成模板/, "workflow page names the template step");
 assert.match(files.workflowHtml, /social-card\.svg/, "workflow page uses the social card visual");
-assert.match(files.workflowHtml, /href="\.\/launch\.css\?v=3"/, "workflow page stylesheet URL is versioned");
+assert.match(files.workflowHtml, /property="og:image" content="https:\/\/trace-atlas-codex\.pages\.dev\/promo\/workflow-card\.png"/, "workflow page social preview uses the workflow card");
+assert.match(files.workflowHtml, /href="\.\/launch\.css\?v=4"/, "workflow page stylesheet URL is versioned");
 assert.match(files.launchJs, /navigator\.clipboard/, "launch page clipboard API path is present");
 assert.match(files.launchJs, /document\.execCommand\("copy"\)/, "launch page clipboard fallback path is present");
 assert.match(files.launchJs, /\[data-copy\]/, "launch page copy buttons are delegated");
@@ -133,10 +137,10 @@ assert.match(files.js, /ArrowLeft/, "keyboard previous trace is wired");
 assert.match(files.js, /window\.confirm/, "local reset asks for confirmation");
 assert.match(files.css, /aria-pressed="true"/, "tour active state has visible styling");
 assert.match(files.css, /\.file-input/, "file input is visually hidden but present");
-assert.match(files.serviceWorker, /CACHE_NAME = "trace-atlas-shell-v15"/, "service worker cache is versioned");
+assert.match(files.serviceWorker, /CACHE_NAME = "trace-atlas-shell-v16"/, "service worker cache is versioned");
 assert.match(files.html, /href="\.\/styles\.css\?v=12"/, "stylesheet URL is versioned");
 assert.match(files.html, /src="\.\/app\.js\?v=13"/, "script URL is versioned");
-for (const cachedFile of ["./index.html", "./launch.html", "./workflow.html", "./styles.css?v=12", "./launch.css?v=3", "./launch.js?v=1", "./app.js?v=13", "./progress-timeline.json?v=6", "./world-sync.json?v=6", "./trace-ledger.json?v=6", "./icon.svg", "./social-card.svg", "./promo/xhs-cover.png", "./evidence-pack.md", "./templates/ai-session-artifact-kit.md", "./site.webmanifest"]) {
+for (const cachedFile of ["./index.html", "./launch.html", "./workflow.html", "./styles.css?v=12", "./launch.css?v=4", "./launch.js?v=1", "./app.js?v=13", "./progress-timeline.json?v=6", "./world-sync.json?v=6", "./trace-ledger.json?v=6", "./icon.svg", "./social-card.svg", "./promo/xhs-cover.png", "./promo/workflow-card.png", "./evidence-pack.md", "./templates/ai-session-artifact-kit.md", "./site.webmanifest"]) {
   const escaped = cachedFile.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   assert.match(files.serviceWorker, new RegExp(escaped), `service worker caches ${cachedFile}`);
 }
@@ -152,9 +156,15 @@ assert.match(files.xhsCover, /我把 <span class="highlight">AI 会话<\/span>/,
 assert.deepEqual(Array.from(files.xhsCoverPng.subarray(0, 8)), [137, 80, 78, 71, 13, 10, 26, 10], "Xiaohongshu cover PNG has a valid signature");
 assert.equal(files.xhsCoverPng.readUInt32BE(16), 900, "Xiaohongshu cover PNG width is 900");
 assert.equal(files.xhsCoverPng.readUInt32BE(20), 1200, "Xiaohongshu cover PNG height is 1200");
+assert.match(files.workflowCard, /AI 会话<\/span><br>怎样变成公开作品/, "workflow card source has a clear hook");
+assert.match(files.workflowCard, /trace-atlas-codex\.pages\.dev\/workflow/, "workflow card source links to the workflow page");
+assert.deepEqual(Array.from(files.workflowCardPng.subarray(0, 8)), [137, 80, 78, 71, 13, 10, 26, 10], "workflow card PNG has a valid signature");
+assert.equal(files.workflowCardPng.readUInt32BE(16), 900, "workflow card PNG width is 900");
+assert.equal(files.workflowCardPng.readUInt32BE(20), 1200, "workflow card PNG height is 1200");
 assert.match(files.xhsLaunchKit, /小红书正文草案/, "Xiaohongshu launch kit includes a body draft");
 assert.match(files.xhsLaunchKit, /最终推荐：`我把AI会话做成网站`/, "Xiaohongshu launch kit has a selected title");
 assert.match(files.xhsLaunchKit, /#AI工作流/, "Xiaohongshu launch kit includes tags");
+assert.match(files.xhsLaunchKit, /promo\/workflow-card\.png/, "Xiaohongshu launch kit includes the workflow card");
 assert.match(files.artifactKit, /# AI 会话公开化模板/, "artifact template has a clear title");
 assert.match(files.artifactKit, /最后一次验证时间/, "artifact template asks for verification time");
 assert.match(files.artifactKit, /不能公开的边界/, "artifact template asks for public boundaries");
