@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Trace Atlas 痕迹星图</title>
+  <desc id="desc">一次 AI 会话变成公开可访问、可验证、可继续种下痕迹的互动网页作品。</desc>
+  <defs>
+    <pattern id="grid" width="42" height="42" patternUnits="userSpaceOnUse">
+      <path d="M 42 0 L 0 0 0 42" fill="none" stroke="#d6ddd8" stroke-width="1" opacity=".62"/>
+    </pattern>
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#101113" flood-opacity=".16"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="630" fill="#fbfbf8"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  <path d="M 190 384 Q 357 178 536 298 T 898 218" fill="none" stroke="#101113" stroke-width="3" opacity=".24"/>
+  <path d="M 236 438 Q 407 496 590 404 T 992 454" fill="none" stroke="#25785e" stroke-width="4" opacity=".28"/>
+  <g filter="url(#softShadow)">
+    <rect x="700" y="96" width="344" height="344" rx="14" fill="#fff" stroke="#101113" stroke-width="3"/>
+    <rect x="782" y="176" width="92" height="92" rx="8" transform="rotate(45 828 222)" fill="#25785e" stroke="#101113" stroke-width="4"/>
+    <rect x="900" y="254" width="70" height="70" rx="8" transform="rotate(45 935 289)" fill="#386fb0" stroke="#101113" stroke-width="4"/>
+    <rect x="780" y="334" width="56" height="56" rx="8" transform="rotate(45 808 362)" fill="#c9961a" stroke="#101113" stroke-width="4"/>
+    <circle cx="828" cy="222" r="72" fill="none" stroke="#101113" stroke-width="3"/>
+    <circle cx="935" cy="289" r="52" fill="none" stroke="#101113" stroke-width="2" opacity=".75"/>
+    <circle cx="808" cy="362" r="44" fill="none" stroke="#101113" stroke-width="2" opacity=".7"/>
+  </g>
+  <text x="108" y="118" fill="#606763" font-family="Inter, system-ui, sans-serif" font-size="24" font-weight="800">TRACE ATLAS / 痕迹星图</text>
+  <text x="108" y="218" fill="#101113" font-family="Inter, system-ui, sans-serif" font-size="76" font-weight="900">我把 AI 会话</text>
+  <text x="108" y="306" fill="#101113" font-family="Inter, system-ui, sans-serif" font-size="76" font-weight="900">做成了网站</text>
+  <text x="112" y="386" fill="#25785e" font-family="Inter, system-ui, sans-serif" font-size="30" font-weight="800">公开部署 / 来路账本 / 可验证痕迹</text>
+  <text x="112" y="474" fill="#606763" font-family="Inter, system-ui, sans-serif" font-size="25" font-weight="650">一个可以打开、触摸、导出、恢复的小型 AI 工作流作品</text>
+  <text x="112" y="532" fill="#101113" font-family="Inter, system-ui, sans-serif" font-size="22" font-weight="800">trace-atlas-codex.pages.dev</text>
+</svg>

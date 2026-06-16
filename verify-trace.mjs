@@ -8,6 +8,10 @@ const files = {
   js: readFileSync("app.js", "utf8"),
   ledger: readFileSync("trace-ledger.json", "utf8"),
   sync: readFileSync("world-sync.json", "utf8"),
+  socialCard: readFileSync("social-card.svg", "utf8"),
+  xhsCover: readFileSync("promo/xhs-cover.html", "utf8"),
+  xhsCoverPng: readFileSync("promo/xhs-cover.png"),
+  xhsLaunchKit: readFileSync("promo/xhs-launch-kit.md", "utf8"),
   manifest: readFileSync("site.webmanifest", "utf8"),
   server: readFileSync("server.mjs", "utf8"),
   serviceWorker: readFileSync("service-worker.js", "utf8"),
@@ -44,6 +48,9 @@ for (const id of requiredIds) {
 assert.match(files.html, /<canvas id="trace-canvas"/, "canvas surface is present");
 assert.match(files.html, /rel="manifest" href="\.\/site\.webmanifest"/, "web manifest is linked");
 assert.match(files.html, /rel="icon" href="\.\/icon\.svg"/, "svg icon is linked");
+assert.match(files.html, /property="og:title" content="Trace Atlas 痕迹星图"/, "Open Graph title is Chinese");
+assert.match(files.html, /property="og:image" content="https:\/\/trace-atlas-codex\.pages\.dev\/social-card\.svg"/, "Open Graph image is wired");
+assert.match(files.html, /name="twitter:card" content="summary_large_image"/, "Twitter large card is wired");
 assert.match(files.css, /@media \(max-width: 860px\)/, "mobile layout breakpoint is present");
 assert.match(files.css, /min-height: 100dvh/, "viewport height is anchored");
 assert.doesNotMatch(files.css, /letter-spacing:\s*-/i, "letter spacing is not negative");
@@ -72,16 +79,25 @@ assert.match(files.js, /ArrowLeft/, "keyboard previous trace is wired");
 assert.match(files.js, /window\.confirm/, "local reset asks for confirmation");
 assert.match(files.css, /aria-pressed="true"/, "tour active state has visible styling");
 assert.match(files.css, /\.file-input/, "file input is visually hidden but present");
-assert.match(files.serviceWorker, /CACHE_NAME = "trace-atlas-shell-v9"/, "service worker cache is versioned");
+assert.match(files.serviceWorker, /CACHE_NAME = "trace-atlas-shell-v10"/, "service worker cache is versioned");
 assert.match(files.html, /href="\.\/styles\.css\?v=10"/, "stylesheet URL is versioned");
 assert.match(files.html, /src="\.\/app\.js\?v=10"/, "script URL is versioned");
-for (const cachedFile of ["./index.html", "./styles.css?v=10", "./app.js?v=10", "./world-sync.json?v=3", "./trace-ledger.json?v=3", "./icon.svg", "./site.webmanifest"]) {
+for (const cachedFile of ["./index.html", "./styles.css?v=10", "./app.js?v=10", "./world-sync.json?v=3", "./trace-ledger.json?v=3", "./icon.svg", "./social-card.svg", "./site.webmanifest"]) {
   const escaped = cachedFile.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   assert.match(files.serviceWorker, new RegExp(escaped), `service worker caches ${cachedFile}`);
 }
 assert.match(files.server, /\.webmanifest/, "local server serves the manifest type");
+assert.match(files.server, /\.png/, "local server serves png share assets");
 assert.match(files.server, /\.svg/, "local server serves svg icons");
 assert.match(files.svg, /Trace Atlas icon/, "svg icon has an accessible title");
+assert.match(files.socialCard, /我把 AI 会话/, "social card states the Xiaohongshu hook");
+assert.match(files.xhsCover, /我把 <span class="highlight">AI 会话<\/span>/, "Xiaohongshu cover source has the hook");
+assert.deepEqual(Array.from(files.xhsCoverPng.subarray(0, 8)), [137, 80, 78, 71, 13, 10, 26, 10], "Xiaohongshu cover PNG has a valid signature");
+assert.equal(files.xhsCoverPng.readUInt32BE(16), 900, "Xiaohongshu cover PNG width is 900");
+assert.equal(files.xhsCoverPng.readUInt32BE(20), 1200, "Xiaohongshu cover PNG height is 1200");
+assert.match(files.xhsLaunchKit, /小红书正文草案/, "Xiaohongshu launch kit includes a body draft");
+assert.match(files.xhsLaunchKit, /最终推荐：`我把AI会话做成网站`/, "Xiaohongshu launch kit has a selected title");
+assert.match(files.xhsLaunchKit, /#AI工作流/, "Xiaohongshu launch kit includes tags");
 assert.doesNotMatch(Object.values(files).join("\n"), /\bTODO\b/i, "no TODO markers remain");
 
 const manifest = JSON.parse(files.manifest);

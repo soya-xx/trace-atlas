@@ -1,10 +1,11 @@
-const CACHE_NAME = "trace-atlas-shell-v9";
+const CACHE_NAME = "trace-atlas-shell-v10";
 const APP_SHELL = [
   "./",
   "./index.html",
   "./styles.css?v=10",
   "./app.js?v=10",
   "./icon.svg",
+  "./social-card.svg",
   "./site.webmanifest",
   "./world-sync.json?v=3",
   "./trace-ledger.json?v=3"
