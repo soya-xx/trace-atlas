@@ -173,13 +173,14 @@ function createRuntime() {
     },
     document,
     fetch: async (url) => {
-      if (String(url).endsWith("trace-ledger.json")) {
+      const requestUrl = String(url);
+      if (requestUrl.includes("trace-ledger.json")) {
         return {
           ok: true,
           json: async () => provenanceLedger
         };
       }
-      if (String(url).endsWith("world-sync.json")) {
+      if (requestUrl.includes("world-sync.json")) {
         return {
           ok: true,
           json: async () => worldSync
@@ -236,16 +237,16 @@ const runtime = createRuntime();
 vm.runInNewContext(readFileSync("app.js", "utf8"), runtime.context, { filename: "app.js" });
 await flushAsync();
 
-assert.equal(runtime.document.querySelector("#ledger-status").textContent, "6 entries");
-assert.equal(runtime.document.querySelector("#ledger-list").children.length, 6);
+assert.equal(runtime.document.querySelector("#ledger-status").textContent, "9 entries");
+assert.equal(runtime.document.querySelector("#ledger-list").children.length, 9);
 const firstLedgerEntry = runtime.document.querySelector("#ledger-list").children[0];
 assert.equal(firstLedgerEntry.children[0].textContent, "834d3b7");
 assert.equal(firstLedgerEntry.children[1].children[0].textContent, "Create Trace Atlas artifact");
 assert.equal(runtime.document.querySelector("#world-status").textContent, "public");
-assert.equal(runtime.document.querySelector("#world-links").children.length, 3);
+assert.equal(runtime.document.querySelector("#world-links").children.length, 4);
 const firstWorldLink = runtime.document.querySelector("#world-links").children[0].children[0];
-assert.equal(firstWorldLink.href, "https://github.com/soya-xx/trace-atlas");
-assert.equal(firstWorldLink.children[0].textContent, "Public repository");
+assert.equal(firstWorldLink.href, "https://trace-atlas-codex.pages.dev/");
+assert.equal(firstWorldLink.children[0].textContent, "Cloudflare Pages");
 
 const importFile = runtime.document.querySelector("#import-file");
 importFile.files = [

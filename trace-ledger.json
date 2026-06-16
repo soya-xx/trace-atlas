@@ -32,6 +32,21 @@
       "commit": "d2ce403",
       "title": "Add archive fingerprints",
       "summary": "Added deterministic fingerprints across UI, JSON export, capsule payloads, and SVG snapshots."
+    },
+    {
+      "commit": "073baf8",
+      "title": "Add provenance ledger",
+      "summary": "Added a visible provenance ledger, README intent notes, and verification for milestone commit history."
+    },
+    {
+      "commit": "ae17c39",
+      "title": "Document public page",
+      "summary": "Recorded the public GitHub Pages URL in the README after enabling the first hosted mirror."
+    },
+    {
+      "commit": "367f091",
+      "title": "Add public sync anchors",
+      "summary": "Added World Sync metadata and UI links for the public repo, hosted page, and work log issue."
     }
   ]
 }

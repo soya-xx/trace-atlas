@@ -4,6 +4,7 @@
   const SNAPSHOT_NAME = "trace-atlas-snapshot.svg";
   const CAPSULE_PREFIX = "#capsule=";
   const TOUR_INTERVAL_MS = 2400;
+  const DATA_VERSION = "v=2";
   const PALETTE = ["#25785e", "#b84646", "#386fb0", "#c9961a", "#7657a6"];
 
   const TRACE_SEEDS = [
@@ -522,7 +523,7 @@
 
   async function loadWorldSync() {
     try {
-      const response = await fetch("./world-sync.json");
+      const response = await fetch(`./world-sync.json?${DATA_VERSION}`);
       if (!response.ok) {
         throw new Error("sync unavailable");
       }
@@ -546,7 +547,7 @@
 
   async function loadProvenanceLedger() {
     try {
-      const response = await fetch("./trace-ledger.json");
+      const response = await fetch(`./trace-ledger.json?${DATA_VERSION}`);
       if (!response.ok) {
         throw new Error("ledger unavailable");
       }

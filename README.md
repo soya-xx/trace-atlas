@@ -13,7 +13,8 @@ npm start
 
 Then visit `http://127.0.0.1:4174/`.
 
-Public page: `https://soya-xx.github.io/trace-atlas/`
+Cloudflare page: `https://trace-atlas-codex.pages.dev/`
+GitHub Pages mirror: `https://soya-xx.github.io/trace-atlas/`
 
 What it does:
 
@@ -26,7 +27,7 @@ What it does:
 - Tours the map automatically, with left and right arrow keys for manual stepping.
 - Creates a portable capsule link in the URL hash and restores traces from it.
 - Shows a stable archive fingerprint across the UI, JSON, capsule, and SVG snapshot.
-- Shows public sync anchors for the repository, hosted page, and work log issue.
+- Shows public sync anchors for Cloudflare Pages, GitHub, and the work log issue.
 - Displays an in-app provenance ledger of verified milestone commits.
 - Registers an offline app shell after the first local load.
 
