@@ -144,6 +144,7 @@ button {
 .route-hero,
 .route-step,
 .handoff-card,
+.material-card,
 .checklist {
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -220,7 +221,8 @@ button {
 
 .route-map,
 .handoff-grid,
-.health-grid {
+.health-grid,
+.materials-grid {
   display: grid;
   gap: 12px;
   margin-top: 18px;
@@ -237,6 +239,38 @@ button {
 .health-grid {
   grid-template-columns: repeat(4, minmax(0, 1fr));
   margin-bottom: 18px;
+}
+
+.materials-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.material-card {
+  padding: 18px;
+}
+
+.material-wide {
+  grid-column: 1 / -1;
+}
+
+.material-card p,
+.material-card li {
+  color: var(--muted);
+  line-height: 1.58;
+}
+
+.material-card ul {
+  display: grid;
+  gap: 8px;
+  margin: 12px 0 0;
+  padding-left: 20px;
+}
+
+.material-card a {
+  color: var(--blue);
+  font-weight: 850;
+  overflow-wrap: anywhere;
+  text-decoration: none;
 }
 
 .route-step,
@@ -340,6 +374,7 @@ button {
   .route-map,
   .handoff-grid,
   .health-grid,
+  .materials-grid,
   .copy-grid,
   .checklist {
     grid-template-columns: 1fr;

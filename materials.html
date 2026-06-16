@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#25785e">
+    <meta name="description" content="Trace Atlas 痕迹星图公开材料总览：页面、图片、发布文档、机器数据、验证脚本和边界说明。">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="zh_CN">
+    <meta property="og:title" content="Trace Atlas 公开材料总览">
+    <meta property="og:description" content="把作品、传播素材、证据和验证脚本整理成一个可复核索引。">
+    <meta property="og:url" content="https://trace-atlas-codex.pages.dev/materials">
+    <meta property="og:image" content="https://trace-atlas-codex.pages.dev/promo/workflow-card.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Trace Atlas 公开材料总览">
+    <meta name="twitter:description" content="页面、图片、发布文档、机器数据和验证脚本集中索引。">
+    <meta name="twitter:image" content="https://trace-atlas-codex.pages.dev/promo/workflow-card.png">
+    <title>Trace Atlas 公开材料总览</title>
+    <link rel="icon" href="./icon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="./launch.css?v=6">
+  </head>
+  <body>
+    <main class="launch-shell materials-shell" aria-labelledby="materials-title">
+      <section class="intro route-intro">
+        <p class="eyebrow">Trace Atlas / 痕迹星图</p>
+        <h1 id="materials-title">公开材料总览</h1>
+        <p class="lead">这里把已经公开的页面、图片素材、发布文档、机器数据、验证脚本和边界说明集中到一个入口。</p>
+        <div class="primary-links" aria-label="材料总览入口">
+          <a href="./">打开主作品</a>
+          <a href="./launch.html">发布材料</a>
+          <a href="./workflow.html">路线图</a>
+          <a href="./public-health.json">健康状态</a>
+          <a href="./materials-index.json">材料 JSON</a>
+          <a href="https://github.com/soya-xx/trace-atlas/issues/1">工作日志</a>
+        </div>
+      </section>
+
+      <section class="materials-grid" aria-label="公开材料分类">
+        <article class="material-card">
+          <p class="eyebrow">可见页面</p>
+          <h2>读者能直接打开</h2>
+          <ul>
+            <li><a href="./">主作品</a></li>
+            <li><a href="./launch.html">发布材料页</a></li>
+            <li><a href="./workflow.html">公开化路线图</a></li>
+            <li><a href="./materials.html">公开材料总览</a></li>
+          </ul>
+        </article>
+
+        <article class="material-card">
+          <p class="eyebrow">图片素材</p>
+          <h2>传播可以直接取用</h2>
+          <ul>
+            <li><a href="./promo/xhs-cover.png">小红书首图</a></li>
+            <li><a href="./promo/workflow-card.png">路线图长图</a></li>
+            <li><a href="./social-card.svg">网页分享卡</a></li>
+          </ul>
+        </article>
+
+        <article class="material-card">
+          <p class="eyebrow">发布文档</p>
+          <h2>发帖前后都有记录</h2>
+          <ul>
+            <li><a href="./promo/xhs-launch-kit.md">小红书传播包</a></li>
+            <li><a href="./promo/xhs-publish-checklist.md">发布检查台</a></li>
+            <li><a href="./promo/xhs-publish-manifest.json">发布 manifest</a></li>
+            <li><a href="./promo/xhs-publish-report.md">发布前报告</a></li>
+            <li><a href="./evidence-pack.md">证据包</a></li>
+          </ul>
+        </article>
+
+        <article class="material-card">
+          <p class="eyebrow">机器数据</p>
+          <h2>给后续工具读取</h2>
+          <ul>
+            <li><a href="./public-health.json">公开健康状态</a></li>
+            <li><a href="./materials-index.json">材料总览 JSON</a></li>
+            <li><a href="./world-sync.json">世界同步</a></li>
+            <li><a href="./progress-timeline.json">进展时间线</a></li>
+            <li><a href="./trace-ledger.json">来路账本</a></li>
+          </ul>
+        </article>
+
+        <article class="material-card material-wide">
+          <p class="eyebrow">验证与边界</p>
+          <h2>公开不是把所有东西都放出来</h2>
+          <p>仓库通过 `npm run check` 保护结构、运行时、发布报告和公开边界。常见 token 前缀和本机绝对路径会被扫描，验证结果同步到 GitHub Actions 和公开 issue。</p>
+          <ul>
+            <li><a href="https://github.com/soya-xx/trace-atlas/actions/workflows/verify.yml">GitHub Actions</a></li>
+            <li><a href="https://github.com/soya-xx/trace-atlas/blob/main/scripts/scan-public-boundary.mjs">边界扫描脚本</a></li>
+            <li><a href="https://github.com/soya-xx/trace-atlas/issues/1">工作日志 Issue</a></li>
+          </ul>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>

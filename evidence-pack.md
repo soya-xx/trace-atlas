@@ -6,6 +6,7 @@
 
 - 主作品：`https://trace-atlas-codex.pages.dev/`
 - 发布材料页：`https://trace-atlas-codex.pages.dev/launch`
+- 公开材料总览：`https://trace-atlas-codex.pages.dev/materials`
 - 公开化路线图：`https://trace-atlas-codex.pages.dev/workflow`
 - 小红书发布检查台：`https://trace-atlas-codex.pages.dev/promo/xhs-publish-checklist.md`
 - 小红书发布 manifest：`https://trace-atlas-codex.pages.dev/promo/xhs-publish-manifest.json`
@@ -13,6 +14,7 @@
 - 公开仓库：`https://github.com/soya-xx/trace-atlas`
 - 工作日志：`https://github.com/soya-xx/trace-atlas/issues/1`
 - 公开健康状态：`https://trace-atlas-codex.pages.dev/public-health.json`
+- 公开材料总览 JSON：`https://trace-atlas-codex.pages.dev/materials-index.json`
 - 复用模板：`https://trace-atlas-codex.pages.dev/templates/ai-session-artifact-kit.md`
 - 进展时间线：`https://trace-atlas-codex.pages.dev/progress-timeline.json`
 
@@ -31,6 +33,7 @@
 - GitHub Actions 会在推送后运行 `npm run check`。
 - `npm run check` 会扫描常见 token 前缀和本机绝对路径，防止公开材料带出敏感内容。
 - `public-health.json` 汇总公开入口、素材、发布文档、验证脚本和证据链接。
+- `materials-index.json` 把公开页面、图片素材、发布文档、机器数据和验证边界分组。
 - Cloudflare Pages 使用独立项目 `trace-atlas-codex`，不触碰账号里已有的其他 Pages 项目。
 
 ## 本地验证
@@ -50,6 +53,7 @@ npm run check
 ```bash
 curl -I https://trace-atlas-codex.pages.dev/
 curl -I https://trace-atlas-codex.pages.dev/launch
+curl -I https://trace-atlas-codex.pages.dev/materials
 curl -I https://trace-atlas-codex.pages.dev/workflow
 curl -I https://trace-atlas-codex.pages.dev/promo/xhs-publish-checklist.md
 curl -I https://trace-atlas-codex.pages.dev/promo/xhs-publish-manifest.json
@@ -58,12 +62,13 @@ curl -I https://trace-atlas-codex.pages.dev/evidence-pack.md
 curl -I https://trace-atlas-codex.pages.dev/promo/xhs-cover.png
 curl -I https://trace-atlas-codex.pages.dev/promo/workflow-card.png
 curl -I https://trace-atlas-codex.pages.dev/public-health.json
+curl -I https://trace-atlas-codex.pages.dev/materials-index.json
 curl -I https://trace-atlas-codex.pages.dev/progress-timeline.json
 ```
 
 期望结果：
 
-- 主作品、发布材料页与公开化路线图返回 `200`。
+- 主作品、发布材料页、公开材料总览与公开化路线图返回 `200`。
 - `evidence-pack.md` 返回 Markdown 文本。
 - 小红书发布检查台返回 Markdown 文本。
 - 小红书发布 manifest 返回 JSON。
@@ -71,6 +76,7 @@ curl -I https://trace-atlas-codex.pages.dev/progress-timeline.json
 - 小红书封面图返回 `image/png`。
 - 路线图长图返回 `image/png`。
 - 公开健康状态返回 JSON。
+- 公开材料总览 JSON 返回 JSON。
 - 进展时间线返回 JSON。
 
 ## 公开边界

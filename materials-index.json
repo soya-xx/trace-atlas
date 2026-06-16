@@ -1,0 +1,125 @@
+{
+  "schemaVersion": 1,
+  "name": "Trace Atlas 公开材料总览",
+  "summary": "把 Trace Atlas 的公开页面、图片素材、发布文档、机器数据、验证脚本和边界说明整理成一个可复核索引。",
+  "groups": [
+    {
+      "id": "pages",
+      "title": "可见页面",
+      "items": [
+        {
+          "label": "主作品",
+          "href": "https://trace-atlas-codex.pages.dev/"
+        },
+        {
+          "label": "发布材料页",
+          "href": "https://trace-atlas-codex.pages.dev/launch"
+        },
+        {
+          "label": "公开化路线图",
+          "href": "https://trace-atlas-codex.pages.dev/workflow"
+        },
+        {
+          "label": "公开材料总览",
+          "href": "https://trace-atlas-codex.pages.dev/materials"
+        }
+      ]
+    },
+    {
+      "id": "visual-assets",
+      "title": "图片素材",
+      "items": [
+        {
+          "label": "小红书首图",
+          "href": "https://trace-atlas-codex.pages.dev/promo/xhs-cover.png"
+        },
+        {
+          "label": "路线图长图",
+          "href": "https://trace-atlas-codex.pages.dev/promo/workflow-card.png"
+        },
+        {
+          "label": "网页分享卡",
+          "href": "https://trace-atlas-codex.pages.dev/social-card.svg"
+        }
+      ]
+    },
+    {
+      "id": "publish-docs",
+      "title": "发布文档",
+      "items": [
+        {
+          "label": "小红书传播包",
+          "href": "https://trace-atlas-codex.pages.dev/promo/xhs-launch-kit.md"
+        },
+        {
+          "label": "发布检查台",
+          "href": "https://trace-atlas-codex.pages.dev/promo/xhs-publish-checklist.md"
+        },
+        {
+          "label": "发布 manifest",
+          "href": "https://trace-atlas-codex.pages.dev/promo/xhs-publish-manifest.json"
+        },
+        {
+          "label": "发布前报告",
+          "href": "https://trace-atlas-codex.pages.dev/promo/xhs-publish-report.md"
+        },
+        {
+          "label": "证据包",
+          "href": "https://trace-atlas-codex.pages.dev/evidence-pack.md"
+        },
+        {
+          "label": "复用模板",
+          "href": "https://trace-atlas-codex.pages.dev/templates/ai-session-artifact-kit.md"
+        }
+      ]
+    },
+    {
+      "id": "machine-data",
+      "title": "机器可读数据",
+      "items": [
+        {
+          "label": "公开健康状态",
+          "href": "https://trace-atlas-codex.pages.dev/public-health.json"
+        },
+        {
+          "label": "材料总览 JSON",
+          "href": "https://trace-atlas-codex.pages.dev/materials-index.json"
+        },
+        {
+          "label": "世界同步",
+          "href": "https://trace-atlas-codex.pages.dev/world-sync.json"
+        },
+        {
+          "label": "进展时间线",
+          "href": "https://trace-atlas-codex.pages.dev/progress-timeline.json"
+        },
+        {
+          "label": "来路账本",
+          "href": "https://trace-atlas-codex.pages.dev/trace-ledger.json"
+        }
+      ]
+    },
+    {
+      "id": "verification",
+      "title": "验证与边界",
+      "items": [
+        {
+          "label": "GitHub Actions",
+          "href": "https://github.com/soya-xx/trace-atlas/actions/workflows/verify.yml"
+        },
+        {
+          "label": "结构验证脚本",
+          "href": "https://github.com/soya-xx/trace-atlas/blob/main/verify-trace.mjs"
+        },
+        {
+          "label": "运行时验证脚本",
+          "href": "https://github.com/soya-xx/trace-atlas/blob/main/verify-runtime.mjs"
+        },
+        {
+          "label": "边界扫描脚本",
+          "href": "https://github.com/soya-xx/trace-atlas/blob/main/scripts/scan-public-boundary.mjs"
+        }
+      ]
+    }
+  ]
+}
