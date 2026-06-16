@@ -1,6 +1,7 @@
 (() => {
   const STORAGE_KEY = "whatever.trace-atlas.v1";
   const DOWNLOAD_NAME = "whatever-trace-atlas.json";
+  const CAPSULE_PREFIX = "#capsule=";
   const TOUR_INTERVAL_MS = 2400;
   const PALETTE = ["#25785e", "#b84646", "#386fb0", "#c9961a", "#7657a6"];
 
@@ -73,6 +74,7 @@
     export: document.querySelector("#export-traces"),
     clear: document.querySelector("#clear-local"),
     tour: document.querySelector("#tour-traces"),
+    capsule: document.querySelector("#capsule-traces"),
     import: document.querySelector("#import-traces"),
     importFile: document.querySelector("#import-file"),
     storage: document.querySelector("#storage-note"),
@@ -141,7 +143,13 @@
   }
 
   function persistLocalTraces() {
-    const localTraces = state.traces
+    const localTraces = localTracePayload();
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(localTraces, null, 2));
+    updateStorageNote(localTraces.length);
+  }
+
+  function localTracePayload() {
+    return state.traces
       .filter((trace) => trace.local)
       .map(({ id, name, line, body, color, createdAt }) => ({
         id,
@@ -151,8 +159,6 @@
         color,
         createdAt
       }));
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(localTraces, null, 2));
-    updateStorageNote(localTraces.length);
   }
 
   function localTraceKey(trace) {
@@ -462,7 +468,19 @@
   }
 
   function exportTraces() {
-    const payload = {
+    const payload = archivePayload();
+    const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const anchor = document.createElement("a");
+    anchor.href = url;
+    anchor.download = DOWNLOAD_NAME;
+    anchor.click();
+    URL.revokeObjectURL(url);
+    els.status.textContent = `Exported ${payload.traces.length} traces`;
+  }
+
+  function archivePayload() {
+    return {
       name: "Trace Atlas",
       exportedAt: new Date().toISOString(),
       seedCount: TRACE_SEEDS.length,
@@ -479,14 +497,6 @@
         local: Boolean(local)
       }))
     };
-    const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
-    const url = URL.createObjectURL(blob);
-    const anchor = document.createElement("a");
-    anchor.href = url;
-    anchor.download = DOWNLOAD_NAME;
-    anchor.click();
-    URL.revokeObjectURL(url);
-    els.status.textContent = `Exported ${payload.traces.length} traces`;
   }
 
   function importedTraceCandidates(payload) {
@@ -501,12 +511,12 @@
       .slice(0, 48);
   }
 
-  function importTracePayload(payload) {
+  function importTracePayload(payload, statusLabel = "Imported") {
     const localCount = state.traces.filter((trace) => trace.local).length;
     const capacity = 24 - localCount;
     if (capacity <= 0) {
       els.status.textContent = "Local archive is full";
-      return;
+      return 0;
     }
     const existing = new Set(state.traces.filter((trace) => trace.local).map(localTraceKey));
     const imported = importedTraceCandidates(payload)
@@ -522,7 +532,7 @@
 
     if (imported.length === 0) {
       els.status.textContent = "No new local traces found";
-      return;
+      return 0;
     }
 
     const added = imported.slice(0, capacity);
@@ -531,7 +541,8 @@
     persistLocalTraces();
     const last = added[added.length - 1];
     state.flash = { id: last.id, startedAt: performance.now() };
-    selectTrace(last.id, `Imported ${added.length}`);
+    selectTrace(last.id, `${statusLabel} ${added.length}`);
+    return added.length;
   }
 
   async function importTracesFromFile(event) {
@@ -546,6 +557,68 @@
     } catch {
       els.status.textContent = "Import failed";
     }
+  }
+
+  function capsulePayload() {
+    return {
+      name: "Trace Atlas Capsule",
+      version: 1,
+      createdAt: new Date().toISOString(),
+      selectedId: state.selectedId,
+      traces: localTracePayload()
+    };
+  }
+
+  function encodeCapsule(payload) {
+    const bytes = new TextEncoder().encode(JSON.stringify(payload));
+    let binary = "";
+    for (let index = 0; index < bytes.length; index += 0x8000) {
+      binary += String.fromCharCode(...bytes.subarray(index, index + 0x8000));
+    }
+    return btoa(binary).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/g, "");
+  }
+
+  function decodeCapsule(value) {
+    const normalized = value.replace(/-/g, "+").replace(/_/g, "/");
+    const padded = normalized.padEnd(Math.ceil(normalized.length / 4) * 4, "=");
+    const binary = atob(padded);
+    const bytes = new Uint8Array(binary.length);
+    for (let index = 0; index < binary.length; index += 1) {
+      bytes[index] = binary.charCodeAt(index);
+    }
+    return safeParse(new TextDecoder().decode(bytes), null);
+  }
+
+  async function createCapsuleLink() {
+    const localTotal = state.traces.filter((trace) => trace.local).length;
+    if (localTotal === 0) {
+      els.status.textContent = "Plant or import a local trace first";
+      return;
+    }
+
+    const hash = `${CAPSULE_PREFIX}${encodeCapsule(capsulePayload())}`;
+    const url = `${window.location.href.split("#")[0]}${hash}`;
+    window.history.replaceState(null, "", url);
+    els.status.textContent = `Capsule link ready (${localTotal})`;
+  }
+
+  function restoreCapsuleFromLocation() {
+    const hash = window.location.hash || "";
+    if (!hash.startsWith(CAPSULE_PREFIX)) {
+      return 0;
+    }
+
+    const payload = decodeCapsule(hash.slice(CAPSULE_PREFIX.length));
+    if (!payload) {
+      els.status.textContent = "Capsule could not be opened";
+      return 0;
+    }
+
+    const restored = importTracePayload(payload, "Restored");
+    if (restored === 0 && state.traces.some((trace) => trace.local)) {
+      els.status.textContent = "Capsule already present";
+    }
+    return restored;
   }
 
   function syncTourButton(active) {
@@ -613,6 +686,7 @@
     els.export.addEventListener("click", exportTraces);
     els.clear.addEventListener("click", clearLocalTraces);
     els.tour.addEventListener("click", toggleTour);
+    els.capsule.addEventListener("click", createCapsuleLink);
     els.import.addEventListener("click", () => els.importFile.click());
     els.importFile.addEventListener("change", importTracesFromFile);
     window.addEventListener("keydown", (event) => {
@@ -637,6 +711,7 @@
     bindEvents();
     resizeCanvas();
     selectTrace(state.selectedId);
+    restoreCapsuleFromLocation();
     renderArchive();
     requestAnimationFrame(draw);
   }

@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
+import { TextDecoder, TextEncoder } from "node:util";
 import vm from "node:vm";
 
 class MockElement {
@@ -122,6 +123,7 @@ function createRuntime() {
     "export-traces",
     "clear-local",
     "tour-traces",
+    "capsule-traces",
     "import-traces",
     "import-file",
     "storage-note",
@@ -134,8 +136,23 @@ function createRuntime() {
 
   const store = new Map();
   const listeners = new Map();
+  const location = {
+    href: "http://127.0.0.1:4174/",
+    hash: ""
+  };
+  const history = {
+    replaceState(_state, _title, url) {
+      location.href = String(url);
+      const hashIndex = location.href.indexOf("#");
+      location.hash = hashIndex >= 0 ? location.href.slice(hashIndex) : "";
+    }
+  };
   const context = {
+    atob: (value) => Buffer.from(value, "base64").toString("binary"),
+    btoa: (value) => Buffer.from(value, "binary").toString("base64"),
     Blob,
+    TextDecoder,
+    TextEncoder,
     URL: { createObjectURL: () => "blob:trace", revokeObjectURL() {} },
     document,
     localStorage: {
@@ -154,15 +171,21 @@ function createRuntime() {
       clearInterval,
       confirm: () => true,
       devicePixelRatio: 1,
+      history,
+      location,
       setInterval
     }
   };
+  context.history = history;
+  context.location = location;
   context.window.localStorage = context.localStorage;
   context.window.performance = context.performance;
   context.window.requestAnimationFrame = context.requestAnimationFrame;
   context.window.URL = context.URL;
   context.window.Blob = Blob;
-  return { context, document, listeners, store };
+  context.window.TextDecoder = TextDecoder;
+  context.window.TextEncoder = TextEncoder;
+  return { context, document, listeners, location, store };
 }
 
 const runtime = createRuntime();
@@ -199,6 +222,19 @@ const stored = JSON.parse(runtime.store.get("whatever.trace-atlas.v1"));
 assert.equal(stored.length, 1);
 assert.equal(stored[0].body, "Runtime import proves the archive can return.");
 assert.match(stored[0].id, /^local-/);
+
+await runtime.document.querySelector("#capsule-traces").dispatch("click");
+assert.match(runtime.location.hash, /^#capsule=/);
+assert.match(runtime.document.querySelector("#trace-status").textContent, /^Capsule link ready \(1\)$/);
+
+const restoredRuntime = createRuntime();
+restoredRuntime.location.href = runtime.location.href;
+restoredRuntime.location.hash = runtime.location.hash;
+vm.runInNewContext(readFileSync("app.js", "utf8"), restoredRuntime.context, { filename: "app.js" });
+assert.equal(restoredRuntime.document.querySelector("#trace-count").textContent, "5 traces");
+assert.match(restoredRuntime.document.querySelector("#trace-status").textContent, /^Restored 1:/);
+const restoredStored = JSON.parse(restoredRuntime.store.get("whatever.trace-atlas.v1"));
+assert.equal(restoredStored[0].body, "Runtime import proves the archive can return.");
 
 const keyHandlers = runtime.listeners.get("keydown") ?? [];
 assert.equal(keyHandlers.length, 1);

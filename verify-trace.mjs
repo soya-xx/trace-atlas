@@ -17,6 +17,7 @@ const requiredIds = [
   "export-traces",
   "clear-local",
   "tour-traces",
+  "capsule-traces",
   "import-traces",
   "import-file",
   "trace-list"
@@ -35,6 +36,9 @@ assert.match(files.js, /localStorage/, "local archive is persisted");
 assert.match(files.js, /requestAnimationFrame/, "canvas animation loop is active");
 assert.match(files.js, /anchor\.download = DOWNLOAD_NAME/, "JSON export path is wired");
 assert.match(files.js, /importTracePayload/, "JSON import path is wired");
+assert.match(files.js, /CAPSULE_PREFIX/, "capsule URL prefix is declared");
+assert.match(files.js, /encodeCapsule/, "capsule encoder is wired");
+assert.match(files.js, /restoreCapsuleFromLocation/, "capsule restore path is wired");
 assert.match(files.js, /TOUR_INTERVAL_MS/, "tour timing is explicit");
 assert.match(files.js, /ArrowRight/, "keyboard next trace is wired");
 assert.match(files.js, /ArrowLeft/, "keyboard previous trace is wired");
