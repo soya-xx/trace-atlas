@@ -128,6 +128,7 @@ function createRuntime() {
     "snapshot-traces",
     "import-traces",
     "import-file",
+    "fingerprint-note",
     "storage-note",
     "trace-list"
   ];
@@ -236,19 +237,31 @@ assert.equal(stored.length, 1);
 assert.equal(stored[0].body, "Runtime import proves the archive can return.");
 assert.match(stored[0].id, /^local-/);
 
+const fingerprint = runtime.document.querySelector("#fingerprint-note").textContent.replace("fingerprint ", "");
+assert.match(fingerprint, /^atlas-[0-9a-f]{8}$/);
+
+await runtime.document.querySelector("#export-traces").dispatch("click");
+assert.equal(runtime.createdBlobs.length, 1);
+assert.equal(runtime.createdBlobs[0].type, "application/json");
+const archiveExport = JSON.parse(await runtime.createdBlobs[0].text());
+assert.equal(archiveExport.fingerprint, fingerprint);
+
 await runtime.document.querySelector("#snapshot-traces").dispatch("click");
 assert.match(runtime.document.querySelector("#trace-status").textContent, /^Snapshot saved \(5\)$/);
-assert.equal(runtime.createdBlobs.length, 1);
-assert.equal(runtime.createdBlobs[0].type, "image/svg+xml");
-const snapshotSvg = await runtime.createdBlobs[0].text();
+assert.equal(runtime.createdBlobs.length, 2);
+assert.equal(runtime.createdBlobs[1].type, "image/svg+xml");
+const snapshotSvg = await runtime.createdBlobs[1].text();
 assert.match(snapshotSvg, /<title id="title">Trace Atlas snapshot<\/title>/);
 assert.match(snapshotSvg, /Runtime import proves the archive can return\./);
-assert.match(snapshotSvg, /5 traces \/ 1 local \/ exported snapshot/);
+assert.match(snapshotSvg, new RegExp(`5 traces / 1 local / ${fingerprint}`));
+assert.match(snapshotSvg, new RegExp(`Fingerprint: ${fingerprint}`));
 assert.doesNotMatch(snapshotSvg, /onload=/);
 
 await runtime.document.querySelector("#capsule-traces").dispatch("click");
 assert.match(runtime.location.hash, /^#capsule=/);
 assert.match(runtime.document.querySelector("#trace-status").textContent, /^Capsule link ready \(1\)$/);
+const capsulePayload = JSON.parse(Buffer.from(runtime.location.hash.slice("#capsule=".length), "base64url").toString("utf8"));
+assert.equal(capsulePayload.fingerprint, fingerprint);
 
 const restoredRuntime = createRuntime();
 restoredRuntime.location.href = runtime.location.href;
@@ -256,6 +269,7 @@ restoredRuntime.location.hash = runtime.location.hash;
 vm.runInNewContext(readFileSync("app.js", "utf8"), restoredRuntime.context, { filename: "app.js" });
 assert.equal(restoredRuntime.document.querySelector("#trace-count").textContent, "5 traces");
 assert.match(restoredRuntime.document.querySelector("#trace-status").textContent, /^Restored 1:/);
+assert.equal(restoredRuntime.document.querySelector("#fingerprint-note").textContent, `fingerprint ${fingerprint}`);
 const restoredStored = JSON.parse(restoredRuntime.store.get("whatever.trace-atlas.v1"));
 assert.equal(restoredStored[0].body, "Runtime import proves the archive can return.");
 

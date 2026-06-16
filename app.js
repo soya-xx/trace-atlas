@@ -80,6 +80,7 @@
     snapshot: document.querySelector("#snapshot-traces"),
     import: document.querySelector("#import-traces"),
     importFile: document.querySelector("#import-file"),
+    fingerprint: document.querySelector("#fingerprint-note"),
     storage: document.querySelector("#storage-note"),
     list: document.querySelector("#trace-list")
   };
@@ -171,6 +172,27 @@
 
   function localTraceKey(trace) {
     return `${trace.body.trim().toLowerCase()}|${trace.createdAt || ""}`;
+  }
+
+  function fingerprintSource() {
+    return state.traces.map(({ id, name, line, body, kind, color, createdAt, local }) => ({
+      id,
+      name,
+      line,
+      body,
+      kind,
+      color,
+      createdAt: createdAt || null,
+      local: Boolean(local)
+    }));
+  }
+
+  function archiveFingerprint() {
+    return `atlas-${hashString(JSON.stringify(fingerprintSource())).toString(16).padStart(8, "0")}`;
+  }
+
+  function updateFingerprintNote() {
+    els.fingerprint.textContent = `fingerprint ${archiveFingerprint()}`;
   }
 
   function updateStorageNote(total) {
@@ -424,6 +446,7 @@
 
   function renderArchive() {
     els.count.textContent = `${state.traces.length} trace${state.traces.length === 1 ? "" : "s"}`;
+    updateFingerprintNote();
     els.list.replaceChildren();
     state.traces.forEach((trace) => {
       const li = document.createElement("li");
@@ -491,6 +514,7 @@
     return {
       name: "Trace Atlas",
       exportedAt: new Date().toISOString(),
+      fingerprint: archiveFingerprint(),
       seedCount: TRACE_SEEDS.length,
       localCount: state.traces.filter((trace) => trace.local).length,
       traces: state.traces.map(({ id, name, line, body, kind, weight, color, createdAt, local }) => ({
@@ -568,10 +592,11 @@
       .join("\n    ");
     const selected = state.traces.find((trace) => trace.id === state.selectedId) || state.traces[0];
     const localTotal = state.traces.filter((trace) => trace.local).length;
+    const fingerprint = archiveFingerprint();
 
     return `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" role="img" aria-labelledby="title desc">
   <title id="title">Trace Atlas snapshot</title>
-  <desc id="desc">${escapeSvg(state.traces.length)} traces, ${escapeSvg(localTotal)} local traces. Selected trace: ${escapeSvg(selected.name)}. ${escapeSvg(selected.body)}</desc>
+  <desc id="desc">${escapeSvg(state.traces.length)} traces, ${escapeSvg(localTotal)} local traces. Fingerprint: ${escapeSvg(fingerprint)}. Selected trace: ${escapeSvg(selected.name)}. ${escapeSvg(selected.body)}</desc>
   <defs>
     <pattern id="grid" width="44" height="44" patternUnits="userSpaceOnUse">
       <path d="M 44 0 L 0 0 0 44" fill="none" stroke="#d6ddd8" stroke-width="1" opacity=".55"/>
@@ -593,7 +618,7 @@
   <rect width="1200" height="800" fill="url(#grid)"/>
   <text x="72" y="66" class="eyebrow">WHATEVER REPOSITORY</text>
   <text x="72" y="126" class="title">Trace Atlas</text>
-  <text x="72" y="760" class="meta">${state.traces.length} traces / ${localTotal} local / exported snapshot</text>
+  <text x="72" y="760" class="meta">${state.traces.length} traces / ${localTotal} local / ${escapeSvg(fingerprint)}</text>
   <text x="640" y="728" class="eyebrow">SELECTED TRACE</text>
   <text x="640" y="762" class="body">${escapeSvg(selected.name)} - ${escapeSvg(selected.kind)}</text>
   <g class="links">
@@ -686,6 +711,7 @@
       name: "Trace Atlas Capsule",
       version: 1,
       createdAt: new Date().toISOString(),
+      fingerprint: archiveFingerprint(),
       selectedId: state.selectedId,
       traces: localTracePayload()
     };

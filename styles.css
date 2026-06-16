@@ -294,6 +294,15 @@ button.quiet {
   line-height: 1.35;
 }
 
+.fingerprint-note {
+  min-height: 20px;
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  font-size: 0.8rem;
+  line-height: 1.35;
+}
+
 .archive-band {
   min-height: 0;
   overflow: auto;

@@ -7,7 +7,7 @@
     <title>Trace Atlas</title>
     <link rel="icon" href="./icon.svg" type="image/svg+xml">
     <link rel="manifest" href="./site.webmanifest">
-    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="./styles.css?v=6">
   </head>
   <body>
     <main class="atlas-shell" aria-labelledby="app-title">
@@ -64,6 +64,7 @@
             <button id="import-traces" class="quiet" type="button">Import</button>
             <input id="import-file" class="file-input" type="file" accept="application/json,.json">
           </div>
+          <p id="fingerprint-note" class="fingerprint-note">fingerprint pending</p>
         </section>
 
         <section class="archive-band" aria-labelledby="archive-title">
@@ -73,6 +74,6 @@
       </aside>
     </main>
 
-    <script src="./app.js"></script>
+    <script src="./app.js?v=6"></script>
   </body>
 </html>

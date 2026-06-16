@@ -26,6 +26,7 @@ const requiredIds = [
   "snapshot-traces",
   "import-traces",
   "import-file",
+  "fingerprint-note",
   "trace-list"
 ];
 
@@ -47,6 +48,8 @@ assert.match(files.js, /anchor\.download = DOWNLOAD_NAME/, "JSON export path is 
 assert.match(files.js, /SNAPSHOT_NAME = "trace-atlas-snapshot\.svg"/, "SVG snapshot filename is declared");
 assert.match(files.js, /function snapshotSvg/, "SVG snapshot renderer is wired");
 assert.match(files.js, /image\/svg\+xml/, "SVG snapshot uses an SVG MIME type");
+assert.match(files.js, /function archiveFingerprint/, "archive fingerprint is wired");
+assert.match(files.js, /fingerprint: archiveFingerprint\(\)/, "exports include archive fingerprints");
 assert.match(files.js, /importTracePayload/, "JSON import path is wired");
 assert.match(files.js, /CAPSULE_PREFIX/, "capsule URL prefix is declared");
 assert.match(files.js, /encodeCapsule/, "capsule encoder is wired");
@@ -57,9 +60,12 @@ assert.match(files.js, /ArrowLeft/, "keyboard previous trace is wired");
 assert.match(files.js, /window\.confirm/, "local reset asks for confirmation");
 assert.match(files.css, /aria-pressed="true"/, "tour active state has visible styling");
 assert.match(files.css, /\.file-input/, "file input is visually hidden but present");
-assert.match(files.serviceWorker, /CACHE_NAME = "trace-atlas-shell-v3"/, "service worker cache is versioned");
-for (const cachedFile of ["./index.html", "./styles.css", "./app.js", "./icon.svg", "./site.webmanifest"]) {
-  assert.match(files.serviceWorker, new RegExp(cachedFile.replace(/[./]/g, "\\$&")), `service worker caches ${cachedFile}`);
+assert.match(files.serviceWorker, /CACHE_NAME = "trace-atlas-shell-v4"/, "service worker cache is versioned");
+assert.match(files.html, /href="\.\/styles\.css\?v=6"/, "stylesheet URL is versioned");
+assert.match(files.html, /src="\.\/app\.js\?v=6"/, "script URL is versioned");
+for (const cachedFile of ["./index.html", "./styles.css?v=6", "./app.js?v=6", "./icon.svg", "./site.webmanifest"]) {
+  const escaped = cachedFile.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  assert.match(files.serviceWorker, new RegExp(escaped), `service worker caches ${cachedFile}`);
 }
 assert.match(files.server, /\.webmanifest/, "local server serves the manifest type");
 assert.match(files.server, /\.svg/, "local server serves svg icons");
