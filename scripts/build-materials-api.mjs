@@ -72,9 +72,9 @@ function renderApi(index) {
         href: item.href,
         groupId: group.id,
         groupTitle: group.title,
-        kind: meta.kind,
-        useCase: meta.useCase,
-        audience: meta.audience,
+        kind: item.kind || meta.kind,
+        useCase: item.useCase || meta.useCase,
+        audience: item.audience || meta.audience,
         format: inferFormat(item.href)
       });
     }

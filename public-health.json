@@ -4,10 +4,10 @@
   "status": "可公开访问",
   "summary": "公开入口、传播素材、发布清单、自动验证和边界扫描均已形成可复核证据。",
   "counts": {
-    "publicLinks": 21,
-    "visualAssets": 5,
+    "publicLinks": 29,
+    "visualAssets": 9,
     "publishDocuments": 11,
-    "verificationScripts": 9
+    "verificationScripts": 10
   },
   "checks": [
     {
@@ -96,6 +96,31 @@
       "evidenceHref": "https://trace-atlas-codex.pages.dev/materials-packs.json"
     },
     {
+      "label": "阅读了解行动包页已公开",
+      "state": "ok",
+      "evidenceHref": "https://trace-atlas-codex.pages.dev/pack-read"
+    },
+    {
+      "label": "发帖发布行动包页已公开",
+      "state": "ok",
+      "evidenceHref": "https://trace-atlas-codex.pages.dev/pack-publish"
+    },
+    {
+      "label": "复用接力行动包页已公开",
+      "state": "ok",
+      "evidenceHref": "https://trace-atlas-codex.pages.dev/pack-reuse"
+    },
+    {
+      "label": "验证维护行动包页已公开",
+      "state": "ok",
+      "evidenceHref": "https://trace-atlas-codex.pages.dev/pack-verify"
+    },
+    {
+      "label": "行动包分享卡已公开",
+      "state": "ok",
+      "evidenceHref": "https://trace-atlas-codex.pages.dev/promo/pack-publish-card.svg"
+    },
+    {
       "label": "发布报告可生成",
       "state": "ok",
       "evidenceHref": "https://trace-atlas-codex.pages.dev/promo/xhs-publish-report.md"
@@ -119,6 +144,11 @@
       "label": "材料行动包生成脚本纳入 CI",
       "state": "ok",
       "evidenceHref": "https://github.com/soya-xx/trace-atlas/blob/main/scripts/build-materials-packs.mjs"
+    },
+    {
+      "label": "行动包页面生成脚本纳入 CI",
+      "state": "ok",
+      "evidenceHref": "https://github.com/soya-xx/trace-atlas/blob/main/scripts/build-pack-pages.mjs"
     },
     {
       "label": "工作日志持续同步",

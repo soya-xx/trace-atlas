@@ -36,6 +36,28 @@
           "href": "https://trace-atlas-codex.pages.dev/materials-guide"
         },
         {
+          "label": "阅读了解行动包",
+          "href": "https://trace-atlas-codex.pages.dev/pack-read"
+        },
+        {
+          "label": "发帖发布行动包",
+          "href": "https://trace-atlas-codex.pages.dev/pack-publish",
+          "useCase": "publish",
+          "audience": "creator"
+        },
+        {
+          "label": "复用接力行动包",
+          "href": "https://trace-atlas-codex.pages.dev/pack-reuse",
+          "useCase": "reuse",
+          "audience": "tool"
+        },
+        {
+          "label": "验证维护行动包",
+          "href": "https://trace-atlas-codex.pages.dev/pack-verify",
+          "useCase": "verify",
+          "audience": "maintainer"
+        },
+        {
           "label": "项目纪念碑",
           "href": "https://trace-atlas-codex.pages.dev/monument"
         }
@@ -64,6 +86,22 @@
         {
           "label": "公开健康徽章",
           "href": "https://trace-atlas-codex.pages.dev/public-health-badge.svg"
+        },
+        {
+          "label": "阅读了解包分享卡",
+          "href": "https://trace-atlas-codex.pages.dev/promo/pack-read-card.svg"
+        },
+        {
+          "label": "发帖发布包分享卡",
+          "href": "https://trace-atlas-codex.pages.dev/promo/pack-publish-card.svg"
+        },
+        {
+          "label": "复用接力包分享卡",
+          "href": "https://trace-atlas-codex.pages.dev/promo/pack-reuse-card.svg"
+        },
+        {
+          "label": "验证维护包分享卡",
+          "href": "https://trace-atlas-codex.pages.dev/promo/pack-verify-card.svg"
         }
       ]
     },
@@ -194,6 +232,10 @@
         {
           "label": "材料行动包生成脚本",
           "href": "https://github.com/soya-xx/trace-atlas/blob/main/scripts/build-materials-packs.mjs"
+        },
+        {
+          "label": "行动包页面生成脚本",
+          "href": "https://github.com/soya-xx/trace-atlas/blob/main/scripts/build-pack-pages.mjs"
         }
       ]
     }

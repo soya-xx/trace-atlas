@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#c9961a">
+    <meta name="description" content="适合维护者复核公开状态、检查脚本和自动化是否仍然有效。">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="zh_CN">
+    <meta property="og:title" content="Trace Atlas 验证维护包">
+    <meta property="og:description" content="从 Actions、脚本和摘要开始核验，发现过期材料后重新生成并部署。">
+    <meta property="og:url" content="https://trace-atlas-codex.pages.dev/pack-verify">
+    <meta property="og:image" content="https://trace-atlas-codex.pages.dev/promo/pack-verify-card.svg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Trace Atlas 验证维护包">
+    <meta name="twitter:description" content="适合维护者复核公开状态、检查脚本和自动化是否仍然有效。">
+    <meta name="twitter:image" content="https://trace-atlas-codex.pages.dev/promo/pack-verify-card.svg">
+    <title>Trace Atlas 验证维护包</title>
+    <link rel="icon" href="./icon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="./launch.css?v=9">
+  </head>
+  <body>
+    <main class="launch-shell pack-shell" aria-labelledby="pack-title">
+      <section class="intro route-intro">
+        <p class="eyebrow">VERIFY PACK / 验证维护</p>
+        <h1 id="pack-title">验证维护包</h1>
+        <p class="lead">适合维护者复核公开状态、检查脚本和自动化是否仍然有效。 从 Actions、脚本和摘要开始核验，发现过期材料后重新生成并部署。</p>
+        <div class="primary-links" aria-label="行动包入口">
+          <a href="./materials-guide.html">材料选择器</a>
+          <a href="./materials.html">材料总览</a>
+          <a href="./materials-packs.json">行动包 JSON</a>
+          <a href="./promo/pack-verify-card.svg">分享卡</a>
+          <a href="./">打开主作品</a>
+          <a href="https://github.com/soya-xx/trace-atlas/issues/1">工作日志</a>
+        </div>
+      </section>
+
+      <section class="pack-hero" aria-label="行动包摘要">
+        <article class="pack-copy-panel">
+          <p class="eyebrow">可以直接带走</p>
+          <h2>10 个材料</h2>
+          <p>这页只整理公开链接。复制后得到 Markdown 清单，适合发帖、复核或带到另一个会话继续加工。</p>
+          <button id="copy-pack-page" class="copy-button" type="button">复制这个行动包</button>
+          <p id="pack-status" class="copy-status" aria-live="polite">行动包已准备好。</p>
+        </article>
+        <article class="pack-visual">
+          <img src="./promo/pack-verify-card.svg" alt="Trace Atlas 验证维护包分享卡">
+          <a href="./promo/pack-verify-card.svg">打开分享卡</a>
+        </article>
+      </section>
+
+      <section class="guide-results" aria-labelledby="pack-list-title">
+        <div class="guide-results-head">
+          <div>
+            <p class="eyebrow">材料清单</p>
+            <h2 id="pack-list-title">按当前任务打开</h2>
+          </div>
+          <a href="https://trace-atlas-codex.pages.dev/pack-verify">https://trace-atlas-codex.pages.dev/pack-verify</a>
+        </div>
+        <div class="pack-list">
+          <article class="pack-item">
+            <p class="eyebrow">page / text/html</p>
+            <h2>验证维护行动包</h2>
+            <p>受众：maintainer</p>
+            <a href="https://trace-atlas-codex.pages.dev/pack-verify">打开材料</a>
+          </article>
+          <article class="pack-item">
+            <p class="eyebrow">verification / github/actions</p>
+            <h2>GitHub Actions</h2>
+            <p>受众：maintainer</p>
+            <a href="https://github.com/soya-xx/trace-atlas/actions/workflows/verify.yml">打开材料</a>
+          </article>
+          <article class="pack-item">
+            <p class="eyebrow">verification / text/javascript</p>
+            <h2>结构验证脚本</h2>
+            <p>受众：maintainer</p>
+            <a href="https://github.com/soya-xx/trace-atlas/blob/main/verify-trace.mjs">打开材料</a>
+          </article>
+          <article class="pack-item">
+            <p class="eyebrow">verification / text/javascript</p>
+            <h2>运行时验证脚本</h2>
+            <p>受众：maintainer</p>
+            <a href="https://github.com/soya-xx/trace-atlas/blob/main/verify-runtime.mjs">打开材料</a>
+          </article>
+          <article class="pack-item">
+            <p class="eyebrow">verification / text/javascript</p>
+            <h2>边界扫描脚本</h2>
+            <p>受众：maintainer</p>
+            <a href="https://github.com/soya-xx/trace-atlas/blob/main/scripts/scan-public-boundary.mjs">打开材料</a>
+          </article>
+          <article class="pack-item">
+            <p class="eyebrow">verification / text/javascript</p>
+            <h2>验证摘要生成脚本</h2>
+            <p>受众：maintainer</p>
+            <a href="https://github.com/soya-xx/trace-atlas/blob/main/scripts/build-verification-summary.mjs">打开材料</a>
+          </article>
+          <article class="pack-item">
+            <p class="eyebrow">verification / text/javascript</p>
+            <h2>时间线生成脚本</h2>
+            <p>受众：maintainer</p>
+            <a href="https://github.com/soya-xx/trace-atlas/blob/main/scripts/build-progress-timeline.mjs">打开材料</a>
+          </article>
+          <article class="pack-item">
+            <p class="eyebrow">verification / text/javascript</p>
+            <h2>材料 API 生成脚本</h2>
+            <p>受众：maintainer</p>
+            <a href="https://github.com/soya-xx/trace-atlas/blob/main/scripts/build-materials-api.mjs">打开材料</a>
+          </article>
+          <article class="pack-item">
+            <p class="eyebrow">verification / text/javascript</p>
+            <h2>材料行动包生成脚本</h2>
+            <p>受众：maintainer</p>
+            <a href="https://github.com/soya-xx/trace-atlas/blob/main/scripts/build-materials-packs.mjs">打开材料</a>
+          </article>
+          <article class="pack-item">
+            <p class="eyebrow">verification / text/javascript</p>
+            <h2>行动包页面生成脚本</h2>
+            <p>受众：maintainer</p>
+            <a href="https://github.com/soya-xx/trace-atlas/blob/main/scripts/build-pack-pages.mjs">打开材料</a>
+          </article>
+        </div>
+      </section>
+    </main>
+    <script id="pack-markdown" type="application/json">"## 验证维护包\n\n适合维护者复核公开状态、检查脚本和自动化是否仍然有效。\n\n从 Actions、脚本和摘要开始核验，发现过期材料后重新生成并部署。\n\n- [验证维护行动包](https://trace-atlas-codex.pages.dev/pack-verify)\n- [GitHub Actions](https://github.com/soya-xx/trace-atlas/actions/workflows/verify.yml)\n- [结构验证脚本](https://github.com/soya-xx/trace-atlas/blob/main/verify-trace.mjs)\n- [运行时验证脚本](https://github.com/soya-xx/trace-atlas/blob/main/verify-runtime.mjs)\n- [边界扫描脚本](https://github.com/soya-xx/trace-atlas/blob/main/scripts/scan-public-boundary.mjs)\n- [验证摘要生成脚本](https://github.com/soya-xx/trace-atlas/blob/main/scripts/build-verification-summary.mjs)\n- [时间线生成脚本](https://github.com/soya-xx/trace-atlas/blob/main/scripts/build-progress-timeline.mjs)\n- [材料 API 生成脚本](https://github.com/soya-xx/trace-atlas/blob/main/scripts/build-materials-api.mjs)\n- [材料行动包生成脚本](https://github.com/soya-xx/trace-atlas/blob/main/scripts/build-materials-packs.mjs)\n- [行动包页面生成脚本](https://github.com/soya-xx/trace-atlas/blob/main/scripts/build-pack-pages.mjs)\n"</script>
+    <script src="./pack-page.js?v=1"></script>
+  </body>
+</html>

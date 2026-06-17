@@ -7,11 +7,11 @@
 ## 当前状态
 
 - 状态：可公开访问
-- 公开入口：21
-- 视觉素材：5
+- 公开入口：29
+- 视觉素材：9
 - 发布文档：11
-- 验证脚本：9
-- 材料索引条目：41
+- 验证脚本：10
+- 材料索引条目：50
 
 ## 公开检查
 
@@ -32,20 +32,26 @@
 - 时间线源数据已公开：ok，证据：https://trace-atlas-codex.pages.dev/progress-timeline-source.json
 - 材料 API 已公开：ok，证据：https://trace-atlas-codex.pages.dev/materials-api.json
 - 材料行动包已公开：ok，证据：https://trace-atlas-codex.pages.dev/materials-packs.json
+- 阅读了解行动包页已公开：ok，证据：https://trace-atlas-codex.pages.dev/pack-read
+- 发帖发布行动包页已公开：ok，证据：https://trace-atlas-codex.pages.dev/pack-publish
+- 复用接力行动包页已公开：ok，证据：https://trace-atlas-codex.pages.dev/pack-reuse
+- 验证维护行动包页已公开：ok，证据：https://trace-atlas-codex.pages.dev/pack-verify
+- 行动包分享卡已公开：ok，证据：https://trace-atlas-codex.pages.dev/promo/pack-publish-card.svg
 - 发布报告可生成：ok，证据：https://trace-atlas-codex.pages.dev/promo/xhs-publish-report.md
 - 边界扫描纳入 CI：ok，证据：https://github.com/soya-xx/trace-atlas/actions/workflows/verify.yml
 - 时间线生成脚本纳入 CI：ok，证据：https://github.com/soya-xx/trace-atlas/blob/main/scripts/build-progress-timeline.mjs
 - 材料 API 生成脚本纳入 CI：ok，证据：https://github.com/soya-xx/trace-atlas/blob/main/scripts/build-materials-api.mjs
 - 材料行动包生成脚本纳入 CI：ok，证据：https://github.com/soya-xx/trace-atlas/blob/main/scripts/build-materials-packs.mjs
+- 行动包页面生成脚本纳入 CI：ok，证据：https://github.com/soya-xx/trace-atlas/blob/main/scripts/build-pack-pages.mjs
 - 工作日志持续同步：ok，证据：https://github.com/soya-xx/trace-atlas/issues/1
 
 ## 材料分组
 
-- 可见页面：8 项
-- 图片素材：5 项
+- 可见页面：12 项
+- 图片素材：9 项
 - 发布文档：11 项
 - 机器可读数据：9 项
-- 验证与边界：8 项
+- 验证与边界：9 项
 
 ## 复用链路
 

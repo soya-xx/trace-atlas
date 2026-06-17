@@ -12,6 +12,10 @@
 - 材料选择器：`https://trace-atlas-codex.pages.dev/materials-guide`
 - 材料 API：`https://trace-atlas-codex.pages.dev/materials-api.json`
 - 材料行动包：`https://trace-atlas-codex.pages.dev/materials-packs.json`
+- 阅读了解行动包：`https://trace-atlas-codex.pages.dev/pack-read`
+- 发帖发布行动包：`https://trace-atlas-codex.pages.dev/pack-publish`
+- 复用接力行动包：`https://trace-atlas-codex.pages.dev/pack-reuse`
+- 验证维护行动包：`https://trace-atlas-codex.pages.dev/pack-verify`
 - 项目纪念碑：`https://trace-atlas-codex.pages.dev/monument`
 - 公开化路线图：`https://trace-atlas-codex.pages.dev/workflow`
 - 验证摘要：`https://trace-atlas-codex.pages.dev/verification-summary.md`
@@ -23,6 +27,7 @@
 - 小红书发布前报告：`https://trace-atlas-codex.pages.dev/promo/xhs-publish-report.md`
 - 复用流程图：`https://trace-atlas-codex.pages.dev/promo/reuse-flow-card.png`
 - 公开健康徽章：`https://trace-atlas-codex.pages.dev/public-health-badge.svg`
+- 行动包分享卡：`https://trace-atlas-codex.pages.dev/promo/pack-publish-card.svg`
 - 公开仓库：`https://github.com/soya-xx/trace-atlas`
 - 工作日志：`https://github.com/soya-xx/trace-atlas/issues/1`
 - 公开健康状态：`https://trace-atlas-codex.pages.dev/public-health.json`
@@ -59,6 +64,8 @@
 - `materials-packs.json` 由材料 API 生成，提供可复制的阅读、发布、复用和验证行动包。
 - `scripts/build-materials-packs.mjs` 负责生成并检查材料行动包。
 - `materials-guide.html` 从材料 API 读取条目，按阅读、发布、复用和验证筛选材料。
+- `pack-read.html`、`pack-publish.html`、`pack-reuse.html` 和 `pack-verify.html` 由行动包 JSON 生成，提供可单独分享的任务入口。
+- `scripts/build-pack-pages.mjs` 负责生成并检查行动包页面和分享卡。
 - `reuse-map.json` 把开始复用、快速清单、完整模板、证据包、健康状态和回流模板整理成机器可读链路。
 - `reuse.html` 和 `promo/reuse-flow-card.png` 把同一条链路翻译成读者能扫读的页面和传播配图。
 - `verification-summary.md` 由公开 JSON 生成，方便快速复制到 issue 或交给读者复核。
@@ -80,6 +87,7 @@ npm run check
 - 运行时行为，包括时间线渲染、模板复制、导入、导出、快照和胶囊链接。
 - 材料 API 是否由材料索引重新生成。
 - 材料行动包是否由材料 API 重新生成。
+- 行动包页面和分享卡是否由行动包 JSON 重新生成。
 - 进展时间线是否由源数据重新生成。
 - 验证摘要是否与公开 JSON 保持一致。
 
@@ -109,6 +117,11 @@ curl -I https://trace-atlas-codex.pages.dev/public-health.json
 curl -I https://trace-atlas-codex.pages.dev/materials-index.json
 curl -I https://trace-atlas-codex.pages.dev/materials-api.json
 curl -I https://trace-atlas-codex.pages.dev/materials-packs.json
+curl -I https://trace-atlas-codex.pages.dev/pack-read
+curl -I https://trace-atlas-codex.pages.dev/pack-publish
+curl -I https://trace-atlas-codex.pages.dev/pack-reuse
+curl -I https://trace-atlas-codex.pages.dev/pack-verify
+curl -I https://trace-atlas-codex.pages.dev/promo/pack-publish-card.svg
 curl -I https://trace-atlas-codex.pages.dev/reuse-map.json
 curl -I https://trace-atlas-codex.pages.dev/templates/ai-session-public-quickstart.md
 curl -I https://trace-atlas-codex.pages.dev/progress-timeline.json
@@ -133,6 +146,8 @@ curl -I https://trace-atlas-codex.pages.dev/progress-timeline-source.json
 - 公开材料总览 JSON 返回 JSON。
 - 材料 API 返回 JSON。
 - 材料行动包返回 JSON。
+- 4 个行动包页面返回 `200`。
+- 行动包分享卡返回 `image/svg+xml`。
 - 复用链路 JSON 返回 JSON。
 - 公开化快速清单返回 Markdown 文本。
 - 进展时间线返回 JSON。
