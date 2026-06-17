@@ -12,6 +12,7 @@
 - 项目纪念碑：`https://trace-atlas-codex.pages.dev/monument`
 - 公开化路线图：`https://trace-atlas-codex.pages.dev/workflow`
 - 验证摘要：`https://trace-atlas-codex.pages.dev/verification-summary.md`
+- 进展时间线源数据：`https://trace-atlas-codex.pages.dev/progress-timeline-source.json`
 - 小红书发布草稿包：`https://trace-atlas-codex.pages.dev/promo/xhs-post-drafts.md`
 - 小红书发布后回流模板：`https://trace-atlas-codex.pages.dev/promo/xhs-feedback-loop-template.md`
 - 小红书发布检查台：`https://trace-atlas-codex.pages.dev/promo/xhs-publish-checklist.md`
@@ -34,6 +35,7 @@
 - 主作品支持本地种痕迹、导出 JSON、导入 JSON、生成胶囊链接和导出 SVG 快照。
 - 来路账本记录关键里程碑提交。
 - 进展时间线把工程记录整理成读者能顺着读的故事线。
+- 进展时间线源数据由 `scripts/build-progress-timeline.mjs` 生成正式时间线，阶段号不再手工维护。
 - 公开化路线图把会话公开化流程整理成可复用步骤。
 - 开始复用入口把快速清单、完整模板、证据包、公开健康和回流模板放到同一个行动页。
 - 小红书传播包包含标题、正文草案、封面图和发布前检查。
@@ -53,6 +55,7 @@
 - `reuse.html` 和 `promo/reuse-flow-card.png` 把同一条链路翻译成读者能扫读的页面和传播配图。
 - `verification-summary.md` 由公开 JSON 生成，方便快速复制到 issue 或交给读者复核。
 - `scripts/build-verification-summary.mjs` 负责生成并检查验证摘要。
+- `progress-timeline-source.json` 和 `scripts/build-progress-timeline.mjs` 负责生成并检查进展时间线。
 - `monument.html` 用公开文字说明项目为什么存在，以及公开边界如何被处理。
 - Cloudflare Pages 使用独立项目 `trace-atlas-codex`，不触碰账号里已有的其他 Pages 项目。
 
@@ -67,6 +70,7 @@ npm run check
 - JavaScript 语法。
 - 主页结构、缓存版本、离线外壳、数据文件、分享素材和模板入口。
 - 运行时行为，包括时间线渲染、模板复制、导入、导出、快照和胶囊链接。
+- 进展时间线是否由源数据重新生成。
 - 验证摘要是否与公开 JSON 保持一致。
 
 ## 线上验证
@@ -95,6 +99,7 @@ curl -I https://trace-atlas-codex.pages.dev/materials-index.json
 curl -I https://trace-atlas-codex.pages.dev/reuse-map.json
 curl -I https://trace-atlas-codex.pages.dev/templates/ai-session-public-quickstart.md
 curl -I https://trace-atlas-codex.pages.dev/progress-timeline.json
+curl -I https://trace-atlas-codex.pages.dev/progress-timeline-source.json
 ```
 
 期望结果：
@@ -116,6 +121,7 @@ curl -I https://trace-atlas-codex.pages.dev/progress-timeline.json
 - 复用链路 JSON 返回 JSON。
 - 公开化快速清单返回 Markdown 文本。
 - 进展时间线返回 JSON。
+- 进展时间线源数据返回 JSON。
 
 ## 公开边界
 

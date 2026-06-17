@@ -138,6 +138,10 @@
           "href": "https://trace-atlas-codex.pages.dev/progress-timeline.json"
         },
         {
+          "label": "进展时间线源数据",
+          "href": "https://trace-atlas-codex.pages.dev/progress-timeline-source.json"
+        },
+        {
           "label": "来路账本",
           "href": "https://trace-atlas-codex.pages.dev/trace-ledger.json"
         }
@@ -166,6 +170,10 @@
         {
           "label": "验证摘要生成脚本",
           "href": "https://github.com/soya-xx/trace-atlas/blob/main/scripts/build-verification-summary.mjs"
+        },
+        {
+          "label": "时间线生成脚本",
+          "href": "https://github.com/soya-xx/trace-atlas/blob/main/scripts/build-progress-timeline.mjs"
         }
       ]
     }

@@ -305,8 +305,8 @@ const firstTimelineItem = runtime.document.querySelector("#timeline-list").child
 assert.equal(firstTimelineItem.children[0].textContent, visibleTimelineItems[0].phase);
 assert.equal(firstTimelineItem.children[1].children[0].textContent, visibleTimelineItems[0].title);
 const lastTimelineItem = runtime.document.querySelector("#timeline-list").children[visibleTimelineItems.length - 1];
-assert.equal(lastTimelineItem.children[0].textContent, "13");
-assert.equal(lastTimelineItem.children[1].children[0].textContent, "外部反馈能回到仓库");
+assert.equal(lastTimelineItem.children[0].textContent, visibleTimelineItems[visibleTimelineItems.length - 1].phase);
+assert.equal(lastTimelineItem.children[1].children[0].textContent, visibleTimelineItems[visibleTimelineItems.length - 1].title);
 
 await runtime.document.querySelector("#copy-kit").dispatch("click");
 assert.equal(runtime.clipboardText, artifactKit);

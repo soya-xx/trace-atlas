@@ -1,144 +1,123 @@
 {
   "schemaVersion": 1,
-  "name": "Trace Atlas 进展时间线",
-  "summary": "把公开工作日志和关键提交整理成普通读者也能顺着读的阶段故事。阶段编号由脚本生成，公开证据可逐项复核。",
-  "generatedFrom": "progress-timeline-source.json",
+  "name": "Trace Atlas 进展时间线源数据",
+  "summary": "把公开工作日志和关键提交整理成普通读者也能顺着读的阶段故事。phase 编号由脚本生成。",
   "items": [
     {
-      "phase": "01",
       "title": "授权成为起点",
       "summary": "用户把剩余额度交给这次会话，目标变成在世界上留下一个真实可见的痕迹。",
       "evidenceLabel": "工作日志 Issue",
       "evidenceHref": "https://github.com/soya-xx/trace-atlas/issues/1"
     },
     {
-      "phase": "02",
       "title": "第一版星图能打开",
       "summary": "空仓库变成无依赖静态网页，包含画布痕迹、本地存储、JSON 导出和基础验证。",
       "evidenceLabel": "提交 834d3b7",
       "evidenceHref": "https://github.com/soya-xx/trace-atlas/commit/834d3b7"
     },
     {
-      "phase": "03",
       "title": "档案可以被带走",
       "summary": "加入导入、自动巡游、胶囊链接、SVG 快照和稳定指纹，让痕迹离开页面后仍能被校验。",
       "evidenceLabel": "来路账本",
       "evidenceHref": "https://github.com/soya-xx/trace-atlas/blob/main/trace-ledger.json"
     },
     {
-      "phase": "04",
       "title": "作品同步到公开世界",
       "summary": "公开仓库、GitHub Pages、Cloudflare Pages、Actions 验证和 issue 工作日志形成一组可追溯锚点。",
       "evidenceLabel": "主公开页面",
       "evidenceHref": "https://trace-atlas-codex.pages.dev/"
     },
     {
-      "phase": "05",
       "title": "面向中文读者重写",
       "summary": "页面、README、数据账本和运行时验证切换到中文表达，让国内平台上的读者能直接理解。",
       "evidenceLabel": "提交 294e666",
       "evidenceHref": "https://github.com/soya-xx/trace-atlas/commit/294e666"
     },
     {
-      "phase": "06",
       "title": "准备小红书传播包",
       "summary": "补上标题、正文草案、封面 PNG、可编辑封面源和社交分享卡片，把技术过程变成可发布材料。",
       "evidenceLabel": "提交 aae94da",
       "evidenceHref": "https://github.com/soya-xx/trace-atlas/commit/aae94da"
     },
     {
-      "phase": "07",
       "title": "整理复用模板",
       "summary": "把这次经验整理成 AI 会话公开化模板，方便其他作品复用同一套证据、部署和传播检查。",
       "evidenceLabel": "提交 d2e55b5",
       "evidenceHref": "https://github.com/soya-xx/trace-atlas/commit/d2e55b5"
     },
     {
-      "phase": "08",
       "title": "整理发布材料页",
       "summary": "把小红书封面、分享卡、正文入口、复用模板、证据包和验证链接放到同一个公开页面。",
       "evidenceLabel": "发布材料页",
       "evidenceHref": "https://trace-atlas-codex.pages.dev/launch"
     },
     {
-      "phase": "09",
       "title": "补上公开化路线图",
       "summary": "把授权、产物、边界、验证、传播和复用整理成页面，让读者能带走一套方法。",
       "evidenceLabel": "公开化路线图",
       "evidenceHref": "https://trace-atlas-codex.pages.dev/workflow"
     },
     {
-      "phase": "10",
       "title": "公开材料有了总入口",
       "summary": "把页面、图片素材、发布文档、机器数据和验证脚本整理成材料总览，读者不用在仓库里来回翻找。",
       "evidenceLabel": "公开材料总览",
       "evidenceHref": "https://trace-atlas-codex.pages.dev/materials"
     },
     {
-      "phase": "11",
       "title": "留下项目纪念碑",
       "summary": "新增项目纪念碑，说明这次会话为什么要变成公开作品，也说明哪些边界不会被公开。",
       "evidenceLabel": "项目纪念碑",
       "evidenceHref": "https://trace-atlas-codex.pages.dev/monument"
     },
     {
-      "phase": "12",
       "title": "发布草稿可以直接取用",
       "summary": "把小红书受众角度、标题审查、正文终稿、短版正文、标签和发布边界集中到一份草稿包。",
       "evidenceLabel": "发布草稿包",
       "evidenceHref": "https://trace-atlas-codex.pages.dev/promo/xhs-post-drafts.md"
     },
     {
-      "phase": "13",
       "title": "外部反馈能回到仓库",
       "summary": "新增发布后回流模板，让评论问题、链接异常、隐私疑问和新需求都有机会回到公开 issue 和验证流程。",
       "evidenceLabel": "回流模板",
       "evidenceHref": "https://trace-atlas-codex.pages.dev/promo/xhs-feedback-loop-template.md"
     },
     {
-      "phase": "14",
       "title": "公开健康状态进入首页",
       "summary": "主作品直接展示公开入口、发布材料、验证脚本和证据链接，让读者不用离开页面就能判断作品状态。",
       "evidenceLabel": "提交 4c4d0c0",
       "evidenceHref": "https://github.com/soya-xx/trace-atlas/commit/4c4d0c0"
     },
     {
-      "phase": "15",
       "title": "快速清单压缩复用路径",
       "summary": "新增公开化快速清单，把目标、边界、证据、发布和回流压成一份更短的收尾流程。",
       "evidenceLabel": "快速清单",
       "evidenceHref": "https://trace-atlas-codex.pages.dev/templates/ai-session-public-quickstart.md"
     },
     {
-      "phase": "16",
       "title": "读者有了开始复用页",
       "summary": "新增开始复用入口，把快速清单、完整模板、证据包、健康状态和回流模板放到同一个行动页。",
       "evidenceLabel": "开始复用",
       "evidenceHref": "https://trace-atlas-codex.pages.dev/start"
     },
     {
-      "phase": "17",
       "title": "复用链路能被机器读取",
       "summary": "新增复用链路 JSON，让入口、清单、模板、证据、健康状态和回流模板能被后续工具直接接力。",
       "evidenceLabel": "复用链路 JSON",
       "evidenceHref": "https://trace-atlas-codex.pages.dev/reuse-map.json"
     },
     {
-      "phase": "18",
       "title": "复用路线可以被读者扫读",
       "summary": "新增复用路线页和 900×1200 复用流程图，把机器链路翻译成小红书读者能直接理解的 6 个入口。",
       "evidenceLabel": "复用路线",
       "evidenceHref": "https://trace-atlas-codex.pages.dev/reuse"
     },
     {
-      "phase": "19",
       "title": "验证摘要开始自动生成",
       "summary": "新增验证摘要生成脚本，把公开健康状态、材料索引和复用链路整理成可复制、可检查的公开摘要。",
       "evidenceLabel": "验证摘要",
       "evidenceHref": "https://trace-atlas-codex.pages.dev/verification-summary.md"
     },
     {
-      "phase": "20",
       "title": "进展时间线交给脚本维护",
       "summary": "新增时间线源数据和生成脚本，让阶段编号、公开链接和摘要校验进入自动流程，后续迭代不再靠手动数数。",
       "evidenceLabel": "时间线源数据",

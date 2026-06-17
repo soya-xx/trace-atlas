@@ -1,4 +1,4 @@
-const CACHE_NAME = "trace-atlas-shell-v33";
+const CACHE_NAME = "trace-atlas-shell-v34";
 const APP_SHELL = [
   "./",
   "./index.html",
@@ -11,7 +11,7 @@ const APP_SHELL = [
   "./styles.css?v=13",
   "./launch.css?v=7",
   "./launch.js?v=1",
-  "./app.js?v=15",
+  "./app.js?v=16",
   "./icon.svg",
   "./social-card.svg",
   "./public-health-badge.svg",
@@ -28,10 +28,11 @@ const APP_SHELL = [
   "./templates/ai-session-artifact-kit.md",
   "./templates/ai-session-public-quickstart.md",
   "./site.webmanifest",
-  "./progress-timeline.json?v=8",
-  "./world-sync.json?v=8",
-  "./trace-ledger.json?v=8",
-  "./public-health.json?v=8",
+  "./progress-timeline.json?v=9",
+  "./progress-timeline-source.json",
+  "./world-sync.json?v=9",
+  "./trace-ledger.json?v=9",
+  "./public-health.json?v=9",
   "./materials-index.json",
   "./reuse-map.json"
 ];
