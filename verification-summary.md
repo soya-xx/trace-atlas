@@ -33,6 +33,7 @@
 - 材料 API 已公开：ok，证据：https://trace-atlas-codex.pages.dev/materials-api.json
 - 材料行动包已公开：ok，证据：https://trace-atlas-codex.pages.dev/materials-packs.json
 - 发布前自检页已公开：ok，证据：https://trace-atlas-codex.pages.dev/preflight
+- 发布记录模板已公开：ok，证据：https://trace-atlas-codex.pages.dev/preflight
 - 阅读了解行动包页已公开：ok，证据：https://trace-atlas-codex.pages.dev/pack-read
 - 发帖发布行动包页已公开：ok，证据：https://trace-atlas-codex.pages.dev/pack-publish
 - 复用接力行动包页已公开：ok，证据：https://trace-atlas-codex.pages.dev/pack-reuse

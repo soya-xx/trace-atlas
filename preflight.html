@@ -17,7 +17,7 @@
     <meta name="twitter:image" content="https://trace-atlas-codex.pages.dev/promo/pack-publish-card.svg">
     <title>Trace Atlas 发布前自检</title>
     <link rel="icon" href="./icon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="./launch.css?v=10">
+    <link rel="stylesheet" href="./launch.css?v=11">
   </head>
   <body>
     <main class="launch-shell preflight-shell" aria-labelledby="preflight-title">
@@ -59,7 +59,48 @@
         </div>
         <pre id="preflight-report">等待自检结果。</pre>
       </section>
+
+      <section class="publish-record" aria-labelledby="publish-record-title">
+        <div class="guide-results-head">
+          <div>
+            <p class="eyebrow">发布后回流</p>
+            <h2 id="publish-record-title">发布记录模板</h2>
+          </div>
+          <button id="copy-record" class="copy-button" type="button">复制发布记录</button>
+        </div>
+        <div class="record-grid">
+          <label class="record-field">
+            <span>小红书链接</span>
+            <input id="record-url" type="url" placeholder="https://www.xiaohongshu.com/..." autocomplete="off">
+          </label>
+          <label class="record-field">
+            <span>发布时间</span>
+            <input id="record-time" type="datetime-local">
+          </label>
+          <label class="record-field">
+            <span>当前状态</span>
+            <select id="record-status">
+              <option>待发布</option>
+              <option>已发布</option>
+              <option>已回流</option>
+            </select>
+          </label>
+          <label class="record-field record-wide">
+            <span>评论与问题</span>
+            <textarea id="record-feedback" rows="4" placeholder="记录读者问了什么、哪里没看懂、哪些链接被点击或收藏。"></textarea>
+          </label>
+          <label class="record-field record-wide">
+            <span>处理动作</span>
+            <textarea id="record-action" rows="4" placeholder="记录已经补充的页面、修正的文案、回写的 issue 或下一次要验证的假设。"></textarea>
+          </label>
+          <label class="record-field record-wide">
+            <span>下一步</span>
+            <textarea id="record-next" rows="3" placeholder="写下下一次迭代最小动作。"></textarea>
+          </label>
+        </div>
+        <pre id="publish-record-output">等待填写发布记录。</pre>
+      </section>
     </main>
-    <script src="./preflight.js?v=1"></script>
+    <script src="./preflight.js?v=2"></script>
   </body>
 </html>

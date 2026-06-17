@@ -682,11 +682,13 @@ code {
   overflow-wrap: anywhere;
 }
 
-.preflight-report {
+.preflight-report,
+.publish-record {
   margin-top: 0;
 }
 
-.preflight-report pre {
+.preflight-report pre,
+.publish-record pre {
   overflow: auto;
   max-width: 100%;
   margin: 14px 0 0;
@@ -699,6 +701,60 @@ code {
   font-size: 0.88rem;
   line-height: 1.55;
   white-space: pre-wrap;
+}
+
+.publish-record {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 18px;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: var(--shadow);
+  margin-top: 18px;
+}
+
+.record-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.record-field {
+  display: grid;
+  gap: 7px;
+  min-width: 0;
+  color: var(--muted);
+  font-size: 0.86rem;
+  font-weight: 900;
+}
+
+.record-field input,
+.record-field select,
+.record-field textarea {
+  width: 100%;
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 11px 12px;
+  background: white;
+  color: var(--ink);
+  font: inherit;
+  font-weight: 750;
+}
+
+.record-field textarea {
+  resize: vertical;
+}
+
+.record-field input:focus,
+.record-field select:focus,
+.record-field textarea:focus {
+  border-color: var(--green);
+  outline: none;
+}
+
+.record-wide {
+  grid-column: 1 / -1;
 }
 
 .checklist {
@@ -734,6 +790,7 @@ code {
   .pack-list,
   .preflight-panel,
   .preflight-list,
+  .record-grid,
   .copy-grid,
   .checklist {
     grid-template-columns: 1fr;

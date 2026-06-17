@@ -70,6 +70,14 @@ const statusNode = document.querySelector("#preflight-status");
 const reportNode = document.querySelector("#preflight-report");
 const copyButton = document.querySelector("#copy-preflight");
 const rerunButton = document.querySelector("#rerun-preflight");
+const recordUrl = document.querySelector("#record-url");
+const recordTime = document.querySelector("#record-time");
+const recordStatus = document.querySelector("#record-status");
+const recordFeedback = document.querySelector("#record-feedback");
+const recordAction = document.querySelector("#record-action");
+const recordNext = document.querySelector("#record-next");
+const recordOutput = document.querySelector("#publish-record-output");
+const copyRecordButton = document.querySelector("#copy-record");
 
 let latestResults = [];
 
@@ -126,6 +134,7 @@ function updateReport(results) {
   const report = buildReport(results);
   reportNode.textContent = report;
   copyButton.disabled = results.length === 0;
+  updatePublishRecord();
 }
 
 async function readCheck(check) {
@@ -179,11 +188,59 @@ async function runPreflight() {
 
 async function copyReport() {
   const report = buildReport(latestResults);
+  await copyText(report);
+  setStatus("自检报告已复制。");
+}
+
+function fieldValue(node, fallback) {
+  const value = node.value.trim();
+  return value.length > 0 ? value : fallback;
+}
+
+function preflightLine() {
+  if (latestResults.length === 0) {
+    return "自检：尚未完成。";
+  }
+  const passed = latestResults.filter((result) => result.ok).length;
+  return `自检：${passed}/${latestResults.length} 通过。`;
+}
+
+function buildPublishRecord() {
+  const lines = [
+    "## Trace Atlas 发布记录",
+    "",
+    `状态：${recordStatus.value}`,
+    `小红书链接：${fieldValue(recordUrl, "待补充")}`,
+    `发布时间：${fieldValue(recordTime, "待补充")}`,
+    `发布前${preflightLine()}`,
+    "",
+    "### 评论与问题",
+    fieldValue(recordFeedback, "待记录"),
+    "",
+    "### 处理动作",
+    fieldValue(recordAction, "待记录"),
+    "",
+    "### 下一步",
+    fieldValue(recordNext, "待记录"),
+    "",
+    "### 公开证据",
+    "- 自检页：https://trace-atlas-codex.pages.dev/preflight",
+    "- 发帖发布包：https://trace-atlas-codex.pages.dev/pack-publish",
+    "- 验证摘要：https://trace-atlas-codex.pages.dev/verification-summary.md"
+  ];
+  return `${lines.join("\n")}\n`;
+}
+
+function updatePublishRecord() {
+  recordOutput.textContent = buildPublishRecord();
+}
+
+async function copyText(text) {
   try {
-    await navigator.clipboard.writeText(report);
+    await navigator.clipboard.writeText(text);
   } catch {
     const textarea = document.createElement("textarea");
-    textarea.value = report;
+    textarea.value = text;
     textarea.setAttribute("readonly", "");
     textarea.style.position = "fixed";
     textarea.style.opacity = "0";
@@ -192,10 +249,20 @@ async function copyReport() {
     document.execCommand("copy");
     textarea.remove();
   }
-  setStatus("自检报告已复制。");
+}
+
+async function copyPublishRecord() {
+  await copyText(buildPublishRecord());
+  setStatus("发布记录已复制。");
 }
 
 copyButton.addEventListener("click", copyReport);
 rerunButton.addEventListener("click", runPreflight);
+copyRecordButton.addEventListener("click", copyPublishRecord);
 
+for (const node of [recordUrl, recordTime, recordStatus, recordFeedback, recordAction, recordNext]) {
+  node.addEventListener("input", updatePublishRecord);
+}
+
+updatePublishRecord();
 runPreflight();

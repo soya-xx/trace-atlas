@@ -144,7 +144,7 @@ assert.match(files.launchHtml, /workflow\.html/, "launch page links to the workf
 assert.match(files.launchHtml, /materials-guide\.html/, "launch page links to the materials guide");
 assert.match(files.launchHtml, /pack-publish\.html/, "launch page links to the publish action pack");
 assert.match(files.launchHtml, /promo\/pack-publish-card\.svg/, "launch page links to an action pack share card");
-assert.match(files.launchHtml, /href="\.\/launch\.css\?v=10"/, "launch page stylesheet URL is versioned");
+assert.match(files.launchHtml, /href="\.\/launch\.css\?v=11"/, "launch page stylesheet URL is versioned");
 assert.match(files.launchHtml, /src="\.\/launch\.js\?v=1"/, "launch page script URL is versioned");
 assert.match(files.launchHtml, /data-copy="我把AI会话做成网站"/, "launch page can copy the selected title");
 assert.match(files.launchHtml, /id="copy-status"/, "launch page exposes copy status feedback");
@@ -161,6 +161,8 @@ assert.match(files.launchCss, /\.pack-hero/, "action pack page hero is styled");
 assert.match(files.launchCss, /\.pack-list/, "action pack page list is styled");
 assert.match(files.launchCss, /\.preflight-list/, "preflight result list is styled");
 assert.match(files.launchCss, /\.state-pill/, "preflight state pill is styled");
+assert.match(files.launchCss, /\.publish-record/, "publish record panel is styled");
+assert.match(files.launchCss, /\.record-grid/, "publish record form grid is styled");
 assert.match(files.launchCss, /\.handoff-grid/, "workflow handoff grid is styled");
 assert.match(files.launchCss, /\.health-grid/, "launch page health grid is styled");
 assert.match(files.launchCss, /\.materials-grid/, "materials overview grid is styled");
@@ -192,7 +194,7 @@ assert.match(files.materialsHtml, /build-materials-api\.mjs/, "materials overvie
 assert.match(files.materialsHtml, /build-pack-pages\.mjs/, "materials overview page links to the pack page script");
 assert.match(files.materialsHtml, /templates\/ai-session-public-quickstart\.md/, "materials overview page links to the quickstart checklist");
 assert.match(files.materialsHtml, /reuse-map\.json/, "materials overview page links to the reuse map");
-assert.match(files.materialsHtml, /href="\.\/launch\.css\?v=10"/, "materials overview stylesheet URL is versioned");
+assert.match(files.materialsHtml, /href="\.\/launch\.css\?v=11"/, "materials overview stylesheet URL is versioned");
 assert.match(files.materialsGuideHtml, /Trace Atlas 材料选择器/, "materials guide page has a clear title");
 assert.match(files.materialsGuideHtml, /materials-api\.json/, "materials guide links to materials API");
 assert.match(files.materialsGuideHtml, /id="copy-pack"/, "materials guide can copy the active pack");
@@ -202,7 +204,7 @@ assert.match(files.materialsGuideHtml, /data-filter="reuse"/, "materials guide h
 assert.match(files.materialsGuideHtml, /data-filter="verify"/, "materials guide has a verify filter");
 assert.match(files.materialsGuideHtml, /id="guide-list"/, "materials guide exposes a result list");
 assert.match(files.materialsGuideHtml, /src="\.\/materials-guide\.js\?v=1"/, "materials guide script URL is versioned");
-assert.match(files.materialsGuideHtml, /href="\.\/launch\.css\?v=10"/, "materials guide stylesheet URL is versioned");
+assert.match(files.materialsGuideHtml, /href="\.\/launch\.css\?v=11"/, "materials guide stylesheet URL is versioned");
 assert.match(files.materialsGuideJs, /materials-api\.json/, "materials guide script reads the materials API");
 assert.match(files.materialsGuideJs, /materials-packs\.json/, "materials guide script reads materials packs");
 assert.match(files.materialsGuideJs, /copyCurrentPack/, "materials guide script can copy the active pack");
@@ -212,14 +214,22 @@ assert.match(files.materialsGuideJs, /document\.execCommand\("copy"\)/, "materia
 assert.match(files.preflightHtml, /Trace Atlas 发布前自检/, "preflight page has a clear title");
 assert.match(files.preflightHtml, /id="preflight-list"/, "preflight page exposes a result list");
 assert.match(files.preflightHtml, /id="copy-preflight"/, "preflight page can copy the report");
-assert.match(files.preflightHtml, /src="\.\/preflight\.js\?v=1"/, "preflight page script URL is versioned");
-assert.match(files.preflightHtml, /href="\.\/launch\.css\?v=10"/, "preflight page stylesheet URL is versioned");
+assert.match(files.preflightHtml, /src="\.\/preflight\.js\?v=2"/, "preflight page script URL is versioned");
+assert.match(files.preflightHtml, /href="\.\/launch\.css\?v=11"/, "preflight page stylesheet URL is versioned");
+assert.match(files.preflightHtml, /id="copy-record"/, "preflight page can copy the publish record");
+assert.match(files.preflightHtml, /id="publish-record-output"/, "preflight page renders a publish record preview");
+assert.match(files.preflightHtml, /id="record-url"/, "preflight page records the Xiaohongshu URL locally");
+assert.match(files.preflightHtml, /id="record-feedback"/, "preflight page records comment feedback locally");
 assert.match(files.preflightJs, /pack-publish\.html/, "preflight script checks the publish action pack page");
 assert.match(files.preflightJs, /pack-publish-card\.svg/, "preflight script checks the publish action pack card");
 assert.match(files.preflightJs, /materials-api\.json/, "preflight script checks the materials API");
 assert.match(files.preflightJs, /materials-packs\.json/, "preflight script checks the materials packs");
 assert.match(files.preflightJs, /verification-summary\.md/, "preflight script checks the verification summary");
 assert.match(files.preflightJs, /copyReport/, "preflight script can copy the generated report");
+assert.match(files.preflightJs, /buildPublishRecord/, "preflight script builds the publish record");
+assert.match(files.preflightJs, /copyPublishRecord/, "preflight script can copy the publish record");
+assert.match(files.preflightJs, /Trace Atlas 发布记录/, "preflight script outputs a publish record template");
+assert.match(files.preflightJs, /小红书链接/, "preflight script records the Xiaohongshu link");
 assert.match(files.preflightJs, /navigator\.clipboard/, "preflight script can copy via clipboard API");
 assert.match(files.preflightJs, /document\.execCommand\("copy"\)/, "preflight script has a copy fallback");
 assert.match(files.packPageJs, /#copy-pack-page/, "pack page script wires the copy button");
@@ -237,7 +247,7 @@ for (const [name, html, cardPath, title] of [
   assert.match(html, /id="pack-markdown" type="application\/json"/, `${name} pack page embeds markdown data`);
   assert.match(html, new RegExp(cardPath.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")), `${name} pack page links its share card`);
   assert.match(html, /src="\.\/pack-page\.js\?v=1"/, `${name} pack page loads copy script`);
-  assert.match(html, /href="\.\/launch\.css\?v=10"/, `${name} pack page stylesheet URL is versioned`);
+  assert.match(html, /href="\.\/launch\.css\?v=11"/, `${name} pack page stylesheet URL is versioned`);
   assert.match(html, /https:\/\/trace-atlas-codex\.pages\.dev\/pack-/, `${name} pack page exposes its public URL`);
 }
 assert.match(files.startHtml, /Trace Atlas 从这里开始复用/, "start page has a clear title");
@@ -248,7 +258,7 @@ assert.match(files.startHtml, /evidence-pack\.md/, "start page links to the evid
 assert.match(files.startHtml, /public-health\.json/, "start page links to public health data");
 assert.match(files.startHtml, /promo\/xhs-feedback-loop-template\.md/, "start page links to the feedback loop template");
 assert.match(files.startHtml, /reuse-map\.json/, "start page links to the reuse map");
-assert.match(files.startHtml, /href="\.\/launch\.css\?v=10"/, "start page stylesheet URL is versioned");
+assert.match(files.startHtml, /href="\.\/launch\.css\?v=11"/, "start page stylesheet URL is versioned");
 assert.match(files.reuseHtml, /Trace Atlas 复用路线/, "reuse route page has a clear title");
 assert.match(files.reuseHtml, /promo\/reuse-flow-card\.png/, "reuse route page shows the reuse flow card");
 assert.match(files.reuseHtml, /reuse-map\.json/, "reuse route page links to the reuse map");
@@ -257,11 +267,11 @@ assert.match(files.reuseHtml, /templates\/ai-session-artifact-kit\.md/, "reuse r
 assert.match(files.reuseHtml, /evidence-pack\.md/, "reuse route page links to the evidence pack");
 assert.match(files.reuseHtml, /public-health\.json/, "reuse route page links to public health data");
 assert.match(files.reuseHtml, /promo\/xhs-feedback-loop-template\.md/, "reuse route page links to the feedback loop template");
-assert.match(files.reuseHtml, /href="\.\/launch\.css\?v=10"/, "reuse route page stylesheet URL is versioned");
+assert.match(files.reuseHtml, /href="\.\/launch\.css\?v=11"/, "reuse route page stylesheet URL is versioned");
 assert.match(files.monumentHtml, /Trace Atlas 项目纪念碑/, "project monument has a clear title");
 assert.match(files.monumentHtml, /把好意变成证据/, "project monument explains the core intent");
 assert.match(files.monumentHtml, /公开的是负责的部分/, "project monument explains public boundaries");
-assert.match(files.monumentHtml, /href="\.\/launch\.css\?v=10"/, "project monument stylesheet URL is versioned");
+assert.match(files.monumentHtml, /href="\.\/launch\.css\?v=11"/, "project monument stylesheet URL is versioned");
 assert.match(files.workflowHtml, /Trace Atlas 公开化路线图/, "workflow page has a clear title");
 assert.match(files.workflowHtml, /reuse\.html/, "workflow page links to the reuse route page");
 assert.match(files.workflowHtml, /定下产物/, "workflow page names the artifact step");
@@ -270,7 +280,7 @@ assert.match(files.workflowHtml, /留下证据/, "workflow page names the eviden
 assert.match(files.workflowHtml, /写成模板/, "workflow page names the template step");
 assert.match(files.workflowHtml, /social-card\.svg/, "workflow page uses the social card visual");
 assert.match(files.workflowHtml, /property="og:image" content="https:\/\/trace-atlas-codex\.pages\.dev\/promo\/workflow-card\.png"/, "workflow page social preview uses the workflow card");
-assert.match(files.workflowHtml, /href="\.\/launch\.css\?v=10"/, "workflow page stylesheet URL is versioned");
+assert.match(files.workflowHtml, /href="\.\/launch\.css\?v=11"/, "workflow page stylesheet URL is versioned");
 assert.match(files.launchJs, /navigator\.clipboard/, "launch page clipboard API path is present");
 assert.match(files.launchJs, /document\.execCommand\("copy"\)/, "launch page clipboard fallback path is present");
 assert.match(files.launchJs, /\[data-copy\]/, "launch page copy buttons are delegated");
@@ -318,10 +328,10 @@ assert.match(files.js, /ArrowLeft/, "keyboard previous trace is wired");
 assert.match(files.js, /window\.confirm/, "local reset asks for confirmation");
 assert.match(files.css, /aria-pressed="true"/, "tour active state has visible styling");
 assert.match(files.css, /\.file-input/, "file input is visually hidden but present");
-assert.match(files.serviceWorker, /CACHE_NAME = "trace-atlas-shell-v39"/, "service worker cache is versioned");
+assert.match(files.serviceWorker, /CACHE_NAME = "trace-atlas-shell-v40"/, "service worker cache is versioned");
 assert.match(files.html, /href="\.\/styles\.css\?v=13"/, "stylesheet URL is versioned");
 assert.match(files.html, /src="\.\/app\.js\?v=16"/, "script URL is versioned");
-for (const cachedFile of ["./index.html", "./start.html", "./reuse.html", "./launch.html", "./materials.html", "./materials-guide.html", "./preflight.html", "./pack-read.html", "./pack-publish.html", "./pack-reuse.html", "./pack-verify.html", "./monument.html", "./workflow.html", "./styles.css?v=13", "./launch.css?v=10", "./launch.js?v=1", "./materials-guide.js?v=1", "./pack-page.js?v=1", "./preflight.js?v=1", "./app.js?v=16", "./progress-timeline.json?v=9", "./progress-timeline-source.json", "./world-sync.json?v=9", "./trace-ledger.json?v=9", "./public-health.json?v=9", "./materials-index.json", "./materials-api.json", "./materials-packs.json", "./reuse-map.json", "./icon.svg", "./social-card.svg", "./public-health-badge.svg", "./promo/xhs-cover.png", "./promo/workflow-card.png", "./promo/reuse-flow-card.png", "./promo/pack-read-card.svg", "./promo/pack-publish-card.svg", "./promo/pack-reuse-card.svg", "./promo/pack-verify-card.svg", "./promo/xhs-post-drafts.md", "./promo/xhs-feedback-loop-template.md", "./promo/xhs-publish-checklist.md", "./promo/xhs-publish-manifest.json", "./promo/xhs-publish-report.md", "./evidence-pack.md", "./verification-summary.md", "./templates/ai-session-artifact-kit.md", "./templates/ai-session-public-quickstart.md", "./site.webmanifest"]) {
+for (const cachedFile of ["./index.html", "./start.html", "./reuse.html", "./launch.html", "./materials.html", "./materials-guide.html", "./preflight.html", "./pack-read.html", "./pack-publish.html", "./pack-reuse.html", "./pack-verify.html", "./monument.html", "./workflow.html", "./styles.css?v=13", "./launch.css?v=11", "./launch.js?v=1", "./materials-guide.js?v=1", "./pack-page.js?v=1", "./preflight.js?v=2", "./app.js?v=16", "./progress-timeline.json?v=9", "./progress-timeline-source.json", "./world-sync.json?v=9", "./trace-ledger.json?v=9", "./public-health.json?v=9", "./materials-index.json", "./materials-api.json", "./materials-packs.json", "./reuse-map.json", "./icon.svg", "./social-card.svg", "./public-health-badge.svg", "./promo/xhs-cover.png", "./promo/workflow-card.png", "./promo/reuse-flow-card.png", "./promo/pack-read-card.svg", "./promo/pack-publish-card.svg", "./promo/pack-reuse-card.svg", "./promo/pack-verify-card.svg", "./promo/xhs-post-drafts.md", "./promo/xhs-feedback-loop-template.md", "./promo/xhs-publish-checklist.md", "./promo/xhs-publish-manifest.json", "./promo/xhs-publish-report.md", "./evidence-pack.md", "./verification-summary.md", "./templates/ai-session-artifact-kit.md", "./templates/ai-session-public-quickstart.md", "./site.webmanifest"]) {
   const escaped = cachedFile.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   assert.match(files.serviceWorker, new RegExp(escaped), `service worker caches ${cachedFile}`);
 }
@@ -400,6 +410,7 @@ assert.match(files.evidencePack, /https:\/\/trace-atlas-codex\.pages\.dev\/launc
 assert.match(files.evidencePack, /https:\/\/trace-atlas-codex\.pages\.dev\/materials/, "evidence pack links to the materials overview");
 assert.match(files.evidencePack, /https:\/\/trace-atlas-codex\.pages\.dev\/materials-guide/, "evidence pack links to the materials guide");
 assert.match(files.evidencePack, /https:\/\/trace-atlas-codex\.pages\.dev\/preflight/, "evidence pack links to the preflight page");
+assert.match(files.evidencePack, /发布记录模板/, "evidence pack describes the publish record template");
 assert.match(files.evidencePack, /https:\/\/trace-atlas-codex\.pages\.dev\/pack-publish/, "evidence pack links to the publish action pack");
 assert.match(files.evidencePack, /https:\/\/trace-atlas-codex\.pages\.dev\/pack-reuse/, "evidence pack links to the reuse action pack");
 assert.match(files.evidencePack, /https:\/\/trace-atlas-codex\.pages\.dev\/pack-verify/, "evidence pack links to the verify action pack");
@@ -498,6 +509,7 @@ assert.ok(publicHealth.checks.some((check) => check.label === "时间线源数�
 assert.ok(publicHealth.checks.some((check) => check.label === "材料 API 已公开"), "public health includes materials API status");
 assert.ok(publicHealth.checks.some((check) => check.label === "材料行动包已公开"), "public health includes materials packs status");
 assert.ok(publicHealth.checks.some((check) => check.label === "发布前自检页已公开"), "public health includes preflight page status");
+assert.ok(publicHealth.checks.some((check) => check.label === "发布记录模板已公开"), "public health includes publish record template status");
 assert.ok(publicHealth.checks.some((check) => check.label === "阅读了解行动包页已公开"), "public health includes read action pack page status");
 assert.ok(publicHealth.checks.some((check) => check.label === "发帖发布行动包页已公开"), "public health includes publish action pack page status");
 assert.ok(publicHealth.checks.some((check) => check.label === "复用接力行动包页已公开"), "public health includes reuse action pack page status");
@@ -620,6 +632,7 @@ assert.match(files.verificationSummary, /https:\/\/trace-atlas-codex\.pages\.dev
 assert.match(files.verificationSummary, /https:\/\/trace-atlas-codex\.pages\.dev\/materials-api\.json/, "verification summary includes materials API");
 assert.match(files.verificationSummary, /https:\/\/trace-atlas-codex\.pages\.dev\/materials-packs\.json/, "verification summary includes materials packs");
 assert.match(files.verificationSummary, /https:\/\/trace-atlas-codex\.pages\.dev\/preflight/, "verification summary includes the preflight page");
+assert.match(files.verificationSummary, /发布记录模板已公开/, "verification summary includes the publish record template check");
 assert.match(files.verificationSummary, /https:\/\/trace-atlas-codex\.pages\.dev\/pack-publish/, "verification summary includes the publish action pack");
 assert.match(files.verificationSummary, /https:\/\/trace-atlas-codex\.pages\.dev\/promo\/pack-publish-card\.svg/, "verification summary includes an action pack card");
 assert.match(files.verificationSummary, /build-materials-api\.mjs/, "verification summary includes the materials API script");

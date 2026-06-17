@@ -68,6 +68,7 @@
 - `pack-read.html`、`pack-publish.html`、`pack-reuse.html` 和 `pack-verify.html` 由行动包 JSON 生成，提供可单独分享的任务入口。
 - `scripts/build-pack-pages.mjs` 负责生成并检查行动包页面和分享卡。
 - `preflight.html` 和 `preflight.js` 会读取公开同源材料，生成发布前自检结果和可复制证据文本。
+- 自检页里的发布记录模板只在浏览器本地生成，方便记录帖子链接、发布时间、评论回流和下一步动作。
 - `reuse-map.json` 把开始复用、快速清单、完整模板、证据包、健康状态和回流模板整理成机器可读链路。
 - `reuse.html` 和 `promo/reuse-flow-card.png` 把同一条链路翻译成读者能扫读的页面和传播配图。
 - `verification-summary.md` 由公开 JSON 生成，方便快速复制到 issue 或交给读者复核。

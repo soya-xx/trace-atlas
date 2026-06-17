@@ -101,6 +101,11 @@
       "evidenceHref": "https://trace-atlas-codex.pages.dev/preflight"
     },
     {
+      "label": "发布记录模板已公开",
+      "state": "ok",
+      "evidenceHref": "https://trace-atlas-codex.pages.dev/preflight"
+    },
+    {
       "label": "阅读了解行动包页已公开",
       "state": "ok",
       "evidenceHref": "https://trace-atlas-codex.pages.dev/pack-read"
