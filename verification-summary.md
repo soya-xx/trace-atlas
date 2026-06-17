@@ -7,11 +7,11 @@
 ## 当前状态
 
 - 状态：可公开访问
-- 公开入口：34
-- 视觉素材：10
+- 公开入口：35
+- 视觉素材：11
 - 发布文档：11
 - 验证脚本：10
-- 材料索引条目：55
+- 材料索引条目：56
 
 ## 公开检查
 
@@ -43,6 +43,7 @@
 - 验证维护行动包页已公开：ok，证据：https://trace-atlas-codex.pages.dev/pack-verify
 - 行动包分享卡已公开：ok，证据：https://trace-atlas-codex.pages.dev/promo/pack-publish-card.svg
 - 反馈问题榜分享卡已公开：ok，证据：https://trace-atlas-codex.pages.dev/promo/feedback-rank-card.svg
+- 反馈问题榜长图已公开：ok，证据：https://trace-atlas-codex.pages.dev/promo/feedback-rank-poster.png
 - 发布报告可生成：ok，证据：https://trace-atlas-codex.pages.dev/promo/xhs-publish-report.md
 - 边界扫描纳入 CI：ok，证据：https://github.com/soya-xx/trace-atlas/actions/workflows/verify.yml
 - 时间线生成脚本纳入 CI：ok，证据：https://github.com/soya-xx/trace-atlas/blob/main/scripts/build-progress-timeline.mjs
@@ -54,7 +55,7 @@
 ## 材料分组
 
 - 可见页面：14 项
-- 图片素材：10 项
+- 图片素材：11 项
 - 发布文档：11 项
 - 机器可读数据：11 项
 - 验证与边界：9 项

@@ -4,8 +4,8 @@
   "status": "可公开访问",
   "summary": "公开入口、传播素材、发布清单、自动验证和边界扫描均已形成可复核证据。",
   "counts": {
-    "publicLinks": 34,
-    "visualAssets": 10,
+    "publicLinks": 35,
+    "visualAssets": 11,
     "publishDocuments": 11,
     "verificationScripts": 10
   },
@@ -149,6 +149,11 @@
       "label": "反馈问题榜分享卡已公开",
       "state": "ok",
       "evidenceHref": "https://trace-atlas-codex.pages.dev/promo/feedback-rank-card.svg"
+    },
+    {
+      "label": "反馈问题榜长图已公开",
+      "state": "ok",
+      "evidenceHref": "https://trace-atlas-codex.pages.dev/promo/feedback-rank-poster.png"
     },
     {
       "label": "发布报告可生成",

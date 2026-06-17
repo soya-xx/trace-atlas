@@ -33,6 +33,7 @@
 - 公开健康徽章：`https://trace-atlas-codex.pages.dev/public-health-badge.svg`
 - 行动包分享卡：`https://trace-atlas-codex.pages.dev/promo/pack-publish-card.svg`
 - 反馈问题榜分享卡：`https://trace-atlas-codex.pages.dev/promo/feedback-rank-card.svg`
+- 反馈问题榜长图：`https://trace-atlas-codex.pages.dev/promo/feedback-rank-poster.png`
 - 公开仓库：`https://github.com/soya-xx/trace-atlas`
 - 工作日志：`https://github.com/soya-xx/trace-atlas/issues/1`
 - 公开健康状态：`https://trace-atlas-codex.pages.dev/public-health.json`
@@ -77,6 +78,7 @@
 - `feedback.html` 会读取发布记录 JSON，把重复问题、下一步动作和证据入口整理成可复制榜单。
 - `feedback-records.json` 是公开样例数据，不代表真实平台数据，真实发布后可以用同一结构替换。
 - `promo/feedback-rank-card.svg` 把反馈榜压缩成一张可分享的社交图。
+- `promo/feedback-rank-poster.png` 把反馈榜整理成 900 × 1200 长图，适合小红书发布后的多图更新。
 - `reuse-map.json` 把开始复用、快速清单、完整模板、证据包、健康状态和回流模板整理成机器可读链路。
 - `reuse.html` 和 `promo/reuse-flow-card.png` 把同一条链路翻译成读者能扫读的页面和传播配图。
 - `verification-summary.md` 由公开 JSON 生成，方便快速复制到 issue 或交给读者复核。
@@ -139,6 +141,7 @@ curl -I https://trace-atlas-codex.pages.dev/pack-reuse
 curl -I https://trace-atlas-codex.pages.dev/pack-verify
 curl -I https://trace-atlas-codex.pages.dev/promo/pack-publish-card.svg
 curl -I https://trace-atlas-codex.pages.dev/promo/feedback-rank-card.svg
+curl -I https://trace-atlas-codex.pages.dev/promo/feedback-rank-poster.png
 curl -I https://trace-atlas-codex.pages.dev/reuse-map.json
 curl -I https://trace-atlas-codex.pages.dev/templates/ai-session-public-quickstart.md
 curl -I https://trace-atlas-codex.pages.dev/progress-timeline.json
@@ -170,6 +173,7 @@ curl -I https://trace-atlas-codex.pages.dev/progress-timeline-source.json
 - 4 个行动包页面返回 `200`。
 - 行动包分享卡返回 `image/svg+xml`。
 - 反馈问题榜分享卡返回 `image/svg+xml`。
+- 反馈问题榜长图返回 `image/png`。
 - 复用链路 JSON 返回 JSON。
 - 公开化快速清单返回 Markdown 文本。
 - 进展时间线返回 JSON。

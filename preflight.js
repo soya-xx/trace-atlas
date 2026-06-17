@@ -49,18 +49,30 @@ const checks = [
     mustContain: ["Trace Atlas 反馈问题榜分享卡", "FEEDBACK RANK", "/feedback"]
   },
   {
+    id: "feedback-poster",
+    label: "反馈榜长图",
+    url: "./promo/feedback-rank-poster.png",
+    type: "binary",
+    validate: (bytes) =>
+      bytes.length > 8 &&
+      bytes[0] === 137 &&
+      bytes[1] === 80 &&
+      bytes[2] === 78 &&
+      bytes[3] === 71
+  },
+  {
     id: "materials-api",
     label: "材料 API",
     url: "./materials-api.json",
     type: "json",
-    validate: (data) => data.publicOnly === true && data.counts.items === 55
+    validate: (data) => data.publicOnly === true && data.counts.items === 56
   },
   {
     id: "materials-packs",
     label: "材料行动包 JSON",
     url: "./materials-packs.json",
     type: "json",
-    validate: (data) => data.publicOnly === true && data.counts.packs === 4 && data.counts.items === 55
+    validate: (data) => data.publicOnly === true && data.counts.packs === 4 && data.counts.items === 56
   },
   {
     id: "publish-record-template",
@@ -82,14 +94,14 @@ const checks = [
     url: "./public-health.json",
     type: "json",
     validate: (data) =>
-      data.counts.publicLinks === 34 && data.counts.visualAssets === 10 && data.counts.verificationScripts === 10
+      data.counts.publicLinks === 35 && data.counts.visualAssets === 11 && data.counts.verificationScripts === 10
   },
   {
     id: "verification-summary",
     label: "验证摘要",
     url: "./verification-summary.md",
     type: "text",
-    mustContain: ["公开入口：34", "材料索引条目：55", "反馈问题榜已公开", "发布反馈样例记录已公开"]
+    mustContain: ["公开入口：35", "材料索引条目：56", "反馈问题榜长图已公开", "发布反馈样例记录已公开"]
   }
 ];
 
@@ -179,6 +191,13 @@ async function readCheck(check) {
     const data = await response.json();
     if (!check.validate(data)) {
       throw new Error("JSON 内容不符合预期");
+    }
+    return;
+  }
+  if (check.type === "binary") {
+    const bytes = new Uint8Array(await response.arrayBuffer());
+    if (!check.validate(bytes)) {
+      throw new Error("二进制内容不符合预期");
     }
     return;
   }

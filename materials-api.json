@@ -6,7 +6,7 @@
   "publicOnly": true,
   "counts": {
     "groups": 5,
-    "items": 55
+    "items": 56
   },
   "items": [
     {
@@ -272,6 +272,17 @@
       "useCase": "publish",
       "audience": "creator",
       "format": "image/svg+xml"
+    },
+    {
+      "id": "visual-assets:反馈问题榜长图",
+      "label": "反馈问题榜长图",
+      "href": "https://trace-atlas-codex.pages.dev/promo/feedback-rank-poster.png",
+      "groupId": "visual-assets",
+      "groupTitle": "图片素材",
+      "kind": "image",
+      "useCase": "publish",
+      "audience": "creator",
+      "format": "image/png"
     },
     {
       "id": "publish-docs:小红书传播包",

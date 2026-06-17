@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Trace Atlas 反馈问题榜长图</title>
+    <style>
+      :root {
+        --ink: #101113;
+        --muted: #606763;
+        --paper: #fbfbf8;
+        --line: #d6ddd8;
+        --green: #25785e;
+        --blue: #386fb0;
+        --gold: #c9961a;
+        --red: #b84646;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        width: 900px;
+        height: 1200px;
+        margin: 0;
+        overflow: hidden;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      body {
+        position: relative;
+        padding: 54px 58px 50px;
+      }
+
+      body::before {
+        position: absolute;
+        inset: 0;
+        content: "";
+        background-image:
+          linear-gradient(var(--line) 1px, transparent 1px),
+          linear-gradient(90deg, var(--line) 1px, transparent 1px);
+        background-size: 42px 42px;
+        opacity: .56;
+      }
+
+      .poster {
+        position: relative;
+        z-index: 1;
+        height: 100%;
+        display: grid;
+        grid-template-rows: auto auto 1fr auto;
+        gap: 20px;
+      }
+
+      .eyebrow {
+        margin: 0 0 16px;
+        color: var(--muted);
+        font-size: 25px;
+        font-weight: 900;
+        letter-spacing: 0;
+      }
+
+      h1,
+      h2,
+      p {
+        margin-top: 0;
+      }
+
+      h1 {
+        max-width: 780px;
+        margin-bottom: 0;
+        font-size: 82px;
+        line-height: .95;
+        letter-spacing: 0;
+      }
+
+      .highlight {
+        color: var(--green);
+      }
+
+      .sub {
+        max-width: 740px;
+        margin: 18px 0 0;
+        color: var(--muted);
+        font-size: 27px;
+        font-weight: 760;
+        line-height: 1.34;
+      }
+
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+      }
+
+      .stat,
+      .panel {
+        border: 4px solid var(--ink);
+        border-radius: 16px;
+        background: rgba(255, 255, 255, .95);
+        box-shadow: 0 18px 48px rgba(16, 17, 19, .1);
+      }
+
+      .stat {
+        min-height: 118px;
+        padding: 16px;
+      }
+
+      .stat:nth-child(2) {
+        border-color: var(--green);
+      }
+
+      .stat:nth-child(3) {
+        border-color: var(--blue);
+      }
+
+      .stat:nth-child(4) {
+        border-color: var(--gold);
+      }
+
+      .stat strong {
+        display: block;
+        font-size: 44px;
+        line-height: 1;
+      }
+
+      .stat span {
+        display: block;
+        margin-top: 10px;
+        color: var(--muted);
+        font-size: 19px;
+        font-weight: 850;
+        line-height: 1.2;
+      }
+
+      .boards {
+        display: grid;
+        grid-template-columns: 1.04fr .96fr;
+        gap: 14px;
+        min-height: 0;
+      }
+
+      .panel {
+        display: grid;
+        gap: 13px;
+        min-width: 0;
+        padding: 18px;
+      }
+
+      .panel h2 {
+        margin-bottom: 0;
+        font-size: 34px;
+        line-height: 1.05;
+        letter-spacing: 0;
+      }
+
+      .rank {
+        display: grid;
+        gap: 10px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .rank li {
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        gap: 10px;
+        align-items: center;
+        min-height: 68px;
+        border: 3px solid var(--line);
+        border-radius: 14px;
+        padding: 10px 12px;
+        background: white;
+        color: var(--muted);
+        font-size: 21px;
+        font-weight: 820;
+        line-height: 1.2;
+      }
+
+      .rank b {
+        display: inline-grid;
+        width: 38px;
+        height: 38px;
+        place-items: center;
+        border-radius: 50%;
+        background: var(--ink);
+        color: white;
+        font-size: 18px;
+      }
+
+      .rank strong {
+        color: var(--green);
+        font-size: 20px;
+        white-space: nowrap;
+      }
+
+      .actions .rank li {
+        grid-template-columns: auto 1fr;
+      }
+
+      .actions .rank b {
+        background: var(--blue);
+      }
+
+      .evidence {
+        border-color: var(--green);
+      }
+
+      .evidence p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 22px;
+        font-weight: 760;
+        line-height: 1.32;
+      }
+
+      .footer {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 18px;
+        align-items: end;
+      }
+
+      .footer strong,
+      .footer span {
+        display: block;
+      }
+
+      .footer strong {
+        max-width: 610px;
+        font-size: 25px;
+        line-height: 1.1;
+        overflow-wrap: anywhere;
+      }
+
+      .footer span {
+        margin-top: 7px;
+        color: var(--muted);
+        font-size: 21px;
+        font-weight: 760;
+      }
+
+      .stamp {
+        display: grid;
+        place-items: center;
+        width: 112px;
+        height: 112px;
+        border: 4px solid var(--ink);
+        border-radius: 50%;
+        background: var(--green);
+        color: white;
+        font-size: 20px;
+        font-weight: 950;
+        text-align: center;
+        line-height: 1.12;
+        transform: rotate(6deg);
+      }
+    </style>
+  </head>
+  <body>
+    <main class="poster">
+      <section>
+        <p class="eyebrow">TRACE ATLAS / 发布后回流</p>
+        <h1><span class="highlight">反馈问题</span><br>怎么变成下一步</h1>
+        <p class="sub">示例发布记录里，重复问题被汇总成榜单；下一轮补什么，不再只靠印象。</p>
+      </section>
+
+      <section class="stats" aria-label="反馈榜统计">
+        <article class="stat">
+          <strong>3</strong>
+          <span>条样例记录</span>
+        </article>
+        <article class="stat">
+          <strong>5</strong>
+          <span>类读者问题</span>
+        </article>
+        <article class="stat">
+          <strong>3</strong>
+          <span>个下一步</span>
+        </article>
+        <article class="stat">
+          <strong>14/14</strong>
+          <span>发布前自检</span>
+        </article>
+      </section>
+
+      <section class="boards" aria-label="反馈问题榜">
+        <article class="panel">
+          <p class="eyebrow">TOP QUESTIONS</p>
+          <h2>读者反复问</h2>
+          <ol class="rank">
+            <li><b>1</b><span>能不能复用到自己的项目</span><strong>2 次</strong></li>
+            <li><b>2</b><span>怎么确认公开链接都有效</span><strong>2 次</strong></li>
+            <li><b>3</b><span>有没有一键复制的材料包</span><strong>2 次</strong></li>
+            <li><b>4</b><span>从哪里开始看</span><strong>2 次</strong></li>
+            <li><b>5</b><span>发布之后反馈怎么回流</span><strong>1 次</strong></li>
+          </ol>
+        </article>
+
+        <article class="panel actions">
+          <p class="eyebrow">NEXT ACTIONS</p>
+          <h2>这次补上</h2>
+          <ol class="rank">
+            <li><b>1</b><span>反馈榜页面：能读 JSON、能重新排榜。</span></li>
+            <li><b>2</b><span>长图素材：适合放进小红书多图。</span></li>
+            <li><b>3</b><span>自检入口：把新图纳入公开验证。</span></li>
+          </ol>
+
+          <div class="panel evidence">
+            <p class="eyebrow">PUBLIC EVIDENCE</p>
+            <p>页面、JSON、PNG、验证摘要和工作日志都可以公开打开。</p>
+          </div>
+        </article>
+      </section>
+
+      <section class="footer">
+        <div>
+          <strong>trace-atlas-codex.pages.dev/feedback</strong>
+          <span>反馈不是散落的评论，它会变成下一轮可验证的路线。</span>
+        </div>
+        <div class="stamp">反馈<br>回流</div>
+      </section>
+    </main>
+  </body>
+</html>

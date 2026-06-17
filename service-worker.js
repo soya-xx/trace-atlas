@@ -1,4 +1,4 @@
-const CACHE_NAME = "trace-atlas-shell-v43";
+const CACHE_NAME = "trace-atlas-shell-v44";
 const APP_SHELL = [
   "./",
   "./index.html",
@@ -20,7 +20,7 @@ const APP_SHELL = [
   "./launch.js?v=1",
   "./materials-guide.js?v=1",
   "./pack-page.js?v=1",
-  "./preflight.js?v=4",
+  "./preflight.js?v=5",
   "./feedback.js?v=2",
   "./app.js?v=16",
   "./icon.svg",
@@ -29,6 +29,7 @@ const APP_SHELL = [
   "./promo/xhs-cover.png",
   "./promo/workflow-card.png",
   "./promo/reuse-flow-card.png",
+  "./promo/feedback-rank-poster.png",
   "./promo/pack-read-card.svg",
   "./promo/pack-publish-card.svg",
   "./promo/pack-reuse-card.svg",

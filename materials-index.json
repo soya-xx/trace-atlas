@@ -120,6 +120,12 @@
           "href": "https://trace-atlas-codex.pages.dev/promo/feedback-rank-card.svg",
           "useCase": "publish",
           "audience": "creator"
+        },
+        {
+          "label": "反馈问题榜长图",
+          "href": "https://trace-atlas-codex.pages.dev/promo/feedback-rank-poster.png",
+          "useCase": "publish",
+          "audience": "creator"
         }
       ]
     },
