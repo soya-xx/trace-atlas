@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#25785e">
+    <meta name="description" content="Trace Atlas 发布前自检页：检查行动包页面、分享卡、材料 API、行动包 JSON 和验证摘要是否在线。">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="zh_CN">
+    <meta property="og:title" content="Trace Atlas 发布前自检">
+    <meta property="og:description" content="打开页面即可检查公开材料，并复制一段发布前证据文本。">
+    <meta property="og:url" content="https://trace-atlas-codex.pages.dev/preflight">
+    <meta property="og:image" content="https://trace-atlas-codex.pages.dev/promo/pack-publish-card.svg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Trace Atlas 发布前自检">
+    <meta name="twitter:description" content="检查包页、分享卡、JSON 和验证摘要，复制发布前证据文本。">
+    <meta name="twitter:image" content="https://trace-atlas-codex.pages.dev/promo/pack-publish-card.svg">
+    <title>Trace Atlas 发布前自检</title>
+    <link rel="icon" href="./icon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="./launch.css?v=10">
+  </head>
+  <body>
+    <main class="launch-shell preflight-shell" aria-labelledby="preflight-title">
+      <section class="intro route-intro">
+        <p class="eyebrow">Trace Atlas / 发布前自检</p>
+        <h1 id="preflight-title">发布前自检</h1>
+        <p class="lead">检查 4 个行动包页面、分享卡、材料 API、行动包 JSON 和验证摘要。通过后可以复制一段证据文本，回写到 issue 或发帖记录里。</p>
+        <div class="primary-links" aria-label="自检相关入口">
+          <a href="./pack-publish.html">发帖发布包</a>
+          <a href="./materials-guide.html">材料选择器</a>
+          <a href="./materials-packs.json">行动包 JSON</a>
+          <a href="./verification-summary.md">验证摘要</a>
+          <a href="./materials.html">材料总览</a>
+          <a href="https://github.com/soya-xx/trace-atlas/issues/1">工作日志</a>
+        </div>
+      </section>
+
+      <section class="preflight-panel" aria-labelledby="preflight-panel-title">
+        <div>
+          <p class="eyebrow">自动检查</p>
+          <h2 id="preflight-panel-title">公开材料是否可用</h2>
+          <p id="preflight-status" class="copy-status" aria-live="polite">自检准备中。</p>
+        </div>
+        <div class="preflight-actions">
+          <button id="rerun-preflight" class="copy-button" type="button">重新检查</button>
+          <button id="copy-preflight" class="copy-button" type="button" disabled>复制报告</button>
+        </div>
+      </section>
+
+      <section class="preflight-list" id="preflight-list" aria-label="自检结果"></section>
+
+      <section class="preflight-report" aria-labelledby="preflight-report-title">
+        <div class="guide-results-head">
+          <div>
+            <p class="eyebrow">可复制报告</p>
+            <h2 id="preflight-report-title">发布前证据文本</h2>
+          </div>
+          <a href="./public-health.json">打开健康 JSON</a>
+        </div>
+        <pre id="preflight-report">等待自检结果。</pre>
+      </section>
+    </main>
+    <script src="./preflight.js?v=1"></script>
+  </body>
+</html>

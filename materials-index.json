@@ -36,6 +36,12 @@
           "href": "https://trace-atlas-codex.pages.dev/materials-guide"
         },
         {
+          "label": "发布前自检页",
+          "href": "https://trace-atlas-codex.pages.dev/preflight",
+          "useCase": "publish",
+          "audience": "creator"
+        },
+        {
           "label": "阅读了解行动包",
           "href": "https://trace-atlas-codex.pages.dev/pack-read"
         },

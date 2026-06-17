@@ -4,7 +4,7 @@
   "status": "可公开访问",
   "summary": "公开入口、传播素材、发布清单、自动验证和边界扫描均已形成可复核证据。",
   "counts": {
-    "publicLinks": 29,
+    "publicLinks": 30,
     "visualAssets": 9,
     "publishDocuments": 11,
     "verificationScripts": 10
@@ -94,6 +94,11 @@
       "label": "材料行动包已公开",
       "state": "ok",
       "evidenceHref": "https://trace-atlas-codex.pages.dev/materials-packs.json"
+    },
+    {
+      "label": "发布前自检页已公开",
+      "state": "ok",
+      "evidenceHref": "https://trace-atlas-codex.pages.dev/preflight"
     },
     {
       "label": "阅读了解行动包页已公开",

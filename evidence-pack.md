@@ -10,6 +10,7 @@
 - 发布材料页：`https://trace-atlas-codex.pages.dev/launch`
 - 公开材料总览：`https://trace-atlas-codex.pages.dev/materials`
 - 材料选择器：`https://trace-atlas-codex.pages.dev/materials-guide`
+- 发布前自检：`https://trace-atlas-codex.pages.dev/preflight`
 - 材料 API：`https://trace-atlas-codex.pages.dev/materials-api.json`
 - 材料行动包：`https://trace-atlas-codex.pages.dev/materials-packs.json`
 - 阅读了解行动包：`https://trace-atlas-codex.pages.dev/pack-read`
@@ -66,6 +67,7 @@
 - `materials-guide.html` 从材料 API 读取条目，按阅读、发布、复用和验证筛选材料。
 - `pack-read.html`、`pack-publish.html`、`pack-reuse.html` 和 `pack-verify.html` 由行动包 JSON 生成，提供可单独分享的任务入口。
 - `scripts/build-pack-pages.mjs` 负责生成并检查行动包页面和分享卡。
+- `preflight.html` 和 `preflight.js` 会读取公开同源材料，生成发布前自检结果和可复制证据文本。
 - `reuse-map.json` 把开始复用、快速清单、完整模板、证据包、健康状态和回流模板整理成机器可读链路。
 - `reuse.html` 和 `promo/reuse-flow-card.png` 把同一条链路翻译成读者能扫读的页面和传播配图。
 - `verification-summary.md` 由公开 JSON 生成，方便快速复制到 issue 或交给读者复核。
@@ -88,6 +90,7 @@ npm run check
 - 材料 API 是否由材料索引重新生成。
 - 材料行动包是否由材料 API 重新生成。
 - 行动包页面和分享卡是否由行动包 JSON 重新生成。
+- 发布前自检页是否能检查公开材料并生成报告。
 - 进展时间线是否由源数据重新生成。
 - 验证摘要是否与公开 JSON 保持一致。
 
@@ -100,6 +103,7 @@ curl -I https://trace-atlas-codex.pages.dev/reuse
 curl -I https://trace-atlas-codex.pages.dev/launch
 curl -I https://trace-atlas-codex.pages.dev/materials
 curl -I https://trace-atlas-codex.pages.dev/materials-guide
+curl -I https://trace-atlas-codex.pages.dev/preflight
 curl -I https://trace-atlas-codex.pages.dev/monument
 curl -I https://trace-atlas-codex.pages.dev/workflow
 curl -I https://trace-atlas-codex.pages.dev/verification-summary.md
@@ -131,6 +135,7 @@ curl -I https://trace-atlas-codex.pages.dev/progress-timeline-source.json
 期望结果：
 
 - 主作品、开始复用入口、复用路线页、发布材料页、公开材料总览、材料选择器、项目纪念碑与公开化路线图返回 `200`。
+- 发布前自检页返回 `200`。
 - `evidence-pack.md` 返回 Markdown 文本。
 - `verification-summary.md` 返回 Markdown 文本。
 - 小红书发布草稿包返回 Markdown 文本。

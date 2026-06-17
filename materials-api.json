@@ -6,7 +6,7 @@
   "publicOnly": true,
   "counts": {
     "groups": 5,
-    "items": 50
+    "items": 51
   },
   "items": [
     {
@@ -84,6 +84,17 @@
       "kind": "page",
       "useCase": "read",
       "audience": "reader",
+      "format": "text/html"
+    },
+    {
+      "id": "pages:发布前自检页",
+      "label": "发布前自检页",
+      "href": "https://trace-atlas-codex.pages.dev/preflight",
+      "groupId": "pages",
+      "groupTitle": "可见页面",
+      "kind": "page",
+      "useCase": "publish",
+      "audience": "creator",
       "format": "text/html"
     },
     {
