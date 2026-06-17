@@ -15,6 +15,7 @@
 - 材料行动包：`https://trace-atlas-codex.pages.dev/materials-packs.json`
 - 发布记录 JSON 模板：`https://trace-atlas-codex.pages.dev/publish-record-template.json`
 - 反馈问题榜：`https://trace-atlas-codex.pages.dev/feedback`
+- 公开 FAQ：`https://trace-atlas-codex.pages.dev/faq`
 - 发布反馈样例记录：`https://trace-atlas-codex.pages.dev/feedback-records.json`
 - 阅读了解行动包：`https://trace-atlas-codex.pages.dev/pack-read`
 - 发帖发布行动包：`https://trace-atlas-codex.pages.dev/pack-publish`
@@ -77,6 +78,7 @@
 - `publish-record-template.json` 公开发布记录字段，便于后续会话读取多次发布后的反馈。
 - `feedback.html` 会读取发布记录 JSON，把重复问题、下一步动作和证据入口整理成可复制榜单。
 - `feedback-records.json` 是公开样例数据，不代表真实平台数据，真实发布后可以用同一结构替换。
+- `faq.html` 会读取同一份反馈记录，把重复问题整理成给新读者看的公开答疑页。
 - `promo/feedback-rank-card.svg` 把反馈榜压缩成一张可分享的社交图。
 - `promo/feedback-rank-poster.png` 把反馈榜整理成 900 × 1200 长图，适合小红书发布后的多图更新。
 - `reuse-map.json` 把开始复用、快速清单、完整模板、证据包、健康状态和回流模板整理成机器可读链路。
@@ -134,6 +136,7 @@ curl -I https://trace-atlas-codex.pages.dev/materials-api.json
 curl -I https://trace-atlas-codex.pages.dev/materials-packs.json
 curl -I https://trace-atlas-codex.pages.dev/publish-record-template.json
 curl -I https://trace-atlas-codex.pages.dev/feedback
+curl -I https://trace-atlas-codex.pages.dev/faq
 curl -I https://trace-atlas-codex.pages.dev/feedback-records.json
 curl -I https://trace-atlas-codex.pages.dev/pack-read
 curl -I https://trace-atlas-codex.pages.dev/pack-publish
@@ -169,6 +172,7 @@ curl -I https://trace-atlas-codex.pages.dev/progress-timeline-source.json
 - 材料行动包返回 JSON。
 - 发布记录 JSON 模板返回 JSON。
 - 反馈问题榜返回 `200`。
+- 公开 FAQ 返回 `200`。
 - 发布反馈样例记录返回 JSON。
 - 4 个行动包页面返回 `200`。
 - 行动包分享卡返回 `image/svg+xml`。

@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#25785e">
+    <meta name="description" content="Trace Atlas 公开 FAQ：把发布后的高频问题整理成可验证、可复用的答疑入口。">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="zh_CN">
+    <meta property="og:title" content="Trace Atlas 公开 FAQ">
+    <meta property="og:description" content="从公开反馈记录生成问题频次、答案和证据链接，让新读者更快理解怎么开始、怎么验证、怎么复用。">
+    <meta property="og:url" content="https://trace-atlas-codex.pages.dev/faq">
+    <meta property="og:image" content="https://trace-atlas-codex.pages.dev/promo/feedback-rank-card.svg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Trace Atlas 公开 FAQ">
+    <meta name="twitter:description" content="把反馈问题整理成可分享、可验证的答疑页。">
+    <meta name="twitter:image" content="https://trace-atlas-codex.pages.dev/promo/feedback-rank-card.svg">
+    <title>Trace Atlas 公开 FAQ</title>
+    <link rel="icon" href="./icon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="./launch.css?v=13">
+  </head>
+  <body>
+    <main class="launch-shell faq-shell" aria-labelledby="faq-title">
+      <section class="intro route-intro">
+        <p class="eyebrow">Trace Atlas / 公开答疑</p>
+        <h1 id="faq-title">公开 FAQ</h1>
+        <p class="lead">把发布后的重复问题变成固定入口：读者不用翻 issue，也能知道从哪里开始、怎么复用、怎么验证链接，以及反馈会怎样进入下一轮迭代。</p>
+        <div class="primary-links" aria-label="FAQ 相关入口">
+          <a href="./start.html">开始复用</a>
+          <a href="./reuse.html">复用路线</a>
+          <a href="./feedback.html">反馈问题榜</a>
+          <a href="./feedback-records.json">反馈记录 JSON</a>
+          <a href="./preflight.html">发布前自检</a>
+          <a href="./materials-guide.html">材料选择器</a>
+          <a href="./materials.html">材料总览</a>
+          <a href="https://github.com/soya-xx/trace-atlas/issues/1">工作日志</a>
+        </div>
+      </section>
+
+      <section class="faq-summary" aria-label="FAQ 数据概览">
+        <article class="handoff-card">
+          <p class="eyebrow">记录数</p>
+          <h2 id="faq-record-count">0</h2>
+          <p>来自公开反馈样例记录，真实发布后可以继续追加同结构 JSON。</p>
+        </article>
+        <article class="handoff-card">
+          <p class="eyebrow">FAQ 条目</p>
+          <h2 id="faq-item-count">0</h2>
+          <p>围绕最容易阻断理解的问题整理，不追求把所有内容塞满。</p>
+        </article>
+        <article class="handoff-card">
+          <p class="eyebrow">证据入口</p>
+          <h2 id="faq-evidence-count">0</h2>
+          <p>每个回答都尽量落到能打开的公开页面、JSON 或仓库记录。</p>
+        </article>
+        <article class="handoff-card">
+          <p class="eyebrow">状态</p>
+          <h2 id="faq-status">读取中</h2>
+          <p id="faq-source">等待公开 JSON。</p>
+        </article>
+      </section>
+
+      <section class="faq-toolbar" aria-labelledby="faq-toolbar-title">
+        <div>
+          <p class="eyebrow">可复制</p>
+          <h2 id="faq-toolbar-title">FAQ 摘要</h2>
+          <p>用于 issue 评论、帖子补充说明或给第一次打开项目的人快速说明。</p>
+        </div>
+        <button id="copy-faq-summary" class="copy-button" type="button">复制 FAQ 摘要</button>
+      </section>
+
+      <section class="faq-grid" id="faq-list" aria-label="常见问题"></section>
+
+      <section class="feedback-panel" aria-labelledby="faq-evidence-title">
+        <div class="guide-results-head">
+          <div>
+            <p class="eyebrow">Evidence</p>
+            <h2 id="faq-evidence-title">本页引用的公开证据</h2>
+          </div>
+          <a href="./feedback-records.json">打开反馈记录</a>
+        </div>
+        <div id="faq-evidence-list" class="evidence-list"></div>
+      </section>
+
+      <section class="feedback-panel" aria-labelledby="faq-records-title">
+        <div class="guide-results-head">
+          <div>
+            <p class="eyebrow">Records</p>
+            <h2 id="faq-records-title">反馈记录摘要</h2>
+          </div>
+          <a href="./feedback.html">打开问题榜</a>
+        </div>
+        <div id="faq-record-list" class="record-list"></div>
+      </section>
+
+      <section class="preflight-report" aria-labelledby="faq-markdown-title">
+        <div class="guide-results-head">
+          <div>
+            <p class="eyebrow">Markdown</p>
+            <h2 id="faq-markdown-title">可复制文本</h2>
+          </div>
+          <a href="./verification-summary.md">验证摘要</a>
+        </div>
+        <pre id="faq-markdown">等待生成 FAQ 摘要。</pre>
+      </section>
+    </main>
+    <script src="./faq.js?v=1"></script>
+  </body>
+</html>

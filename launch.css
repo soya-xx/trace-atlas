@@ -859,6 +859,78 @@ code {
   line-height: 1.5;
 }
 
+.faq-shell {
+  max-width: 100vw;
+}
+
+.faq-summary,
+.faq-grid {
+  display: grid;
+  gap: 12px;
+}
+
+.faq-summary {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-bottom: 18px;
+}
+
+.faq-toolbar {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 14px;
+  align-items: end;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 18px;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: var(--shadow);
+  margin-bottom: 18px;
+}
+
+.faq-toolbar p {
+  margin-bottom: 0;
+}
+
+.faq-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-bottom: 18px;
+}
+
+.faq-card {
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 18px;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: var(--shadow);
+}
+
+.faq-card p {
+  color: var(--muted);
+  line-height: 1.58;
+  overflow-wrap: anywhere;
+}
+
+.faq-evidence {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.faq-evidence a {
+  min-height: 34px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 7px 10px;
+  background: white;
+  color: var(--blue);
+  font-size: 0.86rem;
+  font-weight: 850;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
 .checklist {
   display: grid;
   grid-template-columns: minmax(220px, 0.58fr) minmax(0, 1fr);
@@ -887,6 +959,9 @@ code {
   .handoff-grid,
   .health-grid,
   .feedback-summary,
+  .faq-summary,
+  .faq-toolbar,
+  .faq-grid,
   .materials-grid,
   .guide-list,
   .pack-hero,

@@ -6,7 +6,7 @@
   "publicOnly": true,
   "counts": {
     "groups": 5,
-    "items": 56
+    "items": 57
   },
   "items": [
     {
@@ -106,6 +106,17 @@
       "kind": "page",
       "useCase": "publish",
       "audience": "creator",
+      "format": "text/html"
+    },
+    {
+      "id": "pages:公开 FAQ",
+      "label": "公开 FAQ",
+      "href": "https://trace-atlas-codex.pages.dev/faq",
+      "groupId": "pages",
+      "groupTitle": "可见页面",
+      "kind": "page",
+      "useCase": "publish",
+      "audience": "reader",
       "format": "text/html"
     },
     {

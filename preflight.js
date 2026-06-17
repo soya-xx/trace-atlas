@@ -42,6 +42,13 @@ const checks = [
     mustContain: ["反馈问题榜", "feedback-records.json", "copy-feedback-board"]
   },
   {
+    id: "faq-page",
+    label: "公开 FAQ",
+    url: "./faq.html",
+    type: "text",
+    mustContain: ["公开 FAQ", "feedback-records.json", "faq.js?v=1", "FAQ 摘要"]
+  },
+  {
     id: "feedback-card",
     label: "反馈榜分享卡",
     url: "./promo/feedback-rank-card.svg",
@@ -65,14 +72,14 @@ const checks = [
     label: "材料 API",
     url: "./materials-api.json",
     type: "json",
-    validate: (data) => data.publicOnly === true && data.counts.items === 56
+    validate: (data) => data.publicOnly === true && data.counts.items === 57
   },
   {
     id: "materials-packs",
     label: "材料行动包 JSON",
     url: "./materials-packs.json",
     type: "json",
-    validate: (data) => data.publicOnly === true && data.counts.packs === 4 && data.counts.items === 56
+    validate: (data) => data.publicOnly === true && data.counts.packs === 4 && data.counts.items === 57
   },
   {
     id: "publish-record-template",
@@ -94,14 +101,14 @@ const checks = [
     url: "./public-health.json",
     type: "json",
     validate: (data) =>
-      data.counts.publicLinks === 35 && data.counts.visualAssets === 11 && data.counts.verificationScripts === 10
+      data.counts.publicLinks === 36 && data.counts.visualAssets === 11 && data.counts.verificationScripts === 10
   },
   {
     id: "verification-summary",
     label: "验证摘要",
     url: "./verification-summary.md",
     type: "text",
-    mustContain: ["公开入口：35", "材料索引条目：56", "反馈问题榜长图已公开", "发布反馈样例记录已公开"]
+    mustContain: ["公开入口：36", "材料索引条目：57", "公开 FAQ 已公开", "反馈问题榜长图已公开", "发布反馈样例记录已公开"]
   }
 ];
 

@@ -48,6 +48,12 @@
           "audience": "creator"
         },
         {
+          "label": "公开 FAQ",
+          "href": "https://trace-atlas-codex.pages.dev/faq",
+          "useCase": "publish",
+          "audience": "reader"
+        },
+        {
           "label": "阅读了解行动包",
           "href": "https://trace-atlas-codex.pages.dev/pack-read"
         },
