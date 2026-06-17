@@ -1,4 +1,4 @@
-const CACHE_NAME = "trace-atlas-shell-v24";
+const CACHE_NAME = "trace-atlas-shell-v25";
 const APP_SHELL = [
   "./",
   "./index.html",
@@ -15,6 +15,7 @@ const APP_SHELL = [
   "./promo/xhs-cover.png",
   "./promo/workflow-card.png",
   "./promo/xhs-post-drafts.md",
+  "./promo/xhs-feedback-loop-template.md",
   "./promo/xhs-publish-checklist.md",
   "./promo/xhs-publish-manifest.json",
   "./promo/xhs-publish-report.md",

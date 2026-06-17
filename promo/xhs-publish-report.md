@@ -16,6 +16,7 @@
 - 发布材料页：https://trace-atlas-codex.pages.dev/launch
 - 公开化路线图：https://trace-atlas-codex.pages.dev/workflow
 - 发布草稿包：https://trace-atlas-codex.pages.dev/promo/xhs-post-drafts.md
+- 发布后回流模板：https://trace-atlas-codex.pages.dev/promo/xhs-feedback-loop-template.md
 - 证据包：https://trace-atlas-codex.pages.dev/evidence-pack.md
 - 工作日志：https://github.com/soya-xx/trace-atlas/issues/1
 - 公开仓库：https://github.com/soya-xx/trace-atlas
@@ -39,7 +40,7 @@
 - 主作品、路线图、证据包、发布材料页和工作日志都能打开。
 - 图片顺序为首图、路线图长图、分享卡或页面截图。
 - GitHub Actions 最近一次 Verify Trace Atlas 为成功。
-- 发布后把有效问题回写到公开 issue。
+- 发布后用回流模板把有效问题写回公开 issue。
 
 ## 边界
 

@@ -4,9 +4,9 @@
   "status": "可公开访问",
   "summary": "公开入口、传播素材、发布清单、自动验证和边界扫描均已形成可复核证据。",
   "counts": {
-    "publicLinks": 11,
+    "publicLinks": 12,
     "visualAssets": 3,
-    "publishDocuments": 7,
+    "publishDocuments": 8,
     "verificationScripts": 5
   },
   "checks": [
@@ -34,6 +34,11 @@
       "label": "发布草稿包已公开",
       "state": "ok",
       "evidenceHref": "https://trace-atlas-codex.pages.dev/promo/xhs-post-drafts.md"
+    },
+    {
+      "label": "发布后回流模板已公开",
+      "state": "ok",
+      "evidenceHref": "https://trace-atlas-codex.pages.dev/promo/xhs-feedback-loop-template.md"
     },
     {
       "label": "发布报告可生成",

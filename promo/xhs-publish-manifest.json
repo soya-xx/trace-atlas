@@ -23,6 +23,10 @@
       "href": "https://trace-atlas-codex.pages.dev/promo/xhs-post-drafts.md"
     },
     {
+      "label": "发布后回流模板",
+      "href": "https://trace-atlas-codex.pages.dev/promo/xhs-feedback-loop-template.md"
+    },
+    {
       "label": "证据包",
       "href": "https://trace-atlas-codex.pages.dev/evidence-pack.md"
     },
@@ -81,6 +85,6 @@
     "主作品、路线图、证据包、发布材料页和工作日志都能打开。",
     "图片顺序为首图、路线图长图、分享卡或页面截图。",
     "GitHub Actions 最近一次 Verify Trace Atlas 为成功。",
-    "发布后把有效问题回写到公开 issue。"
+    "发布后用回流模板把有效问题写回公开 issue。"
   ]
 }
