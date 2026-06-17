@@ -5,7 +5,7 @@
   const ARTIFACT_KIT_URL = "./templates/ai-session-artifact-kit.md";
   const CAPSULE_PREFIX = "#capsule=";
   const TOUR_INTERVAL_MS = 2400;
-  const DATA_VERSION = "v=6";
+  const DATA_VERSION = "v=7";
   const PALETTE = ["#25785e", "#b84646", "#386fb0", "#c9961a", "#7657a6"];
 
   const TRACE_SEEDS = [
@@ -590,8 +590,9 @@
         throw new Error("timeline unavailable");
       }
       const timeline = await response.json();
-      const items = Array.isArray(timeline.items) ? timeline.items.slice(0, 9) : [];
-      renderTimeline(items);
+      const items = Array.isArray(timeline.items) ? timeline.items : [];
+      const recentItems = items.slice(-9);
+      renderTimeline(recentItems, `最近 ${recentItems.length} 步`);
     } catch {
       renderTimeline([
         {

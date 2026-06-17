@@ -153,8 +153,9 @@ assert.match(files.js, /function renderWorldSync/, "world sync renderer is wired
 assert.match(files.js, /world-sync\.json\?\$\{DATA_VERSION\}/, "world sync metadata is loaded with a versioned URL");
 assert.match(files.js, /function renderTimeline/, "progress timeline renderer is wired");
 assert.match(files.js, /progress-timeline\.json\?\$\{DATA_VERSION\}/, "progress timeline data is loaded with a versioned URL");
+assert.match(files.js, /items\.slice\(-9\)/, "progress timeline shows the latest milestones");
 assert.match(files.js, /safePublicHref/, "timeline evidence links are constrained");
-assert.match(files.js, /DATA_VERSION = "v=6"/, "JSON data requests are versioned");
+assert.match(files.js, /DATA_VERSION = "v=7"/, "JSON data requests are versioned");
 assert.match(files.js, /ARTIFACT_KIT_URL = "\.\/templates\/ai-session-artifact-kit\.md"/, "artifact kit copy source is declared");
 assert.match(files.js, /function copyArtifactKit/, "artifact kit copy handler is wired");
 assert.match(files.js, /navigator\.clipboard/, "clipboard API copy path is present");
@@ -169,10 +170,10 @@ assert.match(files.js, /ArrowLeft/, "keyboard previous trace is wired");
 assert.match(files.js, /window\.confirm/, "local reset asks for confirmation");
 assert.match(files.css, /aria-pressed="true"/, "tour active state has visible styling");
 assert.match(files.css, /\.file-input/, "file input is visually hidden but present");
-assert.match(files.serviceWorker, /CACHE_NAME = "trace-atlas-shell-v25"/, "service worker cache is versioned");
+assert.match(files.serviceWorker, /CACHE_NAME = "trace-atlas-shell-v26"/, "service worker cache is versioned");
 assert.match(files.html, /href="\.\/styles\.css\?v=12"/, "stylesheet URL is versioned");
-assert.match(files.html, /src="\.\/app\.js\?v=13"/, "script URL is versioned");
-for (const cachedFile of ["./index.html", "./launch.html", "./materials.html", "./monument.html", "./workflow.html", "./styles.css?v=12", "./launch.css?v=6", "./launch.js?v=1", "./app.js?v=13", "./progress-timeline.json?v=6", "./world-sync.json?v=6", "./trace-ledger.json?v=6", "./public-health.json", "./materials-index.json", "./icon.svg", "./social-card.svg", "./promo/xhs-cover.png", "./promo/workflow-card.png", "./promo/xhs-post-drafts.md", "./promo/xhs-feedback-loop-template.md", "./promo/xhs-publish-checklist.md", "./promo/xhs-publish-manifest.json", "./promo/xhs-publish-report.md", "./evidence-pack.md", "./templates/ai-session-artifact-kit.md", "./site.webmanifest"]) {
+assert.match(files.html, /src="\.\/app\.js\?v=14"/, "script URL is versioned");
+for (const cachedFile of ["./index.html", "./launch.html", "./materials.html", "./monument.html", "./workflow.html", "./styles.css?v=12", "./launch.css?v=6", "./launch.js?v=1", "./app.js?v=14", "./progress-timeline.json?v=7", "./world-sync.json?v=6", "./trace-ledger.json?v=6", "./public-health.json", "./materials-index.json", "./icon.svg", "./social-card.svg", "./promo/xhs-cover.png", "./promo/workflow-card.png", "./promo/xhs-post-drafts.md", "./promo/xhs-feedback-loop-template.md", "./promo/xhs-publish-checklist.md", "./promo/xhs-publish-manifest.json", "./promo/xhs-publish-report.md", "./evidence-pack.md", "./templates/ai-session-artifact-kit.md", "./site.webmanifest"]) {
   const escaped = cachedFile.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   assert.match(files.serviceWorker, new RegExp(escaped), `service worker caches ${cachedFile}`);
 }
@@ -255,7 +256,10 @@ for (const entry of ledger.entries) {
 
 const timeline = JSON.parse(files.timeline);
 assert.equal(timeline.name, "Trace Atlas 进展时间线");
-assert.ok(timeline.items.length >= 9, "progress timeline lists the reader-facing path");
+assert.ok(timeline.items.length >= 13, "progress timeline lists the reader-facing path");
+for (const title of ["公开材料有了总入口", "留下项目纪念碑", "发布草稿可以直接取用", "外部反馈能回到仓库"]) {
+  assert.ok(timeline.items.some((item) => item.title === title), `progress timeline includes ${title}`);
+}
 for (const item of timeline.items) {
   assert.match(item.phase, /^[0-9]{2}$/, `timeline phase ${item.title} has a readable number`);
   assert.ok(item.summary.length > 24, `timeline item ${item.title} has a useful summary`);

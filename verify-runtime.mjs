@@ -279,11 +279,15 @@ assert.equal(runtime.document.querySelector("#world-links").children.length, wor
 const firstWorldLink = runtime.document.querySelector("#world-links").children[0].children[0];
 assert.equal(firstWorldLink.href, "https://trace-atlas-codex.pages.dev/");
 assert.equal(firstWorldLink.children[0].textContent, "Cloudflare Pages");
-assert.equal(runtime.document.querySelector("#timeline-status").textContent, `${progressTimeline.items.length} 步`);
-assert.equal(runtime.document.querySelector("#timeline-list").children.length, progressTimeline.items.length);
+const visibleTimelineItems = progressTimeline.items.slice(-9);
+assert.equal(runtime.document.querySelector("#timeline-status").textContent, `最近 ${visibleTimelineItems.length} 步`);
+assert.equal(runtime.document.querySelector("#timeline-list").children.length, visibleTimelineItems.length);
 const firstTimelineItem = runtime.document.querySelector("#timeline-list").children[0];
-assert.equal(firstTimelineItem.children[0].textContent, "01");
-assert.equal(firstTimelineItem.children[1].children[0].textContent, "授权成为起点");
+assert.equal(firstTimelineItem.children[0].textContent, visibleTimelineItems[0].phase);
+assert.equal(firstTimelineItem.children[1].children[0].textContent, visibleTimelineItems[0].title);
+const lastTimelineItem = runtime.document.querySelector("#timeline-list").children[visibleTimelineItems.length - 1];
+assert.equal(lastTimelineItem.children[0].textContent, "13");
+assert.equal(lastTimelineItem.children[1].children[0].textContent, "外部反馈能回到仓库");
 
 await runtime.document.querySelector("#copy-kit").dispatch("click");
 assert.equal(runtime.clipboardText, artifactKit);

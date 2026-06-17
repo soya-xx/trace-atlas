@@ -65,6 +65,34 @@
       "summary": "把授权、产物、边界、验证、传播和复用整理成页面，让读者能带走一套方法。",
       "evidenceLabel": "公开化路线图",
       "evidenceHref": "https://trace-atlas-codex.pages.dev/workflow"
+    },
+    {
+      "phase": "10",
+      "title": "公开材料有了总入口",
+      "summary": "把页面、图片素材、发布文档、机器数据和验证脚本整理成材料总览，读者不用在仓库里来回翻找。",
+      "evidenceLabel": "公开材料总览",
+      "evidenceHref": "https://trace-atlas-codex.pages.dev/materials"
+    },
+    {
+      "phase": "11",
+      "title": "留下项目纪念碑",
+      "summary": "新增项目纪念碑，说明这次会话为什么要变成公开作品，也说明哪些边界不会被公开。",
+      "evidenceLabel": "项目纪念碑",
+      "evidenceHref": "https://trace-atlas-codex.pages.dev/monument"
+    },
+    {
+      "phase": "12",
+      "title": "发布草稿可以直接取用",
+      "summary": "把小红书受众角度、标题审查、正文终稿、短版正文、标签和发布边界集中到一份草稿包。",
+      "evidenceLabel": "发布草稿包",
+      "evidenceHref": "https://trace-atlas-codex.pages.dev/promo/xhs-post-drafts.md"
+    },
+    {
+      "phase": "13",
+      "title": "外部反馈能回到仓库",
+      "summary": "新增发布后回流模板，让评论问题、链接异常、隐私疑问和新需求都有机会回到公开 issue 和验证流程。",
+      "evidenceLabel": "回流模板",
+      "evidenceHref": "https://trace-atlas-codex.pages.dev/promo/xhs-feedback-loop-template.md"
     }
   ]
 }
