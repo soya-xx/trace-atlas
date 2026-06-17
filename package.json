@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "check": "node --check app.js && node --check launch.js && node --check server.mjs && node --check service-worker.js && node --check verify-trace.mjs && node --check verify-runtime.mjs && node --check verify-launch.mjs && node --check scripts/build-publish-report.mjs && node --check scripts/scan-public-boundary.mjs && node verify-trace.mjs && node verify-runtime.mjs && node verify-launch.mjs && node scripts/build-publish-report.mjs --check && node scripts/scan-public-boundary.mjs",
+    "check": "node --check app.js && node --check launch.js && node --check server.mjs && node --check service-worker.js && node --check verify-trace.mjs && node --check verify-runtime.mjs && node --check verify-launch.mjs && node --check scripts/build-publish-report.mjs && node --check scripts/build-verification-summary.mjs && node --check scripts/scan-public-boundary.mjs && node verify-trace.mjs && node verify-runtime.mjs && node verify-launch.mjs && node scripts/build-publish-report.mjs --check && node scripts/build-verification-summary.mjs --check && node scripts/scan-public-boundary.mjs",
     "publish-report": "node scripts/build-publish-report.mjs",
     "start": "node server.mjs"
   }

@@ -96,6 +96,10 @@
           "href": "https://trace-atlas-codex.pages.dev/evidence-pack.md"
         },
         {
+          "label": "验证摘要",
+          "href": "https://trace-atlas-codex.pages.dev/verification-summary.md"
+        },
+        {
           "label": "项目纪念碑",
           "href": "https://trace-atlas-codex.pages.dev/monument"
         },
@@ -158,6 +162,10 @@
         {
           "label": "边界扫描脚本",
           "href": "https://github.com/soya-xx/trace-atlas/blob/main/scripts/scan-public-boundary.mjs"
+        },
+        {
+          "label": "验证摘要生成脚本",
+          "href": "https://github.com/soya-xx/trace-atlas/blob/main/scripts/build-verification-summary.mjs"
         }
       ]
     }

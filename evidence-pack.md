@@ -11,6 +11,7 @@
 - 公开材料总览：`https://trace-atlas-codex.pages.dev/materials`
 - 项目纪念碑：`https://trace-atlas-codex.pages.dev/monument`
 - 公开化路线图：`https://trace-atlas-codex.pages.dev/workflow`
+- 验证摘要：`https://trace-atlas-codex.pages.dev/verification-summary.md`
 - 小红书发布草稿包：`https://trace-atlas-codex.pages.dev/promo/xhs-post-drafts.md`
 - 小红书发布后回流模板：`https://trace-atlas-codex.pages.dev/promo/xhs-feedback-loop-template.md`
 - 小红书发布检查台：`https://trace-atlas-codex.pages.dev/promo/xhs-publish-checklist.md`
@@ -50,6 +51,8 @@
 - `materials-index.json` 把公开页面、图片素材、发布文档、机器数据和验证边界分组。
 - `reuse-map.json` 把开始复用、快速清单、完整模板、证据包、健康状态和回流模板整理成机器可读链路。
 - `reuse.html` 和 `promo/reuse-flow-card.png` 把同一条链路翻译成读者能扫读的页面和传播配图。
+- `verification-summary.md` 由公开 JSON 生成，方便快速复制到 issue 或交给读者复核。
+- `scripts/build-verification-summary.mjs` 负责生成并检查验证摘要。
 - `monument.html` 用公开文字说明项目为什么存在，以及公开边界如何被处理。
 - Cloudflare Pages 使用独立项目 `trace-atlas-codex`，不触碰账号里已有的其他 Pages 项目。
 
@@ -64,6 +67,7 @@ npm run check
 - JavaScript 语法。
 - 主页结构、缓存版本、离线外壳、数据文件、分享素材和模板入口。
 - 运行时行为，包括时间线渲染、模板复制、导入、导出、快照和胶囊链接。
+- 验证摘要是否与公开 JSON 保持一致。
 
 ## 线上验证
 
@@ -75,6 +79,7 @@ curl -I https://trace-atlas-codex.pages.dev/launch
 curl -I https://trace-atlas-codex.pages.dev/materials
 curl -I https://trace-atlas-codex.pages.dev/monument
 curl -I https://trace-atlas-codex.pages.dev/workflow
+curl -I https://trace-atlas-codex.pages.dev/verification-summary.md
 curl -I https://trace-atlas-codex.pages.dev/promo/xhs-post-drafts.md
 curl -I https://trace-atlas-codex.pages.dev/promo/xhs-feedback-loop-template.md
 curl -I https://trace-atlas-codex.pages.dev/promo/xhs-publish-checklist.md
@@ -96,6 +101,7 @@ curl -I https://trace-atlas-codex.pages.dev/progress-timeline.json
 
 - 主作品、开始复用入口、复用路线页、发布材料页、公开材料总览、项目纪念碑与公开化路线图返回 `200`。
 - `evidence-pack.md` 返回 Markdown 文本。
+- `verification-summary.md` 返回 Markdown 文本。
 - 小红书发布草稿包返回 Markdown 文本。
 - 小红书发布后回流模板返回 Markdown 文本。
 - 小红书发布检查台返回 Markdown 文本。
