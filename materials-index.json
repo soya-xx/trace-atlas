@@ -90,6 +90,10 @@
         {
           "label": "复用模板",
           "href": "https://trace-atlas-codex.pages.dev/templates/ai-session-artifact-kit.md"
+        },
+        {
+          "label": "公开化快速清单",
+          "href": "https://trace-atlas-codex.pages.dev/templates/ai-session-public-quickstart.md"
         }
       ]
     },

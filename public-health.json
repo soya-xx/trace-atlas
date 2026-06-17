@@ -6,7 +6,7 @@
   "counts": {
     "publicLinks": 12,
     "visualAssets": 4,
-    "publishDocuments": 8,
+    "publishDocuments": 9,
     "verificationScripts": 5
   },
   "checks": [
@@ -44,6 +44,11 @@
       "label": "公开健康徽章已公开",
       "state": "ok",
       "evidenceHref": "https://trace-atlas-codex.pages.dev/public-health-badge.svg"
+    },
+    {
+      "label": "公开化快速清单已公开",
+      "state": "ok",
+      "evidenceHref": "https://trace-atlas-codex.pages.dev/templates/ai-session-public-quickstart.md"
     },
     {
       "label": "发布报告可生成",

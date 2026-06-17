@@ -20,6 +20,7 @@
 - 公开健康状态：`https://trace-atlas-codex.pages.dev/public-health.json`
 - 公开材料总览 JSON：`https://trace-atlas-codex.pages.dev/materials-index.json`
 - 复用模板：`https://trace-atlas-codex.pages.dev/templates/ai-session-artifact-kit.md`
+- 公开化快速清单：`https://trace-atlas-codex.pages.dev/templates/ai-session-public-quickstart.md`
 - 进展时间线：`https://trace-atlas-codex.pages.dev/progress-timeline.json`
 
 ## 可核验事实
@@ -33,6 +34,7 @@
 - 小红书发布草稿包包含受众角度、标题审查、正文终稿、短版正文、标签和发布边界。
 - 小红书发布后回流模板用于记录帖子链接、评论问题、处理动作、验证证据和 issue 回写内容。
 - 小红书发布检查台把链接、配图、正文边界和发布后记录放在同一页。
+- 公开化快速清单把 AI 会话公开化流程压缩成 6 步，方便读者直接照着收尾。
 - 小红书发布 manifest 把链接、图片、标签和检查项整理成机器可读 JSON。
 - 小红书发布前报告由 manifest 生成，方便发布前快速复核。
 - 路线图长图把会话公开化步骤整理成 900 × 1200 图片素材。
@@ -75,6 +77,7 @@ curl -I https://trace-atlas-codex.pages.dev/promo/workflow-card.png
 curl -I https://trace-atlas-codex.pages.dev/public-health-badge.svg
 curl -I https://trace-atlas-codex.pages.dev/public-health.json
 curl -I https://trace-atlas-codex.pages.dev/materials-index.json
+curl -I https://trace-atlas-codex.pages.dev/templates/ai-session-public-quickstart.md
 curl -I https://trace-atlas-codex.pages.dev/progress-timeline.json
 ```
 
@@ -92,6 +95,7 @@ curl -I https://trace-atlas-codex.pages.dev/progress-timeline.json
 - 公开健康徽章返回 `image/svg+xml`。
 - 公开健康状态返回 JSON。
 - 公开材料总览 JSON 返回 JSON。
+- 公开化快速清单返回 Markdown 文本。
 - 进展时间线返回 JSON。
 
 ## 公开边界
