@@ -5,6 +5,7 @@
 ## 公开入口
 
 - 主作品：`https://trace-atlas-codex.pages.dev/`
+- 开始复用入口：`https://trace-atlas-codex.pages.dev/start`
 - 发布材料页：`https://trace-atlas-codex.pages.dev/launch`
 - 公开材料总览：`https://trace-atlas-codex.pages.dev/materials`
 - 项目纪念碑：`https://trace-atlas-codex.pages.dev/monument`
@@ -30,6 +31,7 @@
 - 来路账本记录关键里程碑提交。
 - 进展时间线把工程记录整理成读者能顺着读的故事线。
 - 公开化路线图把会话公开化流程整理成可复用步骤。
+- 开始复用入口把快速清单、完整模板、证据包、公开健康和回流模板放到同一个行动页。
 - 小红书传播包包含标题、正文草案、封面图和发布前检查。
 - 小红书发布草稿包包含受众角度、标题审查、正文终稿、短版正文、标签和发布边界。
 - 小红书发布后回流模板用于记录帖子链接、评论问题、处理动作、验证证据和 issue 回写内容。
@@ -62,6 +64,7 @@ npm run check
 
 ```bash
 curl -I https://trace-atlas-codex.pages.dev/
+curl -I https://trace-atlas-codex.pages.dev/start
 curl -I https://trace-atlas-codex.pages.dev/launch
 curl -I https://trace-atlas-codex.pages.dev/materials
 curl -I https://trace-atlas-codex.pages.dev/monument
@@ -83,7 +86,7 @@ curl -I https://trace-atlas-codex.pages.dev/progress-timeline.json
 
 期望结果：
 
-- 主作品、发布材料页、公开材料总览、项目纪念碑与公开化路线图返回 `200`。
+- 主作品、开始复用入口、发布材料页、公开材料总览、项目纪念碑与公开化路线图返回 `200`。
 - `evidence-pack.md` 返回 Markdown 文本。
 - 小红书发布草稿包返回 Markdown 文本。
 - 小红书发布后回流模板返回 Markdown 文本。
