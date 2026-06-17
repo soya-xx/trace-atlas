@@ -20,6 +20,7 @@
 - 工作日志：`https://github.com/soya-xx/trace-atlas/issues/1`
 - 公开健康状态：`https://trace-atlas-codex.pages.dev/public-health.json`
 - 公开材料总览 JSON：`https://trace-atlas-codex.pages.dev/materials-index.json`
+- 复用链路 JSON：`https://trace-atlas-codex.pages.dev/reuse-map.json`
 - 复用模板：`https://trace-atlas-codex.pages.dev/templates/ai-session-artifact-kit.md`
 - 公开化快速清单：`https://trace-atlas-codex.pages.dev/templates/ai-session-public-quickstart.md`
 - 进展时间线：`https://trace-atlas-codex.pages.dev/progress-timeline.json`
@@ -45,6 +46,7 @@
 - `npm run check` 会扫描常见 token 前缀和本机绝对路径，防止公开材料带出敏感内容。
 - `public-health.json` 汇总公开入口、素材、发布文档、验证脚本和证据链接。
 - `materials-index.json` 把公开页面、图片素材、发布文档、机器数据和验证边界分组。
+- `reuse-map.json` 把开始复用、快速清单、完整模板、证据包、健康状态和回流模板整理成机器可读链路。
 - `monument.html` 用公开文字说明项目为什么存在，以及公开边界如何被处理。
 - Cloudflare Pages 使用独立项目 `trace-atlas-codex`，不触碰账号里已有的其他 Pages 项目。
 
@@ -80,6 +82,7 @@ curl -I https://trace-atlas-codex.pages.dev/promo/workflow-card.png
 curl -I https://trace-atlas-codex.pages.dev/public-health-badge.svg
 curl -I https://trace-atlas-codex.pages.dev/public-health.json
 curl -I https://trace-atlas-codex.pages.dev/materials-index.json
+curl -I https://trace-atlas-codex.pages.dev/reuse-map.json
 curl -I https://trace-atlas-codex.pages.dev/templates/ai-session-public-quickstart.md
 curl -I https://trace-atlas-codex.pages.dev/progress-timeline.json
 ```
@@ -98,6 +101,7 @@ curl -I https://trace-atlas-codex.pages.dev/progress-timeline.json
 - 公开健康徽章返回 `image/svg+xml`。
 - 公开健康状态返回 JSON。
 - 公开材料总览 JSON 返回 JSON。
+- 复用链路 JSON 返回 JSON。
 - 公开化快速清单返回 Markdown 文本。
 - 进展时间线返回 JSON。
 

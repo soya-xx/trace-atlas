@@ -114,6 +114,10 @@
           "href": "https://trace-atlas-codex.pages.dev/materials-index.json"
         },
         {
+          "label": "复用链路 JSON",
+          "href": "https://trace-atlas-codex.pages.dev/reuse-map.json"
+        },
+        {
           "label": "世界同步",
           "href": "https://trace-atlas-codex.pages.dev/world-sync.json"
         },

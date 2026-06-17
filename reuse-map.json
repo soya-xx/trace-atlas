@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "name": "Trace Atlas 复用链路图",
+  "summary": "把一次 AI 会话公开化的入口、清单、模板、证据和反馈回流整理成机器可读路径。",
+  "entryUrl": "https://trace-atlas-codex.pages.dev/start",
+  "publicOnly": true,
+  "nodes": [
+    {
+      "id": "start",
+      "label": "开始复用入口",
+      "href": "https://trace-atlas-codex.pages.dev/start",
+      "role": "entry",
+      "use": "让读者从一个页面选择复用路径。"
+    },
+    {
+      "id": "quickstart",
+      "label": "公开化快速清单",
+      "href": "https://trace-atlas-codex.pages.dev/templates/ai-session-public-quickstart.md",
+      "role": "method",
+      "use": "用 6 步完成最小公开化收尾。"
+    },
+    {
+      "id": "artifact-kit",
+      "label": "完整复用模板",
+      "href": "https://trace-atlas-codex.pages.dev/templates/ai-session-artifact-kit.md",
+      "role": "template",
+      "use": "整理完整项目交接材料。"
+    },
+    {
+      "id": "evidence-pack",
+      "label": "证据包",
+      "href": "https://trace-atlas-codex.pages.dev/evidence-pack.md",
+      "role": "proof",
+      "use": "核验公开链接、验证命令和公开边界。"
+    },
+    {
+      "id": "public-health",
+      "label": "公开健康状态",
+      "href": "https://trace-atlas-codex.pages.dev/public-health.json",
+      "role": "status",
+      "use": "读取公开入口、素材、文档和验证脚本状态。"
+    },
+    {
+      "id": "feedback-loop",
+      "label": "发布后回流模板",
+      "href": "https://trace-atlas-codex.pages.dev/promo/xhs-feedback-loop-template.md",
+      "role": "feedback",
+      "use": "把发布后的问题、误解和修正写回公开 issue。"
+    }
+  ],
+  "edges": [
+    {
+      "from": "start",
+      "to": "quickstart",
+      "reason": "读者需要最快可复制的收尾方法。"
+    },
+    {
+      "from": "quickstart",
+      "to": "artifact-kit",
+      "reason": "短清单不够时，补完整交接模板。"
+    },
+    {
+      "from": "artifact-kit",
+      "to": "evidence-pack",
+      "reason": "模板写完后，需要证据证明作品真实存在。"
+    },
+    {
+      "from": "evidence-pack",
+      "to": "public-health",
+      "reason": "证据包之外，还要读取当前公开健康状态。"
+    },
+    {
+      "from": "public-health",
+      "to": "feedback-loop",
+      "reason": "发布后出现问题时，把反馈带回公开记录。"
+    }
+  ],
+  "boundaries": [
+    "不包含 token、API key、账号密钥或本地路径。",
+    "不包含原始私密聊天、私信内容或平台后台截图。",
+    "只记录公开链接和可复核材料。"
+  ]
+}

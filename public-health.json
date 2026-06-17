@@ -4,7 +4,7 @@
   "status": "可公开访问",
   "summary": "公开入口、传播素材、发布清单、自动验证和边界扫描均已形成可复核证据。",
   "counts": {
-    "publicLinks": 13,
+    "publicLinks": 14,
     "visualAssets": 4,
     "publishDocuments": 9,
     "verificationScripts": 5
@@ -19,6 +19,11 @@
       "label": "开始复用入口已公开",
       "state": "ok",
       "evidenceHref": "https://trace-atlas-codex.pages.dev/start"
+    },
+    {
+      "label": "复用链路 JSON 已公开",
+      "state": "ok",
+      "evidenceHref": "https://trace-atlas-codex.pages.dev/reuse-map.json"
     },
     {
       "label": "发布材料完整",
