@@ -1,4 +1,4 @@
-const CACHE_NAME = "trace-atlas-shell-v26";
+const CACHE_NAME = "trace-atlas-shell-v27";
 const APP_SHELL = [
   "./",
   "./index.html",
@@ -6,10 +6,10 @@ const APP_SHELL = [
   "./materials.html",
   "./monument.html",
   "./workflow.html",
-  "./styles.css?v=12",
+  "./styles.css?v=13",
   "./launch.css?v=6",
   "./launch.js?v=1",
-  "./app.js?v=14",
+  "./app.js?v=15",
   "./icon.svg",
   "./social-card.svg",
   "./promo/xhs-cover.png",
@@ -22,10 +22,10 @@ const APP_SHELL = [
   "./evidence-pack.md",
   "./templates/ai-session-artifact-kit.md",
   "./site.webmanifest",
-  "./progress-timeline.json?v=7",
-  "./world-sync.json?v=6",
-  "./trace-ledger.json?v=6",
-  "./public-health.json",
+  "./progress-timeline.json?v=8",
+  "./world-sync.json?v=8",
+  "./trace-ledger.json?v=8",
+  "./public-health.json?v=8",
   "./materials-index.json"
 ];
 

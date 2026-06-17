@@ -56,6 +56,11 @@ const requiredIds = [
   "fingerprint-note",
   "world-status",
   "world-links",
+  "health-title",
+  "health-status",
+  "health-summary",
+  "health-counts",
+  "health-checks",
   "kit-title",
   "copy-kit",
   "kit-status",
@@ -136,6 +141,8 @@ assert.match(files.css, /min-height: 100dvh/, "viewport height is anchored");
 assert.match(files.css, /overflow-x: hidden/, "page prevents horizontal overflow on mobile");
 assert.match(files.css, /max-width: 100vw/, "app shell is capped to the viewport width");
 assert.match(files.css, /min-width: 0/, "grid children can shrink inside narrow viewports");
+assert.match(files.css, /\.health-counts/, "public health counts are styled");
+assert.match(files.css, /\.health-checks/, "public health checks are styled");
 assert.doesNotMatch(files.css, /letter-spacing:\s*-/i, "letter spacing is not negative");
 assert.match(files.js, /const TRACE_SEEDS = \[/, "seed traces are declared");
 assert.match(files.js, /localStorage/, "local archive is persisted");
@@ -151,11 +158,13 @@ assert.match(files.js, /function renderLedger/, "provenance ledger renderer is w
 assert.match(files.js, /trace-ledger\.json\?\$\{DATA_VERSION\}/, "provenance ledger data is loaded with a versioned URL");
 assert.match(files.js, /function renderWorldSync/, "world sync renderer is wired");
 assert.match(files.js, /world-sync\.json\?\$\{DATA_VERSION\}/, "world sync metadata is loaded with a versioned URL");
+assert.match(files.js, /function renderPublicHealth/, "public health renderer is wired");
+assert.match(files.js, /public-health\.json\?\$\{DATA_VERSION\}/, "public health data is loaded with a versioned URL");
 assert.match(files.js, /function renderTimeline/, "progress timeline renderer is wired");
 assert.match(files.js, /progress-timeline\.json\?\$\{DATA_VERSION\}/, "progress timeline data is loaded with a versioned URL");
 assert.match(files.js, /items\.slice\(-9\)/, "progress timeline shows the latest milestones");
 assert.match(files.js, /safePublicHref/, "timeline evidence links are constrained");
-assert.match(files.js, /DATA_VERSION = "v=7"/, "JSON data requests are versioned");
+assert.match(files.js, /DATA_VERSION = "v=8"/, "JSON data requests are versioned");
 assert.match(files.js, /ARTIFACT_KIT_URL = "\.\/templates\/ai-session-artifact-kit\.md"/, "artifact kit copy source is declared");
 assert.match(files.js, /function copyArtifactKit/, "artifact kit copy handler is wired");
 assert.match(files.js, /navigator\.clipboard/, "clipboard API copy path is present");
@@ -170,10 +179,10 @@ assert.match(files.js, /ArrowLeft/, "keyboard previous trace is wired");
 assert.match(files.js, /window\.confirm/, "local reset asks for confirmation");
 assert.match(files.css, /aria-pressed="true"/, "tour active state has visible styling");
 assert.match(files.css, /\.file-input/, "file input is visually hidden but present");
-assert.match(files.serviceWorker, /CACHE_NAME = "trace-atlas-shell-v26"/, "service worker cache is versioned");
-assert.match(files.html, /href="\.\/styles\.css\?v=12"/, "stylesheet URL is versioned");
-assert.match(files.html, /src="\.\/app\.js\?v=14"/, "script URL is versioned");
-for (const cachedFile of ["./index.html", "./launch.html", "./materials.html", "./monument.html", "./workflow.html", "./styles.css?v=12", "./launch.css?v=6", "./launch.js?v=1", "./app.js?v=14", "./progress-timeline.json?v=7", "./world-sync.json?v=6", "./trace-ledger.json?v=6", "./public-health.json", "./materials-index.json", "./icon.svg", "./social-card.svg", "./promo/xhs-cover.png", "./promo/workflow-card.png", "./promo/xhs-post-drafts.md", "./promo/xhs-feedback-loop-template.md", "./promo/xhs-publish-checklist.md", "./promo/xhs-publish-manifest.json", "./promo/xhs-publish-report.md", "./evidence-pack.md", "./templates/ai-session-artifact-kit.md", "./site.webmanifest"]) {
+assert.match(files.serviceWorker, /CACHE_NAME = "trace-atlas-shell-v27"/, "service worker cache is versioned");
+assert.match(files.html, /href="\.\/styles\.css\?v=13"/, "stylesheet URL is versioned");
+assert.match(files.html, /src="\.\/app\.js\?v=15"/, "script URL is versioned");
+for (const cachedFile of ["./index.html", "./launch.html", "./materials.html", "./monument.html", "./workflow.html", "./styles.css?v=13", "./launch.css?v=6", "./launch.js?v=1", "./app.js?v=15", "./progress-timeline.json?v=8", "./world-sync.json?v=8", "./trace-ledger.json?v=8", "./public-health.json?v=8", "./materials-index.json", "./icon.svg", "./social-card.svg", "./promo/xhs-cover.png", "./promo/workflow-card.png", "./promo/xhs-post-drafts.md", "./promo/xhs-feedback-loop-template.md", "./promo/xhs-publish-checklist.md", "./promo/xhs-publish-manifest.json", "./promo/xhs-publish-report.md", "./evidence-pack.md", "./templates/ai-session-artifact-kit.md", "./site.webmanifest"]) {
   const escaped = cachedFile.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   assert.match(files.serviceWorker, new RegExp(escaped), `service worker caches ${cachedFile}`);
 }

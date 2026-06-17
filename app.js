@@ -5,7 +5,7 @@
   const ARTIFACT_KIT_URL = "./templates/ai-session-artifact-kit.md";
   const CAPSULE_PREFIX = "#capsule=";
   const TOUR_INTERVAL_MS = 2400;
-  const DATA_VERSION = "v=7";
+  const DATA_VERSION = "v=8";
   const PALETTE = ["#25785e", "#b84646", "#386fb0", "#c9961a", "#7657a6"];
 
   const TRACE_SEEDS = [
@@ -85,6 +85,10 @@
     fingerprint: document.querySelector("#fingerprint-note"),
     worldStatus: document.querySelector("#world-status"),
     worldLinks: document.querySelector("#world-links"),
+    healthStatus: document.querySelector("#health-status"),
+    healthSummary: document.querySelector("#health-summary"),
+    healthCounts: document.querySelector("#health-counts"),
+    healthChecks: document.querySelector("#health-checks"),
     copyKit: document.querySelector("#copy-kit"),
     kitStatus: document.querySelector("#kit-status"),
     timelineStatus: document.querySelector("#timeline-status"),
@@ -531,6 +535,45 @@
       : "#";
   }
 
+  function renderPublicHealth(health, statusText = health.status || "可读取") {
+    const counts = health.counts || {};
+    const countItems = [
+      { label: "公开入口", value: counts.publicLinks ?? 0 },
+      { label: "发布文档", value: counts.publishDocuments ?? 0 },
+      { label: "验证脚本", value: counts.verificationScripts ?? 0 }
+    ];
+    const checks = Array.isArray(health.checks) ? health.checks.slice(0, 4) : [];
+
+    els.healthSummary.textContent = health.summary || "公开健康状态暂时没有说明。";
+    els.healthCounts.replaceChildren();
+    countItems.forEach((count) => {
+      const item = document.createElement("div");
+      const value = document.createElement("strong");
+      const label = document.createElement("small");
+      item.className = "health-count";
+      value.textContent = String(count.value);
+      label.textContent = count.label;
+      item.append(value, label);
+      els.healthCounts.append(item);
+    });
+
+    els.healthChecks.replaceChildren();
+    checks.forEach((check) => {
+      const item = document.createElement("li");
+      const label = document.createElement("strong");
+      const evidence = document.createElement("a");
+      item.className = "health-check";
+      label.textContent = check.label || "未命名检查";
+      evidence.href = safePublicHref(check.evidenceHref);
+      evidence.target = "_blank";
+      evidence.rel = "noreferrer";
+      evidence.textContent = check.state === "ok" ? "查看证据" : "需要复核";
+      item.append(label, evidence);
+      els.healthChecks.append(item);
+    });
+    els.healthStatus.textContent = statusText;
+  }
+
   function renderTimeline(items, statusText = `${items.length} 步`) {
     els.timelineList.replaceChildren();
     items.forEach((step) => {
@@ -603,6 +646,31 @@
           evidenceHref: window.location.href
         }
       ], "不可用");
+    }
+  }
+
+  async function loadPublicHealth() {
+    try {
+      const response = await fetch(`./public-health.json?${DATA_VERSION}`);
+      if (!response.ok) {
+        throw new Error("health unavailable");
+      }
+      const health = await response.json();
+      renderPublicHealth(health);
+    } catch {
+      renderPublicHealth(
+        {
+          status: "不可用",
+          summary: "应用外壳已经加载，但公开健康状态暂时无法读取。",
+          counts: {
+            publicLinks: 0,
+            publishDocuments: 0,
+            verificationScripts: 0
+          },
+          checks: []
+        },
+        "不可用"
+      );
     }
   }
 
@@ -1071,6 +1139,7 @@
     renderArchive();
     registerOfflineShell();
     loadWorldSync();
+    loadPublicHealth();
     loadProgressTimeline();
     loadProvenanceLedger();
     requestAnimationFrame(draw);

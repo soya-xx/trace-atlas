@@ -6,6 +6,7 @@ import vm from "node:vm";
 const provenanceLedger = JSON.parse(readFileSync("trace-ledger.json", "utf8"));
 const progressTimeline = JSON.parse(readFileSync("progress-timeline.json", "utf8"));
 const worldSync = JSON.parse(readFileSync("world-sync.json", "utf8"));
+const publicHealth = JSON.parse(readFileSync("public-health.json", "utf8"));
 const artifactKit = readFileSync("templates/ai-session-artifact-kit.md", "utf8");
 
 class MockElement {
@@ -140,6 +141,10 @@ function createRuntime() {
     "fingerprint-note",
     "world-status",
     "world-links",
+    "health-status",
+    "health-summary",
+    "health-counts",
+    "health-checks",
     "copy-kit",
     "kit-status",
     "timeline-status",
@@ -201,6 +206,12 @@ function createRuntime() {
         return {
           ok: true,
           json: async () => progressTimeline
+        };
+      }
+      if (requestUrl.includes("public-health.json")) {
+        return {
+          ok: true,
+          json: async () => publicHealth
         };
       }
       if (requestUrl.includes("ai-session-artifact-kit.md")) {
@@ -279,6 +290,14 @@ assert.equal(runtime.document.querySelector("#world-links").children.length, wor
 const firstWorldLink = runtime.document.querySelector("#world-links").children[0].children[0];
 assert.equal(firstWorldLink.href, "https://trace-atlas-codex.pages.dev/");
 assert.equal(firstWorldLink.children[0].textContent, "Cloudflare Pages");
+assert.equal(runtime.document.querySelector("#health-status").textContent, publicHealth.status);
+assert.equal(runtime.document.querySelector("#health-summary").textContent, publicHealth.summary);
+assert.equal(runtime.document.querySelector("#health-counts").children.length, 3);
+assert.equal(runtime.document.querySelector("#health-counts").children[0].children[0].textContent, String(publicHealth.counts.publicLinks));
+assert.equal(runtime.document.querySelector("#health-counts").children[1].children[0].textContent, String(publicHealth.counts.publishDocuments));
+assert.equal(runtime.document.querySelector("#health-counts").children[2].children[0].textContent, String(publicHealth.counts.verificationScripts));
+assert.equal(runtime.document.querySelector("#health-checks").children.length, 4);
+assert.equal(runtime.document.querySelector("#health-checks").children[0].children[0].textContent, publicHealth.checks[0].label);
 const visibleTimelineItems = progressTimeline.items.slice(-9);
 assert.equal(runtime.document.querySelector("#timeline-status").textContent, `最近 ${visibleTimelineItems.length} 步`);
 assert.equal(runtime.document.querySelector("#timeline-list").children.length, visibleTimelineItems.length);

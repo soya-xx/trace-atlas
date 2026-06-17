@@ -169,6 +169,7 @@ h2 {
 .composer-band,
 .tools-band,
 .world-band,
+.health-band,
 .kit-band,
 .timeline-band,
 .provenance-band,
@@ -221,6 +222,7 @@ h2 {
 .composer-band h2,
 .tools-band h2,
 .world-band h2,
+.health-band h2,
 .kit-band h2,
 .timeline-band h2,
 .provenance-band h2,
@@ -348,6 +350,89 @@ button.quiet {
   margin: 0;
   padding: 0;
   list-style: none;
+}
+
+.health-summary {
+  margin: 0 0 12px;
+  color: var(--muted);
+  font-size: 0.84rem;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.health-counts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.health-count {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px;
+  background: white;
+}
+
+.health-count strong {
+  color: var(--green);
+  font-size: 1.15rem;
+  line-height: 1;
+}
+
+.health-count small {
+  min-width: 0;
+  color: var(--muted);
+  font-size: 0.7rem;
+  font-weight: 800;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.health-checks {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.health-check {
+  display: grid;
+  gap: 4px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px;
+  background: white;
+}
+
+.health-check strong,
+.health-check a {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.health-check strong {
+  font-size: 0.82rem;
+  line-height: 1.25;
+}
+
+.health-check a {
+  width: fit-content;
+  color: var(--blue);
+  font-size: 0.74rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.health-check a:hover {
+  text-decoration: underline;
 }
 
 #timeline-list {

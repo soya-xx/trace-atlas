@@ -18,7 +18,7 @@
     <title>Trace Atlas | 痕迹星图</title>
     <link rel="icon" href="./icon.svg" type="image/svg+xml">
     <link rel="manifest" href="./site.webmanifest">
-    <link rel="stylesheet" href="./styles.css?v=12">
+    <link rel="stylesheet" href="./styles.css?v=13">
   </head>
   <body>
     <main class="atlas-shell" aria-labelledby="app-title">
@@ -86,6 +86,16 @@
           <ul id="world-links"></ul>
         </section>
 
+        <section class="health-band" aria-labelledby="health-title">
+          <div class="section-heading">
+            <h2 id="health-title">公开健康</h2>
+            <span id="health-status">加载中</span>
+          </div>
+          <p id="health-summary" class="health-summary">正在读取公开健康状态。</p>
+          <div id="health-counts" class="health-counts" aria-label="公开健康统计"></div>
+          <ul id="health-checks" class="health-checks"></ul>
+        </section>
+
         <section class="kit-band" aria-labelledby="kit-title">
           <div class="section-heading">
             <h2 id="kit-title">复用模板</h2>
@@ -130,6 +140,6 @@
       </aside>
     </main>
 
-    <script src="./app.js?v=14"></script>
+    <script src="./app.js?v=15"></script>
   </body>
 </html>
