@@ -5,7 +5,7 @@
   "summary": "公开入口、传播素材、发布清单、自动验证和边界扫描均已形成可复核证据。",
   "counts": {
     "publicLinks": 12,
-    "visualAssets": 3,
+    "visualAssets": 4,
     "publishDocuments": 8,
     "verificationScripts": 5
   },
@@ -39,6 +39,11 @@
       "label": "发布后回流模板已公开",
       "state": "ok",
       "evidenceHref": "https://trace-atlas-codex.pages.dev/promo/xhs-feedback-loop-template.md"
+    },
+    {
+      "label": "公开健康徽章已公开",
+      "state": "ok",
+      "evidenceHref": "https://trace-atlas-codex.pages.dev/public-health-badge.svg"
     },
     {
       "label": "发布报告可生成",

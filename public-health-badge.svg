@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360" role="img" aria-labelledby="title desc">
+  <title id="title">Trace Atlas 公开健康徽章</title>
+  <desc id="desc">Trace Atlas 当前公开健康状态：12 个公开入口，8 份发布文档，5 个验证脚本。</desc>
+  <defs>
+    <pattern id="grid" width="36" height="36" patternUnits="userSpaceOnUse">
+      <path d="M 36 0 L 0 0 0 36" fill="none" stroke="#d6ddd8" stroke-width="1" opacity="0.7"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="360" fill="#fbfbf8"/>
+  <rect width="1200" height="360" fill="url(#grid)"/>
+  <rect x="32" y="32" width="1136" height="296" rx="8" fill="#ffffff" stroke="#d6ddd8"/>
+  <text x="64" y="86" fill="#606763" font-family="Inter, system-ui, sans-serif" font-size="24" font-weight="800">TRACE ATLAS / 痕迹星图</text>
+  <text x="64" y="152" fill="#101113" font-family="Inter, system-ui, sans-serif" font-size="58" font-weight="900">公开健康状态</text>
+  <text x="64" y="204" fill="#606763" font-family="Inter, system-ui, sans-serif" font-size="28" font-weight="650">公开入口、发布文档和验证脚本均已接入证据链。</text>
+  <g transform="translate(64 246)">
+    <rect width="242" height="64" rx="8" fill="#25785e"/>
+    <text x="24" y="41" fill="#ffffff" font-family="Inter, system-ui, sans-serif" font-size="30" font-weight="900">12 公开入口</text>
+  </g>
+  <g transform="translate(326 246)">
+    <rect width="266" height="64" rx="8" fill="#386fb0"/>
+    <text x="24" y="41" fill="#ffffff" font-family="Inter, system-ui, sans-serif" font-size="30" font-weight="900">8 发布文档</text>
+  </g>
+  <g transform="translate(612 246)">
+    <rect width="266" height="64" rx="8" fill="#101113"/>
+    <text x="24" y="41" fill="#ffffff" font-family="Inter, system-ui, sans-serif" font-size="30" font-weight="900">5 验证脚本</text>
+  </g>
+  <text x="912" y="286" fill="#25785e" font-family="Inter, system-ui, sans-serif" font-size="25" font-weight="900">trace-atlas-codex.pages.dev</text>
+</svg>

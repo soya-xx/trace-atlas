@@ -19,6 +19,7 @@ const files = {
   publicHealth: readFileSync("public-health.json", "utf8"),
   materialsIndex: readFileSync("materials-index.json", "utf8"),
   socialCard: readFileSync("social-card.svg", "utf8"),
+  healthBadge: readFileSync("public-health-badge.svg", "utf8"),
   artifactKit: readFileSync("templates/ai-session-artifact-kit.md", "utf8"),
   xhsCover: readFileSync("promo/xhs-cover.html", "utf8"),
   xhsCoverPng: readFileSync("promo/xhs-cover.png"),
@@ -91,6 +92,7 @@ assert.match(files.launchHtml, /monument\.html/, "launch page links to the proje
 assert.match(files.launchHtml, /promo\/xhs-cover\.png/, "launch page shows the Xiaohongshu cover");
 assert.match(files.launchHtml, /promo\/workflow-card\.png/, "launch page shows the workflow card");
 assert.match(files.launchHtml, /social-card\.svg/, "launch page shows the social card");
+assert.match(files.launchHtml, /public-health-badge\.svg/, "launch page shows the public health badge");
 assert.match(files.launchHtml, /templates\/ai-session-artifact-kit\.md/, "launch page links to the reusable template");
 assert.match(files.launchHtml, /promo\/xhs-post-drafts\.md/, "launch page links to the Xiaohongshu post drafts");
 assert.match(files.launchHtml, /promo\/xhs-feedback-loop-template\.md/, "launch page links to the Xiaohongshu feedback loop template");
@@ -119,6 +121,7 @@ assert.match(files.materialsHtml, /边界扫描脚本/, "materials overview page
 assert.match(files.materialsHtml, /monument\.html/, "materials overview page links to the project monument");
 assert.match(files.materialsHtml, /promo\/xhs-post-drafts\.md/, "materials overview page links to the Xiaohongshu post drafts");
 assert.match(files.materialsHtml, /promo\/xhs-feedback-loop-template\.md/, "materials overview page links to the Xiaohongshu feedback loop template");
+assert.match(files.materialsHtml, /public-health-badge\.svg/, "materials overview page links to the public health badge");
 assert.match(files.materialsHtml, /href="\.\/launch\.css\?v=6"/, "materials overview stylesheet URL is versioned");
 assert.match(files.monumentHtml, /Trace Atlas 项目纪念碑/, "project monument has a clear title");
 assert.match(files.monumentHtml, /把好意变成证据/, "project monument explains the core intent");
@@ -179,10 +182,10 @@ assert.match(files.js, /ArrowLeft/, "keyboard previous trace is wired");
 assert.match(files.js, /window\.confirm/, "local reset asks for confirmation");
 assert.match(files.css, /aria-pressed="true"/, "tour active state has visible styling");
 assert.match(files.css, /\.file-input/, "file input is visually hidden but present");
-assert.match(files.serviceWorker, /CACHE_NAME = "trace-atlas-shell-v27"/, "service worker cache is versioned");
+assert.match(files.serviceWorker, /CACHE_NAME = "trace-atlas-shell-v28"/, "service worker cache is versioned");
 assert.match(files.html, /href="\.\/styles\.css\?v=13"/, "stylesheet URL is versioned");
 assert.match(files.html, /src="\.\/app\.js\?v=15"/, "script URL is versioned");
-for (const cachedFile of ["./index.html", "./launch.html", "./materials.html", "./monument.html", "./workflow.html", "./styles.css?v=13", "./launch.css?v=6", "./launch.js?v=1", "./app.js?v=15", "./progress-timeline.json?v=8", "./world-sync.json?v=8", "./trace-ledger.json?v=8", "./public-health.json?v=8", "./materials-index.json", "./icon.svg", "./social-card.svg", "./promo/xhs-cover.png", "./promo/workflow-card.png", "./promo/xhs-post-drafts.md", "./promo/xhs-feedback-loop-template.md", "./promo/xhs-publish-checklist.md", "./promo/xhs-publish-manifest.json", "./promo/xhs-publish-report.md", "./evidence-pack.md", "./templates/ai-session-artifact-kit.md", "./site.webmanifest"]) {
+for (const cachedFile of ["./index.html", "./launch.html", "./materials.html", "./monument.html", "./workflow.html", "./styles.css?v=13", "./launch.css?v=6", "./launch.js?v=1", "./app.js?v=15", "./progress-timeline.json?v=8", "./world-sync.json?v=8", "./trace-ledger.json?v=8", "./public-health.json?v=8", "./materials-index.json", "./icon.svg", "./social-card.svg", "./public-health-badge.svg", "./promo/xhs-cover.png", "./promo/workflow-card.png", "./promo/xhs-post-drafts.md", "./promo/xhs-feedback-loop-template.md", "./promo/xhs-publish-checklist.md", "./promo/xhs-publish-manifest.json", "./promo/xhs-publish-report.md", "./evidence-pack.md", "./templates/ai-session-artifact-kit.md", "./site.webmanifest"]) {
   const escaped = cachedFile.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   assert.match(files.serviceWorker, new RegExp(escaped), `service worker caches ${cachedFile}`);
 }
@@ -192,6 +195,10 @@ assert.match(files.server, /\.png/, "local server serves png share assets");
 assert.match(files.server, /\.svg/, "local server serves svg icons");
 assert.match(files.svg, /Trace Atlas icon/, "svg icon has an accessible title");
 assert.match(files.socialCard, /我把 AI 会话/, "social card states the Xiaohongshu hook");
+assert.match(files.healthBadge, /Trace Atlas 公开健康徽章/, "public health badge has an accessible title");
+assert.match(files.healthBadge, /12 个公开入口/, "public health badge states public link count");
+assert.match(files.healthBadge, /8 份发布文档/, "public health badge states publish document count");
+assert.match(files.healthBadge, /5 个验证脚本/, "public health badge states verification count");
 assert.match(files.artifactKit, /AI 会话公开化模板/, "artifact kit has a clear title");
 assert.match(files.artifactKit, /公开链接 HTTP 状态/, "artifact kit includes public link verification");
 assert.match(files.xhsCover, /我把 <span class="highlight">AI 会话<\/span>/, "Xiaohongshu cover source has the hook");
@@ -236,6 +243,7 @@ assert.match(files.evidencePack, /https:\/\/trace-atlas-codex\.pages\.dev\/launc
 assert.match(files.evidencePack, /https:\/\/trace-atlas-codex\.pages\.dev\/materials/, "evidence pack links to the materials overview");
 assert.match(files.evidencePack, /https:\/\/trace-atlas-codex\.pages\.dev\/monument/, "evidence pack links to the project monument");
 assert.match(files.evidencePack, /https:\/\/trace-atlas-codex\.pages\.dev\/workflow/, "evidence pack links to the workflow page");
+assert.match(files.evidencePack, /public-health-badge\.svg/, "evidence pack links to the public health badge");
 assert.match(files.evidencePack, /xhs-post-drafts\.md/, "evidence pack links to the post drafts");
 assert.match(files.evidencePack, /xhs-feedback-loop-template\.md/, "evidence pack links to the feedback loop template");
 assert.match(files.evidencePack, /xhs-publish-checklist\.md/, "evidence pack links to the publish checklist");
@@ -288,13 +296,14 @@ const publicHealth = JSON.parse(files.publicHealth);
 assert.equal(publicHealth.name, "Trace Atlas 公开健康状态");
 assert.equal(publicHealth.status, "可公开访问");
 assert.equal(publicHealth.counts.publicLinks, 12);
-assert.equal(publicHealth.counts.visualAssets, 3);
+assert.equal(publicHealth.counts.visualAssets, 4);
 assert.equal(publicHealth.counts.publishDocuments, 8);
 assert.ok(publicHealth.checks.some((check) => check.label === "边界扫描纳入 CI"), "public health includes boundary scan status");
 assert.ok(publicHealth.checks.some((check) => check.label === "材料总览已公开"), "public health includes materials overview status");
 assert.ok(publicHealth.checks.some((check) => check.label === "项目纪念碑已公开"), "public health includes project monument status");
 assert.ok(publicHealth.checks.some((check) => check.label === "发布草稿包已公开"), "public health includes post drafts status");
 assert.ok(publicHealth.checks.some((check) => check.label === "发布后回流模板已公开"), "public health includes feedback loop template status");
+assert.ok(publicHealth.checks.some((check) => check.label === "公开健康徽章已公开"), "public health includes badge status");
 for (const check of publicHealth.checks) {
   assert.equal(check.state, "ok", `public health check ${check.label} is ok`);
   assert.match(check.evidenceHref, /^https:\/\/(github\.com|trace-atlas-codex\.pages\.dev)\//, `public health evidence ${check.label} is public https`);

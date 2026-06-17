@@ -14,6 +14,7 @@
 - 小红书发布检查台：`https://trace-atlas-codex.pages.dev/promo/xhs-publish-checklist.md`
 - 小红书发布 manifest：`https://trace-atlas-codex.pages.dev/promo/xhs-publish-manifest.json`
 - 小红书发布前报告：`https://trace-atlas-codex.pages.dev/promo/xhs-publish-report.md`
+- 公开健康徽章：`https://trace-atlas-codex.pages.dev/public-health-badge.svg`
 - 公开仓库：`https://github.com/soya-xx/trace-atlas`
 - 工作日志：`https://github.com/soya-xx/trace-atlas/issues/1`
 - 公开健康状态：`https://trace-atlas-codex.pages.dev/public-health.json`
@@ -35,6 +36,7 @@
 - 小红书发布 manifest 把链接、图片、标签和检查项整理成机器可读 JSON。
 - 小红书发布前报告由 manifest 生成，方便发布前快速复核。
 - 路线图长图把会话公开化步骤整理成 900 × 1200 图片素材。
+- 公开健康徽章把当前公开入口、发布文档和验证脚本数量压缩成 1200 × 360 SVG 素材。
 - GitHub Actions 会在推送后运行 `npm run check`。
 - `npm run check` 会扫描常见 token 前缀和本机绝对路径，防止公开材料带出敏感内容。
 - `public-health.json` 汇总公开入口、素材、发布文档、验证脚本和证据链接。
@@ -70,6 +72,7 @@ curl -I https://trace-atlas-codex.pages.dev/promo/xhs-publish-report.md
 curl -I https://trace-atlas-codex.pages.dev/evidence-pack.md
 curl -I https://trace-atlas-codex.pages.dev/promo/xhs-cover.png
 curl -I https://trace-atlas-codex.pages.dev/promo/workflow-card.png
+curl -I https://trace-atlas-codex.pages.dev/public-health-badge.svg
 curl -I https://trace-atlas-codex.pages.dev/public-health.json
 curl -I https://trace-atlas-codex.pages.dev/materials-index.json
 curl -I https://trace-atlas-codex.pages.dev/progress-timeline.json
@@ -86,6 +89,7 @@ curl -I https://trace-atlas-codex.pages.dev/progress-timeline.json
 - 小红书发布前报告返回 Markdown 文本。
 - 小红书封面图返回 `image/png`。
 - 路线图长图返回 `image/png`。
+- 公开健康徽章返回 `image/svg+xml`。
 - 公开健康状态返回 JSON。
 - 公开材料总览 JSON 返回 JSON。
 - 进展时间线返回 JSON。

@@ -44,6 +44,10 @@
         {
           "label": "网页分享卡",
           "href": "https://trace-atlas-codex.pages.dev/social-card.svg"
+        },
+        {
+          "label": "公开健康徽章",
+          "href": "https://trace-atlas-codex.pages.dev/public-health-badge.svg"
         }
       ]
     },
