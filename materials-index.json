@@ -126,6 +126,10 @@
           "href": "https://trace-atlas-codex.pages.dev/materials-index.json"
         },
         {
+          "label": "材料 API",
+          "href": "https://trace-atlas-codex.pages.dev/materials-api.json"
+        },
+        {
           "label": "复用链路 JSON",
           "href": "https://trace-atlas-codex.pages.dev/reuse-map.json"
         },
@@ -174,6 +178,10 @@
         {
           "label": "时间线生成脚本",
           "href": "https://github.com/soya-xx/trace-atlas/blob/main/scripts/build-progress-timeline.mjs"
+        },
+        {
+          "label": "材料 API 生成脚本",
+          "href": "https://github.com/soya-xx/trace-atlas/blob/main/scripts/build-materials-api.mjs"
         }
       ]
     }

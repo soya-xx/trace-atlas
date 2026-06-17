@@ -9,6 +9,7 @@
 - 复用路线页：`https://trace-atlas-codex.pages.dev/reuse`
 - 发布材料页：`https://trace-atlas-codex.pages.dev/launch`
 - 公开材料总览：`https://trace-atlas-codex.pages.dev/materials`
+- 材料 API：`https://trace-atlas-codex.pages.dev/materials-api.json`
 - 项目纪念碑：`https://trace-atlas-codex.pages.dev/monument`
 - 公开化路线图：`https://trace-atlas-codex.pages.dev/workflow`
 - 验证摘要：`https://trace-atlas-codex.pages.dev/verification-summary.md`
@@ -51,6 +52,8 @@
 - `npm run check` 会扫描常见 token 前缀和本机绝对路径，防止公开材料带出敏感内容。
 - `public-health.json` 汇总公开入口、素材、发布文档、验证脚本和证据链接。
 - `materials-index.json` 把公开页面、图片素材、发布文档、机器数据和验证边界分组。
+- `materials-api.json` 由材料索引生成，按用途、格式和受众提供扁平材料列表。
+- `scripts/build-materials-api.mjs` 负责生成并检查材料 API。
 - `reuse-map.json` 把开始复用、快速清单、完整模板、证据包、健康状态和回流模板整理成机器可读链路。
 - `reuse.html` 和 `promo/reuse-flow-card.png` 把同一条链路翻译成读者能扫读的页面和传播配图。
 - `verification-summary.md` 由公开 JSON 生成，方便快速复制到 issue 或交给读者复核。
@@ -70,6 +73,7 @@ npm run check
 - JavaScript 语法。
 - 主页结构、缓存版本、离线外壳、数据文件、分享素材和模板入口。
 - 运行时行为，包括时间线渲染、模板复制、导入、导出、快照和胶囊链接。
+- 材料 API 是否由材料索引重新生成。
 - 进展时间线是否由源数据重新生成。
 - 验证摘要是否与公开 JSON 保持一致。
 
@@ -96,6 +100,7 @@ curl -I https://trace-atlas-codex.pages.dev/promo/reuse-flow-card.png
 curl -I https://trace-atlas-codex.pages.dev/public-health-badge.svg
 curl -I https://trace-atlas-codex.pages.dev/public-health.json
 curl -I https://trace-atlas-codex.pages.dev/materials-index.json
+curl -I https://trace-atlas-codex.pages.dev/materials-api.json
 curl -I https://trace-atlas-codex.pages.dev/reuse-map.json
 curl -I https://trace-atlas-codex.pages.dev/templates/ai-session-public-quickstart.md
 curl -I https://trace-atlas-codex.pages.dev/progress-timeline.json
@@ -118,6 +123,7 @@ curl -I https://trace-atlas-codex.pages.dev/progress-timeline-source.json
 - 公开健康徽章返回 `image/svg+xml`。
 - 公开健康状态返回 JSON。
 - 公开材料总览 JSON 返回 JSON。
+- 材料 API 返回 JSON。
 - 复用链路 JSON 返回 JSON。
 - 公开化快速清单返回 Markdown 文本。
 - 进展时间线返回 JSON。

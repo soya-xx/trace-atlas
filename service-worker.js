@@ -1,4 +1,4 @@
-const CACHE_NAME = "trace-atlas-shell-v34";
+const CACHE_NAME = "trace-atlas-shell-v35";
 const APP_SHELL = [
   "./",
   "./index.html",
@@ -34,6 +34,7 @@ const APP_SHELL = [
   "./trace-ledger.json?v=9",
   "./public-health.json?v=9",
   "./materials-index.json",
+  "./materials-api.json",
   "./reuse-map.json"
 ];
 

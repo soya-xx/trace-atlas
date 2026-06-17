@@ -4,10 +4,10 @@
   "status": "可公开访问",
   "summary": "公开入口、传播素材、发布清单、自动验证和边界扫描均已形成可复核证据。",
   "counts": {
-    "publicLinks": 18,
+    "publicLinks": 19,
     "visualAssets": 5,
     "publishDocuments": 11,
-    "verificationScripts": 7
+    "verificationScripts": 8
   },
   "checks": [
     {
@@ -81,6 +81,11 @@
       "evidenceHref": "https://trace-atlas-codex.pages.dev/progress-timeline-source.json"
     },
     {
+      "label": "材料 API 已公开",
+      "state": "ok",
+      "evidenceHref": "https://trace-atlas-codex.pages.dev/materials-api.json"
+    },
+    {
       "label": "发布报告可生成",
       "state": "ok",
       "evidenceHref": "https://trace-atlas-codex.pages.dev/promo/xhs-publish-report.md"
@@ -94,6 +99,11 @@
       "label": "时间线生成脚本纳入 CI",
       "state": "ok",
       "evidenceHref": "https://github.com/soya-xx/trace-atlas/blob/main/scripts/build-progress-timeline.mjs"
+    },
+    {
+      "label": "材料 API 生成脚本纳入 CI",
+      "state": "ok",
+      "evidenceHref": "https://github.com/soya-xx/trace-atlas/blob/main/scripts/build-materials-api.mjs"
     },
     {
       "label": "工作日志持续同步",

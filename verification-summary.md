@@ -7,11 +7,11 @@
 ## 当前状态
 
 - 状态：可公开访问
-- 公开入口：18
+- 公开入口：19
 - 视觉素材：5
 - 发布文档：11
-- 验证脚本：7
-- 材料索引条目：36
+- 验证脚本：8
+- 材料索引条目：38
 
 ## 公开检查
 
@@ -29,9 +29,11 @@
 - 公开化快速清单已公开：ok，证据：https://trace-atlas-codex.pages.dev/templates/ai-session-public-quickstart.md
 - 验证摘要已公开：ok，证据：https://trace-atlas-codex.pages.dev/verification-summary.md
 - 时间线源数据已公开：ok，证据：https://trace-atlas-codex.pages.dev/progress-timeline-source.json
+- 材料 API 已公开：ok，证据：https://trace-atlas-codex.pages.dev/materials-api.json
 - 发布报告可生成：ok，证据：https://trace-atlas-codex.pages.dev/promo/xhs-publish-report.md
 - 边界扫描纳入 CI：ok，证据：https://github.com/soya-xx/trace-atlas/actions/workflows/verify.yml
 - 时间线生成脚本纳入 CI：ok，证据：https://github.com/soya-xx/trace-atlas/blob/main/scripts/build-progress-timeline.mjs
+- 材料 API 生成脚本纳入 CI：ok，证据：https://github.com/soya-xx/trace-atlas/blob/main/scripts/build-materials-api.mjs
 - 工作日志持续同步：ok，证据：https://github.com/soya-xx/trace-atlas/issues/1
 
 ## 材料分组
@@ -39,8 +41,8 @@
 - 可见页面：7 项
 - 图片素材：5 项
 - 发布文档：11 项
-- 机器可读数据：7 项
-- 验证与边界：6 项
+- 机器可读数据：8 项
+- 验证与边界：7 项
 
 ## 复用链路
 
