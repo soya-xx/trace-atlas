@@ -6,7 +6,7 @@
   "publicOnly": true,
   "counts": {
     "groups": 5,
-    "items": 39
+    "items": 41
   },
   "items": [
     {
@@ -307,6 +307,17 @@
       "format": "application/json"
     },
     {
+      "id": "machine-data:材料行动包",
+      "label": "材料行动包",
+      "href": "https://trace-atlas-codex.pages.dev/materials-packs.json",
+      "groupId": "machine-data",
+      "groupTitle": "机器可读数据",
+      "kind": "data",
+      "useCase": "reuse",
+      "audience": "tool",
+      "format": "application/json"
+    },
+    {
       "id": "machine-data:复用链路 JSON",
       "label": "复用链路 JSON",
       "href": "https://trace-atlas-codex.pages.dev/reuse-map.json",
@@ -431,6 +442,17 @@
       "id": "verification:材料 API 生成脚本",
       "label": "材料 API 生成脚本",
       "href": "https://github.com/soya-xx/trace-atlas/blob/main/scripts/build-materials-api.mjs",
+      "groupId": "verification",
+      "groupTitle": "验证与边界",
+      "kind": "verification",
+      "useCase": "verify",
+      "audience": "maintainer",
+      "format": "text/javascript"
+    },
+    {
+      "id": "verification:材料行动包生成脚本",
+      "label": "材料行动包生成脚本",
+      "href": "https://github.com/soya-xx/trace-atlas/blob/main/scripts/build-materials-packs.mjs",
       "groupId": "verification",
       "groupTitle": "验证与边界",
       "kind": "verification",

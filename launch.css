@@ -451,6 +451,24 @@ code {
   color: white;
 }
 
+.pack-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 14px;
+  align-items: end;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 14px;
+  background: white;
+}
+
+.pack-card p {
+  margin-bottom: 0;
+  color: var(--muted);
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+
 .guide-results-head {
   display: flex;
   gap: 16px;
@@ -544,6 +562,7 @@ code {
     grid-template-columns: 1fr;
   }
 
+  .pack-card,
   .guide-results-head,
   .guide-actions {
     grid-template-columns: 1fr;

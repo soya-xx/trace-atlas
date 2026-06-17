@@ -1,4 +1,5 @@
 const API_URL = "./materials-api.json";
+const PACKS_URL = "./materials-packs.json";
 
 const labels = {
   all: "全部",
@@ -11,8 +12,12 @@ const labels = {
 const guideList = document.querySelector("#guide-list");
 const guideStatus = document.querySelector("#guide-status");
 const filterButtons = Array.from(document.querySelectorAll("[data-filter]"));
+const copyPackButton = document.querySelector("#copy-pack");
+const packTitle = document.querySelector("#pack-title");
+const packSummary = document.querySelector("#pack-summary");
 
 let materials = [];
+let packs = [];
 let activeFilter = "all";
 
 function setStatus(message) {
@@ -54,12 +59,24 @@ function createCard(item) {
 }
 
 async function copyLink(href) {
+  await copyText(href);
+  setStatus("链接已复制。");
+}
+
+function currentPack() {
+  return packs.find((pack) => pack.id === activeFilter);
+}
+
+function allMarkdown() {
+  return `## 全部材料\n\n${materials.map((item) => `- [${item.label}](${item.href})`).join("\n")}\n`;
+}
+
+async function copyText(text) {
   try {
-    await navigator.clipboard.writeText(href);
-    setStatus("链接已复制。");
+    await navigator.clipboard.writeText(text);
   } catch {
     const textarea = document.createElement("textarea");
-    textarea.value = href;
+    textarea.value = text;
     textarea.setAttribute("readonly", "");
     textarea.style.position = "fixed";
     textarea.style.opacity = "0";
@@ -67,8 +84,13 @@ async function copyLink(href) {
     textarea.select();
     document.execCommand("copy");
     textarea.remove();
-    setStatus("链接已复制。");
   }
+}
+
+async function copyCurrentPack() {
+  const pack = currentPack();
+  await copyText(pack ? pack.markdown : allMarkdown());
+  setStatus("当前行动包已复制。");
 }
 
 function filteredItems() {
@@ -82,6 +104,9 @@ function render() {
   const items = filteredItems();
   guideList.replaceChildren(...items.map(createCard));
   setStatus(`${labels[activeFilter]}：${items.length} 个材料。`);
+  const pack = currentPack();
+  packTitle.textContent = pack ? pack.title : "全部材料";
+  packSummary.textContent = pack ? `${pack.summary} ${pack.action}` : "当前显示所有公开材料，复制后会得到完整链接清单。";
 
   for (const button of filterButtons) {
     button.setAttribute("aria-pressed", String(button.dataset.filter === activeFilter));
@@ -90,12 +115,14 @@ function render() {
 
 async function loadMaterials() {
   try {
-    const response = await fetch(API_URL);
-    if (!response.ok) {
-      throw new Error(`HTTP ${response.status}`);
+    const [apiResponse, packsResponse] = await Promise.all([fetch(API_URL), fetch(PACKS_URL)]);
+    if (!apiResponse.ok || !packsResponse.ok) {
+      throw new Error("materials data unavailable");
     }
-    const payload = await response.json();
+    const payload = await apiResponse.json();
+    const packPayload = await packsResponse.json();
     materials = payload.items;
+    packs = packPayload.packs;
     render();
   } catch {
     setStatus("材料 API 暂时不可读，请打开材料总览。");
@@ -108,5 +135,7 @@ for (const button of filterButtons) {
     render();
   });
 }
+
+copyPackButton.addEventListener("click", copyCurrentPack);
 
 loadMaterials();

@@ -1,0 +1,340 @@
+{
+  "schemaVersion": 1,
+  "name": "Trace Atlas 材料行动包",
+  "summary": "由 materials-api.json 生成的可复制材料包，按阅读、发布、复用和验证组织公开链接。",
+  "generatedFrom": "materials-api.json",
+  "publicOnly": true,
+  "counts": {
+    "packs": 4,
+    "items": 41
+  },
+  "packs": [
+    {
+      "id": "read",
+      "title": "阅读了解包",
+      "summary": "适合第一次打开 Trace Atlas 的读者，先看主作品、路线和材料入口。",
+      "action": "按顺序打开这些页面，先判断这个项目是不是你想复用的类型。",
+      "itemCount": 8,
+      "items": [
+        {
+          "label": "主作品",
+          "href": "https://trace-atlas-codex.pages.dev/",
+          "kind": "page",
+          "format": "text/html",
+          "audience": "reader"
+        },
+        {
+          "label": "开始复用入口",
+          "href": "https://trace-atlas-codex.pages.dev/start",
+          "kind": "page",
+          "format": "text/html",
+          "audience": "reader"
+        },
+        {
+          "label": "复用路线页",
+          "href": "https://trace-atlas-codex.pages.dev/reuse",
+          "kind": "page",
+          "format": "text/html",
+          "audience": "reader"
+        },
+        {
+          "label": "发布材料页",
+          "href": "https://trace-atlas-codex.pages.dev/launch",
+          "kind": "page",
+          "format": "text/html",
+          "audience": "reader"
+        },
+        {
+          "label": "公开化路线图",
+          "href": "https://trace-atlas-codex.pages.dev/workflow",
+          "kind": "page",
+          "format": "text/html",
+          "audience": "reader"
+        },
+        {
+          "label": "公开材料总览",
+          "href": "https://trace-atlas-codex.pages.dev/materials",
+          "kind": "page",
+          "format": "text/html",
+          "audience": "reader"
+        },
+        {
+          "label": "材料选择器",
+          "href": "https://trace-atlas-codex.pages.dev/materials-guide",
+          "kind": "page",
+          "format": "text/html",
+          "audience": "reader"
+        },
+        {
+          "label": "项目纪念碑",
+          "href": "https://trace-atlas-codex.pages.dev/monument",
+          "kind": "page",
+          "format": "text/html",
+          "audience": "reader"
+        }
+      ],
+      "markdown": "## 阅读了解包\n\n适合第一次打开 Trace Atlas 的读者，先看主作品、路线和材料入口。\n\n按顺序打开这些页面，先判断这个项目是不是你想复用的类型。\n\n- [主作品](https://trace-atlas-codex.pages.dev/)\n- [开始复用入口](https://trace-atlas-codex.pages.dev/start)\n- [复用路线页](https://trace-atlas-codex.pages.dev/reuse)\n- [发布材料页](https://trace-atlas-codex.pages.dev/launch)\n- [公开化路线图](https://trace-atlas-codex.pages.dev/workflow)\n- [公开材料总览](https://trace-atlas-codex.pages.dev/materials)\n- [材料选择器](https://trace-atlas-codex.pages.dev/materials-guide)\n- [项目纪念碑](https://trace-atlas-codex.pages.dev/monument)\n"
+    },
+    {
+      "id": "publish",
+      "title": "发帖发布包",
+      "summary": "适合准备小红书或外部平台发布时取用，包含图片、文档、检查清单和证据。",
+      "action": "发布前按清单核对链接和配图，正文只使用已经公开验证过的事实。",
+      "itemCount": 16,
+      "items": [
+        {
+          "label": "小红书首图",
+          "href": "https://trace-atlas-codex.pages.dev/promo/xhs-cover.png",
+          "kind": "image",
+          "format": "image/png",
+          "audience": "creator"
+        },
+        {
+          "label": "路线图长图",
+          "href": "https://trace-atlas-codex.pages.dev/promo/workflow-card.png",
+          "kind": "image",
+          "format": "image/png",
+          "audience": "creator"
+        },
+        {
+          "label": "复用流程图",
+          "href": "https://trace-atlas-codex.pages.dev/promo/reuse-flow-card.png",
+          "kind": "image",
+          "format": "image/png",
+          "audience": "creator"
+        },
+        {
+          "label": "网页分享卡",
+          "href": "https://trace-atlas-codex.pages.dev/social-card.svg",
+          "kind": "image",
+          "format": "image/svg+xml",
+          "audience": "creator"
+        },
+        {
+          "label": "公开健康徽章",
+          "href": "https://trace-atlas-codex.pages.dev/public-health-badge.svg",
+          "kind": "image",
+          "format": "image/svg+xml",
+          "audience": "creator"
+        },
+        {
+          "label": "小红书传播包",
+          "href": "https://trace-atlas-codex.pages.dev/promo/xhs-launch-kit.md",
+          "kind": "document",
+          "format": "text/markdown",
+          "audience": "creator"
+        },
+        {
+          "label": "小红书发布草稿包",
+          "href": "https://trace-atlas-codex.pages.dev/promo/xhs-post-drafts.md",
+          "kind": "document",
+          "format": "text/markdown",
+          "audience": "creator"
+        },
+        {
+          "label": "小红书发布后回流模板",
+          "href": "https://trace-atlas-codex.pages.dev/promo/xhs-feedback-loop-template.md",
+          "kind": "document",
+          "format": "text/markdown",
+          "audience": "creator"
+        },
+        {
+          "label": "发布检查台",
+          "href": "https://trace-atlas-codex.pages.dev/promo/xhs-publish-checklist.md",
+          "kind": "document",
+          "format": "text/markdown",
+          "audience": "creator"
+        },
+        {
+          "label": "发布 manifest",
+          "href": "https://trace-atlas-codex.pages.dev/promo/xhs-publish-manifest.json",
+          "kind": "document",
+          "format": "application/json",
+          "audience": "creator"
+        },
+        {
+          "label": "发布前报告",
+          "href": "https://trace-atlas-codex.pages.dev/promo/xhs-publish-report.md",
+          "kind": "document",
+          "format": "text/markdown",
+          "audience": "creator"
+        },
+        {
+          "label": "证据包",
+          "href": "https://trace-atlas-codex.pages.dev/evidence-pack.md",
+          "kind": "document",
+          "format": "text/markdown",
+          "audience": "creator"
+        },
+        {
+          "label": "验证摘要",
+          "href": "https://trace-atlas-codex.pages.dev/verification-summary.md",
+          "kind": "document",
+          "format": "text/markdown",
+          "audience": "creator"
+        },
+        {
+          "label": "项目纪念碑",
+          "href": "https://trace-atlas-codex.pages.dev/monument",
+          "kind": "document",
+          "format": "text/html",
+          "audience": "creator"
+        },
+        {
+          "label": "复用模板",
+          "href": "https://trace-atlas-codex.pages.dev/templates/ai-session-artifact-kit.md",
+          "kind": "document",
+          "format": "text/markdown",
+          "audience": "creator"
+        },
+        {
+          "label": "公开化快速清单",
+          "href": "https://trace-atlas-codex.pages.dev/templates/ai-session-public-quickstart.md",
+          "kind": "document",
+          "format": "text/markdown",
+          "audience": "creator"
+        }
+      ],
+      "markdown": "## 发帖发布包\n\n适合准备小红书或外部平台发布时取用，包含图片、文档、检查清单和证据。\n\n发布前按清单核对链接和配图，正文只使用已经公开验证过的事实。\n\n- [小红书首图](https://trace-atlas-codex.pages.dev/promo/xhs-cover.png)\n- [路线图长图](https://trace-atlas-codex.pages.dev/promo/workflow-card.png)\n- [复用流程图](https://trace-atlas-codex.pages.dev/promo/reuse-flow-card.png)\n- [网页分享卡](https://trace-atlas-codex.pages.dev/social-card.svg)\n- [公开健康徽章](https://trace-atlas-codex.pages.dev/public-health-badge.svg)\n- [小红书传播包](https://trace-atlas-codex.pages.dev/promo/xhs-launch-kit.md)\n- [小红书发布草稿包](https://trace-atlas-codex.pages.dev/promo/xhs-post-drafts.md)\n- [小红书发布后回流模板](https://trace-atlas-codex.pages.dev/promo/xhs-feedback-loop-template.md)\n- [发布检查台](https://trace-atlas-codex.pages.dev/promo/xhs-publish-checklist.md)\n- [发布 manifest](https://trace-atlas-codex.pages.dev/promo/xhs-publish-manifest.json)\n- [发布前报告](https://trace-atlas-codex.pages.dev/promo/xhs-publish-report.md)\n- [证据包](https://trace-atlas-codex.pages.dev/evidence-pack.md)\n- [验证摘要](https://trace-atlas-codex.pages.dev/verification-summary.md)\n- [项目纪念碑](https://trace-atlas-codex.pages.dev/monument)\n- [复用模板](https://trace-atlas-codex.pages.dev/templates/ai-session-artifact-kit.md)\n- [公开化快速清单](https://trace-atlas-codex.pages.dev/templates/ai-session-public-quickstart.md)\n"
+    },
+    {
+      "id": "reuse",
+      "title": "复用接力包",
+      "summary": "适合把这套公开化流程带到另一个 AI 会话或作品里，优先保留机器可读数据。",
+      "action": "把 JSON 和模板作为起点，按自己的项目改写目标、边界和验证方式。",
+      "itemCount": 9,
+      "items": [
+        {
+          "label": "公开健康状态",
+          "href": "https://trace-atlas-codex.pages.dev/public-health.json",
+          "kind": "data",
+          "format": "application/json",
+          "audience": "tool"
+        },
+        {
+          "label": "材料总览 JSON",
+          "href": "https://trace-atlas-codex.pages.dev/materials-index.json",
+          "kind": "data",
+          "format": "application/json",
+          "audience": "tool"
+        },
+        {
+          "label": "材料 API",
+          "href": "https://trace-atlas-codex.pages.dev/materials-api.json",
+          "kind": "data",
+          "format": "application/json",
+          "audience": "tool"
+        },
+        {
+          "label": "材料行动包",
+          "href": "https://trace-atlas-codex.pages.dev/materials-packs.json",
+          "kind": "data",
+          "format": "application/json",
+          "audience": "tool"
+        },
+        {
+          "label": "复用链路 JSON",
+          "href": "https://trace-atlas-codex.pages.dev/reuse-map.json",
+          "kind": "data",
+          "format": "application/json",
+          "audience": "tool"
+        },
+        {
+          "label": "世界同步",
+          "href": "https://trace-atlas-codex.pages.dev/world-sync.json",
+          "kind": "data",
+          "format": "application/json",
+          "audience": "tool"
+        },
+        {
+          "label": "进展时间线",
+          "href": "https://trace-atlas-codex.pages.dev/progress-timeline.json",
+          "kind": "data",
+          "format": "application/json",
+          "audience": "tool"
+        },
+        {
+          "label": "进展时间线源数据",
+          "href": "https://trace-atlas-codex.pages.dev/progress-timeline-source.json",
+          "kind": "data",
+          "format": "application/json",
+          "audience": "tool"
+        },
+        {
+          "label": "来路账本",
+          "href": "https://trace-atlas-codex.pages.dev/trace-ledger.json",
+          "kind": "data",
+          "format": "application/json",
+          "audience": "tool"
+        }
+      ],
+      "markdown": "## 复用接力包\n\n适合把这套公开化流程带到另一个 AI 会话或作品里，优先保留机器可读数据。\n\n把 JSON 和模板作为起点，按自己的项目改写目标、边界和验证方式。\n\n- [公开健康状态](https://trace-atlas-codex.pages.dev/public-health.json)\n- [材料总览 JSON](https://trace-atlas-codex.pages.dev/materials-index.json)\n- [材料 API](https://trace-atlas-codex.pages.dev/materials-api.json)\n- [材料行动包](https://trace-atlas-codex.pages.dev/materials-packs.json)\n- [复用链路 JSON](https://trace-atlas-codex.pages.dev/reuse-map.json)\n- [世界同步](https://trace-atlas-codex.pages.dev/world-sync.json)\n- [进展时间线](https://trace-atlas-codex.pages.dev/progress-timeline.json)\n- [进展时间线源数据](https://trace-atlas-codex.pages.dev/progress-timeline-source.json)\n- [来路账本](https://trace-atlas-codex.pages.dev/trace-ledger.json)\n"
+    },
+    {
+      "id": "verify",
+      "title": "验证维护包",
+      "summary": "适合维护者复核公开状态、检查脚本和自动化是否仍然有效。",
+      "action": "从 Actions、脚本和摘要开始核验，发现过期材料后重新生成并部署。",
+      "itemCount": 8,
+      "items": [
+        {
+          "label": "GitHub Actions",
+          "href": "https://github.com/soya-xx/trace-atlas/actions/workflows/verify.yml",
+          "kind": "verification",
+          "format": "github/actions",
+          "audience": "maintainer"
+        },
+        {
+          "label": "结构验证脚本",
+          "href": "https://github.com/soya-xx/trace-atlas/blob/main/verify-trace.mjs",
+          "kind": "verification",
+          "format": "text/javascript",
+          "audience": "maintainer"
+        },
+        {
+          "label": "运行时验证脚本",
+          "href": "https://github.com/soya-xx/trace-atlas/blob/main/verify-runtime.mjs",
+          "kind": "verification",
+          "format": "text/javascript",
+          "audience": "maintainer"
+        },
+        {
+          "label": "边界扫描脚本",
+          "href": "https://github.com/soya-xx/trace-atlas/blob/main/scripts/scan-public-boundary.mjs",
+          "kind": "verification",
+          "format": "text/javascript",
+          "audience": "maintainer"
+        },
+        {
+          "label": "验证摘要生成脚本",
+          "href": "https://github.com/soya-xx/trace-atlas/blob/main/scripts/build-verification-summary.mjs",
+          "kind": "verification",
+          "format": "text/javascript",
+          "audience": "maintainer"
+        },
+        {
+          "label": "时间线生成脚本",
+          "href": "https://github.com/soya-xx/trace-atlas/blob/main/scripts/build-progress-timeline.mjs",
+          "kind": "verification",
+          "format": "text/javascript",
+          "audience": "maintainer"
+        },
+        {
+          "label": "材料 API 生成脚本",
+          "href": "https://github.com/soya-xx/trace-atlas/blob/main/scripts/build-materials-api.mjs",
+          "kind": "verification",
+          "format": "text/javascript",
+          "audience": "maintainer"
+        },
+        {
+          "label": "材料行动包生成脚本",
+          "href": "https://github.com/soya-xx/trace-atlas/blob/main/scripts/build-materials-packs.mjs",
+          "kind": "verification",
+          "format": "text/javascript",
+          "audience": "maintainer"
+        }
+      ],
+      "markdown": "## 验证维护包\n\n适合维护者复核公开状态、检查脚本和自动化是否仍然有效。\n\n从 Actions、脚本和摘要开始核验，发现过期材料后重新生成并部署。\n\n- [GitHub Actions](https://github.com/soya-xx/trace-atlas/actions/workflows/verify.yml)\n- [结构验证脚本](https://github.com/soya-xx/trace-atlas/blob/main/verify-trace.mjs)\n- [运行时验证脚本](https://github.com/soya-xx/trace-atlas/blob/main/verify-runtime.mjs)\n- [边界扫描脚本](https://github.com/soya-xx/trace-atlas/blob/main/scripts/scan-public-boundary.mjs)\n- [验证摘要生成脚本](https://github.com/soya-xx/trace-atlas/blob/main/scripts/build-verification-summary.mjs)\n- [时间线生成脚本](https://github.com/soya-xx/trace-atlas/blob/main/scripts/build-progress-timeline.mjs)\n- [材料 API 生成脚本](https://github.com/soya-xx/trace-atlas/blob/main/scripts/build-materials-api.mjs)\n- [材料行动包生成脚本](https://github.com/soya-xx/trace-atlas/blob/main/scripts/build-materials-packs.mjs)\n"
+    }
+  ]
+}

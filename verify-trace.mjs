@@ -25,6 +25,7 @@ const files = {
   publicHealth: readFileSync("public-health.json", "utf8"),
   materialsIndex: readFileSync("materials-index.json", "utf8"),
   materialsApi: readFileSync("materials-api.json", "utf8"),
+  materialsPacks: readFileSync("materials-packs.json", "utf8"),
   reuseMap: readFileSync("reuse-map.json", "utf8"),
   verificationSummary: readFileSync("verification-summary.md", "utf8"),
   socialCard: readFileSync("social-card.svg", "utf8"),
@@ -44,6 +45,7 @@ const files = {
   xhsPublishManifest: readFileSync("promo/xhs-publish-manifest.json", "utf8"),
   xhsPublishReport: readFileSync("promo/xhs-publish-report.md", "utf8"),
   materialsApiScript: readFileSync("scripts/build-materials-api.mjs", "utf8"),
+  materialsPacksScript: readFileSync("scripts/build-materials-packs.mjs", "utf8"),
   publishReportScript: readFileSync("scripts/build-publish-report.mjs", "utf8"),
   progressTimelineScript: readFileSync("scripts/build-progress-timeline.mjs", "utf8"),
   verificationSummaryScript: readFileSync("scripts/build-verification-summary.mjs", "utf8"),
@@ -114,9 +116,9 @@ assert.match(files.launchHtml, /promo\/workflow-card\.png/, "launch page shows t
 assert.match(files.launchHtml, /promo\/reuse-flow-card\.png/, "launch page shows the reuse flow card");
 assert.match(files.launchHtml, /social-card\.svg/, "launch page shows the social card");
 assert.match(files.launchHtml, /public-health-badge\.svg/, "launch page shows the public health badge");
-assert.match(files.launchHtml, /20 个公开入口/, "launch page shows the updated public entry count");
+assert.match(files.launchHtml, /21 个公开入口/, "launch page shows the updated public entry count");
 assert.match(files.launchHtml, /5 张核心图/, "launch page shows the updated visual asset count");
-assert.match(files.launchHtml, /8 个验证脚本/, "launch page shows the updated verification script count");
+assert.match(files.launchHtml, /9 个验证脚本/, "launch page shows the updated verification script count");
 assert.match(files.launchHtml, /templates\/ai-session-artifact-kit\.md/, "launch page links to the reusable template");
 assert.match(files.launchHtml, /promo\/xhs-post-drafts\.md/, "launch page links to the Xiaohongshu post drafts");
 assert.match(files.launchHtml, /promo\/xhs-feedback-loop-template\.md/, "launch page links to the Xiaohongshu feedback loop template");
@@ -167,6 +169,8 @@ assert.match(files.materialsHtml, /reuse-map\.json/, "materials overview page li
 assert.match(files.materialsHtml, /href="\.\/launch\.css\?v=8"/, "materials overview stylesheet URL is versioned");
 assert.match(files.materialsGuideHtml, /Trace Atlas 材料选择器/, "materials guide page has a clear title");
 assert.match(files.materialsGuideHtml, /materials-api\.json/, "materials guide links to materials API");
+assert.match(files.materialsGuideHtml, /id="copy-pack"/, "materials guide can copy the active pack");
+assert.match(files.materialsGuideHtml, /id="pack-summary"/, "materials guide shows the active pack summary");
 assert.match(files.materialsGuideHtml, /data-filter="publish"/, "materials guide has a publish filter");
 assert.match(files.materialsGuideHtml, /data-filter="reuse"/, "materials guide has a reuse filter");
 assert.match(files.materialsGuideHtml, /data-filter="verify"/, "materials guide has a verify filter");
@@ -174,6 +178,8 @@ assert.match(files.materialsGuideHtml, /id="guide-list"/, "materials guide expos
 assert.match(files.materialsGuideHtml, /src="\.\/materials-guide\.js\?v=1"/, "materials guide script URL is versioned");
 assert.match(files.materialsGuideHtml, /href="\.\/launch\.css\?v=8"/, "materials guide stylesheet URL is versioned");
 assert.match(files.materialsGuideJs, /materials-api\.json/, "materials guide script reads the materials API");
+assert.match(files.materialsGuideJs, /materials-packs\.json/, "materials guide script reads materials packs");
+assert.match(files.materialsGuideJs, /copyCurrentPack/, "materials guide script can copy the active pack");
 assert.match(files.materialsGuideJs, /data-filter/, "materials guide script wires filter buttons");
 assert.match(files.materialsGuideJs, /navigator\.clipboard/, "materials guide script can copy links");
 assert.match(files.materialsGuideJs, /document\.execCommand\("copy"\)/, "materials guide script has a copy fallback");
@@ -255,10 +261,10 @@ assert.match(files.js, /ArrowLeft/, "keyboard previous trace is wired");
 assert.match(files.js, /window\.confirm/, "local reset asks for confirmation");
 assert.match(files.css, /aria-pressed="true"/, "tour active state has visible styling");
 assert.match(files.css, /\.file-input/, "file input is visually hidden but present");
-assert.match(files.serviceWorker, /CACHE_NAME = "trace-atlas-shell-v36"/, "service worker cache is versioned");
+assert.match(files.serviceWorker, /CACHE_NAME = "trace-atlas-shell-v37"/, "service worker cache is versioned");
 assert.match(files.html, /href="\.\/styles\.css\?v=13"/, "stylesheet URL is versioned");
 assert.match(files.html, /src="\.\/app\.js\?v=16"/, "script URL is versioned");
-for (const cachedFile of ["./index.html", "./start.html", "./reuse.html", "./launch.html", "./materials.html", "./materials-guide.html", "./monument.html", "./workflow.html", "./styles.css?v=13", "./launch.css?v=8", "./launch.js?v=1", "./materials-guide.js?v=1", "./app.js?v=16", "./progress-timeline.json?v=9", "./progress-timeline-source.json", "./world-sync.json?v=9", "./trace-ledger.json?v=9", "./public-health.json?v=9", "./materials-index.json", "./materials-api.json", "./reuse-map.json", "./icon.svg", "./social-card.svg", "./public-health-badge.svg", "./promo/xhs-cover.png", "./promo/workflow-card.png", "./promo/reuse-flow-card.png", "./promo/xhs-post-drafts.md", "./promo/xhs-feedback-loop-template.md", "./promo/xhs-publish-checklist.md", "./promo/xhs-publish-manifest.json", "./promo/xhs-publish-report.md", "./evidence-pack.md", "./verification-summary.md", "./templates/ai-session-artifact-kit.md", "./templates/ai-session-public-quickstart.md", "./site.webmanifest"]) {
+for (const cachedFile of ["./index.html", "./start.html", "./reuse.html", "./launch.html", "./materials.html", "./materials-guide.html", "./monument.html", "./workflow.html", "./styles.css?v=13", "./launch.css?v=8", "./launch.js?v=1", "./materials-guide.js?v=1", "./app.js?v=16", "./progress-timeline.json?v=9", "./progress-timeline-source.json", "./world-sync.json?v=9", "./trace-ledger.json?v=9", "./public-health.json?v=9", "./materials-index.json", "./materials-api.json", "./materials-packs.json", "./reuse-map.json", "./icon.svg", "./social-card.svg", "./public-health-badge.svg", "./promo/xhs-cover.png", "./promo/workflow-card.png", "./promo/reuse-flow-card.png", "./promo/xhs-post-drafts.md", "./promo/xhs-feedback-loop-template.md", "./promo/xhs-publish-checklist.md", "./promo/xhs-publish-manifest.json", "./promo/xhs-publish-report.md", "./evidence-pack.md", "./verification-summary.md", "./templates/ai-session-artifact-kit.md", "./templates/ai-session-public-quickstart.md", "./site.webmanifest"]) {
   const escaped = cachedFile.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   assert.match(files.serviceWorker, new RegExp(escaped), `service worker caches ${cachedFile}`);
 }
@@ -269,9 +275,9 @@ assert.match(files.server, /\.svg/, "local server serves svg icons");
 assert.match(files.svg, /Trace Atlas icon/, "svg icon has an accessible title");
 assert.match(files.socialCard, /我把 AI 会话/, "social card states the Xiaohongshu hook");
 assert.match(files.healthBadge, /Trace Atlas 公开健康徽章/, "public health badge has an accessible title");
-assert.match(files.healthBadge, /20 个公开入口/, "public health badge states public link count");
+assert.match(files.healthBadge, /21 个公开入口/, "public health badge states public link count");
 assert.match(files.healthBadge, /11 份发布文档/, "public health badge states publish document count");
-assert.match(files.healthBadge, /8 个验证脚本/, "public health badge states verification count");
+assert.match(files.healthBadge, /9 个验证脚本/, "public health badge states verification count");
 assert.match(files.artifactKit, /AI 会话公开化模板/, "artifact kit has a clear title");
 assert.match(files.artifactKit, /公开链接 HTTP 状态/, "artifact kit includes public link verification");
 assert.match(files.quickstart, /# AI 会话公开化快速清单/, "quickstart checklist has a clear title");
@@ -340,8 +346,10 @@ assert.match(files.evidencePack, /verification-summary\.md/, "evidence pack link
 assert.match(files.evidencePack, /public-health\.json/, "evidence pack links to public health data");
 assert.match(files.evidencePack, /materials-index\.json/, "evidence pack links to materials index data");
 assert.match(files.evidencePack, /materials-api\.json/, "evidence pack links to materials API data");
+assert.match(files.evidencePack, /materials-packs\.json/, "evidence pack links to materials packs data");
 assert.match(files.evidencePack, /reuse-map\.json/, "evidence pack links to the reuse map");
 assert.match(files.evidencePack, /build-materials-api\.mjs/, "evidence pack describes the materials API script");
+assert.match(files.evidencePack, /build-materials-packs\.mjs/, "evidence pack describes the materials packs script");
 assert.match(files.evidencePack, /build-verification-summary\.mjs/, "evidence pack describes the verification summary script");
 assert.match(files.evidencePack, /build-progress-timeline\.mjs/, "evidence pack describes the progress timeline script");
 assert.match(files.evidencePack, /npm run check/, "evidence pack includes the local verification command");
@@ -395,10 +403,10 @@ for (const link of sync.links) {
 const publicHealth = JSON.parse(files.publicHealth);
 assert.equal(publicHealth.name, "Trace Atlas 公开健康状态");
 assert.equal(publicHealth.status, "可公开访问");
-assert.equal(publicHealth.counts.publicLinks, 20);
+assert.equal(publicHealth.counts.publicLinks, 21);
 assert.equal(publicHealth.counts.visualAssets, 5);
 assert.equal(publicHealth.counts.publishDocuments, 11);
-assert.equal(publicHealth.counts.verificationScripts, 8);
+assert.equal(publicHealth.counts.verificationScripts, 9);
 assert.ok(publicHealth.checks.some((check) => check.label === "边界扫描纳入 CI"), "public health includes boundary scan status");
 assert.ok(publicHealth.checks.some((check) => check.label === "开始复用入口已公开"), "public health includes reusable start page status");
 assert.ok(publicHealth.checks.some((check) => check.label === "复用路线页已公开"), "public health includes reuse route page status");
@@ -414,8 +422,10 @@ assert.ok(publicHealth.checks.some((check) => check.label === "公开化快速�
 assert.ok(publicHealth.checks.some((check) => check.label === "验证摘要已公开"), "public health includes verification summary status");
 assert.ok(publicHealth.checks.some((check) => check.label === "时间线源数据已公开"), "public health includes timeline source status");
 assert.ok(publicHealth.checks.some((check) => check.label === "材料 API 已公开"), "public health includes materials API status");
+assert.ok(publicHealth.checks.some((check) => check.label === "材料行动包已公开"), "public health includes materials packs status");
 assert.ok(publicHealth.checks.some((check) => check.label === "时间线生成脚本纳入 CI"), "public health includes timeline generator status");
 assert.ok(publicHealth.checks.some((check) => check.label === "材料 API 生成脚本纳入 CI"), "public health includes materials API generator status");
+assert.ok(publicHealth.checks.some((check) => check.label === "材料行动包生成脚本纳入 CI"), "public health includes materials packs generator status");
 for (const check of publicHealth.checks) {
   assert.equal(check.state, "ok", `public health check ${check.label} is ok`);
   assert.match(check.evidenceHref, /^https:\/\/(github\.com|trace-atlas-codex\.pages\.dev)\//, `public health evidence ${check.label} is public https`);
@@ -431,10 +441,12 @@ assert.ok(materialsIndex.groups.some((group) => group.items.some((item) => item.
 assert.ok(materialsIndex.groups.some((group) => group.items.some((item) => item.href === "https://trace-atlas-codex.pages.dev/reuse-map.json")), "materials index includes the reuse map");
 assert.ok(materialsIndex.groups.some((group) => group.items.some((item) => item.href === "https://trace-atlas-codex.pages.dev/verification-summary.md")), "materials index includes the verification summary");
 assert.ok(materialsIndex.groups.some((group) => group.items.some((item) => item.href === "https://trace-atlas-codex.pages.dev/materials-api.json")), "materials index includes materials API");
+assert.ok(materialsIndex.groups.some((group) => group.items.some((item) => item.href === "https://trace-atlas-codex.pages.dev/materials-packs.json")), "materials index includes materials packs");
 assert.ok(materialsIndex.groups.some((group) => group.items.some((item) => item.href === "https://github.com/soya-xx/trace-atlas/blob/main/scripts/build-verification-summary.mjs")), "materials index includes the verification summary script");
 assert.ok(materialsIndex.groups.some((group) => group.items.some((item) => item.href === "https://trace-atlas-codex.pages.dev/progress-timeline-source.json")), "materials index includes the progress timeline source");
 assert.ok(materialsIndex.groups.some((group) => group.items.some((item) => item.href === "https://github.com/soya-xx/trace-atlas/blob/main/scripts/build-progress-timeline.mjs")), "materials index includes the progress timeline script");
 assert.ok(materialsIndex.groups.some((group) => group.items.some((item) => item.href === "https://github.com/soya-xx/trace-atlas/blob/main/scripts/build-materials-api.mjs")), "materials index includes the materials API script");
+assert.ok(materialsIndex.groups.some((group) => group.items.some((item) => item.href === "https://github.com/soya-xx/trace-atlas/blob/main/scripts/build-materials-packs.mjs")), "materials index includes the materials packs script");
 for (const group of materialsIndex.groups) {
   assert.ok(group.items.length > 0, `materials index group ${group.id} has items`);
   for (const item of group.items) {
@@ -447,11 +459,13 @@ assert.equal(materialsApi.name, "Trace Atlas 材料 API");
 assert.equal(materialsApi.publicOnly, true);
 assert.equal(materialsApi.generatedFrom, "materials-index.json");
 assert.equal(materialsApi.counts.groups, materialsIndex.groups.length);
-assert.equal(materialsApi.counts.items, 39);
+assert.equal(materialsApi.counts.items, 41);
 assert.equal(materialsApi.items.length, materialsApi.counts.items);
 assert.ok(materialsApi.items.some((item) => item.href === "https://trace-atlas-codex.pages.dev/materials-guide" && item.kind === "page"), "materials API includes the materials guide");
 assert.ok(materialsApi.items.some((item) => item.href === "https://trace-atlas-codex.pages.dev/materials-api.json" && item.kind === "data"), "materials API includes itself as machine data");
+assert.ok(materialsApi.items.some((item) => item.href === "https://trace-atlas-codex.pages.dev/materials-packs.json" && item.kind === "data"), "materials API includes materials packs");
 assert.ok(materialsApi.items.some((item) => item.href === "https://github.com/soya-xx/trace-atlas/blob/main/scripts/build-materials-api.mjs" && item.kind === "verification"), "materials API includes its generator script");
+assert.ok(materialsApi.items.some((item) => item.href === "https://github.com/soya-xx/trace-atlas/blob/main/scripts/build-materials-packs.mjs" && item.kind === "verification"), "materials API includes the materials packs generator script");
 for (const item of materialsApi.items) {
   assert.match(item.id, /^[^:]+:.+$/, `materials API item ${item.label} has a stable id`);
   assert.match(item.href, /^https:\/\/(github\.com|trace-atlas-codex\.pages\.dev)\//, `materials API item ${item.label} is public https`);
@@ -461,6 +475,21 @@ for (const item of materialsApi.items) {
 }
 assert.doesNotMatch(files.materialsApi, /(ghp_|cfut_)/, "materials API does not include known token prefixes");
 assert.doesNotMatch(files.materialsApi, /\/Users\/b1lli/, "materials API does not include local user paths");
+
+const materialsPacks = JSON.parse(files.materialsPacks);
+assert.equal(materialsPacks.name, "Trace Atlas 材料行动包");
+assert.equal(materialsPacks.publicOnly, true);
+assert.equal(materialsPacks.generatedFrom, "materials-api.json");
+assert.equal(materialsPacks.counts.packs, 4);
+assert.equal(materialsPacks.counts.items, materialsApi.counts.items);
+for (const id of ["read", "publish", "reuse", "verify"]) {
+  const pack = materialsPacks.packs.find((item) => item.id === id);
+  assert.ok(pack, `materials packs include ${id}`);
+  assert.ok(pack.itemCount > 0, `materials pack ${id} has items`);
+  assert.match(pack.markdown, /^## /, `materials pack ${id} has markdown output`);
+}
+assert.doesNotMatch(files.materialsPacks, /(ghp_|cfut_)/, "materials packs do not include known token prefixes");
+assert.doesNotMatch(files.materialsPacks, /\/Users\/b1lli/, "materials packs do not include local user paths");
 
 const reuseMap = JSON.parse(files.reuseMap);
 assert.equal(reuseMap.name, "Trace Atlas 复用链路图");
@@ -481,14 +510,16 @@ assert.doesNotMatch(files.reuseMap, /(ghp_|cfut_)/, "reuse map does not include 
 assert.doesNotMatch(files.reuseMap, /\/Users\/b1lli/, "reuse map does not include local user paths");
 
 assert.match(files.verificationSummary, /# Trace Atlas 验证摘要/, "verification summary has a clear title");
-assert.match(files.verificationSummary, /公开入口：20/, "verification summary includes the public link count");
+assert.match(files.verificationSummary, /公开入口：21/, "verification summary includes the public link count");
 assert.match(files.verificationSummary, /发布文档：11/, "verification summary includes the publish document count");
-assert.match(files.verificationSummary, /验证脚本：8/, "verification summary includes the verification script count");
-assert.match(files.verificationSummary, /材料索引条目：39/, "verification summary includes the material index count");
+assert.match(files.verificationSummary, /验证脚本：9/, "verification summary includes the verification script count");
+assert.match(files.verificationSummary, /材料索引条目：41/, "verification summary includes the material index count");
 assert.match(files.verificationSummary, /https:\/\/trace-atlas-codex\.pages\.dev\/verification-summary\.md/, "verification summary links to its public evidence");
 assert.match(files.verificationSummary, /https:\/\/trace-atlas-codex\.pages\.dev\/materials-guide/, "verification summary includes the materials guide");
 assert.match(files.verificationSummary, /https:\/\/trace-atlas-codex\.pages\.dev\/materials-api\.json/, "verification summary includes materials API");
+assert.match(files.verificationSummary, /https:\/\/trace-atlas-codex\.pages\.dev\/materials-packs\.json/, "verification summary includes materials packs");
 assert.match(files.verificationSummary, /build-materials-api\.mjs/, "verification summary includes the materials API script");
+assert.match(files.verificationSummary, /build-materials-packs\.mjs/, "verification summary includes the materials packs script");
 assert.match(files.verificationSummary, /https:\/\/trace-atlas-codex\.pages\.dev\/progress-timeline-source\.json/, "verification summary includes the progress timeline source");
 assert.match(files.verificationSummary, /build-progress-timeline\.mjs/, "verification summary includes the progress timeline script");
 assert.match(files.verificationSummary, /https:\/\/trace-atlas-codex\.pages\.dev\/promo\/reuse-flow-card\.png/, "verification summary includes the reuse flow card");
@@ -505,10 +536,14 @@ assert.match(files.progressTimelineScript, /progress-timeline\.json/, "progress 
 assert.match(files.materialsApiScript, /--check/, "materials API script has check mode");
 assert.match(files.materialsApiScript, /materials-index\.json/, "materials API script reads materials index data");
 assert.match(files.materialsApiScript, /materials-api\.json/, "materials API script writes materials API data");
+assert.match(files.materialsPacksScript, /--check/, "materials packs script has check mode");
+assert.match(files.materialsPacksScript, /materials-api\.json/, "materials packs script reads materials API data");
+assert.match(files.materialsPacksScript, /materials-packs\.json/, "materials packs script writes materials packs data");
 assert.match(files.packageJson, /node --check materials-guide\.js/, "npm check validates materials guide JavaScript syntax");
 assert.match(files.packageJson, /build-verification-summary\.mjs --check/, "npm check validates the verification summary");
 assert.match(files.packageJson, /build-progress-timeline\.mjs --check/, "npm check validates the generated progress timeline");
 assert.match(files.packageJson, /build-materials-api\.mjs --check/, "npm check validates the generated materials API");
+assert.match(files.packageJson, /build-materials-packs\.mjs --check/, "npm check validates the generated materials packs");
 
 const publishManifest = JSON.parse(files.xhsPublishManifest);
 assert.equal(publishManifest.name, "Trace Atlas 小红书发布 manifest");
