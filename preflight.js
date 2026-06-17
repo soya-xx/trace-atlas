@@ -35,18 +35,32 @@ const checks = [
     mustContain: ["Trace Atlas 发帖发布包分享卡", "LINKS", "/pack-publish"]
   },
   {
+    id: "feedback-page",
+    label: "反馈问题榜",
+    url: "./feedback.html",
+    type: "text",
+    mustContain: ["反馈问题榜", "feedback-records.json", "copy-feedback-board"]
+  },
+  {
+    id: "feedback-card",
+    label: "反馈榜分享卡",
+    url: "./promo/feedback-rank-card.svg",
+    type: "text",
+    mustContain: ["Trace Atlas 反馈问题榜分享卡", "FEEDBACK RANK", "/feedback"]
+  },
+  {
     id: "materials-api",
     label: "材料 API",
     url: "./materials-api.json",
     type: "json",
-    validate: (data) => data.publicOnly === true && data.counts.items === 52
+    validate: (data) => data.publicOnly === true && data.counts.items === 55
   },
   {
     id: "materials-packs",
     label: "材料行动包 JSON",
     url: "./materials-packs.json",
     type: "json",
-    validate: (data) => data.publicOnly === true && data.counts.packs === 4 && data.counts.items === 52
+    validate: (data) => data.publicOnly === true && data.counts.packs === 4 && data.counts.items === 55
   },
   {
     id: "publish-record-template",
@@ -56,19 +70,26 @@ const checks = [
     validate: (data) => data.publicOnly === true && data.example.schemaVersion === 1
   },
   {
+    id: "feedback-records",
+    label: "发布反馈样例记录",
+    url: "./feedback-records.json",
+    type: "json",
+    validate: (data) => data.publicOnly === true && data.source === "example" && data.records.length === 3
+  },
+  {
     id: "public-health",
     label: "公开健康状态",
     url: "./public-health.json",
     type: "json",
     validate: (data) =>
-      data.counts.publicLinks === 31 && data.counts.visualAssets === 9 && data.counts.verificationScripts === 10
+      data.counts.publicLinks === 34 && data.counts.visualAssets === 10 && data.counts.verificationScripts === 10
   },
   {
     id: "verification-summary",
     label: "验证摘要",
     url: "./verification-summary.md",
     type: "text",
-    mustContain: ["公开入口：31", "材料索引条目：52", "发布记录 JSON 模板已公开"]
+    mustContain: ["公开入口：34", "材料索引条目：55", "反馈问题榜已公开", "发布反馈样例记录已公开"]
   }
 ];
 

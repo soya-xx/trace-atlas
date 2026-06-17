@@ -6,7 +6,7 @@
   "publicOnly": true,
   "counts": {
     "packs": 4,
-    "items": 52
+    "items": 55
   },
   "packs": [
     {
@@ -87,11 +87,18 @@
       "title": "发帖发布包",
       "summary": "适合准备小红书或外部平台发布时取用，包含图片、文档、检查清单和证据。",
       "action": "发布前按清单核对链接和配图，正文只使用已经公开验证过的事实。",
-      "itemCount": 23,
+      "itemCount": 26,
       "items": [
         {
           "label": "发布前自检页",
           "href": "https://trace-atlas-codex.pages.dev/preflight",
+          "kind": "page",
+          "format": "text/html",
+          "audience": "creator"
+        },
+        {
+          "label": "反馈问题榜",
+          "href": "https://trace-atlas-codex.pages.dev/feedback",
           "kind": "page",
           "format": "text/html",
           "audience": "creator"
@@ -162,6 +169,13 @@
         {
           "label": "验证维护包分享卡",
           "href": "https://trace-atlas-codex.pages.dev/promo/pack-verify-card.svg",
+          "kind": "image",
+          "format": "image/svg+xml",
+          "audience": "creator"
+        },
+        {
+          "label": "反馈问题榜分享卡",
+          "href": "https://trace-atlas-codex.pages.dev/promo/feedback-rank-card.svg",
           "kind": "image",
           "format": "image/svg+xml",
           "audience": "creator"
@@ -249,9 +263,16 @@
           "kind": "data",
           "format": "application/json",
           "audience": "creator"
+        },
+        {
+          "label": "发布反馈样例记录",
+          "href": "https://trace-atlas-codex.pages.dev/feedback-records.json",
+          "kind": "data",
+          "format": "application/json",
+          "audience": "creator"
         }
       ],
-      "markdown": "## 发帖发布包\n\n适合准备小红书或外部平台发布时取用，包含图片、文档、检查清单和证据。\n\n发布前按清单核对链接和配图，正文只使用已经公开验证过的事实。\n\n- [发布前自检页](https://trace-atlas-codex.pages.dev/preflight)\n- [发帖发布行动包](https://trace-atlas-codex.pages.dev/pack-publish)\n- [小红书首图](https://trace-atlas-codex.pages.dev/promo/xhs-cover.png)\n- [路线图长图](https://trace-atlas-codex.pages.dev/promo/workflow-card.png)\n- [复用流程图](https://trace-atlas-codex.pages.dev/promo/reuse-flow-card.png)\n- [网页分享卡](https://trace-atlas-codex.pages.dev/social-card.svg)\n- [公开健康徽章](https://trace-atlas-codex.pages.dev/public-health-badge.svg)\n- [阅读了解包分享卡](https://trace-atlas-codex.pages.dev/promo/pack-read-card.svg)\n- [发帖发布包分享卡](https://trace-atlas-codex.pages.dev/promo/pack-publish-card.svg)\n- [复用接力包分享卡](https://trace-atlas-codex.pages.dev/promo/pack-reuse-card.svg)\n- [验证维护包分享卡](https://trace-atlas-codex.pages.dev/promo/pack-verify-card.svg)\n- [小红书传播包](https://trace-atlas-codex.pages.dev/promo/xhs-launch-kit.md)\n- [小红书发布草稿包](https://trace-atlas-codex.pages.dev/promo/xhs-post-drafts.md)\n- [小红书发布后回流模板](https://trace-atlas-codex.pages.dev/promo/xhs-feedback-loop-template.md)\n- [发布检查台](https://trace-atlas-codex.pages.dev/promo/xhs-publish-checklist.md)\n- [发布 manifest](https://trace-atlas-codex.pages.dev/promo/xhs-publish-manifest.json)\n- [发布前报告](https://trace-atlas-codex.pages.dev/promo/xhs-publish-report.md)\n- [证据包](https://trace-atlas-codex.pages.dev/evidence-pack.md)\n- [验证摘要](https://trace-atlas-codex.pages.dev/verification-summary.md)\n- [项目纪念碑](https://trace-atlas-codex.pages.dev/monument)\n- [复用模板](https://trace-atlas-codex.pages.dev/templates/ai-session-artifact-kit.md)\n- [公开化快速清单](https://trace-atlas-codex.pages.dev/templates/ai-session-public-quickstart.md)\n- [发布记录 JSON 模板](https://trace-atlas-codex.pages.dev/publish-record-template.json)\n"
+      "markdown": "## 发帖发布包\n\n适合准备小红书或外部平台发布时取用，包含图片、文档、检查清单和证据。\n\n发布前按清单核对链接和配图，正文只使用已经公开验证过的事实。\n\n- [发布前自检页](https://trace-atlas-codex.pages.dev/preflight)\n- [反馈问题榜](https://trace-atlas-codex.pages.dev/feedback)\n- [发帖发布行动包](https://trace-atlas-codex.pages.dev/pack-publish)\n- [小红书首图](https://trace-atlas-codex.pages.dev/promo/xhs-cover.png)\n- [路线图长图](https://trace-atlas-codex.pages.dev/promo/workflow-card.png)\n- [复用流程图](https://trace-atlas-codex.pages.dev/promo/reuse-flow-card.png)\n- [网页分享卡](https://trace-atlas-codex.pages.dev/social-card.svg)\n- [公开健康徽章](https://trace-atlas-codex.pages.dev/public-health-badge.svg)\n- [阅读了解包分享卡](https://trace-atlas-codex.pages.dev/promo/pack-read-card.svg)\n- [发帖发布包分享卡](https://trace-atlas-codex.pages.dev/promo/pack-publish-card.svg)\n- [复用接力包分享卡](https://trace-atlas-codex.pages.dev/promo/pack-reuse-card.svg)\n- [验证维护包分享卡](https://trace-atlas-codex.pages.dev/promo/pack-verify-card.svg)\n- [反馈问题榜分享卡](https://trace-atlas-codex.pages.dev/promo/feedback-rank-card.svg)\n- [小红书传播包](https://trace-atlas-codex.pages.dev/promo/xhs-launch-kit.md)\n- [小红书发布草稿包](https://trace-atlas-codex.pages.dev/promo/xhs-post-drafts.md)\n- [小红书发布后回流模板](https://trace-atlas-codex.pages.dev/promo/xhs-feedback-loop-template.md)\n- [发布检查台](https://trace-atlas-codex.pages.dev/promo/xhs-publish-checklist.md)\n- [发布 manifest](https://trace-atlas-codex.pages.dev/promo/xhs-publish-manifest.json)\n- [发布前报告](https://trace-atlas-codex.pages.dev/promo/xhs-publish-report.md)\n- [证据包](https://trace-atlas-codex.pages.dev/evidence-pack.md)\n- [验证摘要](https://trace-atlas-codex.pages.dev/verification-summary.md)\n- [项目纪念碑](https://trace-atlas-codex.pages.dev/monument)\n- [复用模板](https://trace-atlas-codex.pages.dev/templates/ai-session-artifact-kit.md)\n- [公开化快速清单](https://trace-atlas-codex.pages.dev/templates/ai-session-public-quickstart.md)\n- [发布记录 JSON 模板](https://trace-atlas-codex.pages.dev/publish-record-template.json)\n- [发布反馈样例记录](https://trace-atlas-codex.pages.dev/feedback-records.json)\n"
     },
     {
       "id": "reuse",

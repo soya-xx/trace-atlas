@@ -1,4 +1,4 @@
-const CACHE_NAME = "trace-atlas-shell-v41";
+const CACHE_NAME = "trace-atlas-shell-v43";
 const APP_SHELL = [
   "./",
   "./index.html",
@@ -8,6 +8,7 @@ const APP_SHELL = [
   "./materials.html",
   "./materials-guide.html",
   "./preflight.html",
+  "./feedback.html",
   "./pack-read.html",
   "./pack-publish.html",
   "./pack-reuse.html",
@@ -15,11 +16,12 @@ const APP_SHELL = [
   "./monument.html",
   "./workflow.html",
   "./styles.css?v=13",
-  "./launch.css?v=11",
+  "./launch.css?v=12",
   "./launch.js?v=1",
   "./materials-guide.js?v=1",
   "./pack-page.js?v=1",
-  "./preflight.js?v=3",
+  "./preflight.js?v=4",
+  "./feedback.js?v=2",
   "./app.js?v=16",
   "./icon.svg",
   "./social-card.svg",
@@ -31,6 +33,7 @@ const APP_SHELL = [
   "./promo/pack-publish-card.svg",
   "./promo/pack-reuse-card.svg",
   "./promo/pack-verify-card.svg",
+  "./promo/feedback-rank-card.svg",
   "./promo/xhs-post-drafts.md",
   "./promo/xhs-feedback-loop-template.md",
   "./promo/xhs-publish-checklist.md",
@@ -50,6 +53,7 @@ const APP_SHELL = [
   "./materials-api.json",
   "./materials-packs.json",
   "./publish-record-template.json",
+  "./feedback-records.json",
   "./reuse-map.json"
 ];
 

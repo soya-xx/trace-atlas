@@ -1,0 +1,99 @@
+{
+  "schemaVersion": 1,
+  "name": "Trace Atlas 发布反馈样例记录",
+  "summary": "用于演示发布记录 JSON 如何汇总成问题榜、处理动作和下一步路线。这里是公开样例，不代表真实平台数据。",
+  "publicOnly": true,
+  "source": "example",
+  "records": [
+    {
+      "schemaVersion": 1,
+      "project": "Trace Atlas",
+      "status": "示例",
+      "postUrl": "https://trace-atlas-codex.pages.dev/launch",
+      "publishedAt": "2026-06-17T21:30:00+08:00",
+      "preflight": {
+        "passed": 10,
+        "total": 10
+      },
+      "feedback": [
+        "读者问能不能复用到自己的项目",
+        "读者问怎么确认公开链接都有效",
+        "读者问从哪里开始看"
+      ],
+      "actions": [
+        "新增发布前自检页",
+        "把材料索引接入行动包",
+        "在 README 增加公开入口"
+      ],
+      "nextSteps": [
+        "把评论问题整理成 FAQ",
+        "做一个反馈问题榜公开卡片"
+      ],
+      "evidence": [
+        "https://trace-atlas-codex.pages.dev/preflight",
+        "https://trace-atlas-codex.pages.dev/materials-packs.json",
+        "https://github.com/soya-xx/trace-atlas/issues/1"
+      ]
+    },
+    {
+      "schemaVersion": 1,
+      "project": "Trace Atlas",
+      "status": "示例",
+      "postUrl": "https://trace-atlas-codex.pages.dev/materials-guide",
+      "publishedAt": "2026-06-17T22:15:00+08:00",
+      "preflight": {
+        "passed": 10,
+        "total": 10
+      },
+      "feedback": [
+        "读者问能不能复用到自己的项目",
+        "读者问有没有一键复制的材料包",
+        "读者问怎么确认公开链接都有效"
+      ],
+      "actions": [
+        "新增材料选择器",
+        "新增四个行动包页面",
+        "新增行动包分享卡"
+      ],
+      "nextSteps": [
+        "把评论问题整理成 FAQ",
+        "补一张适合帖子里的反馈榜图"
+      ],
+      "evidence": [
+        "https://trace-atlas-codex.pages.dev/materials-guide",
+        "https://trace-atlas-codex.pages.dev/pack-publish",
+        "https://trace-atlas-codex.pages.dev/promo/pack-publish-card.svg"
+      ]
+    },
+    {
+      "schemaVersion": 1,
+      "project": "Trace Atlas",
+      "status": "示例",
+      "postUrl": "https://trace-atlas-codex.pages.dev/preflight",
+      "publishedAt": "2026-06-17T23:10:00+08:00",
+      "preflight": {
+        "passed": 10,
+        "total": 10
+      },
+      "feedback": [
+        "读者问从哪里开始看",
+        "读者问有没有一键复制的材料包",
+        "读者问发布之后反馈怎么回流"
+      ],
+      "actions": [
+        "新增发布记录 JSON 模板",
+        "在自检页生成 Markdown 和 JSON",
+        "把反馈榜逻辑放进公开页面"
+      ],
+      "nextSteps": [
+        "做一个反馈问题榜公开卡片",
+        "把评论问题整理成 FAQ"
+      ],
+      "evidence": [
+        "https://trace-atlas-codex.pages.dev/publish-record-template.json",
+        "https://trace-atlas-codex.pages.dev/preflight",
+        "https://trace-atlas-codex.pages.dev/verification-summary.md"
+      ]
+    }
+  ]
+}

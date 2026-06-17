@@ -6,7 +6,7 @@
   "publicOnly": true,
   "counts": {
     "groups": 5,
-    "items": 52
+    "items": 55
   },
   "items": [
     {
@@ -90,6 +90,17 @@
       "id": "pages:发布前自检页",
       "label": "发布前自检页",
       "href": "https://trace-atlas-codex.pages.dev/preflight",
+      "groupId": "pages",
+      "groupTitle": "可见页面",
+      "kind": "page",
+      "useCase": "publish",
+      "audience": "creator",
+      "format": "text/html"
+    },
+    {
+      "id": "pages:反馈问题榜",
+      "label": "反馈问题榜",
+      "href": "https://trace-atlas-codex.pages.dev/feedback",
       "groupId": "pages",
       "groupTitle": "可见页面",
       "kind": "page",
@@ -244,6 +255,17 @@
       "id": "visual-assets:验证维护包分享卡",
       "label": "验证维护包分享卡",
       "href": "https://trace-atlas-codex.pages.dev/promo/pack-verify-card.svg",
+      "groupId": "visual-assets",
+      "groupTitle": "图片素材",
+      "kind": "image",
+      "useCase": "publish",
+      "audience": "creator",
+      "format": "image/svg+xml"
+    },
+    {
+      "id": "visual-assets:反馈问题榜分享卡",
+      "label": "反馈问题榜分享卡",
+      "href": "https://trace-atlas-codex.pages.dev/promo/feedback-rank-card.svg",
       "groupId": "visual-assets",
       "groupTitle": "图片素材",
       "kind": "image",
@@ -420,6 +442,17 @@
       "id": "machine-data:发布记录 JSON 模板",
       "label": "发布记录 JSON 模板",
       "href": "https://trace-atlas-codex.pages.dev/publish-record-template.json",
+      "groupId": "machine-data",
+      "groupTitle": "机器可读数据",
+      "kind": "data",
+      "useCase": "publish",
+      "audience": "creator",
+      "format": "application/json"
+    },
+    {
+      "id": "machine-data:发布反馈样例记录",
+      "label": "发布反馈样例记录",
+      "href": "https://trace-atlas-codex.pages.dev/feedback-records.json",
       "groupId": "machine-data",
       "groupTitle": "机器可读数据",
       "kind": "data",

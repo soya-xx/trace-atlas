@@ -14,6 +14,8 @@
 - 材料 API：`https://trace-atlas-codex.pages.dev/materials-api.json`
 - 材料行动包：`https://trace-atlas-codex.pages.dev/materials-packs.json`
 - 发布记录 JSON 模板：`https://trace-atlas-codex.pages.dev/publish-record-template.json`
+- 反馈问题榜：`https://trace-atlas-codex.pages.dev/feedback`
+- 发布反馈样例记录：`https://trace-atlas-codex.pages.dev/feedback-records.json`
 - 阅读了解行动包：`https://trace-atlas-codex.pages.dev/pack-read`
 - 发帖发布行动包：`https://trace-atlas-codex.pages.dev/pack-publish`
 - 复用接力行动包：`https://trace-atlas-codex.pages.dev/pack-reuse`
@@ -30,6 +32,7 @@
 - 复用流程图：`https://trace-atlas-codex.pages.dev/promo/reuse-flow-card.png`
 - 公开健康徽章：`https://trace-atlas-codex.pages.dev/public-health-badge.svg`
 - 行动包分享卡：`https://trace-atlas-codex.pages.dev/promo/pack-publish-card.svg`
+- 反馈问题榜分享卡：`https://trace-atlas-codex.pages.dev/promo/feedback-rank-card.svg`
 - 公开仓库：`https://github.com/soya-xx/trace-atlas`
 - 工作日志：`https://github.com/soya-xx/trace-atlas/issues/1`
 - 公开健康状态：`https://trace-atlas-codex.pages.dev/public-health.json`
@@ -71,6 +74,9 @@
 - `preflight.html` 和 `preflight.js` 会读取公开同源材料，生成发布前自检结果和可复制证据文本。
 - 自检页里的发布记录模板只在浏览器本地生成，方便记录帖子链接、发布时间、评论回流和下一步动作。
 - `publish-record-template.json` 公开发布记录字段，便于后续会话读取多次发布后的反馈。
+- `feedback.html` 会读取发布记录 JSON，把重复问题、下一步动作和证据入口整理成可复制榜单。
+- `feedback-records.json` 是公开样例数据，不代表真实平台数据，真实发布后可以用同一结构替换。
+- `promo/feedback-rank-card.svg` 把反馈榜压缩成一张可分享的社交图。
 - `reuse-map.json` 把开始复用、快速清单、完整模板、证据包、健康状态和回流模板整理成机器可读链路。
 - `reuse.html` 和 `promo/reuse-flow-card.png` 把同一条链路翻译成读者能扫读的页面和传播配图。
 - `verification-summary.md` 由公开 JSON 生成，方便快速复制到 issue 或交给读者复核。
@@ -125,11 +131,14 @@ curl -I https://trace-atlas-codex.pages.dev/materials-index.json
 curl -I https://trace-atlas-codex.pages.dev/materials-api.json
 curl -I https://trace-atlas-codex.pages.dev/materials-packs.json
 curl -I https://trace-atlas-codex.pages.dev/publish-record-template.json
+curl -I https://trace-atlas-codex.pages.dev/feedback
+curl -I https://trace-atlas-codex.pages.dev/feedback-records.json
 curl -I https://trace-atlas-codex.pages.dev/pack-read
 curl -I https://trace-atlas-codex.pages.dev/pack-publish
 curl -I https://trace-atlas-codex.pages.dev/pack-reuse
 curl -I https://trace-atlas-codex.pages.dev/pack-verify
 curl -I https://trace-atlas-codex.pages.dev/promo/pack-publish-card.svg
+curl -I https://trace-atlas-codex.pages.dev/promo/feedback-rank-card.svg
 curl -I https://trace-atlas-codex.pages.dev/reuse-map.json
 curl -I https://trace-atlas-codex.pages.dev/templates/ai-session-public-quickstart.md
 curl -I https://trace-atlas-codex.pages.dev/progress-timeline.json
@@ -156,8 +165,11 @@ curl -I https://trace-atlas-codex.pages.dev/progress-timeline-source.json
 - 材料 API 返回 JSON。
 - 材料行动包返回 JSON。
 - 发布记录 JSON 模板返回 JSON。
+- 反馈问题榜返回 `200`。
+- 发布反馈样例记录返回 JSON。
 - 4 个行动包页面返回 `200`。
 - 行动包分享卡返回 `image/svg+xml`。
+- 反馈问题榜分享卡返回 `image/svg+xml`。
 - 复用链路 JSON 返回 JSON。
 - 公开化快速清单返回 Markdown 文本。
 - 进展时间线返回 JSON。

@@ -129,7 +129,7 @@ function renderPage(pack) {
     <meta name="twitter:image" content="${cardPath}">
     <title>${escapeHtml(title)}</title>
     <link rel="icon" href="./icon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="./launch.css?v=11">
+    <link rel="stylesheet" href="./launch.css?v=12">
   </head>
   <body>
     <main class="launch-shell pack-shell" aria-labelledby="pack-title">

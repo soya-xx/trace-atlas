@@ -42,6 +42,12 @@
           "audience": "creator"
         },
         {
+          "label": "反馈问题榜",
+          "href": "https://trace-atlas-codex.pages.dev/feedback",
+          "useCase": "publish",
+          "audience": "creator"
+        },
+        {
           "label": "阅读了解行动包",
           "href": "https://trace-atlas-codex.pages.dev/pack-read"
         },
@@ -108,6 +114,12 @@
         {
           "label": "验证维护包分享卡",
           "href": "https://trace-atlas-codex.pages.dev/promo/pack-verify-card.svg"
+        },
+        {
+          "label": "反馈问题榜分享卡",
+          "href": "https://trace-atlas-codex.pages.dev/promo/feedback-rank-card.svg",
+          "useCase": "publish",
+          "audience": "creator"
         }
       ]
     },
@@ -184,6 +196,12 @@
         {
           "label": "发布记录 JSON 模板",
           "href": "https://trace-atlas-codex.pages.dev/publish-record-template.json",
+          "useCase": "publish",
+          "audience": "creator"
+        },
+        {
+          "label": "发布反馈样例记录",
+          "href": "https://trace-atlas-codex.pages.dev/feedback-records.json",
           "useCase": "publish",
           "audience": "creator"
         },

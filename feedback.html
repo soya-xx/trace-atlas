@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#25785e">
+    <meta name="description" content="Trace Atlas 反馈问题榜：把发布记录 JSON 汇总成高频问题、处理动作、下一步和公开证据。">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="zh_CN">
+    <meta property="og:title" content="Trace Atlas 反馈问题榜">
+    <meta property="og:description" content="发布后的评论和问题不散落，汇总成下一轮公开迭代路线。">
+    <meta property="og:url" content="https://trace-atlas-codex.pages.dev/feedback">
+    <meta property="og:image" content="https://trace-atlas-codex.pages.dev/promo/feedback-rank-card.svg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Trace Atlas 反馈问题榜">
+    <meta name="twitter:description" content="把发布记录 JSON 变成可复制、可验证的反馈榜。">
+    <meta name="twitter:image" content="https://trace-atlas-codex.pages.dev/promo/feedback-rank-card.svg">
+    <title>Trace Atlas 反馈问题榜</title>
+    <link rel="icon" href="./icon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="./launch.css?v=12">
+  </head>
+  <body>
+    <main class="launch-shell feedback-shell" aria-labelledby="feedback-title">
+      <section class="intro route-intro">
+        <p class="eyebrow">Trace Atlas / 发布后回流</p>
+        <h1 id="feedback-title">反馈问题榜</h1>
+        <p class="lead">把发布记录 JSON 汇总成高频问题、处理动作、下一步和证据入口，让传播后的反馈可以继续推动作品迭代。</p>
+        <div class="primary-links" aria-label="反馈榜入口">
+          <a href="./preflight.html">发布记录</a>
+          <a href="./feedback-records.json">记录 JSON</a>
+          <a href="./promo/feedback-rank-card.svg">分享卡</a>
+          <a href="./materials.html">材料总览</a>
+          <a href="./pack-publish.html">发帖包</a>
+          <a href="https://github.com/soya-xx/trace-atlas/issues/1">工作日志</a>
+        </div>
+      </section>
+
+      <section class="feedback-summary" aria-label="反馈汇总">
+        <article class="handoff-card">
+          <p class="eyebrow">记录数</p>
+          <h2 id="feedback-record-count">0</h2>
+          <p>当前读取公开样例记录。真实发布后可以把自检页生成的 JSON 追加进来。</p>
+        </article>
+        <article class="handoff-card">
+          <p class="eyebrow">问题数</p>
+          <h2 id="feedback-question-count">0</h2>
+          <p>同样的问题会合并计数，避免下一步只靠印象判断。</p>
+        </article>
+        <article class="handoff-card">
+          <p class="eyebrow">下一步</p>
+          <h2 id="feedback-next-count">0</h2>
+          <p>把重复出现的建议收束成可执行动作。</p>
+        </article>
+        <article class="handoff-card">
+          <p class="eyebrow">状态</p>
+          <h2 id="feedback-status">读取中</h2>
+          <p id="feedback-source">等待公开 JSON。</p>
+        </article>
+      </section>
+
+      <section class="feedback-board" aria-label="反馈榜">
+        <article class="feedback-panel">
+          <div class="guide-results-head">
+            <div>
+              <p class="eyebrow">Top questions</p>
+              <h2>高频问题</h2>
+            </div>
+            <button id="copy-feedback-board" class="copy-button" type="button">复制反馈榜</button>
+          </div>
+          <ol id="question-rank" class="rank-list"></ol>
+        </article>
+
+        <article class="feedback-panel">
+          <p class="eyebrow">Next actions</p>
+          <h2>下一步动作</h2>
+          <ol id="next-rank" class="rank-list"></ol>
+        </article>
+
+        <article class="feedback-panel feedback-panel-wide">
+          <p class="eyebrow">Evidence</p>
+          <h2>证据入口</h2>
+          <div id="evidence-list" class="evidence-list"></div>
+        </article>
+      </section>
+
+      <section class="publish-record" aria-labelledby="feedback-input-title">
+        <div class="guide-results-head">
+          <div>
+            <p class="eyebrow">本地追加</p>
+            <h2 id="feedback-input-title">粘贴发布记录 JSON</h2>
+          </div>
+          <button id="apply-feedback-json" class="copy-button" type="button">生成榜单</button>
+        </div>
+        <label class="record-field record-wide">
+          <span>发布记录 JSON</span>
+          <textarea id="feedback-json-input" rows="8" placeholder="粘贴 JSON 数组，或每行一条发布记录 JSON。"></textarea>
+        </label>
+        <pre id="feedback-markdown">等待生成反馈榜。</pre>
+      </section>
+
+      <section class="feedback-panel" aria-labelledby="feedback-records-title">
+        <div class="guide-results-head">
+          <div>
+            <p class="eyebrow">Records</p>
+            <h2 id="feedback-records-title">发布记录摘要</h2>
+          </div>
+          <a href="./feedback-records.json">打开原始 JSON</a>
+        </div>
+        <div id="record-list" class="record-list"></div>
+      </section>
+    </main>
+    <script src="./feedback.js?v=2"></script>
+  </body>
+</html>

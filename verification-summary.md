@@ -7,11 +7,11 @@
 ## 当前状态
 
 - 状态：可公开访问
-- 公开入口：31
-- 视觉素材：9
+- 公开入口：34
+- 视觉素材：10
 - 发布文档：11
 - 验证脚本：10
-- 材料索引条目：52
+- 材料索引条目：55
 
 ## 公开检查
 
@@ -33,13 +33,16 @@
 - 材料 API 已公开：ok，证据：https://trace-atlas-codex.pages.dev/materials-api.json
 - 材料行动包已公开：ok，证据：https://trace-atlas-codex.pages.dev/materials-packs.json
 - 发布前自检页已公开：ok，证据：https://trace-atlas-codex.pages.dev/preflight
+- 反馈问题榜已公开：ok，证据：https://trace-atlas-codex.pages.dev/feedback
 - 发布记录模板已公开：ok，证据：https://trace-atlas-codex.pages.dev/preflight
 - 发布记录 JSON 模板已公开：ok，证据：https://trace-atlas-codex.pages.dev/publish-record-template.json
+- 发布反馈样例记录已公开：ok，证据：https://trace-atlas-codex.pages.dev/feedback-records.json
 - 阅读了解行动包页已公开：ok，证据：https://trace-atlas-codex.pages.dev/pack-read
 - 发帖发布行动包页已公开：ok，证据：https://trace-atlas-codex.pages.dev/pack-publish
 - 复用接力行动包页已公开：ok，证据：https://trace-atlas-codex.pages.dev/pack-reuse
 - 验证维护行动包页已公开：ok，证据：https://trace-atlas-codex.pages.dev/pack-verify
 - 行动包分享卡已公开：ok，证据：https://trace-atlas-codex.pages.dev/promo/pack-publish-card.svg
+- 反馈问题榜分享卡已公开：ok，证据：https://trace-atlas-codex.pages.dev/promo/feedback-rank-card.svg
 - 发布报告可生成：ok，证据：https://trace-atlas-codex.pages.dev/promo/xhs-publish-report.md
 - 边界扫描纳入 CI：ok，证据：https://github.com/soya-xx/trace-atlas/actions/workflows/verify.yml
 - 时间线生成脚本纳入 CI：ok，证据：https://github.com/soya-xx/trace-atlas/blob/main/scripts/build-progress-timeline.mjs
@@ -50,10 +53,10 @@
 
 ## 材料分组
 
-- 可见页面：13 项
-- 图片素材：9 项
+- 可见页面：14 项
+- 图片素材：10 项
 - 发布文档：11 项
-- 机器可读数据：10 项
+- 机器可读数据：11 项
 - 验证与边界：9 项
 
 ## 复用链路

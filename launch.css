@@ -250,6 +250,13 @@ code {
   margin-bottom: 18px;
 }
 
+.feedback-summary {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
 .materials-grid {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
@@ -607,6 +614,10 @@ code {
   max-width: 100vw;
 }
 
+.feedback-shell {
+  max-width: 100vw;
+}
+
 .preflight-panel,
 .preflight-report {
   border: 1px solid var(--line);
@@ -757,6 +768,97 @@ code {
   grid-column: 1 / -1;
 }
 
+.feedback-board {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.feedback-panel {
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 18px;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: var(--shadow);
+}
+
+.feedback-panel-wide {
+  grid-column: 1 / -1;
+}
+
+.rank-list {
+  display: grid;
+  gap: 10px;
+  margin: 14px 0 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.rank-list li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 12px;
+  background: white;
+  color: var(--muted);
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+.rank-list strong {
+  min-width: 56px;
+  color: var(--green);
+  text-align: right;
+}
+
+.evidence-list,
+.record-list {
+  display: grid;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.evidence-list {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.evidence-list a,
+.record-card a {
+  color: var(--blue);
+  font-weight: 850;
+  overflow-wrap: anywhere;
+  text-decoration: none;
+}
+
+.evidence-list a,
+.record-card {
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 12px;
+  background: white;
+}
+
+.record-list {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.record-card {
+  display: grid;
+  gap: 8px;
+}
+
+.record-card p {
+  margin-bottom: 0;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
 .checklist {
   display: grid;
   grid-template-columns: minmax(220px, 0.58fr) minmax(0, 1fr);
@@ -784,10 +886,14 @@ code {
   .reuse-flow,
   .handoff-grid,
   .health-grid,
+  .feedback-summary,
   .materials-grid,
   .guide-list,
   .pack-hero,
   .pack-list,
+  .feedback-board,
+  .evidence-list,
+  .record-list,
   .preflight-panel,
   .preflight-list,
   .record-grid,
