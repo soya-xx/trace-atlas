@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#25785e">
+    <meta name="description" content="Trace Atlas 痕迹星图材料选择器：按阅读、发布、复用和验证筛选公开材料。">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="zh_CN">
+    <meta property="og:title" content="Trace Atlas 材料选择器">
+    <meta property="og:description" content="从材料 API 读取公开材料，按用途筛出该打开的页面、文档、图片和脚本。">
+    <meta property="og:url" content="https://trace-atlas-codex.pages.dev/materials-guide">
+    <meta property="og:image" content="https://trace-atlas-codex.pages.dev/promo/workflow-card.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Trace Atlas 材料选择器">
+    <meta name="twitter:description" content="选择阅读、发布、复用或验证，直接拿到对应公开材料。">
+    <meta name="twitter:image" content="https://trace-atlas-codex.pages.dev/promo/workflow-card.png">
+    <title>Trace Atlas 材料选择器</title>
+    <link rel="icon" href="./icon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="./launch.css?v=8">
+  </head>
+  <body>
+    <main class="launch-shell guide-shell" aria-labelledby="guide-title">
+      <section class="intro route-intro">
+        <p class="eyebrow">Trace Atlas / 痕迹星图</p>
+        <h1 id="guide-title">材料选择器</h1>
+        <p class="lead">选择你现在要做的事，页面会从材料 API 里筛出对应入口。适合发帖前取素材，也适合复用或验证时少翻几页。</p>
+        <div class="primary-links" aria-label="材料选择器入口">
+          <a href="./materials.html">材料总览</a>
+          <a href="./materials-api.json">材料 API</a>
+          <a href="./verification-summary.md">验证摘要</a>
+          <a href="./reuse.html">复用路线</a>
+          <a href="./launch.html">发布材料</a>
+          <a href="./">打开主作品</a>
+        </div>
+      </section>
+
+      <section class="guide-panel" aria-labelledby="guide-controls-title">
+        <div>
+          <p class="eyebrow">按用途筛选</p>
+          <h2 id="guide-controls-title">现在要拿哪类材料</h2>
+        </div>
+        <div class="filter-row" role="group" aria-label="材料用途">
+          <button class="copy-button filter-button" type="button" data-filter="all" aria-pressed="true">全部</button>
+          <button class="copy-button filter-button" type="button" data-filter="read">阅读了解</button>
+          <button class="copy-button filter-button" type="button" data-filter="publish">发帖发布</button>
+          <button class="copy-button filter-button" type="button" data-filter="reuse">复用接力</button>
+          <button class="copy-button filter-button" type="button" data-filter="verify">验证维护</button>
+        </div>
+        <p id="guide-status" class="copy-status" aria-live="polite">材料选择器正在读取材料 API。</p>
+      </section>
+
+      <section class="guide-results" aria-labelledby="guide-results-title">
+        <div class="guide-results-head">
+          <div>
+            <p class="eyebrow">筛选结果</p>
+            <h2 id="guide-results-title">可打开的公开材料</h2>
+          </div>
+          <a href="./materials-api.json">查看原始 API</a>
+        </div>
+        <div id="guide-list" class="guide-list" aria-live="polite"></div>
+      </section>
+    </main>
+    <script src="./materials-guide.js?v=1"></script>
+  </body>
+</html>

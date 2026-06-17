@@ -9,6 +9,7 @@
 - 复用路线页：`https://trace-atlas-codex.pages.dev/reuse`
 - 发布材料页：`https://trace-atlas-codex.pages.dev/launch`
 - 公开材料总览：`https://trace-atlas-codex.pages.dev/materials`
+- 材料选择器：`https://trace-atlas-codex.pages.dev/materials-guide`
 - 材料 API：`https://trace-atlas-codex.pages.dev/materials-api.json`
 - 项目纪念碑：`https://trace-atlas-codex.pages.dev/monument`
 - 公开化路线图：`https://trace-atlas-codex.pages.dev/workflow`
@@ -54,6 +55,7 @@
 - `materials-index.json` 把公开页面、图片素材、发布文档、机器数据和验证边界分组。
 - `materials-api.json` 由材料索引生成，按用途、格式和受众提供扁平材料列表。
 - `scripts/build-materials-api.mjs` 负责生成并检查材料 API。
+- `materials-guide.html` 从材料 API 读取条目，按阅读、发布、复用和验证筛选材料。
 - `reuse-map.json` 把开始复用、快速清单、完整模板、证据包、健康状态和回流模板整理成机器可读链路。
 - `reuse.html` 和 `promo/reuse-flow-card.png` 把同一条链路翻译成读者能扫读的页面和传播配图。
 - `verification-summary.md` 由公开 JSON 生成，方便快速复制到 issue 或交给读者复核。
@@ -85,6 +87,7 @@ curl -I https://trace-atlas-codex.pages.dev/start
 curl -I https://trace-atlas-codex.pages.dev/reuse
 curl -I https://trace-atlas-codex.pages.dev/launch
 curl -I https://trace-atlas-codex.pages.dev/materials
+curl -I https://trace-atlas-codex.pages.dev/materials-guide
 curl -I https://trace-atlas-codex.pages.dev/monument
 curl -I https://trace-atlas-codex.pages.dev/workflow
 curl -I https://trace-atlas-codex.pages.dev/verification-summary.md
@@ -109,7 +112,7 @@ curl -I https://trace-atlas-codex.pages.dev/progress-timeline-source.json
 
 期望结果：
 
-- 主作品、开始复用入口、复用路线页、发布材料页、公开材料总览、项目纪念碑与公开化路线图返回 `200`。
+- 主作品、开始复用入口、复用路线页、发布材料页、公开材料总览、材料选择器、项目纪念碑与公开化路线图返回 `200`。
 - `evidence-pack.md` 返回 Markdown 文本。
 - `verification-summary.md` 返回 Markdown 文本。
 - 小红书发布草稿包返回 Markdown 文本。

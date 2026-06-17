@@ -32,6 +32,10 @@
           "href": "https://trace-atlas-codex.pages.dev/materials"
         },
         {
+          "label": "材料选择器",
+          "href": "https://trace-atlas-codex.pages.dev/materials-guide"
+        },
+        {
           "label": "项目纪念碑",
           "href": "https://trace-atlas-codex.pages.dev/monument"
         }

@@ -424,6 +424,92 @@ code {
   overflow-wrap: anywhere;
 }
 
+.guide-panel,
+.guide-results {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 18px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: var(--shadow);
+}
+
+.guide-panel {
+  display: grid;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.filter-button[aria-pressed="true"] {
+  border-color: var(--green);
+  background: var(--green);
+  color: white;
+}
+
+.guide-results-head {
+  display: flex;
+  gap: 16px;
+  align-items: end;
+  justify-content: space-between;
+}
+
+.guide-results-head a {
+  color: var(--blue);
+  font-weight: 850;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+.guide-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.guide-card {
+  display: grid;
+  gap: 10px;
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 16px;
+  background: white;
+}
+
+.guide-card p {
+  margin-bottom: 0;
+  color: var(--muted);
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+
+.guide-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.guide-actions a {
+  display: inline-flex;
+  min-height: 38px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--ink);
+  border-radius: 8px;
+  padding: 0 12px;
+  background: var(--ink);
+  color: white;
+  font-weight: 900;
+  text-align: center;
+  text-decoration: none;
+}
+
 .checklist {
   display: grid;
   grid-template-columns: minmax(220px, 0.58fr) minmax(0, 1fr);
@@ -452,9 +538,20 @@ code {
   .handoff-grid,
   .health-grid,
   .materials-grid,
+  .guide-list,
   .copy-grid,
   .checklist {
     grid-template-columns: 1fr;
+  }
+
+  .guide-results-head,
+  .guide-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .guide-results-head {
+    display: grid;
+    align-items: start;
   }
 
   .launch-shell {

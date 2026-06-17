@@ -7,11 +7,11 @@
 ## 当前状态
 
 - 状态：可公开访问
-- 公开入口：19
+- 公开入口：20
 - 视觉素材：5
 - 发布文档：11
 - 验证脚本：8
-- 材料索引条目：38
+- 材料索引条目：39
 
 ## 公开检查
 
@@ -21,6 +21,7 @@
 - 复用链路 JSON 已公开：ok，证据：https://trace-atlas-codex.pages.dev/reuse-map.json
 - 发布材料完整：ok，证据：https://trace-atlas-codex.pages.dev/launch
 - 材料总览已公开：ok，证据：https://trace-atlas-codex.pages.dev/materials
+- 材料选择器已公开：ok，证据：https://trace-atlas-codex.pages.dev/materials-guide
 - 项目纪念碑已公开：ok，证据：https://trace-atlas-codex.pages.dev/monument
 - 发布草稿包已公开：ok，证据：https://trace-atlas-codex.pages.dev/promo/xhs-post-drafts.md
 - 发布后回流模板已公开：ok，证据：https://trace-atlas-codex.pages.dev/promo/xhs-feedback-loop-template.md
@@ -38,7 +39,7 @@
 
 ## 材料分组
 
-- 可见页面：7 项
+- 可见页面：8 项
 - 图片素材：5 项
 - 发布文档：11 项
 - 机器可读数据：8 项

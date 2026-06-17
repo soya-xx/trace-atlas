@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360" role="img" aria-labelledby="title desc">
   <title id="title">Trace Atlas 公开健康徽章</title>
-  <desc id="desc">Trace Atlas 当前公开健康状态：19 个公开入口，11 份发布文档，8 个验证脚本。</desc>
+  <desc id="desc">Trace Atlas 当前公开健康状态：20 个公开入口，11 份发布文档，8 个验证脚本。</desc>
   <defs>
     <pattern id="grid" width="36" height="36" patternUnits="userSpaceOnUse">
       <path d="M 36 0 L 0 0 0 36" fill="none" stroke="#d6ddd8" stroke-width="1" opacity="0.7"/>
@@ -14,7 +14,7 @@
   <text x="64" y="204" fill="#606763" font-family="Inter, system-ui, sans-serif" font-size="28" font-weight="650">公开入口、发布文档和验证脚本均已接入证据链。</text>
   <g transform="translate(64 246)">
     <rect width="242" height="64" rx="8" fill="#25785e"/>
-    <text x="24" y="41" fill="#ffffff" font-family="Inter, system-ui, sans-serif" font-size="30" font-weight="900">19 公开入口</text>
+    <text x="24" y="41" fill="#ffffff" font-family="Inter, system-ui, sans-serif" font-size="30" font-weight="900">20 公开入口</text>
   </g>
   <g transform="translate(326 246)">
     <rect width="266" height="64" rx="8" fill="#386fb0"/>

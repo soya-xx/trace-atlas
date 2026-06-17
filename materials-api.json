@@ -6,7 +6,7 @@
   "publicOnly": true,
   "counts": {
     "groups": 5,
-    "items": 38
+    "items": 39
   },
   "items": [
     {
@@ -68,6 +68,17 @@
       "id": "pages:公开材料总览",
       "label": "公开材料总览",
       "href": "https://trace-atlas-codex.pages.dev/materials",
+      "groupId": "pages",
+      "groupTitle": "可见页面",
+      "kind": "page",
+      "useCase": "read",
+      "audience": "reader",
+      "format": "text/html"
+    },
+    {
+      "id": "pages:材料选择器",
+      "label": "材料选择器",
+      "href": "https://trace-atlas-codex.pages.dev/materials-guide",
       "groupId": "pages",
       "groupTitle": "可见页面",
       "kind": "page",
