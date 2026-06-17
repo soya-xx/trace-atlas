@@ -6,7 +6,7 @@
   "publicOnly": true,
   "counts": {
     "groups": 5,
-    "items": 51
+    "items": 52
   },
   "items": [
     {
@@ -414,6 +414,17 @@
       "kind": "data",
       "useCase": "reuse",
       "audience": "tool",
+      "format": "application/json"
+    },
+    {
+      "id": "machine-data:发布记录 JSON 模板",
+      "label": "发布记录 JSON 模板",
+      "href": "https://trace-atlas-codex.pages.dev/publish-record-template.json",
+      "groupId": "machine-data",
+      "groupTitle": "机器可读数据",
+      "kind": "data",
+      "useCase": "publish",
+      "audience": "creator",
       "format": "application/json"
     },
     {

@@ -182,6 +182,12 @@
           "href": "https://trace-atlas-codex.pages.dev/materials-packs.json"
         },
         {
+          "label": "发布记录 JSON 模板",
+          "href": "https://trace-atlas-codex.pages.dev/publish-record-template.json",
+          "useCase": "publish",
+          "audience": "creator"
+        },
+        {
           "label": "复用链路 JSON",
           "href": "https://trace-atlas-codex.pages.dev/reuse-map.json"
         },

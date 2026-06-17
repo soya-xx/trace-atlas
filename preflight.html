@@ -66,7 +66,10 @@
             <p class="eyebrow">发布后回流</p>
             <h2 id="publish-record-title">发布记录模板</h2>
           </div>
-          <button id="copy-record" class="copy-button" type="button">复制发布记录</button>
+          <div class="preflight-actions">
+            <button id="copy-record" class="copy-button" type="button">复制发布记录</button>
+            <button id="copy-record-json" class="copy-button" type="button">复制 JSON</button>
+          </div>
         </div>
         <div class="record-grid">
           <label class="record-field">
@@ -99,8 +102,24 @@
           </label>
         </div>
         <pre id="publish-record-output">等待填写发布记录。</pre>
+        <pre id="publish-record-json-output">等待生成 JSON 草稿。</pre>
+      </section>
+
+      <section class="publish-record" aria-labelledby="feedback-rank-title">
+        <div class="guide-results-head">
+          <div>
+            <p class="eyebrow">多次发布</p>
+            <h2 id="feedback-rank-title">反馈问题榜</h2>
+          </div>
+          <button id="copy-feedback-rank" class="copy-button" type="button">复制问题榜</button>
+        </div>
+        <label class="record-field record-wide">
+          <span>发布记录 JSON</span>
+          <textarea id="record-history" rows="7" placeholder="粘贴 JSON 数组，或每行一条发布记录 JSON。"></textarea>
+        </label>
+        <pre id="feedback-rank-output">等待发布记录 JSON。</pre>
       </section>
     </main>
-    <script src="./preflight.js?v=2"></script>
+    <script src="./preflight.js?v=3"></script>
   </body>
 </html>

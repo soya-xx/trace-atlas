@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "name": "Trace Atlas 发布记录 JSON 模板",
+  "summary": "用于记录一次公开发布、发布前自检、读者反馈、处理动作和下一步迭代。",
+  "publicOnly": true,
+  "example": {
+    "schemaVersion": 1,
+    "project": "Trace Atlas",
+    "status": "已发布",
+    "postUrl": "https://www.xiaohongshu.com/explore/example",
+    "publishedAt": "2026-06-17T22:30",
+    "preflight": {
+      "passed": 9,
+      "total": 9
+    },
+    "feedback": [
+      "读者问能不能复用到自己的项目。"
+    ],
+    "actions": [
+      "补充发帖发布包入口，并把自检报告贴回 issue。"
+    ],
+    "nextSteps": [
+      "把评论问题整理成 FAQ。"
+    ],
+    "evidence": [
+      "https://trace-atlas-codex.pages.dev/preflight",
+      "https://trace-atlas-codex.pages.dev/pack-publish",
+      "https://trace-atlas-codex.pages.dev/verification-summary.md"
+    ]
+  }
+}

@@ -18,7 +18,7 @@
     <circle cx="88" cy="88" r="48" fill="#ffffff" opacity="0.92"/>
     <circle cx="200" cy="96" r="30" fill="#c9961a"/>
     <path d="M 76 198 C 120 132 178 144 220 204" fill="none" stroke="#ffffff" stroke-width="18" stroke-linecap="round"/>
-    <text x="42" y="258" fill="#ffffff" font-family="Inter, system-ui, sans-serif" font-size="32" font-weight="950">22 LINKS</text>
+    <text x="42" y="258" fill="#ffffff" font-family="Inter, system-ui, sans-serif" font-size="32" font-weight="950">23 LINKS</text>
   </g>
   <text x="78" y="520" fill="#101113" font-family="Inter, system-ui, sans-serif" font-size="27" font-weight="860"><tspan x="78" dy="0">发布前按清单核对链接和配图，正文只使用已经公开验</tspan><tspan x="78" dy="36">证过的事实。</tspan></text>
   <text x="792" y="508" fill="#386fb0" font-family="Inter, system-ui, sans-serif" font-size="25" font-weight="950">trace-atlas-codex.pages.dev</text>

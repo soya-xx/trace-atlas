@@ -7,11 +7,11 @@
 ## 当前状态
 
 - 状态：可公开访问
-- 公开入口：30
+- 公开入口：31
 - 视觉素材：9
 - 发布文档：11
 - 验证脚本：10
-- 材料索引条目：51
+- 材料索引条目：52
 
 ## 公开检查
 
@@ -34,6 +34,7 @@
 - 材料行动包已公开：ok，证据：https://trace-atlas-codex.pages.dev/materials-packs.json
 - 发布前自检页已公开：ok，证据：https://trace-atlas-codex.pages.dev/preflight
 - 发布记录模板已公开：ok，证据：https://trace-atlas-codex.pages.dev/preflight
+- 发布记录 JSON 模板已公开：ok，证据：https://trace-atlas-codex.pages.dev/publish-record-template.json
 - 阅读了解行动包页已公开：ok，证据：https://trace-atlas-codex.pages.dev/pack-read
 - 发帖发布行动包页已公开：ok，证据：https://trace-atlas-codex.pages.dev/pack-publish
 - 复用接力行动包页已公开：ok，证据：https://trace-atlas-codex.pages.dev/pack-reuse
@@ -52,7 +53,7 @@
 - 可见页面：13 项
 - 图片素材：9 项
 - 发布文档：11 项
-- 机器可读数据：9 项
+- 机器可读数据：10 项
 - 验证与边界：9 项
 
 ## 复用链路

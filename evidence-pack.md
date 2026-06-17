@@ -13,6 +13,7 @@
 - 发布前自检：`https://trace-atlas-codex.pages.dev/preflight`
 - 材料 API：`https://trace-atlas-codex.pages.dev/materials-api.json`
 - 材料行动包：`https://trace-atlas-codex.pages.dev/materials-packs.json`
+- 发布记录 JSON 模板：`https://trace-atlas-codex.pages.dev/publish-record-template.json`
 - 阅读了解行动包：`https://trace-atlas-codex.pages.dev/pack-read`
 - 发帖发布行动包：`https://trace-atlas-codex.pages.dev/pack-publish`
 - 复用接力行动包：`https://trace-atlas-codex.pages.dev/pack-reuse`
@@ -69,6 +70,7 @@
 - `scripts/build-pack-pages.mjs` 负责生成并检查行动包页面和分享卡。
 - `preflight.html` 和 `preflight.js` 会读取公开同源材料，生成发布前自检结果和可复制证据文本。
 - 自检页里的发布记录模板只在浏览器本地生成，方便记录帖子链接、发布时间、评论回流和下一步动作。
+- `publish-record-template.json` 公开发布记录字段，便于后续会话读取多次发布后的反馈。
 - `reuse-map.json` 把开始复用、快速清单、完整模板、证据包、健康状态和回流模板整理成机器可读链路。
 - `reuse.html` 和 `promo/reuse-flow-card.png` 把同一条链路翻译成读者能扫读的页面和传播配图。
 - `verification-summary.md` 由公开 JSON 生成，方便快速复制到 issue 或交给读者复核。
@@ -122,6 +124,7 @@ curl -I https://trace-atlas-codex.pages.dev/public-health.json
 curl -I https://trace-atlas-codex.pages.dev/materials-index.json
 curl -I https://trace-atlas-codex.pages.dev/materials-api.json
 curl -I https://trace-atlas-codex.pages.dev/materials-packs.json
+curl -I https://trace-atlas-codex.pages.dev/publish-record-template.json
 curl -I https://trace-atlas-codex.pages.dev/pack-read
 curl -I https://trace-atlas-codex.pages.dev/pack-publish
 curl -I https://trace-atlas-codex.pages.dev/pack-reuse
@@ -152,6 +155,7 @@ curl -I https://trace-atlas-codex.pages.dev/progress-timeline-source.json
 - 公开材料总览 JSON 返回 JSON。
 - 材料 API 返回 JSON。
 - 材料行动包返回 JSON。
+- 发布记录 JSON 模板返回 JSON。
 - 4 个行动包页面返回 `200`。
 - 行动包分享卡返回 `image/svg+xml`。
 - 复用链路 JSON 返回 JSON。
