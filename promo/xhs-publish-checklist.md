@@ -7,6 +7,7 @@
 - 主作品：`https://trace-atlas-codex.pages.dev/`
 - 发布材料页：`https://trace-atlas-codex.pages.dev/launch`
 - 公开化路线图：`https://trace-atlas-codex.pages.dev/workflow`
+- 复用路线：`https://trace-atlas-codex.pages.dev/reuse`
 - 发布草稿包：`https://trace-atlas-codex.pages.dev/promo/xhs-post-drafts.md`
 - 发布后回流模板：`https://trace-atlas-codex.pages.dev/promo/xhs-feedback-loop-template.md`
 - 证据包：`https://trace-atlas-codex.pages.dev/evidence-pack.md`
@@ -19,7 +20,8 @@
 
 1. `promo/xhs-cover.png`：首图，说明“我把 AI 会话做成了网站”。
 2. `promo/workflow-card.png`：路线图长图，说明这套方法怎样复用。
-3. `social-card.svg` 或页面截图：补充公开链接和视觉识别。
+3. `promo/reuse-flow-card.png`：复用流程图，说明读者点进来后能拿走什么。
+4. `social-card.svg` 或页面截图：补充公开链接和视觉识别。
 
 ## 正文核对
 
@@ -36,10 +38,12 @@
 - 主作品能打开。
 - 发布材料页能打开。
 - 公开化路线图能打开。
+- 复用路线能打开。
 - 发布草稿包能打开。
 - 发布后回流模板能打开。
 - 证据包能打开。
 - 路线图长图能打开，并且是 `image/png`。
+- 复用流程图能打开，并且是 `image/png`。
 - GitHub Actions 最近一次 `Verify Trace Atlas` 为成功。
 - 工作日志 issue 已同步最新进展。
 - 发布 manifest 里的链接、图片和标签与当前材料一致。

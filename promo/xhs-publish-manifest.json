@@ -19,6 +19,10 @@
       "href": "https://trace-atlas-codex.pages.dev/workflow"
     },
     {
+      "label": "复用路线",
+      "href": "https://trace-atlas-codex.pages.dev/reuse"
+    },
+    {
       "label": "发布草稿包",
       "href": "https://trace-atlas-codex.pages.dev/promo/xhs-post-drafts.md"
     },
@@ -63,6 +67,15 @@
       "height": 1200
     },
     {
+      "role": "reuse-flow",
+      "label": "复用流程图",
+      "href": "https://trace-atlas-codex.pages.dev/promo/reuse-flow-card.png",
+      "repoPath": "promo/reuse-flow-card.png",
+      "mimeType": "image/png",
+      "width": 900,
+      "height": 1200
+    },
+    {
       "role": "social",
       "label": "网页分享卡",
       "href": "https://trace-atlas-codex.pages.dev/social-card.svg",
@@ -82,8 +95,8 @@
   ],
   "checks": [
     "正文不出现 token、账号 ID、本地路径或原始私密聊天。",
-    "主作品、路线图、证据包、发布材料页和工作日志都能打开。",
-    "图片顺序为首图、路线图长图、分享卡或页面截图。",
+    "主作品、路线图、复用路线、证据包、发布材料页和工作日志都能打开。",
+    "图片顺序为首图、路线图长图、复用流程图、分享卡或页面截图。",
     "GitHub Actions 最近一次 Verify Trace Atlas 为成功。",
     "发布后用回流模板把有效问题写回公开 issue。"
   ]

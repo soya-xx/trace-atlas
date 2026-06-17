@@ -16,6 +16,10 @@
           "href": "https://trace-atlas-codex.pages.dev/start"
         },
         {
+          "label": "复用路线页",
+          "href": "https://trace-atlas-codex.pages.dev/reuse"
+        },
+        {
           "label": "发布材料页",
           "href": "https://trace-atlas-codex.pages.dev/launch"
         },
@@ -44,6 +48,10 @@
         {
           "label": "路线图长图",
           "href": "https://trace-atlas-codex.pages.dev/promo/workflow-card.png"
+        },
+        {
+          "label": "复用流程图",
+          "href": "https://trace-atlas-codex.pages.dev/promo/reuse-flow-card.png"
         },
         {
           "label": "网页分享卡",

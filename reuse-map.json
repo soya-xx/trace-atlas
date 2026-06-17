@@ -75,6 +75,20 @@
       "reason": "发布后出现问题时，把反馈带回公开记录。"
     }
   ],
+  "representations": [
+    {
+      "label": "读者复用路线页",
+      "href": "https://trace-atlas-codex.pages.dev/reuse",
+      "format": "html",
+      "sourceNodeIds": ["start", "quickstart", "artifact-kit", "evidence-pack", "public-health", "feedback-loop"]
+    },
+    {
+      "label": "小红书复用流程图",
+      "href": "https://trace-atlas-codex.pages.dev/promo/reuse-flow-card.png",
+      "format": "image/png",
+      "sourceNodeIds": ["start", "quickstart", "artifact-kit", "evidence-pack", "public-health", "feedback-loop"]
+    }
+  ],
   "boundaries": [
     "不包含 token、API key、账号密钥或本地路径。",
     "不包含原始私密聊天、私信内容或平台后台截图。",

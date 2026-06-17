@@ -15,6 +15,7 @@
 - 主作品：https://trace-atlas-codex.pages.dev/
 - 发布材料页：https://trace-atlas-codex.pages.dev/launch
 - 公开化路线图：https://trace-atlas-codex.pages.dev/workflow
+- 复用路线：https://trace-atlas-codex.pages.dev/reuse
 - 发布草稿包：https://trace-atlas-codex.pages.dev/promo/xhs-post-drafts.md
 - 发布后回流模板：https://trace-atlas-codex.pages.dev/promo/xhs-feedback-loop-template.md
 - 证据包：https://trace-atlas-codex.pages.dev/evidence-pack.md
@@ -28,6 +29,7 @@
 | --- | --- | --- | --- |
 | 小红书首图 | image/png | 900 × 1200 | https://trace-atlas-codex.pages.dev/promo/xhs-cover.png |
 | 路线图长图 | image/png | 900 × 1200 | https://trace-atlas-codex.pages.dev/promo/workflow-card.png |
+| 复用流程图 | image/png | 900 × 1200 | https://trace-atlas-codex.pages.dev/promo/reuse-flow-card.png |
 | 网页分享卡 | image/svg+xml | 1200 × 630 | https://trace-atlas-codex.pages.dev/social-card.svg |
 
 ## 推荐标签
@@ -37,8 +39,8 @@
 ## 发布前检查
 
 - 正文不出现 token、账号 ID、本地路径或原始私密聊天。
-- 主作品、路线图、证据包、发布材料页和工作日志都能打开。
-- 图片顺序为首图、路线图长图、分享卡或页面截图。
+- 主作品、路线图、复用路线、证据包、发布材料页和工作日志都能打开。
+- 图片顺序为首图、路线图长图、复用流程图、分享卡或页面截图。
 - GitHub Actions 最近一次 Verify Trace Atlas 为成功。
 - 发布后用回流模板把有效问题写回公开 issue。
 
